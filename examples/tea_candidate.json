@@ -1,0 +1,112 @@
+{
+  "initial_states": [
+    "cup_available",
+    "kettle_available"
+  ],
+  "goal_states": [
+    "tea_ready"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "stabilize",
+        "object": "cup",
+        "pre_state": [
+          "cup_available"
+        ],
+        "post_state": [
+          "cup_stable"
+        ],
+        "duration": 2,
+        "resource": [
+          "cup"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "pick",
+        "object": "kettle",
+        "pre_state": [
+          "kettle_available"
+        ],
+        "post_state": [
+          "kettle_held"
+        ],
+        "duration": 2,
+        "resource": [
+          "kettle"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "pour",
+        "object": "cup",
+        "pre_state": [
+          "cup_stable",
+          "kettle_held"
+        ],
+        "post_state": [
+          "cup_has_water"
+        ],
+        "duration": 3,
+        "resource": [
+          "cup",
+          "kettle"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t4",
+        "action": "add_tea_bag",
+        "object": "cup",
+        "pre_state": [
+          "cup_has_water"
+        ],
+        "post_state": [
+          "tea_bag_in_cup"
+        ],
+        "duration": 2,
+        "resource": [
+          "cup"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "stir",
+        "object": "cup",
+        "pre_state": [
+          "tea_bag_in_cup"
+        ],
+        "post_state": [
+          "tea_ready"
+        ],
+        "duration": 2,
+        "resource": [
+          "cup",
+          "spoon"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  }
+}

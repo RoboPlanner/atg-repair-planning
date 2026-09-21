@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATG Repair | Verifiable Dual-Unit Planning</title>
+  <meta name="description" content="Deterministic relation repair, joint auditing, and strict list scheduling for dual execution units. Code, frozen evaluations, and reproducibility materials.">
+  <meta name="theme-color" content="#244b75">
+  <meta property="og:title" content="ATG Repair — Verifiable Dual-Unit Planning">
+  <meta property="og:description" content="From candidate task relations to audited planning-layer schedules. Explore the method and reproduce the evidence.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav"><nav aria-label="Main navigation"><a class="brand" href="#top"><span class="mark" aria-hidden="true">◉</span> ATG <strong>Repair</strong></a><div><a href="#method">Method</a><a href="#evidence">Evidence</a><a href="#reproduce">Reproduce</a></div></nav></header>
+<main id="main">
+<section class="hero container" id="top">
+  <p class="eyebrow">Task planning · Relation repair · Verifiable scheduling</p>
+  <h1>Verifiable Atomic Task Graph<br class="wide"> Relation Repair for <br class="wide"> <span>Dual-Unit Parallel Planning</span></h1>
+  <p class="subtitle">A deterministic bridge from candidate task relations<br class="wide"> to audited schedules at the planning layer.</p>
+  <p class="status">Research manuscript <span aria-hidden="true">/</span> Code &amp; evaluation snapshot v7.70</p>
+  <div class="actions"><a class="button primary" href="assets/downloads/ATG_reproduction_v7_70.zip" download>↓ Code &amp; data <span>4.6 MiB</span></a><a class="button" href="#reproduce">Reproduce results ↗</a><a class="button" href="#abstract">Read overview</a></div>
+  <p class="local-note" id="local-note">Local project preview. A public project URL has not been assigned.</p>
+</section>
+
+<section class="container teaser" aria-labelledby="teaser-title">
+  <div class="figure-top"><span class="eyebrow" id="teaser-title">From candidate graph to accepted plan</span><a href="assets/images/figure1.png" target="_blank" rel="noopener">View full resolution ↗</a></div>
+  <a class="figure-link" href="assets/images/figure1.png" target="_blank" rel="noopener" aria-label="Open method overview at full resolution"><img src="assets/images/figure1.png" width="2400" height="1351" alt="Method overview: candidate normalization, four ordered repair stages, six-check joint audit, and strict scheduling. The cooperative pour task occupies both L and R." fetchpriority="high"></a>
+  <p class="caption"><b>Candidate → repair → audit → schedule.</b> A candidate is accepted only after graph and actual schedule checks. Cooperative mode <b>B occupies L + R</b>; it is not a third execution unit.</p>
+</section>
+
+<section class="reading section" id="abstract"><p class="eyebrow">Overview</p><h2>Relations that can be checked,<br>decisions that can be replayed.</h2>
+  <p>Candidate plans from language models, rules, or users can be structurally well formed while missing causal support, resource ordering, or cooperative pairing. This project represents those obligations in a typed atomic task graph, then applies deterministic relation repair before scheduling.</p>
+  <p>The four stages perform state closure, synchronization pairing, resource-conflict orientation, and conservative order compression. A joint audit checks six graph conditions; strict list scheduling additionally verifies the actual execution-unit and resource occupancy. Accepted and rejected edits remain in a traceable log, while only accepted events participate in graph replay.</p>
+  <p>Controlled experiments show improved reference agreement after repair. Same-input comparisons and public evaluations also delimit the contribution: a simple comparator with the same compression is competitive on the controlled sample, and improved formal acceptance does not guarantee improved semantic agreement.</p>
+  <details class="chinese"><summary>中文研究概述</summary><p lang="zh-CN">本项目研究面向双执行单元协同任务的可验证原子任务图关系修复与规划层并行规划。候选由大模型、规则或用户提供；确定性后处理负责状态闭合、同步配对、资源冲突定向和保守顺序压缩。通过六项联合图审计及实际调度检查后才输出被接受计划。研究保证限于已表示的离散状态、容量1资源和执行单元占用。</p></details>
+</section>
+
+<section class="section tinted" id="method"><div class="container">
+  <div class="section-heading"><div><p class="eyebrow">01 / Method</p><h2>Repair obligations in a fixed order.</h2></div><p>Every accepted modification has a reason.<br>Every failed check returns a diagnostic.</p></div>
+  <ol class="stages"><li><span>01</span><h3>State closure</h3><p>Repair represented causal support with precise state labels.</p></li><li><span>02</span><h3>Sync pairing</h3><p>Pair existing support with the same source, target, and state.</p></li><li><span>03</span><h3>Resource orientation</h3><p>Turn shared-resource conflicts into an acyclic directed order.</p></li><li><span>04</span><h3>Order compression</h3><p>Trial-delete only E<sub>order</sub>; re-audit and accept or restore.</p></li></ol>
+  <div class="figure-controls" role="group" aria-label="Method figure selection"><button type="button" class="active" data-figure="2" aria-pressed="true">Typed representation</button><button type="button" data-figure="3" aria-pressed="false">Repair &amp; scheduling</button><button type="button" data-figure="4" aria-pressed="false">Audit &amp; replay</button></div>
+  <figure class="method-figure"><a id="method-full" href="assets/images/figure2.png" target="_blank" rel="noopener" aria-label="Open selected method figure at full resolution"><img id="method-image" src="assets/images/figure2.png" alt="Nine-field atomic node schema, four relation types, and the two-unit occupancy rule." loading="lazy"></a><figcaption id="method-caption" aria-live="polite">Figure 2 · Nine node fields, typed relations, and execution-unit occupancy. Click the image for full resolution.</figcaption></figure>
+  <div class="audit-line"><strong>Six graph checks</strong><span>Schema-valid</span><span>Closed</span><span>Goal-reachable</span><span>Acyclic</span><span>Sync-complete</span><span>Resource-ordered</span></div>
+  <p class="scope">Any failed check yields diagnostics and no accepted schedule. Rejection does not prove infeasibility.</p>
+  <noscript><p>Additional figures: <a href="assets/images/figure3.png">Figure 3</a> · <a href="assets/images/figure4.png">Figure 4</a>.</p></noscript>
+</div></section>
+
+<section class="section container" id="evidence">
+  <div class="section-heading"><div><p class="eyebrow">02 / Evidence</p><h2>What the evaluations establish.</h2></div><p>Frozen inputs. Shared-input comparisons.<br>Positive and negative results retained.</p></div>
+  <div class="findings"><article><p class="finding-label">Controlled reference agreement</p><p class="finding-value">0.9018 <span>→</span> 0.9813</p><h3>Mean complete-label edge F1</h3><p>160 records from four fixed topologies with 40 duration variants each. These are not 160 independent task specifications.</p></article><article><p class="finding-label">Public resource projections</p><p class="finding-value">25.72<span>%</span></p><h3>Mean paired makespan reduction</h3><p>Full method versus field matching with shared compression on six two-unit job-shop projections. A finite-instance result.</p></article><article><p class="finding-label">Independent source checks</p><p class="finding-value">41 <span>/ 41</span></p><h3>Accepted outputs passed</h3><p>13 public-specification inputs evaluated under four settings. This is a conditional output check, not 100% repair completeness.</p></article></div>
+  <div class="comparison"><div><h3>A necessary same-input comparison</h3><p>On the controlled sample, the simple comparator with the same compression slightly outperforms the full method. The sample does not establish extra benefit from the full heuristic.</p><p class="small">Edge F1 excludes E<sub>order</sub>. Compression alone cannot change this metric.</p></div><div class="table-wrap"><table><caption>160 controlled records · same input and compression</caption><thead><tr><th scope="col">Method</th><th scope="col">Accepted</th><th scope="col">Edge F1</th><th scope="col">Speedup</th></tr></thead><tbody><tr><th scope="row">Full method</th><td>160/160</td><td>0.9813</td><td>1.2535×</td></tr><tr><th scope="row">Field matching + compression</th><td>160/160</td><td>0.9853</td><td>1.2619×</td></tr></tbody></table></div></div>
+  <div class="evidence-details"><details><summary>Public specifications and adaptation coverage</summary><p>Six of ten AssemblyGrid recipes are fully adaptable to the represented planning model. Four recipes are excluded for unsupported cardinality or XOR semantics. One official inclusive-OR specification test is counted separately. Six OR-Library job-shop instances are projected onto two added generic execution units while retaining machine resources.</p><p>The projection is not a replication of the original robot simulation and is not compared with the original job-shop optimum. Candidates are deterministic adaptations of the frozen public specifications.</p></details><details><summary>External tool candidates: acceptance is not semantic agreement</summary><p>Adaptable archived candidates number 234/497 for CodeLlama-13b and 67/489 for Mistral-7b. From audit-only to the full method, accepted counts rise from 175 to 234 and 44 to 64, respectively; mean reference edge F1 falls from 0.4226 to 0.4040 and from 0.4064 to 0.3023. Tool-dependency data do not supply robot resource or cooperative-occupancy semantics.</p></details><details><summary>Model-generated candidates and finite mechanism checks</summary><p>The 24 GPT-6 conversation candidates contain 254 nodes. All original candidates pass, and repair produces zero net relation change. Task specifications and candidates come from the same method-aware session; these artifacts are not an independently verifiable provider API benchmark.</p><p>In a separate author-constructed three-node family, 736 of 1,728 inputs have independently checked feasible witnesses. The full method accepts 720 of them and rejects 16 feasible inputs. No false acceptance was observed in this finite family; completeness is not established.</p></details></div>
+  <figure class="result-figure"><a href="assets/images/figure5.png" target="_blank" rel="noopener"><img src="assets/images/figure5.png" alt="Paper Figure 5, controlled reference-agreement and audit results, with the original axis labels and values." loading="lazy"></a><figcaption>Figure 5 from the manuscript · Controlled reference-agreement and audit results. The fair comparison above uses the additional shared-compression comparator.</figcaption></figure>
+  <p class="data-link"><a href="assets/data/evidence.json">Read the machine-readable evidence summary ↗</a></p>
+</section>
+
+<section class="section tinted" id="reproduce"><div class="container">
+  <div class="section-heading"><div><p class="eyebrow">03 / Reproduce</p><h2>Run locally. Inspect every decision.</h2></div><p>Python 3.11+ · offline evaluation<br>No model API or robot connection required.</p></div>
+  <div class="reproduce-grid"><div><h3>One command for the frozen evaluations</h3><p>Download and extract the supplementary archive. From its root, run:</p><div class="codebox"><pre><code id="run-command">python reproduce_all.py results/new_run</code></pre><button type="button" id="copy-command" aria-label="Copy reproduction command">Copy</button></div><p class="small" id="copy-status" aria-live="polite">Use a new output directory. Stable results are checked against the archive; machine timings are not expected to match.</p><p>The current suites use only the Python standard library. Historical MILP and timing scripts have separately pinned dependencies.</p></div><div class="resources"><a href="assets/downloads/ATG_reproduction_v7_70.zip" download><b>Code, inputs &amp; archived results</b><span>Frozen supplementary package · ZIP ↓</span></a><a href="assets/downloads/README.md"><b>Repository guide</b><span>Setup, code map, checks &amp; publication notes ↗</span></a><a href="assets/downloads/README.zh-CN.md"><b>中文复现说明</b><span>运行入口、证据映射与使用范围 ↗</span></a><a href="assets/downloads/external_discrete_protocol.md"><b>Public-specification protocol</b><span>Adaptation, exclusions &amp; source checks ↗</span></a></div></div>
+  <details class="checksum"><summary>Archive checksum and version</summary><p>ATG_reproduction_v7_70.zip · SHA-256</p><code>922881a57e08e3cc1a0f28e283e2837dabfb486d1c612fc282feb4575a8f0f4a</code><p>The package preserves the v7.70 experimental snapshot. The subsequent manuscript update adds the local homepage link without changing those experiments.</p></details>
+</div></section>
+
+<section class="reading section boundaries"><p class="eyebrow">Scope of the guarantee</p><h2>Planning-layer verification.</h2><p>The accepted interface checks represented discrete states, capacity-one resources, and L/R occupancy. It does not establish unmodelled task semantics, collision-free motion, trajectory feasibility, or hardware safety. The repair procedure is heuristic and can reject feasible inputs.</p><p class="small">The manuscript is under preparation. No venue acceptance, DOI, public repository URL, or author affiliation is asserted by this local project page.</p></section>
+</main>
+<footer><div class="container"><a class="brand" href="#top">ATG <strong>Repair</strong> ↑</a><p>Page organization informed by <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>.<br>Original HTML/CSS/JS implementation. <a href="credits.html">Sources, licenses &amp; attribution</a>. No analytics or external font dependencies.</p></div></footer>
+</body></html>
