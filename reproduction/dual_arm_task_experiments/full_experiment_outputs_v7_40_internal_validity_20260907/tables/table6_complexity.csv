@@ -1,0 +1,13 @@
+Complexity Setting,Edge F1,Edge F1 Std,Topo Error,Topo Error Std,Parallel F1,Parallel F1 Std,Planning Time,Planning Time Std
+4 nodes / Direct Candidate Graph,0.778,0.1895,0.0,0.0,1.0,0.0,0.1444,0.0212
+4 nodes / Schema-Constrained Candidate,0.8834,0.1258,0.0,0.0,0.1111,0.2722,0.1405,0.0292
+4 nodes / Verified ATG (Ours),0.9762,0.0583,0.0,0.0,1.0,0.0,1.1948,0.1028
+6 nodes / Direct Candidate Graph,0.8163,0.0837,0.0,0.0,0.8889,0.0,0.1862,0.0347
+6 nodes / Schema-Constrained Candidate,0.8857,0.0814,0.0,0.0,0.6012,0.0729,0.1994,0.0359
+6 nodes / Verified ATG (Ours),0.9848,0.0371,0.0,0.0,0.8889,0.0,1.998,0.2764
+8 nodes / Direct Candidate Graph,0.8089,0.1748,0.0,0.0,0.7379,0.1827,0.18,0.0563
+8 nodes / Schema-Constrained Candidate,0.8781,0.1034,0.0,0.0,0.6012,0.0729,0.2133,0.0609
+8 nodes / Verified ATG (Ours),0.9872,0.0314,0.0,0.0,0.8889,0.0,2.6089,0.3081
+10 nodes / Direct Candidate Graph,0.8305,0.1102,0.0,0.0,0.5594,0.2799,0.1673,0.0044
+10 nodes / Schema-Constrained Candidate,0.9177,0.0764,0.0,0.0,0.4879,0.2118,0.1946,0.0045
+10 nodes / Verified ATG (Ours),0.9778,0.0344,0.0,0.0,0.8889,0.0,3.6269,0.1537

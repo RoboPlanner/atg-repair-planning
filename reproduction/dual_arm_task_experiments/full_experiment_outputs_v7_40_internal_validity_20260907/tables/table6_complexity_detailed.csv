@@ -1,0 +1,73 @@
+Complexity Setting,Node Bucket,Method,Edge F1,Topo Error,Parallel F1,Planning Time
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.923076923076923,0.0,1.0,0.1541500005259877
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,1.0,0.0,0.0,0.10519999887037557
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),1.0,0.0,1.0,1.2709000002359971
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.7272727272727273,0.0,1.0,0.11319999975967221
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,0.923076923076923,0.0,0.0,0.12999999853491317
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),1.0,0.0,1.0,1.0849000009329757
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.923076923076923,0.0,1.0,0.15999999959603883
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,1.0,0.0,0.0,0.17725000179780181
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),1.0,0.0,1.0,1.3321499991434393
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.4444444444444445,0.0,1.0,0.1565000002301531
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,0.7272727272727273,0.0,0.6666666666666666,0.12924999828101136
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),0.8571428571428571,0.0,1.0,1.231000000188942
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.923076923076923,0.0,1.0,0.12149999929533806
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,0.923076923076923,0.0,0.0,0.12584999967657495
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),1.0,0.0,1.0,1.1753499984479276
+4 nodes / Direct Candidate Graph,4 nodes,Direct Candidate Graph,0.7272727272727273,0.0,1.0,0.16090000099211466
+4 nodes / Schema-Constrained Candidate,4 nodes,Schema-Constrained Candidate,0.7272727272727273,0.0,0.0,0.17545000082463957
+4 nodes / Verified ATG (Ours),4 nodes,Verified ATG (Ours),1.0,0.0,1.0,1.0747499982244335
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.8421052631578948,0.0,0.888888888888889,0.11854999866045546
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,0.9523809523809523,0.0,0.5714285714285715,0.20184999993944075
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,1.875149999250425
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.9523809523809523,0.0,0.888888888888889,0.19579999934649095
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,1.0,0.0,0.5714285714285715,0.1341500028502196
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,1.5238500018313061
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.7777777777777778,0.0,0.888888888888889,0.185500000952743
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,0.8421052631578948,0.0,0.75,0.18684999849938322
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),0.9090909090909091,0.0,0.888888888888889,2.086349999444792
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.8421052631578948,0.0,0.888888888888889,0.20665000192821026
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,0.9,0.0,0.5714285714285715,0.22249999892665073
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.084699999613804
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.7058823529411764,0.0,0.888888888888889,0.19530000281520188
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,0.8421052631578948,0.0,0.5714285714285715,0.2177500009565847
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.346500001294771
+6 nodes / Direct Candidate Graph,6 nodes,Direct Candidate Graph,0.7777777777777778,0.0,0.888888888888889,0.2155499987566145
+6 nodes / Schema-Constrained Candidate,6 nodes,Schema-Constrained Candidate,0.7777777777777778,0.0,0.5714285714285715,0.23314999816648196
+6 nodes / Verified ATG (Ours),6 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.071349999823724
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.8181818181818181,0.0,0.5333333333333333,0.1486000019212952
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,0.8695652173913044,0.0,0.5714285714285715,0.2777999980025925
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,3.065999999307678
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.9600000000000001,0.0,0.888888888888889,0.26405000062368345
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,1.0,0.0,0.5714285714285715,0.17070000103558414
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.935150001576403
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.47058823529411764,0.0,0.5,0.1397500018356368
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,0.7000000000000001,0.0,0.5714285714285715,0.3038500017282786
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.37109999943641
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.9166666666666666,0.0,0.888888888888889,0.2395999999862397
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,0.9600000000000001,0.0,0.5714285714285715,0.18305000048712827
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.439300000332878
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.8695652173913044,0.0,0.7272727272727273,0.143749999551801
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,0.8695652173913044,0.0,0.5714285714285715,0.16519999917363748
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,2.380900001298869
+8 nodes / Direct Candidate Graph,8 nodes,Direct Candidate Graph,0.8181818181818181,0.0,0.888888888888889,0.14399999963643495
+8 nodes / Schema-Constrained Candidate,8 nodes,Schema-Constrained Candidate,0.8695652173913044,0.0,0.75,0.17910000133269932
+8 nodes / Verified ATG (Ours),8 nodes,Verified ATG (Ours),0.9230769230769231,0.0,0.888888888888889,2.4607499999547144
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.846153846153846,0.0,0.888888888888889,0.1677999989624368
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,0.888888888888889,0.0,0.5714285714285715,0.1904500004457077
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,3.540100000464008
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.8,0.0,0.6153846153846153,0.16559999858145602
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,0.888888888888889,0.0,0.75,0.18790000103763305
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),0.9333333333333333,0.0,0.888888888888889,3.7295499987521907
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.846153846153846,0.0,0.34782608695652173,0.1733999997668434
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,0.9285714285714286,0.0,0.27272727272727276,0.19749999955820385
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),0.9333333333333333,0.0,0.888888888888889,3.8366500011761673
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.888888888888889,0.0,0.3076923076923077,0.16900000082387123
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,1.0,0.0,0.5714285714285715,0.19919999976991676
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,3.579100000933977
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.9655172413793104,0.0,0.888888888888889,0.1680999994277954
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,1.0,0.0,0.5714285714285715,0.19440000141912606
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,3.400350000447361
+10 nodes / Direct Candidate Graph,10 nodes,Direct Candidate Graph,0.6363636363636364,0.0,0.3076923076923077,0.15999999959603883
+10 nodes / Schema-Constrained Candidate,10 nodes,Schema-Constrained Candidate,0.8,0.0,0.19047619047619047,0.19799999972747173
+10 nodes / Verified ATG (Ours),10 nodes,Verified ATG (Ours),1.0,0.0,0.888888888888889,3.6756499994226033

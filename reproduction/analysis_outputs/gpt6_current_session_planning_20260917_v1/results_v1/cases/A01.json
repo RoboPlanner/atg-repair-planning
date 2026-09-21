@@ -1,0 +1,3323 @@
+{
+  "task_id": "A01",
+  "spec": {
+    "task_id": "A01",
+    "domain": "assembly",
+    "title": "支架与底座装配",
+    "instruction": "分别准备底座和支架，双单元共同对齐；拧紧两处紧固点，检查后贴完成标签。两处紧固使用同一把扭矩工具。",
+    "S0": [
+      "base_available",
+      "bracket_available",
+      "bolts_available",
+      "label_available"
+    ],
+    "Sg": [
+      "bracket_assembly_labeled"
+    ],
+    "resources": [
+      "base",
+      "bracket",
+      "torque_tool",
+      "label_printer"
+    ]
+  },
+  "raw_source": "raw_candidates_assembly.json",
+  "raw_candidate": {
+    "task_id": "A01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate base",
+        "object": "base",
+        "Pre": [
+          "base_available"
+        ],
+        "Post": [
+          "base_located"
+        ],
+        "d": 2,
+        "Res": [
+          "base"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare bracket",
+        "object": "bracket",
+        "Pre": [
+          "bracket_available"
+        ],
+        "Post": [
+          "bracket_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "bracket"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "align bracket to base",
+        "object": "bracket assembly",
+        "Pre": [
+          "base_located",
+          "bracket_prepared"
+        ],
+        "Post": [
+          "bracket_aligned"
+        ],
+        "d": 3,
+        "Res": [
+          "base",
+          "bracket"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t4",
+        "action": "tighten first fastener",
+        "object": "bracket assembly",
+        "Pre": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "Post": [
+          "fastener_one_tight"
+        ],
+        "d": 2,
+        "Res": [
+          "base",
+          "torque_tool"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "tighten second fastener",
+        "object": "bracket assembly",
+        "Pre": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "Post": [
+          "fastener_two_tight"
+        ],
+        "d": 2,
+        "Res": [
+          "base",
+          "torque_tool"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "inspect assembled bracket",
+        "object": "bracket assembly",
+        "Pre": [
+          "fastener_one_tight",
+          "fastener_two_tight"
+        ],
+        "Post": [
+          "bracket_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "base",
+          "bracket"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "apply completion label",
+        "object": "bracket assembly",
+        "Pre": [
+          "bracket_checked",
+          "label_available"
+        ],
+        "Post": [
+          "bracket_assembly_labeled"
+        ],
+        "d": 1,
+        "Res": [
+          "base",
+          "label_printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t3",
+          "base_located"
+        ],
+        [
+          "t2",
+          "t3",
+          "bracket_prepared"
+        ],
+        [
+          "t3",
+          "t4",
+          "bracket_aligned"
+        ],
+        [
+          "t3",
+          "t5",
+          "bracket_aligned"
+        ],
+        [
+          "t4",
+          "t6",
+          "fastener_one_tight"
+        ],
+        [
+          "t5",
+          "t6",
+          "fastener_two_tight"
+        ],
+        [
+          "t6",
+          "t7",
+          "bracket_checked"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t3",
+          "base_located"
+        ],
+        [
+          "t2",
+          "t3",
+          "bracket_prepared"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t4",
+          "t5",
+          "torque_tool"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate base",
+        "object": "base",
+        "pre_state": [
+          "base_available"
+        ],
+        "post_state": [
+          "base_located"
+        ],
+        "duration": 2,
+        "resource": [
+          "base"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare bracket",
+        "object": "bracket",
+        "pre_state": [
+          "bracket_available"
+        ],
+        "post_state": [
+          "bracket_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "bracket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "align bracket to base",
+        "object": "bracket assembly",
+        "pre_state": [
+          "base_located",
+          "bracket_prepared"
+        ],
+        "post_state": [
+          "bracket_aligned"
+        ],
+        "duration": 3,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t4",
+        "action": "tighten first fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_one_tight"
+        ],
+        "duration": 2,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "tighten second fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_two_tight"
+        ],
+        "duration": 2,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "inspect assembled bracket",
+        "object": "bracket assembly",
+        "pre_state": [
+          "fastener_one_tight",
+          "fastener_two_tight"
+        ],
+        "post_state": [
+          "bracket_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "apply completion label",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_checked",
+          "label_available"
+        ],
+        "post_state": [
+          "bracket_assembly_labeled"
+        ],
+        "duration": 1,
+        "resource": [
+          "base",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "state": "bracket_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "fastener_one_tight"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "fastener_two_tight"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "bracket_checked"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "state": "bracket_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "torque_tool"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "base_available",
+        "bolts_available",
+        "bracket_available",
+        "label_available"
+      ],
+      "available_states": [
+        "base_available",
+        "base_located",
+        "bolts_available",
+        "bracket_aligned",
+        "bracket_assembly_labeled",
+        "bracket_available",
+        "bracket_checked",
+        "bracket_prepared",
+        "fastener_one_tight",
+        "fastener_two_tight",
+        "label_available"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "bracket_assembly_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 12.0,
+    "waiting_time": 4.0,
+    "executor_utilization": 0.7083,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "locate base",
+        "object": "base",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "base"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare bracket",
+        "object": "bracket",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "bracket"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "align bracket to base",
+        "object": "bracket assembly",
+        "start": 2.0,
+        "finish": 5.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "base",
+          "bracket"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "tighten first fastener",
+        "object": "bracket assembly",
+        "start": 5.0,
+        "finish": 7.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "base",
+          "torque_tool"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "tighten second fastener",
+        "object": "bracket assembly",
+        "start": 7.0,
+        "finish": 9.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "base",
+          "torque_tool"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "inspect assembled bracket",
+        "object": "bracket assembly",
+        "start": 9.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "base",
+          "bracket"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "apply completion label",
+        "object": "bracket assembly",
+        "start": 11.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "base",
+          "label_printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "bracket_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "base_available",
+          "bolts_available",
+          "bracket_available",
+          "label_available"
+        ],
+        "available_states": [
+          "base_available",
+          "base_located",
+          "bolts_available",
+          "bracket_aligned",
+          "bracket_assembly_labeled",
+          "bracket_available",
+          "bracket_checked",
+          "bracket_prepared",
+          "fastener_one_tight",
+          "fastener_two_tight",
+          "label_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "bracket_assembly_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "base_available",
+          "bolts_available",
+          "bracket_available",
+          "label_available"
+        ],
+        "available_states": [
+          "base_available",
+          "base_located",
+          "bolts_available",
+          "bracket_aligned",
+          "bracket_assembly_labeled",
+          "bracket_available",
+          "bracket_checked",
+          "bracket_prepared",
+          "fastener_one_tight",
+          "fastener_two_tight",
+          "label_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "bracket_assembly_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "base_available",
+            "bolts_available",
+            "bracket_available",
+            "label_available"
+          ],
+          "available_states": [
+            "base_available",
+            "base_located",
+            "bolts_available",
+            "bracket_aligned",
+            "bracket_assembly_labeled",
+            "bracket_available",
+            "bracket_checked",
+            "bracket_prepared",
+            "fastener_one_tight",
+            "fastener_two_tight",
+            "label_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "bracket_assembly_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "base_available",
+            "bolts_available",
+            "bracket_available",
+            "label_available"
+          ],
+          "available_states": [
+            "base_available",
+            "base_located",
+            "bolts_available",
+            "bracket_aligned",
+            "bracket_assembly_labeled",
+            "bracket_available",
+            "bracket_checked",
+            "bracket_prepared",
+            "fastener_one_tight",
+            "fastener_two_tight",
+            "label_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "bracket_assembly_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "base_located",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for base_located",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "bracket_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for bracket_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "base_located",
+          "resource": null,
+          "reason": "cooperative input state base_located",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "bracket_prepared",
+          "resource": null,
+          "reason": "cooperative input state bracket_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7083,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "base",
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "start": 5.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "torque_tool"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "base",
+            "torque_tool"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "label_printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "bracket_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "base_available",
+          "bolts_available",
+          "bracket_available",
+          "label_available"
+        ],
+        "available_states": [
+          "base_available",
+          "base_located",
+          "bolts_available",
+          "bracket_aligned",
+          "bracket_assembly_labeled",
+          "bracket_available",
+          "bracket_checked",
+          "bracket_prepared",
+          "fastener_one_tight",
+          "fastener_two_tight",
+          "label_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "bracket_assembly_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "base_available",
+          "bolts_available",
+          "bracket_available",
+          "label_available"
+        ],
+        "available_states": [
+          "base_available",
+          "base_located",
+          "bolts_available",
+          "bracket_aligned",
+          "bracket_assembly_labeled",
+          "bracket_available",
+          "bracket_checked",
+          "bracket_prepared",
+          "fastener_one_tight",
+          "fastener_two_tight",
+          "label_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "bracket_assembly_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "base_available",
+            "bolts_available",
+            "bracket_available",
+            "label_available"
+          ],
+          "available_states": [
+            "base_available",
+            "base_located",
+            "bolts_available",
+            "bracket_aligned",
+            "bracket_assembly_labeled",
+            "bracket_available",
+            "bracket_checked",
+            "bracket_prepared",
+            "fastener_one_tight",
+            "fastener_two_tight",
+            "label_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "bracket_assembly_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "base_available",
+            "bolts_available",
+            "bracket_available",
+            "label_available"
+          ],
+          "available_states": [
+            "base_available",
+            "base_located",
+            "bolts_available",
+            "bracket_aligned",
+            "bracket_assembly_labeled",
+            "bracket_available",
+            "bracket_checked",
+            "bracket_prepared",
+            "fastener_one_tight",
+            "fastener_two_tight",
+            "label_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "bracket_assembly_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "base_located",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for base_located",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "bracket_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for bracket_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "base_located",
+          "resource": null,
+          "reason": "cooperative input state base_located",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "bracket_prepared",
+          "resource": null,
+          "reason": "cooperative input state bracket_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7083,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "base",
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "start": 5.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "torque_tool"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "base",
+            "torque_tool"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "bracket"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "base",
+            "label_printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate base",
+        "object": "base",
+        "pre_state": [
+          "base_available"
+        ],
+        "post_state": [
+          "base_located"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare bracket",
+        "object": "bracket",
+        "pre_state": [
+          "bracket_available"
+        ],
+        "post_state": [
+          "bracket_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bracket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "align bracket to base",
+        "object": "bracket assembly",
+        "pre_state": [
+          "base_located",
+          "bracket_prepared"
+        ],
+        "post_state": [
+          "bracket_aligned"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "tighten first fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_one_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "tighten second fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_two_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "inspect assembled bracket",
+        "object": "bracket assembly",
+        "pre_state": [
+          "fastener_one_tight",
+          "fastener_two_tight"
+        ],
+        "post_state": [
+          "bracket_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "apply completion label",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_checked",
+          "label_available"
+        ],
+        "post_state": [
+          "bracket_assembly_labeled"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "base",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_one_tight"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_two_tight"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "torque_tool"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "bracket_prepared"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate base",
+        "object": "base",
+        "pre_state": [
+          "base_available"
+        ],
+        "post_state": [
+          "base_located"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare bracket",
+        "object": "bracket",
+        "pre_state": [
+          "bracket_available"
+        ],
+        "post_state": [
+          "bracket_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bracket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "align bracket to base",
+        "object": "bracket assembly",
+        "pre_state": [
+          "base_located",
+          "bracket_prepared"
+        ],
+        "post_state": [
+          "bracket_aligned"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "tighten first fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_one_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "tighten second fastener",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_aligned",
+          "bolts_available"
+        ],
+        "post_state": [
+          "fastener_two_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "torque_tool"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "inspect assembled bracket",
+        "object": "bracket assembly",
+        "pre_state": [
+          "fastener_one_tight",
+          "fastener_two_tight"
+        ],
+        "post_state": [
+          "bracket_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "base",
+          "bracket"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "apply completion label",
+        "object": "bracket assembly",
+        "pre_state": [
+          "bracket_checked",
+          "label_available"
+        ],
+        "post_state": [
+          "bracket_assembly_labeled"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "base",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_aligned"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_one_tight"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_two_tight"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "bracket_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "torque_tool"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "base_located"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "bracket_prepared"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "base_available",
+        "bolts_available",
+        "bracket_available",
+        "label_available"
+      ],
+      "available_states": [
+        "base_available",
+        "base_located",
+        "bolts_available",
+        "bracket_aligned",
+        "bracket_assembly_labeled",
+        "bracket_available",
+        "bracket_checked",
+        "bracket_prepared",
+        "fastener_one_tight",
+        "fastener_two_tight",
+        "label_available"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "bracket_assembly_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bracket_prepared"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bracket_prepared"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate base",
+          "object": "base",
+          "pre_state": [
+            "base_available"
+          ],
+          "post_state": [
+            "base_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare bracket",
+          "object": "bracket",
+          "pre_state": [
+            "bracket_available"
+          ],
+          "post_state": [
+            "bracket_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bracket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "align bracket to base",
+          "object": "bracket assembly",
+          "pre_state": [
+            "base_located",
+            "bracket_prepared"
+          ],
+          "post_state": [
+            "bracket_aligned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "tighten first fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "tighten second fastener",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_aligned",
+            "bolts_available"
+          ],
+          "post_state": [
+            "fastener_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "torque_tool"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "inspect assembled bracket",
+          "object": "bracket assembly",
+          "pre_state": [
+            "fastener_one_tight",
+            "fastener_two_tight"
+          ],
+          "post_state": [
+            "bracket_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "base",
+            "bracket"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "apply completion label",
+          "object": "bracket assembly",
+          "pre_state": [
+            "bracket_checked",
+            "label_available"
+          ],
+          "post_state": [
+            "bracket_assembly_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "base",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_aligned"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_one_tight"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_two_tight"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bracket_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "torque_tool"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "base_located"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bracket_prepared"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "A01",
+    "domain": "assembly",
+    "title": "支架与底座装配",
+    "nodes": 7,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 7,
+    "raw_E_sync": 2,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 1,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 14.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 12.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 12.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 12.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 1,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 4,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 4,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.1666666666666667,
+    "relative_duration_reduction_vs_serial": 0.1428571428571429,
+    "executor_utilization": 0.7083333333333334,
+    "left_busy_time": 10.0,
+    "right_busy_time": 7.0,
+    "scheduled_overlap_pairs": 1,
+    "critical_path_duration": 12.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

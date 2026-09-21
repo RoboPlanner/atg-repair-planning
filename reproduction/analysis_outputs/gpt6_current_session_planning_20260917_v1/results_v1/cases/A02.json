@@ -1,0 +1,3676 @@
+{
+  "task_id": "A02",
+  "spec": {
+    "task_id": "A02",
+    "domain": "assembly",
+    "title": "传感器模块安装",
+    "instruction": "底板定位、传感器预检和线束准备可分开进行。安装传感器支座后固定模块，连接线束；支座和模块共用紧固工具，最后完成电测与封签。",
+    "S0": [
+      "plate_available",
+      "sensor_available",
+      "harness_available",
+      "seal_available"
+    ],
+    "Sg": [
+      "sensor_module_sealed"
+    ],
+    "resources": [
+      "plate",
+      "sensor",
+      "harness",
+      "driver",
+      "tester",
+      "label_printer"
+    ]
+  },
+  "raw_source": "raw_candidates_assembly.json",
+  "raw_candidate": {
+    "task_id": "A02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate plate",
+        "object": "plate",
+        "Pre": [
+          "plate_available"
+        ],
+        "Post": [
+          "plate_located"
+        ],
+        "d": 2,
+        "Res": [
+          "plate"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "precheck sensor",
+        "object": "sensor",
+        "Pre": [
+          "sensor_available"
+        ],
+        "Post": [
+          "sensor_prechecked"
+        ],
+        "d": 3,
+        "Res": [
+          "sensor"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare harness",
+        "object": "harness",
+        "Pre": [
+          "harness_available"
+        ],
+        "Post": [
+          "harness_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "harness"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "fasten support",
+        "object": "plate",
+        "Pre": [
+          "plate_located"
+        ],
+        "Post": [
+          "support_installed"
+        ],
+        "d": 3,
+        "Res": [
+          "plate",
+          "driver"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "fasten sensor module",
+        "object": "sensor",
+        "Pre": [
+          "support_installed",
+          "sensor_prechecked"
+        ],
+        "Post": [
+          "sensor_installed"
+        ],
+        "d": 3,
+        "Res": [
+          "sensor",
+          "plate",
+          "driver"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "connect harness",
+        "object": "sensor harness",
+        "Pre": [
+          "sensor_installed",
+          "harness_prepared"
+        ],
+        "Post": [
+          "harness_connected"
+        ],
+        "d": 2,
+        "Res": [
+          "sensor",
+          "harness"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "test electrical connection",
+        "object": "sensor module",
+        "Pre": [
+          "harness_connected"
+        ],
+        "Post": [
+          "electrical_check_complete"
+        ],
+        "d": 4,
+        "Res": [
+          "sensor",
+          "tester"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print seal record",
+        "object": "seal",
+        "Pre": [
+          "electrical_check_complete",
+          "seal_available"
+        ],
+        "Post": [
+          "seal_record_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "label_printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "seal checked module",
+        "object": "sensor module",
+        "Pre": [
+          "electrical_check_complete",
+          "seal_record_printed"
+        ],
+        "Post": [
+          "sensor_module_sealed"
+        ],
+        "d": 2,
+        "Res": [
+          "sensor"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "plate_located"
+        ],
+        [
+          "t4",
+          "t5",
+          "support_installed"
+        ],
+        [
+          "t2",
+          "t5",
+          "sensor_prechecked"
+        ],
+        [
+          "t5",
+          "t6",
+          "sensor_installed"
+        ],
+        [
+          "t3",
+          "t6",
+          "harness_prepared"
+        ],
+        [
+          "t6",
+          "t7",
+          "harness_connected"
+        ],
+        [
+          "t7",
+          "t8",
+          "electrical_check_complete"
+        ],
+        [
+          "t7",
+          "t9",
+          "electrical_check_complete"
+        ],
+        [
+          "t8",
+          "t9",
+          "seal_record_printed"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate plate",
+        "object": "plate",
+        "pre_state": [
+          "plate_available"
+        ],
+        "post_state": [
+          "plate_located"
+        ],
+        "duration": 2,
+        "resource": [
+          "plate"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "precheck sensor",
+        "object": "sensor",
+        "pre_state": [
+          "sensor_available"
+        ],
+        "post_state": [
+          "sensor_prechecked"
+        ],
+        "duration": 3,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare harness",
+        "object": "harness",
+        "pre_state": [
+          "harness_available"
+        ],
+        "post_state": [
+          "harness_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "fasten support",
+        "object": "plate",
+        "pre_state": [
+          "plate_located"
+        ],
+        "post_state": [
+          "support_installed"
+        ],
+        "duration": 3,
+        "resource": [
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "fasten sensor module",
+        "object": "sensor",
+        "pre_state": [
+          "support_installed",
+          "sensor_prechecked"
+        ],
+        "post_state": [
+          "sensor_installed"
+        ],
+        "duration": 3,
+        "resource": [
+          "sensor",
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "connect harness",
+        "object": "sensor harness",
+        "pre_state": [
+          "sensor_installed",
+          "harness_prepared"
+        ],
+        "post_state": [
+          "harness_connected"
+        ],
+        "duration": 2,
+        "resource": [
+          "sensor",
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "test electrical connection",
+        "object": "sensor module",
+        "pre_state": [
+          "harness_connected"
+        ],
+        "post_state": [
+          "electrical_check_complete"
+        ],
+        "duration": 4,
+        "resource": [
+          "sensor",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print seal record",
+        "object": "seal",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_available"
+        ],
+        "post_state": [
+          "seal_record_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "seal checked module",
+        "object": "sensor module",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_record_printed"
+        ],
+        "post_state": [
+          "sensor_module_sealed"
+        ],
+        "duration": 2,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "plate_located"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "support_installed"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "sensor_prechecked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "sensor_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "harness_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "harness_connected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "seal_record_printed"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "harness_available",
+        "plate_available",
+        "seal_available",
+        "sensor_available"
+      ],
+      "available_states": [
+        "electrical_check_complete",
+        "harness_available",
+        "harness_connected",
+        "harness_prepared",
+        "plate_available",
+        "plate_located",
+        "seal_available",
+        "seal_record_printed",
+        "sensor_available",
+        "sensor_installed",
+        "sensor_module_sealed",
+        "sensor_prechecked",
+        "support_installed"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "sensor_module_sealed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 19.0,
+    "waiting_time": 13.0,
+    "executor_utilization": 0.5789,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "locate plate",
+        "object": "plate",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "plate"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "precheck sensor",
+        "object": "sensor",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "sensor"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare harness",
+        "object": "harness",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "harness"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "fasten support",
+        "object": "plate",
+        "start": 4.0,
+        "finish": 7.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "plate",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "fasten sensor module",
+        "object": "sensor",
+        "start": 7.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "sensor",
+          "plate",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "connect harness",
+        "object": "sensor harness",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "sensor",
+          "harness"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "test electrical connection",
+        "object": "sensor module",
+        "start": 12.0,
+        "finish": 16.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "sensor",
+          "tester"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "print seal record",
+        "object": "seal",
+        "start": 16.0,
+        "finish": 17.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "label_printer"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "seal checked module",
+        "object": "sensor module",
+        "start": 17.0,
+        "finish": 19.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "sensor"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.5789473684210527
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "harness_available",
+          "plate_available",
+          "seal_available",
+          "sensor_available"
+        ],
+        "available_states": [
+          "electrical_check_complete",
+          "harness_available",
+          "harness_connected",
+          "harness_prepared",
+          "plate_available",
+          "plate_located",
+          "seal_available",
+          "seal_record_printed",
+          "sensor_available",
+          "sensor_installed",
+          "sensor_module_sealed",
+          "sensor_prechecked",
+          "support_installed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sensor_module_sealed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "harness_available",
+          "plate_available",
+          "seal_available",
+          "sensor_available"
+        ],
+        "available_states": [
+          "electrical_check_complete",
+          "harness_available",
+          "harness_connected",
+          "harness_prepared",
+          "plate_available",
+          "plate_located",
+          "seal_available",
+          "seal_record_printed",
+          "sensor_available",
+          "sensor_installed",
+          "sensor_module_sealed",
+          "sensor_prechecked",
+          "support_installed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sensor_module_sealed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "harness_available",
+            "plate_available",
+            "seal_available",
+            "sensor_available"
+          ],
+          "available_states": [
+            "electrical_check_complete",
+            "harness_available",
+            "harness_connected",
+            "harness_prepared",
+            "plate_available",
+            "plate_located",
+            "seal_available",
+            "seal_record_printed",
+            "sensor_available",
+            "sensor_installed",
+            "sensor_module_sealed",
+            "sensor_prechecked",
+            "support_installed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sensor_module_sealed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "harness_available",
+            "plate_available",
+            "seal_available",
+            "sensor_available"
+          ],
+          "available_states": [
+            "electrical_check_complete",
+            "harness_available",
+            "harness_connected",
+            "harness_prepared",
+            "plate_available",
+            "plate_located",
+            "seal_available",
+            "seal_record_printed",
+            "sensor_available",
+            "sensor_installed",
+            "sensor_module_sealed",
+            "sensor_prechecked",
+            "support_installed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sensor_module_sealed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.5789,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "plate"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "harness"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "plate",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor",
+            "plate",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sensor",
+            "harness"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "start": 12.0,
+          "finish": 16.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "start": 16.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "label_printer"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sensor"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "harness_available",
+          "plate_available",
+          "seal_available",
+          "sensor_available"
+        ],
+        "available_states": [
+          "electrical_check_complete",
+          "harness_available",
+          "harness_connected",
+          "harness_prepared",
+          "plate_available",
+          "plate_located",
+          "seal_available",
+          "seal_record_printed",
+          "sensor_available",
+          "sensor_installed",
+          "sensor_module_sealed",
+          "sensor_prechecked",
+          "support_installed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sensor_module_sealed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "harness_available",
+          "plate_available",
+          "seal_available",
+          "sensor_available"
+        ],
+        "available_states": [
+          "electrical_check_complete",
+          "harness_available",
+          "harness_connected",
+          "harness_prepared",
+          "plate_available",
+          "plate_located",
+          "seal_available",
+          "seal_record_printed",
+          "sensor_available",
+          "sensor_installed",
+          "sensor_module_sealed",
+          "sensor_prechecked",
+          "support_installed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sensor_module_sealed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "harness_available",
+            "plate_available",
+            "seal_available",
+            "sensor_available"
+          ],
+          "available_states": [
+            "electrical_check_complete",
+            "harness_available",
+            "harness_connected",
+            "harness_prepared",
+            "plate_available",
+            "plate_located",
+            "seal_available",
+            "seal_record_printed",
+            "sensor_available",
+            "sensor_installed",
+            "sensor_module_sealed",
+            "sensor_prechecked",
+            "support_installed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sensor_module_sealed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "harness_available",
+            "plate_available",
+            "seal_available",
+            "sensor_available"
+          ],
+          "available_states": [
+            "electrical_check_complete",
+            "harness_available",
+            "harness_connected",
+            "harness_prepared",
+            "plate_available",
+            "plate_located",
+            "seal_available",
+            "seal_record_printed",
+            "sensor_available",
+            "sensor_installed",
+            "sensor_module_sealed",
+            "sensor_prechecked",
+            "support_installed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sensor_module_sealed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.5789,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "plate"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "harness"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "plate",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor",
+            "plate",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sensor",
+            "harness"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "start": 12.0,
+          "finish": 16.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sensor",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "start": 16.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "label_printer"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sensor"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate plate",
+        "object": "plate",
+        "pre_state": [
+          "plate_available"
+        ],
+        "post_state": [
+          "plate_located"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "plate"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "precheck sensor",
+        "object": "sensor",
+        "pre_state": [
+          "sensor_available"
+        ],
+        "post_state": [
+          "sensor_prechecked"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare harness",
+        "object": "harness",
+        "pre_state": [
+          "harness_available"
+        ],
+        "post_state": [
+          "harness_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "fasten support",
+        "object": "plate",
+        "pre_state": [
+          "plate_located"
+        ],
+        "post_state": [
+          "support_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "fasten sensor module",
+        "object": "sensor",
+        "pre_state": [
+          "support_installed",
+          "sensor_prechecked"
+        ],
+        "post_state": [
+          "sensor_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "sensor",
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "connect harness",
+        "object": "sensor harness",
+        "pre_state": [
+          "sensor_installed",
+          "harness_prepared"
+        ],
+        "post_state": [
+          "harness_connected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sensor",
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "test electrical connection",
+        "object": "sensor module",
+        "pre_state": [
+          "harness_connected"
+        ],
+        "post_state": [
+          "electrical_check_complete"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "sensor",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print seal record",
+        "object": "seal",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_available"
+        ],
+        "post_state": [
+          "seal_record_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "seal checked module",
+        "object": "sensor module",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_record_printed"
+        ],
+        "post_state": [
+          "sensor_module_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "plate_located"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "support_installed"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "sensor_prechecked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "sensor_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "harness_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "harness_connected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "seal_record_printed"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.5789473684210527
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "locate plate",
+        "object": "plate",
+        "pre_state": [
+          "plate_available"
+        ],
+        "post_state": [
+          "plate_located"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "plate"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "precheck sensor",
+        "object": "sensor",
+        "pre_state": [
+          "sensor_available"
+        ],
+        "post_state": [
+          "sensor_prechecked"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare harness",
+        "object": "harness",
+        "pre_state": [
+          "harness_available"
+        ],
+        "post_state": [
+          "harness_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "fasten support",
+        "object": "plate",
+        "pre_state": [
+          "plate_located"
+        ],
+        "post_state": [
+          "support_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "fasten sensor module",
+        "object": "sensor",
+        "pre_state": [
+          "support_installed",
+          "sensor_prechecked"
+        ],
+        "post_state": [
+          "sensor_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "sensor",
+          "plate",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "connect harness",
+        "object": "sensor harness",
+        "pre_state": [
+          "sensor_installed",
+          "harness_prepared"
+        ],
+        "post_state": [
+          "harness_connected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sensor",
+          "harness"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "test electrical connection",
+        "object": "sensor module",
+        "pre_state": [
+          "harness_connected"
+        ],
+        "post_state": [
+          "electrical_check_complete"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "sensor",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print seal record",
+        "object": "seal",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_available"
+        ],
+        "post_state": [
+          "seal_record_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "seal checked module",
+        "object": "sensor module",
+        "pre_state": [
+          "electrical_check_complete",
+          "seal_record_printed"
+        ],
+        "post_state": [
+          "sensor_module_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sensor"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "plate_located"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "support_installed"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "sensor_prechecked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "sensor_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "harness_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "harness_connected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_check_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "seal_record_printed"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.5789473684210527
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "harness_available",
+        "plate_available",
+        "seal_available",
+        "sensor_available"
+      ],
+      "available_states": [
+        "electrical_check_complete",
+        "harness_available",
+        "harness_connected",
+        "harness_prepared",
+        "plate_available",
+        "plate_located",
+        "seal_available",
+        "seal_record_printed",
+        "sensor_available",
+        "sensor_installed",
+        "sensor_module_sealed",
+        "sensor_prechecked",
+        "support_installed"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "sensor_module_sealed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "locate plate",
+          "object": "plate",
+          "pre_state": [
+            "plate_available"
+          ],
+          "post_state": [
+            "plate_located"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "plate"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "precheck sensor",
+          "object": "sensor",
+          "pre_state": [
+            "sensor_available"
+          ],
+          "post_state": [
+            "sensor_prechecked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare harness",
+          "object": "harness",
+          "pre_state": [
+            "harness_available"
+          ],
+          "post_state": [
+            "harness_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "fasten support",
+          "object": "plate",
+          "pre_state": [
+            "plate_located"
+          ],
+          "post_state": [
+            "support_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "fasten sensor module",
+          "object": "sensor",
+          "pre_state": [
+            "support_installed",
+            "sensor_prechecked"
+          ],
+          "post_state": [
+            "sensor_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "sensor",
+            "plate",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect harness",
+          "object": "sensor harness",
+          "pre_state": [
+            "sensor_installed",
+            "harness_prepared"
+          ],
+          "post_state": [
+            "harness_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor",
+            "harness"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "test electrical connection",
+          "object": "sensor module",
+          "pre_state": [
+            "harness_connected"
+          ],
+          "post_state": [
+            "electrical_check_complete"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "sensor",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print seal record",
+          "object": "seal",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_available"
+          ],
+          "post_state": [
+            "seal_record_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal checked module",
+          "object": "sensor module",
+          "pre_state": [
+            "electrical_check_complete",
+            "seal_record_printed"
+          ],
+          "post_state": [
+            "sensor_module_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sensor"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "plate_located"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "support_installed"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_prechecked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sensor_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "harness_connected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_check_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "seal_record_printed"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "A02",
+    "domain": "assembly",
+    "title": "传感器模块安装",
+    "nodes": 9,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 3,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 9,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 0,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 6,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 22.0,
+    "cooperative_duration": 0,
+    "before_makespan": 19.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 19.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 19.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 6,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.1578947368421053,
+    "relative_duration_reduction_vs_serial": 0.13636363636363635,
+    "executor_utilization": 0.5789473684210527,
+    "left_busy_time": 12.0,
+    "right_busy_time": 10.0,
+    "scheduled_overlap_pairs": 2,
+    "critical_path_duration": 17.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

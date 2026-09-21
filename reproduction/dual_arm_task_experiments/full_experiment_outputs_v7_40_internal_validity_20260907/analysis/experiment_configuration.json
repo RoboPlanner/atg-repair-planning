@@ -1,0 +1,21 @@
+{
+  "record_count": 160,
+  "independent_reference_topologies": 4,
+  "generation_seed": 13,
+  "duration_jitter": 0.2,
+  "structure_seed": 0,
+  "candidate_seed_formula": "structure_seed*100000 + record_index + method_offset",
+  "method_seed_offsets": {
+    "Text-Order Heuristic": 11,
+    "Direct Candidate Graph": 23,
+    "Schema-Constrained Candidate": 37,
+    "Verified ATG (Ours)": 37
+  },
+  "edge_drop_probabilities": {
+    "heuristic": 0.35,
+    "llm_direct": 0.28,
+    "llm_schema": 0.14,
+    "default": 0.18
+  },
+  "synchronization_drop_bonus": 0.15
+}

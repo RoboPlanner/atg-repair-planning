@@ -1,0 +1,37 @@
+{
+  "audit_only": {
+    "n": 1728,
+    "feasible": 736,
+    "accepted": 32,
+    "false_accept": 0,
+    "feasible_rejected": 704
+  },
+  "field_match": {
+    "n": 1728,
+    "feasible": 736,
+    "accepted": 672,
+    "false_accept": 0,
+    "feasible_rejected": 64
+  },
+  "field_match_acyclic_compressed": {
+    "n": 1728,
+    "feasible": 736,
+    "accepted": 720,
+    "false_accept": 0,
+    "feasible_rejected": 16
+  },
+  "field_match_compressed": {
+    "n": 1728,
+    "feasible": 736,
+    "accepted": 672,
+    "false_accept": 0,
+    "feasible_rejected": 64
+  },
+  "full": {
+    "n": 1728,
+    "feasible": 736,
+    "accepted": 720,
+    "false_accept": 0,
+    "feasible_rejected": 16
+  }
+}

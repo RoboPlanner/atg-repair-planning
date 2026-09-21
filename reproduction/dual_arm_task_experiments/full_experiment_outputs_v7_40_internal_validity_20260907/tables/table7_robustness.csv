@@ -1,0 +1,6 @@
+Perturbation,Node F1,Node F1 Std,Edge F1,Edge F1 Std,State Acc,State Acc Std,Resource Acc,Resource Acc Std,Executor Acc,Executor Acc Std,Parallel F1 After,Parallel F1 After Std,Input Joint Accept,Input Joint Accept Std,Verifier Accepts,Verifier Accepts Std,Perturbation Effective,Perturbation Effective Std,Executor Perturbation Effective,Executor Perturbation Effective Std,Plan Consistency,Plan Consistency Std,Goal Closure Rate,Goal Closure Rate Std
+state-edge deletion,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,,,1.0,0.0,1.0,0.0
+resource omission,1.0,0.0,0.977,0.0271,1.0,0.0,0.825,0.0145,1.0,0.0,0.95,0.0869,0.575,0.4959,1.0,0.0,1.0,0.0,,,0.9167,0.1448,1.0,0.0
+precondition deletion,1.0,0.0,0.8698,0.0686,0.825,0.0145,1.0,0.0,1.0,0.0,0.9721,0.1077,0.075,0.2642,1.0,0.0,1.0,0.0,,,0.9609,0.1472,1.0,0.0
+executor-label change,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0.825,0.0145,0.805,0.2844,1.0,0.0,1.0,0.0,1.0,0.0,1.0,0.0,0.7443,0.3065,1.0,0.0
+combined,1.0,0.0,0.8419,0.0628,0.825,0.0145,0.825,0.0145,0.825,0.0145,0.7193,0.2802,0.0312,0.1745,1.0,0.0,1.0,0.0,1.0,0.0,0.6259,0.304,1.0,0.0

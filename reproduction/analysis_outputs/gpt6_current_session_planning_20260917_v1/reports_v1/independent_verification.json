@@ -1,0 +1,1420 @@
+{
+  "cases": {
+    "A01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "A02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "A03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "A04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "I01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t6",
+          "t5",
+          "t7",
+          "t8"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t6",
+          "t5",
+          "t7",
+          "t8"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "I02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "I03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "I04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t3",
+          "t2",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t3",
+          "t2",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "P01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "P02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t6",
+          "t3",
+          "t4",
+          "t5",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t6",
+          "t3",
+          "t4",
+          "t5",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "P03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t6",
+          "t2",
+          "t4",
+          "t3",
+          "t7",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t6",
+          "t2",
+          "t4",
+          "t3",
+          "t7",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "P04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t7",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t7",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "S01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t4",
+          "t3",
+          "t5",
+          "t6",
+          "t7"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t4",
+          "t3",
+          "t5",
+          "t6",
+          "t7"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "S02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "S03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t7",
+          "t6",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t7",
+          "t6",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "S04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t10",
+          "t5",
+          "t9",
+          "t11",
+          "t13",
+          "t6",
+          "t7",
+          "t12",
+          "t14",
+          "t8",
+          "t15",
+          "t16"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t10",
+          "t5",
+          "t9",
+          "t11",
+          "t13",
+          "t6",
+          "t7",
+          "t12",
+          "t14",
+          "t8",
+          "t15",
+          "t16"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "T01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "T02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t8",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t8",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "T03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t6",
+          "t2",
+          "t7",
+          "t3",
+          "t4",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t6",
+          "t2",
+          "t7",
+          "t3",
+          "t4",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "T04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t6",
+          "t7",
+          "t4",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t6",
+          "t7",
+          "t4",
+          "t5",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "W01": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t3",
+          "t2",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t3",
+          "t2",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "W02": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "W03": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    },
+    "W04": {
+      "before_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t7",
+          "t4",
+          "t5",
+          "t8",
+          "t6",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "after_graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "t1",
+          "t2",
+          "t3",
+          "t7",
+          "t4",
+          "t5",
+          "t8",
+          "t6",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ]
+      },
+      "before_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "full_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "no_compression_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "serial_schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "independent_replay_equal": true,
+      "full_and_raw_schedule_intervals_equal": true
+    }
+  },
+  "numerical_checks": {
+    "node_sum": true,
+    "makespan_mean": true,
+    "speedup_mean": true,
+    "events_sum": true
+  },
+  "net_changes": [
+    {
+      "task_id": "A01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "A02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "A03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "A04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "I01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "I02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "I03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "I04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "P01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "P02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "P03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "P04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "S01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "S02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "S03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "S04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "T01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "T02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "T03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "T04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "W01",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "W02",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "W03",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    },
+    {
+      "task_id": "W04",
+      "removed_full_keys": [],
+      "added_full_keys": []
+    }
+  ],
+  "event_actions": {
+    "remove_synchronization": 41,
+    "add_synchronization": 41
+  },
+  "net_added_edges": 0,
+  "net_removed_edges": 0,
+  "cases_with_cooperative_nodes": 17,
+  "cooperative_node_count_histogram": {
+    "1": 10,
+    "0": 7,
+    "2": 7
+  }
+}

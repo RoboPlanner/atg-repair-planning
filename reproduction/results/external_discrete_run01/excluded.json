@@ -1,0 +1,27 @@
+[
+  {
+    "id": "alternative_route",
+    "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\alternative_route.json",
+    "reason": "minimum coalition size exceeds two"
+  },
+  {
+    "id": "parallel_branch",
+    "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\parallel_branch.json",
+    "reason": "minimum coalition size exceeds two"
+  },
+  {
+    "id": "standard_ab",
+    "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\standard_ab.json",
+    "reason": "minimum coalition size exceeds two"
+  },
+  {
+    "id": "standard_abc",
+    "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\standard_abc.json",
+    "reason": "minimum coalition size exceeds two"
+  },
+  {
+    "id": "public_exclusive_xor",
+    "source": "sources\\AssemblyGrid_v1\\Experiments\\env\\tests\\test_alternative_routes.py",
+    "reason": "unresolved exclusive route outside fixed-node interface"
+  }
+]

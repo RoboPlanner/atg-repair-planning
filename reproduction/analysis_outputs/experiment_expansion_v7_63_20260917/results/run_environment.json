@@ -1,0 +1,21 @@
+{
+  "started_utc": "2026-09-17T11:15:10.097557+00:00",
+  "python": "3.11.14 | packaged by conda-forge | (main, Oct 22 2025, 22:35:28) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "D:\\miniforge\\envs\\env_atom01\\python.exe",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "numpy": "1.26.0",
+  "scipy": "1.15.3",
+  "tests": {
+    "methods": 54,
+    "failures": 0,
+    "errors": 0
+  },
+  "scripts_sha256": {
+    "run_supplement.py": "67eafb47c8a9864b42bef7d1226f86167e8d18c147cc5f7a6e49d1f1374f80fc",
+    "milp_baseline.py": "8239d892c5b385a84950527ec2c21d8a4df3584dd81e60ca9fff621a126c0c78",
+    "test_new_contract_and_milp.py": "b4409f5dc9d7169d10082367e724e84ae7b299b73a6f218236e7d8ee86c9ea5e"
+  },
+  "milp_numeric_reconstruction": "exact earliest starts from rounded integer arm and pair decisions, retain raw solution; verify final schedule",
+  "milp_optimality_tolerance": 1e-06
+}

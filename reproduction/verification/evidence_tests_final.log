@@ -1,0 +1,11 @@
+test_archived_denominators_preserved (__main__.EvidenceTests.test_archived_denominators_preserved) ... ok
+test_missing_link_repaired_from_argument (__main__.EvidenceTests.test_missing_link_repaired_from_argument) ... ok
+test_reference_not_in_adaptation_or_repair_interface (__main__.EvidenceTests.test_reference_not_in_adaptation_or_repair_interface) ... ok
+test_rejects_ambiguous_tool_identity (__main__.EvidenceTests.test_rejects_ambiguous_tool_identity) ... ok
+test_rejects_bad_and_self_references (__main__.EvidenceTests.test_rejects_bad_and_self_references) ... ok
+test_unit_time_resource_scope (__main__.EvidenceTests.test_unit_time_resource_scope) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.219s
+
+OK

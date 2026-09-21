@@ -1,0 +1,13 @@
+{
+  "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/jobshop1.txt",
+  "sha256": "7f36d103332f94cfdeb76358e40927a57cfa7a426ebeaabd4de666350c69f028",
+  "retrieved_utc": "2026-09-20T09:49:27.962219+00:00",
+  "predeclared_instances": [
+    "ft06",
+    "la01",
+    "la02",
+    "la03",
+    "la04",
+    "la05"
+  ]
+}

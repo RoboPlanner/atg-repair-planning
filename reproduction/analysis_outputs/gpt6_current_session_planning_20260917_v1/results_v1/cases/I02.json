@@ -1,0 +1,4569 @@
+{
+  "task_id": "I02",
+  "spec": {
+    "task_id": "I02",
+    "domain": "inspection",
+    "title": "电气模块台架检验",
+    "instruction": "确认台架就绪，准备模块和测试线；双单元把模块置于台架，接线，执行通断测试和绝缘测试，归档结果后移至合格区。测试仪为容量1共享资源。",
+    "S0": [
+      "bench_available",
+      "module_available",
+      "leads_available",
+      "test_program_available"
+    ],
+    "Sg": [
+      "module_in_pass_area"
+    ],
+    "resources": [
+      "bench",
+      "module",
+      "leads",
+      "tester",
+      "record_terminal",
+      "pass_tray"
+    ]
+  },
+  "raw_source": "raw_candidates_inspection.json",
+  "raw_candidate": {
+    "task_id": "I02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check test bench",
+        "object": "bench",
+        "Pre": [
+          "bench_available"
+        ],
+        "Post": [
+          "bench_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "bench"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare module",
+        "object": "module",
+        "Pre": [
+          "module_available"
+        ],
+        "Post": [
+          "module_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "module"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare test leads",
+        "object": "leads",
+        "Pre": [
+          "leads_available"
+        ],
+        "Post": [
+          "leads_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "leads"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "load test program",
+        "object": "tester",
+        "Pre": [
+          "test_program_available"
+        ],
+        "Post": [
+          "test_program_loaded"
+        ],
+        "d": 2,
+        "Res": [
+          "tester"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place module on bench",
+        "object": "module",
+        "Pre": [
+          "bench_checked",
+          "module_prepared"
+        ],
+        "Post": [
+          "module_on_bench"
+        ],
+        "d": 3,
+        "Res": [
+          "module",
+          "bench"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "connect test leads",
+        "object": "module",
+        "Pre": [
+          "module_on_bench",
+          "leads_prepared"
+        ],
+        "Post": [
+          "module_connected"
+        ],
+        "d": 2,
+        "Res": [
+          "module",
+          "bench",
+          "leads"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "run continuity test",
+        "object": "module",
+        "Pre": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "Post": [
+          "continuity_test_recorded"
+        ],
+        "d": 4,
+        "Res": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "run insulation test",
+        "object": "module",
+        "Pre": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "Post": [
+          "insulation_test_recorded"
+        ],
+        "d": 4,
+        "Res": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "archive test results",
+        "object": "test record",
+        "Pre": [
+          "continuity_test_recorded",
+          "insulation_test_recorded"
+        ],
+        "Post": [
+          "module_test_archived"
+        ],
+        "d": 2,
+        "Res": [
+          "record_terminal"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "transfer module to pass area",
+        "object": "module",
+        "Pre": [
+          "module_test_archived"
+        ],
+        "Post": [
+          "module_in_pass_area"
+        ],
+        "d": 3,
+        "Res": [
+          "module",
+          "bench",
+          "pass_tray"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t5",
+          "bench_checked"
+        ],
+        [
+          "t2",
+          "t5",
+          "module_prepared"
+        ],
+        [
+          "t5",
+          "t6",
+          "module_on_bench"
+        ],
+        [
+          "t3",
+          "t6",
+          "leads_prepared"
+        ],
+        [
+          "t6",
+          "t7",
+          "module_connected"
+        ],
+        [
+          "t4",
+          "t7",
+          "test_program_loaded"
+        ],
+        [
+          "t6",
+          "t8",
+          "module_connected"
+        ],
+        [
+          "t4",
+          "t8",
+          "test_program_loaded"
+        ],
+        [
+          "t7",
+          "t9",
+          "continuity_test_recorded"
+        ],
+        [
+          "t8",
+          "t9",
+          "insulation_test_recorded"
+        ],
+        [
+          "t9",
+          "t10",
+          "module_test_archived"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t5",
+          "bench_checked"
+        ],
+        [
+          "t2",
+          "t5",
+          "module_prepared"
+        ],
+        [
+          "t9",
+          "t10",
+          "module_test_archived"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t7",
+          "t8",
+          "tester"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check test bench",
+        "object": "bench",
+        "pre_state": [
+          "bench_available"
+        ],
+        "post_state": [
+          "bench_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "bench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare module",
+        "object": "module",
+        "pre_state": [
+          "module_available"
+        ],
+        "post_state": [
+          "module_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "module"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare test leads",
+        "object": "leads",
+        "pre_state": [
+          "leads_available"
+        ],
+        "post_state": [
+          "leads_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "leads"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "load test program",
+        "object": "tester",
+        "pre_state": [
+          "test_program_available"
+        ],
+        "post_state": [
+          "test_program_loaded"
+        ],
+        "duration": 2,
+        "resource": [
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place module on bench",
+        "object": "module",
+        "pre_state": [
+          "bench_checked",
+          "module_prepared"
+        ],
+        "post_state": [
+          "module_on_bench"
+        ],
+        "duration": 3,
+        "resource": [
+          "module",
+          "bench"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "connect test leads",
+        "object": "module",
+        "pre_state": [
+          "module_on_bench",
+          "leads_prepared"
+        ],
+        "post_state": [
+          "module_connected"
+        ],
+        "duration": 2,
+        "resource": [
+          "module",
+          "bench",
+          "leads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "run continuity test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "continuity_test_recorded"
+        ],
+        "duration": 4,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "run insulation test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "insulation_test_recorded"
+        ],
+        "duration": 4,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "archive test results",
+        "object": "test record",
+        "pre_state": [
+          "continuity_test_recorded",
+          "insulation_test_recorded"
+        ],
+        "post_state": [
+          "module_test_archived"
+        ],
+        "duration": 2,
+        "resource": [
+          "record_terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "transfer module to pass area",
+        "object": "module",
+        "pre_state": [
+          "module_test_archived"
+        ],
+        "post_state": [
+          "module_in_pass_area"
+        ],
+        "duration": 3,
+        "resource": [
+          "module",
+          "bench",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "module_on_bench"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "leads_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "continuity_test_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "insulation_test_recorded"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "module_test_archived"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "state": "module_test_archived"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "resource": "tester"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bench_available",
+        "leads_available",
+        "module_available",
+        "test_program_available"
+      ],
+      "available_states": [
+        "bench_available",
+        "bench_checked",
+        "continuity_test_recorded",
+        "insulation_test_recorded",
+        "leads_available",
+        "leads_prepared",
+        "module_available",
+        "module_connected",
+        "module_in_pass_area",
+        "module_on_bench",
+        "module_prepared",
+        "module_test_archived",
+        "test_program_available",
+        "test_program_loaded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "module_in_pass_area"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 22.0,
+    "waiting_time": 13.0,
+    "executor_utilization": 0.7045,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "check test bench",
+        "object": "bench",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "bench"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare module",
+        "object": "module",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "module"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare test leads",
+        "object": "leads",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "leads"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "load test program",
+        "object": "tester",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tester"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "place module on bench",
+        "object": "module",
+        "start": 4.0,
+        "finish": 7.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "module",
+          "bench"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "connect test leads",
+        "object": "module",
+        "start": 7.0,
+        "finish": 9.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "module",
+          "bench",
+          "leads"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "run continuity test",
+        "object": "module",
+        "start": 9.0,
+        "finish": 13.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "run insulation test",
+        "object": "module",
+        "start": 13.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "archive test results",
+        "object": "test record",
+        "start": 17.0,
+        "finish": 19.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "record_terminal"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "transfer module to pass area",
+        "object": "module",
+        "start": 19.0,
+        "finish": 22.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "module",
+          "bench",
+          "pass_tray"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 18.0
+    },
+    "utilization_unrounded": 0.7045454545454546
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "module_test_archived"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bench_available",
+          "leads_available",
+          "module_available",
+          "test_program_available"
+        ],
+        "available_states": [
+          "bench_available",
+          "bench_checked",
+          "continuity_test_recorded",
+          "insulation_test_recorded",
+          "leads_available",
+          "leads_prepared",
+          "module_available",
+          "module_connected",
+          "module_in_pass_area",
+          "module_on_bench",
+          "module_prepared",
+          "module_test_archived",
+          "test_program_available",
+          "test_program_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "module_in_pass_area"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bench_available",
+          "leads_available",
+          "module_available",
+          "test_program_available"
+        ],
+        "available_states": [
+          "bench_available",
+          "bench_checked",
+          "continuity_test_recorded",
+          "insulation_test_recorded",
+          "leads_available",
+          "leads_prepared",
+          "module_available",
+          "module_connected",
+          "module_in_pass_area",
+          "module_on_bench",
+          "module_prepared",
+          "module_test_archived",
+          "test_program_available",
+          "test_program_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "module_in_pass_area"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bench_available",
+            "leads_available",
+            "module_available",
+            "test_program_available"
+          ],
+          "available_states": [
+            "bench_available",
+            "bench_checked",
+            "continuity_test_recorded",
+            "insulation_test_recorded",
+            "leads_available",
+            "leads_prepared",
+            "module_available",
+            "module_connected",
+            "module_in_pass_area",
+            "module_on_bench",
+            "module_prepared",
+            "module_test_archived",
+            "test_program_available",
+            "test_program_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "module_in_pass_area"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bench_available",
+            "leads_available",
+            "module_available",
+            "test_program_available"
+          ],
+          "available_states": [
+            "bench_available",
+            "bench_checked",
+            "continuity_test_recorded",
+            "insulation_test_recorded",
+            "leads_available",
+            "leads_prepared",
+            "module_available",
+            "module_connected",
+            "module_in_pass_area",
+            "module_on_bench",
+            "module_prepared",
+            "module_test_archived",
+            "test_program_available",
+            "test_program_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "module_in_pass_area"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "bench_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for bench_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "module_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for module_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "module_test_archived",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for module_test_archived",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "bench_checked",
+          "resource": null,
+          "reason": "cooperative input state bench_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "module_prepared",
+          "resource": null,
+          "reason": "cooperative input state module_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "module_test_archived",
+          "resource": null,
+          "reason": "cooperative input state module_test_archived",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 22.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.7045,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bench"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "start": 9.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "start": 13.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "record_terminal"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "start": 19.0,
+          "finish": 22.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "pass_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "module_test_archived"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bench_available",
+          "leads_available",
+          "module_available",
+          "test_program_available"
+        ],
+        "available_states": [
+          "bench_available",
+          "bench_checked",
+          "continuity_test_recorded",
+          "insulation_test_recorded",
+          "leads_available",
+          "leads_prepared",
+          "module_available",
+          "module_connected",
+          "module_in_pass_area",
+          "module_on_bench",
+          "module_prepared",
+          "module_test_archived",
+          "test_program_available",
+          "test_program_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "module_in_pass_area"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bench_available",
+          "leads_available",
+          "module_available",
+          "test_program_available"
+        ],
+        "available_states": [
+          "bench_available",
+          "bench_checked",
+          "continuity_test_recorded",
+          "insulation_test_recorded",
+          "leads_available",
+          "leads_prepared",
+          "module_available",
+          "module_connected",
+          "module_in_pass_area",
+          "module_on_bench",
+          "module_prepared",
+          "module_test_archived",
+          "test_program_available",
+          "test_program_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "module_in_pass_area"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bench_available",
+            "leads_available",
+            "module_available",
+            "test_program_available"
+          ],
+          "available_states": [
+            "bench_available",
+            "bench_checked",
+            "continuity_test_recorded",
+            "insulation_test_recorded",
+            "leads_available",
+            "leads_prepared",
+            "module_available",
+            "module_connected",
+            "module_in_pass_area",
+            "module_on_bench",
+            "module_prepared",
+            "module_test_archived",
+            "test_program_available",
+            "test_program_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "module_in_pass_area"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bench_available",
+            "leads_available",
+            "module_available",
+            "test_program_available"
+          ],
+          "available_states": [
+            "bench_available",
+            "bench_checked",
+            "continuity_test_recorded",
+            "insulation_test_recorded",
+            "leads_available",
+            "leads_prepared",
+            "module_available",
+            "module_connected",
+            "module_in_pass_area",
+            "module_on_bench",
+            "module_prepared",
+            "module_test_archived",
+            "test_program_available",
+            "test_program_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "module_in_pass_area"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "bench_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for bench_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "module_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for module_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "module_test_archived",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for module_test_archived",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "bench_checked",
+          "resource": null,
+          "reason": "cooperative input state bench_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "module_prepared",
+          "resource": null,
+          "reason": "cooperative input state module_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "module_test_archived",
+          "resource": null,
+          "reason": "cooperative input state module_test_archived",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 22.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.7045,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bench"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "start": 9.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "start": 13.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "record_terminal"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "start": 19.0,
+          "finish": 22.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "module",
+            "bench",
+            "pass_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check test bench",
+        "object": "bench",
+        "pre_state": [
+          "bench_available"
+        ],
+        "post_state": [
+          "bench_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare module",
+        "object": "module",
+        "pre_state": [
+          "module_available"
+        ],
+        "post_state": [
+          "module_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "module"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare test leads",
+        "object": "leads",
+        "pre_state": [
+          "leads_available"
+        ],
+        "post_state": [
+          "leads_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "leads"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "load test program",
+        "object": "tester",
+        "pre_state": [
+          "test_program_available"
+        ],
+        "post_state": [
+          "test_program_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place module on bench",
+        "object": "module",
+        "pre_state": [
+          "bench_checked",
+          "module_prepared"
+        ],
+        "post_state": [
+          "module_on_bench"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "module",
+          "bench"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "connect test leads",
+        "object": "module",
+        "pre_state": [
+          "module_on_bench",
+          "leads_prepared"
+        ],
+        "post_state": [
+          "module_connected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "module",
+          "bench",
+          "leads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "run continuity test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "continuity_test_recorded"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "run insulation test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "insulation_test_recorded"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "archive test results",
+        "object": "test record",
+        "pre_state": [
+          "continuity_test_recorded",
+          "insulation_test_recorded"
+        ],
+        "post_state": [
+          "module_test_archived"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "record_terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "transfer module to pass area",
+        "object": "module",
+        "pre_state": [
+          "module_test_archived"
+        ],
+        "post_state": [
+          "module_in_pass_area"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "module",
+          "bench",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_on_bench"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "leads_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "continuity_test_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "insulation_test_recorded"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_test_archived"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tester"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "reason": "",
+        "state": "module_test_archived"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 18.0
+    },
+    "utilization_unrounded": 0.7045454545454546
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check test bench",
+        "object": "bench",
+        "pre_state": [
+          "bench_available"
+        ],
+        "post_state": [
+          "bench_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare module",
+        "object": "module",
+        "pre_state": [
+          "module_available"
+        ],
+        "post_state": [
+          "module_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "module"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare test leads",
+        "object": "leads",
+        "pre_state": [
+          "leads_available"
+        ],
+        "post_state": [
+          "leads_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "leads"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "load test program",
+        "object": "tester",
+        "pre_state": [
+          "test_program_available"
+        ],
+        "post_state": [
+          "test_program_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place module on bench",
+        "object": "module",
+        "pre_state": [
+          "bench_checked",
+          "module_prepared"
+        ],
+        "post_state": [
+          "module_on_bench"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "module",
+          "bench"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "connect test leads",
+        "object": "module",
+        "pre_state": [
+          "module_on_bench",
+          "leads_prepared"
+        ],
+        "post_state": [
+          "module_connected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "module",
+          "bench",
+          "leads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "run continuity test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "continuity_test_recorded"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "run insulation test",
+        "object": "module",
+        "pre_state": [
+          "module_connected",
+          "test_program_loaded"
+        ],
+        "post_state": [
+          "insulation_test_recorded"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "module",
+          "bench",
+          "tester",
+          "leads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "archive test results",
+        "object": "test record",
+        "pre_state": [
+          "continuity_test_recorded",
+          "insulation_test_recorded"
+        ],
+        "post_state": [
+          "module_test_archived"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "record_terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "transfer module to pass area",
+        "object": "module",
+        "pre_state": [
+          "module_test_archived"
+        ],
+        "post_state": [
+          "module_in_pass_area"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "module",
+          "bench",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_on_bench"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "leads_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_connected"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "test_program_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "continuity_test_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "insulation_test_recorded"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "module_test_archived"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tester"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "bench_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "module_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "reason": "",
+        "state": "module_test_archived"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 18.0
+    },
+    "utilization_unrounded": 0.7045454545454546
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bench_available",
+        "leads_available",
+        "module_available",
+        "test_program_available"
+      ],
+      "available_states": [
+        "bench_available",
+        "bench_checked",
+        "continuity_test_recorded",
+        "insulation_test_recorded",
+        "leads_available",
+        "leads_prepared",
+        "module_available",
+        "module_connected",
+        "module_in_pass_area",
+        "module_on_bench",
+        "module_prepared",
+        "module_test_archived",
+        "test_program_available",
+        "test_program_loaded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "module_in_pass_area"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_test_archived"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_test_archived"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check test bench",
+          "object": "bench",
+          "pre_state": [
+            "bench_available"
+          ],
+          "post_state": [
+            "bench_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare module",
+          "object": "module",
+          "pre_state": [
+            "module_available"
+          ],
+          "post_state": [
+            "module_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare test leads",
+          "object": "leads",
+          "pre_state": [
+            "leads_available"
+          ],
+          "post_state": [
+            "leads_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "leads"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load test program",
+          "object": "tester",
+          "pre_state": [
+            "test_program_available"
+          ],
+          "post_state": [
+            "test_program_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place module on bench",
+          "object": "module",
+          "pre_state": [
+            "bench_checked",
+            "module_prepared"
+          ],
+          "post_state": [
+            "module_on_bench"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "connect test leads",
+          "object": "module",
+          "pre_state": [
+            "module_on_bench",
+            "leads_prepared"
+          ],
+          "post_state": [
+            "module_connected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "module",
+            "bench",
+            "leads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "run continuity test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "continuity_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "run insulation test",
+          "object": "module",
+          "pre_state": [
+            "module_connected",
+            "test_program_loaded"
+          ],
+          "post_state": [
+            "insulation_test_recorded"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "module",
+            "bench",
+            "tester",
+            "leads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "archive test results",
+          "object": "test record",
+          "pre_state": [
+            "continuity_test_recorded",
+            "insulation_test_recorded"
+          ],
+          "post_state": [
+            "module_test_archived"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "record_terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer module to pass area",
+          "object": "module",
+          "pre_state": [
+            "module_test_archived"
+          ],
+          "post_state": [
+            "module_in_pass_area"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "module",
+            "bench",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_on_bench"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "leads_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_connected"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "test_program_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "continuity_test_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "insulation_test_recorded"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "module_test_archived"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "bench_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "module_test_archived"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "I02",
+    "domain": "inspection",
+    "title": "电气模块台架检验",
+    "nodes": 10,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 11,
+    "raw_E_sync": 3,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 6,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 25.0,
+    "cooperative_duration": 6.0,
+    "before_makespan": 22.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 22.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 22.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 6,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 6,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 6,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.1363636363636365,
+    "relative_duration_reduction_vs_serial": 0.12,
+    "executor_utilization": 0.7045454545454546,
+    "left_busy_time": 13.0,
+    "right_busy_time": 18.0,
+    "scheduled_overlap_pairs": 2,
+    "critical_path_duration": 20.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

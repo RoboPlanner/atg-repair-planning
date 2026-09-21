@@ -1,0 +1,4075 @@
+{
+  "task_id": "W01",
+  "spec": {
+    "task_id": "W01",
+    "domain": "warehouse",
+    "title": "两个周转盒合并",
+    "instruction": "扫描两个来源周转盒，分别准备目标盒的左右区域；双单元将左盒内容移入目标盒，再将右盒内容移入，最后核对合并数量并标记。",
+    "S0": [
+      "source_a_ready",
+      "source_b_ready",
+      "target_tote_empty",
+      "manifest_ready"
+    ],
+    "Sg": [
+      "consolidated_tote_labeled"
+    ],
+    "resources": [
+      "source_a",
+      "source_b",
+      "target_tote",
+      "scanner",
+      "printer"
+    ]
+  },
+  "raw_source": "raw_candidates_warehouse.json",
+  "raw_candidate": {
+    "task_id": "W01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan source tote A",
+        "object": "source A",
+        "Pre": [
+          "source_a_ready",
+          "manifest_ready"
+        ],
+        "Post": [
+          "source_a_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "source_a",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan source tote B",
+        "object": "source B",
+        "Pre": [
+          "source_b_ready",
+          "manifest_ready"
+        ],
+        "Post": [
+          "source_b_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "source_b",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare target left region",
+        "object": "target tote",
+        "Pre": [
+          "target_tote_empty"
+        ],
+        "Post": [
+          "target_left_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "target_tote"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "prepare target right region",
+        "object": "target tote",
+        "Pre": [
+          "target_tote_empty"
+        ],
+        "Post": [
+          "target_right_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "target_tote"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "transfer contents of source A",
+        "object": "source A contents",
+        "Pre": [
+          "source_a_identified",
+          "target_left_prepared"
+        ],
+        "Post": [
+          "source_a_transferred"
+        ],
+        "d": 3,
+        "Res": [
+          "source_a",
+          "target_tote"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "transfer contents of source B",
+        "object": "source B contents",
+        "Pre": [
+          "source_b_identified",
+          "target_right_prepared",
+          "source_a_transferred"
+        ],
+        "Post": [
+          "both_sources_transferred"
+        ],
+        "d": 3,
+        "Res": [
+          "source_b",
+          "target_tote"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "verify consolidated quantity",
+        "object": "target tote",
+        "Pre": [
+          "both_sources_transferred",
+          "manifest_ready"
+        ],
+        "Post": [
+          "consolidation_verified"
+        ],
+        "d": 2,
+        "Res": [
+          "target_tote"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "label consolidated tote",
+        "object": "target tote",
+        "Pre": [
+          "consolidation_verified"
+        ],
+        "Post": [
+          "consolidated_tote_labeled"
+        ],
+        "d": 1,
+        "Res": [
+          "target_tote",
+          "printer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t5",
+          "source_a_identified"
+        ],
+        [
+          "t3",
+          "t5",
+          "target_left_prepared"
+        ],
+        [
+          "t2",
+          "t6",
+          "source_b_identified"
+        ],
+        [
+          "t4",
+          "t6",
+          "target_right_prepared"
+        ],
+        [
+          "t5",
+          "t6",
+          "source_a_transferred"
+        ],
+        [
+          "t6",
+          "t7",
+          "both_sources_transferred"
+        ],
+        [
+          "t7",
+          "t8",
+          "consolidation_verified"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t5",
+          "source_a_identified"
+        ],
+        [
+          "t3",
+          "t5",
+          "target_left_prepared"
+        ],
+        [
+          "t2",
+          "t6",
+          "source_b_identified"
+        ],
+        [
+          "t4",
+          "t6",
+          "target_right_prepared"
+        ],
+        [
+          "t5",
+          "t6",
+          "source_a_transferred"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "scanner"
+        ],
+        [
+          "t3",
+          "t4",
+          "target_tote"
+        ],
+        [
+          "t4",
+          "t5",
+          "target_tote"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan source tote A",
+        "object": "source A",
+        "pre_state": [
+          "source_a_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_a_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "source_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan source tote B",
+        "object": "source B",
+        "pre_state": [
+          "source_b_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_b_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "source_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare target left region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_left_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "prepare target right region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_right_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "transfer contents of source A",
+        "object": "source A contents",
+        "pre_state": [
+          "source_a_identified",
+          "target_left_prepared"
+        ],
+        "post_state": [
+          "source_a_transferred"
+        ],
+        "duration": 3,
+        "resource": [
+          "source_a",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "transfer contents of source B",
+        "object": "source B contents",
+        "pre_state": [
+          "source_b_identified",
+          "target_right_prepared",
+          "source_a_transferred"
+        ],
+        "post_state": [
+          "both_sources_transferred"
+        ],
+        "duration": 3,
+        "resource": [
+          "source_b",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "verify consolidated quantity",
+        "object": "target tote",
+        "pre_state": [
+          "both_sources_transferred",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "consolidation_verified"
+        ],
+        "duration": 2,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "label consolidated tote",
+        "object": "target tote",
+        "pre_state": [
+          "consolidation_verified"
+        ],
+        "post_state": [
+          "consolidated_tote_labeled"
+        ],
+        "duration": 1,
+        "resource": [
+          "target_tote",
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "target_right_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "both_sources_transferred"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "consolidation_verified"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "target_right_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "resource": "target_tote"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "target_tote"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "manifest_ready",
+        "source_a_ready",
+        "source_b_ready",
+        "target_tote_empty"
+      ],
+      "available_states": [
+        "both_sources_transferred",
+        "consolidated_tote_labeled",
+        "consolidation_verified",
+        "manifest_ready",
+        "source_a_identified",
+        "source_a_ready",
+        "source_a_transferred",
+        "source_b_identified",
+        "source_b_ready",
+        "target_left_prepared",
+        "target_right_prepared",
+        "target_tote_empty"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "consolidated_tote_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 14.0,
+    "waiting_time": 6.0,
+    "executor_utilization": 0.75,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "scan source tote A",
+        "object": "source A",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "source_a",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "scan source tote B",
+        "object": "source B",
+        "start": 1.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "source_b",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare target left region",
+        "object": "target tote",
+        "start": 1.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "target_tote"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "prepare target right region",
+        "object": "target tote",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "target_tote"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "transfer contents of source A",
+        "object": "source A contents",
+        "start": 5.0,
+        "finish": 8.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "source_a",
+          "target_tote"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "transfer contents of source B",
+        "object": "source B contents",
+        "start": 8.0,
+        "finish": 11.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "source_b",
+          "target_tote"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "verify consolidated quantity",
+        "object": "target tote",
+        "start": 11.0,
+        "finish": 13.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "target_tote"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "label consolidated tote",
+        "object": "target tote",
+        "start": 13.0,
+        "finish": 14.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "target_tote",
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "target_right_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "manifest_ready",
+          "source_a_ready",
+          "source_b_ready",
+          "target_tote_empty"
+        ],
+        "available_states": [
+          "both_sources_transferred",
+          "consolidated_tote_labeled",
+          "consolidation_verified",
+          "manifest_ready",
+          "source_a_identified",
+          "source_a_ready",
+          "source_a_transferred",
+          "source_b_identified",
+          "source_b_ready",
+          "target_left_prepared",
+          "target_right_prepared",
+          "target_tote_empty"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "consolidated_tote_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "manifest_ready",
+          "source_a_ready",
+          "source_b_ready",
+          "target_tote_empty"
+        ],
+        "available_states": [
+          "both_sources_transferred",
+          "consolidated_tote_labeled",
+          "consolidation_verified",
+          "manifest_ready",
+          "source_a_identified",
+          "source_a_ready",
+          "source_a_transferred",
+          "source_b_identified",
+          "source_b_ready",
+          "target_left_prepared",
+          "target_right_prepared",
+          "target_tote_empty"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "consolidated_tote_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "manifest_ready",
+            "source_a_ready",
+            "source_b_ready",
+            "target_tote_empty"
+          ],
+          "available_states": [
+            "both_sources_transferred",
+            "consolidated_tote_labeled",
+            "consolidation_verified",
+            "manifest_ready",
+            "source_a_identified",
+            "source_a_ready",
+            "source_a_transferred",
+            "source_b_identified",
+            "source_b_ready",
+            "target_left_prepared",
+            "target_right_prepared",
+            "target_tote_empty"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "consolidated_tote_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "manifest_ready",
+            "source_a_ready",
+            "source_b_ready",
+            "target_tote_empty"
+          ],
+          "available_states": [
+            "both_sources_transferred",
+            "consolidated_tote_labeled",
+            "consolidation_verified",
+            "manifest_ready",
+            "source_a_identified",
+            "source_a_ready",
+            "source_a_transferred",
+            "source_b_identified",
+            "source_b_ready",
+            "target_left_prepared",
+            "target_right_prepared",
+            "target_tote_empty"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "consolidated_tote_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "source_a_identified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_a_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "target_left_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for target_left_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_b_identified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_b_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "target_right_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for target_right_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_a_transferred",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_a_transferred",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "source_a_identified",
+          "resource": null,
+          "reason": "cooperative input state source_a_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "target_left_prepared",
+          "resource": null,
+          "reason": "cooperative input state target_left_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_a_transferred",
+          "resource": null,
+          "reason": "cooperative input state source_a_transferred",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_b_identified",
+          "resource": null,
+          "reason": "cooperative input state source_b_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "target_right_prepared",
+          "resource": null,
+          "reason": "cooperative input state target_right_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 14.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "source_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "start": 1.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "source_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "source_a",
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "start": 8.0,
+          "finish": 11.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "source_b",
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "target_tote",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "target_right_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "manifest_ready",
+          "source_a_ready",
+          "source_b_ready",
+          "target_tote_empty"
+        ],
+        "available_states": [
+          "both_sources_transferred",
+          "consolidated_tote_labeled",
+          "consolidation_verified",
+          "manifest_ready",
+          "source_a_identified",
+          "source_a_ready",
+          "source_a_transferred",
+          "source_b_identified",
+          "source_b_ready",
+          "target_left_prepared",
+          "target_right_prepared",
+          "target_tote_empty"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "consolidated_tote_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "manifest_ready",
+          "source_a_ready",
+          "source_b_ready",
+          "target_tote_empty"
+        ],
+        "available_states": [
+          "both_sources_transferred",
+          "consolidated_tote_labeled",
+          "consolidation_verified",
+          "manifest_ready",
+          "source_a_identified",
+          "source_a_ready",
+          "source_a_transferred",
+          "source_b_identified",
+          "source_b_ready",
+          "target_left_prepared",
+          "target_right_prepared",
+          "target_tote_empty"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "consolidated_tote_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "manifest_ready",
+            "source_a_ready",
+            "source_b_ready",
+            "target_tote_empty"
+          ],
+          "available_states": [
+            "both_sources_transferred",
+            "consolidated_tote_labeled",
+            "consolidation_verified",
+            "manifest_ready",
+            "source_a_identified",
+            "source_a_ready",
+            "source_a_transferred",
+            "source_b_identified",
+            "source_b_ready",
+            "target_left_prepared",
+            "target_right_prepared",
+            "target_tote_empty"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "consolidated_tote_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "manifest_ready",
+            "source_a_ready",
+            "source_b_ready",
+            "target_tote_empty"
+          ],
+          "available_states": [
+            "both_sources_transferred",
+            "consolidated_tote_labeled",
+            "consolidation_verified",
+            "manifest_ready",
+            "source_a_identified",
+            "source_a_ready",
+            "source_a_transferred",
+            "source_b_identified",
+            "source_b_ready",
+            "target_left_prepared",
+            "target_right_prepared",
+            "target_tote_empty"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "consolidated_tote_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "source_a_identified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_a_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "target_left_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for target_left_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_b_identified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_b_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "target_right_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for target_right_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_a_transferred",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for source_a_transferred",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "source_a_identified",
+          "resource": null,
+          "reason": "cooperative input state source_a_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "target_left_prepared",
+          "resource": null,
+          "reason": "cooperative input state target_left_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_a_transferred",
+          "resource": null,
+          "reason": "cooperative input state source_a_transferred",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "source_b_identified",
+          "resource": null,
+          "reason": "cooperative input state source_b_identified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "target_right_prepared",
+          "resource": null,
+          "reason": "cooperative input state target_right_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 14.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "source_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "start": 1.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "source_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "source_a",
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "start": 8.0,
+          "finish": 11.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "source_b",
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "target_tote"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "target_tote",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan source tote A",
+        "object": "source A",
+        "pre_state": [
+          "source_a_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_a_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "source_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan source tote B",
+        "object": "source B",
+        "pre_state": [
+          "source_b_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_b_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "source_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare target left region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_left_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "prepare target right region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_right_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "transfer contents of source A",
+        "object": "source A contents",
+        "pre_state": [
+          "source_a_identified",
+          "target_left_prepared"
+        ],
+        "post_state": [
+          "source_a_transferred"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "source_a",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "transfer contents of source B",
+        "object": "source B contents",
+        "pre_state": [
+          "source_b_identified",
+          "target_right_prepared",
+          "source_a_transferred"
+        ],
+        "post_state": [
+          "both_sources_transferred"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "source_b",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "verify consolidated quantity",
+        "object": "target tote",
+        "pre_state": [
+          "both_sources_transferred",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "consolidation_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "label consolidated tote",
+        "object": "target tote",
+        "pre_state": [
+          "consolidation_verified"
+        ],
+        "post_state": [
+          "consolidated_tote_labeled"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "target_tote",
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "target_right_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "both_sources_transferred"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "consolidation_verified"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "target_tote"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "target_tote"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "target_right_prepared"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan source tote A",
+        "object": "source A",
+        "pre_state": [
+          "source_a_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_a_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "source_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan source tote B",
+        "object": "source B",
+        "pre_state": [
+          "source_b_ready",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "source_b_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "source_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare target left region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_left_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "prepare target right region",
+        "object": "target tote",
+        "pre_state": [
+          "target_tote_empty"
+        ],
+        "post_state": [
+          "target_right_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "transfer contents of source A",
+        "object": "source A contents",
+        "pre_state": [
+          "source_a_identified",
+          "target_left_prepared"
+        ],
+        "post_state": [
+          "source_a_transferred"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "source_a",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "transfer contents of source B",
+        "object": "source B contents",
+        "pre_state": [
+          "source_b_identified",
+          "target_right_prepared",
+          "source_a_transferred"
+        ],
+        "post_state": [
+          "both_sources_transferred"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "source_b",
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "verify consolidated quantity",
+        "object": "target tote",
+        "pre_state": [
+          "both_sources_transferred",
+          "manifest_ready"
+        ],
+        "post_state": [
+          "consolidation_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "target_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "label consolidated tote",
+        "object": "target tote",
+        "pre_state": [
+          "consolidation_verified"
+        ],
+        "post_state": [
+          "consolidated_tote_labeled"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "target_tote",
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "target_right_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "both_sources_transferred"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "consolidation_verified"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "target_tote"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "target_tote"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "target_left_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_a_transferred"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "source_b_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "target_right_prepared"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "manifest_ready",
+        "source_a_ready",
+        "source_b_ready",
+        "target_tote_empty"
+      ],
+      "available_states": [
+        "both_sources_transferred",
+        "consolidated_tote_labeled",
+        "consolidation_verified",
+        "manifest_ready",
+        "source_a_identified",
+        "source_a_ready",
+        "source_a_transferred",
+        "source_b_identified",
+        "source_b_ready",
+        "target_left_prepared",
+        "target_right_prepared",
+        "target_tote_empty"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "consolidated_tote_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_right_prepared"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_right_prepared"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan source tote A",
+          "object": "source A",
+          "pre_state": [
+            "source_a_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_a_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan source tote B",
+          "object": "source B",
+          "pre_state": [
+            "source_b_ready",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "source_b_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "source_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare target left region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_left_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare target right region",
+          "object": "target tote",
+          "pre_state": [
+            "target_tote_empty"
+          ],
+          "post_state": [
+            "target_right_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer contents of source A",
+          "object": "source A contents",
+          "pre_state": [
+            "source_a_identified",
+            "target_left_prepared"
+          ],
+          "post_state": [
+            "source_a_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_a",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "transfer contents of source B",
+          "object": "source B contents",
+          "pre_state": [
+            "source_b_identified",
+            "target_right_prepared",
+            "source_a_transferred"
+          ],
+          "post_state": [
+            "both_sources_transferred"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "source_b",
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "verify consolidated quantity",
+          "object": "target tote",
+          "pre_state": [
+            "both_sources_transferred",
+            "manifest_ready"
+          ],
+          "post_state": [
+            "consolidation_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "target_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "label consolidated tote",
+          "object": "target tote",
+          "pre_state": [
+            "consolidation_verified"
+          ],
+          "post_state": [
+            "consolidated_tote_labeled"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "target_tote",
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "target_right_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_sources_transferred"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "consolidation_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "target_tote"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_left_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_a_transferred"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "source_b_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "target_right_prepared"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "W01",
+    "domain": "warehouse",
+    "title": "两个周转盒合并",
+    "nodes": 8,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 7,
+    "raw_E_sync": 5,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 2,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 15.0,
+    "cooperative_duration": 6.0,
+    "before_makespan": 14.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 14.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 14.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 2,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 10,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 10,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.0714285714285714,
+    "relative_duration_reduction_vs_serial": 0.06666666666666665,
+    "executor_utilization": 0.75,
+    "left_busy_time": 11.0,
+    "right_busy_time": 10.0,
+    "scheduled_overlap_pairs": 1,
+    "critical_path_duration": 13.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

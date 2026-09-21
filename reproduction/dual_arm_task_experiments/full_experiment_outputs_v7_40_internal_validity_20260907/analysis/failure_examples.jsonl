@@ -1,0 +1,30 @@
+{"task_id": "pour_drink_001", "method": "Text-Order Heuristic", "failure_type": "missing state dependency", "count": 1}
+{"task_id": "pour_drink_001", "method": "Text-Order Heuristic", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "pour_drink_001", "method": "Text-Order Heuristic", "failure_type": "over-conservative serialization", "count": 2}
+{"task_id": "pour_drink_001", "method": "Direct Candidate Graph", "failure_type": "missing state dependency", "count": 2}
+{"task_id": "pour_drink_001", "method": "Direct Candidate Graph", "failure_type": "false parallel", "count": 1}
+{"task_id": "pour_drink_001", "method": "Direct Candidate Graph", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "pour_drink_001", "method": "Schema-Constrained Candidate", "failure_type": "missing state dependency", "count": 1}
+{"task_id": "pour_drink_001", "method": "Schema-Constrained Candidate", "failure_type": "unreachable goal", "count": 1}
+{"task_id": "pour_drink_001", "method": "Schema-Constrained Candidate", "failure_type": "over-conservative serialization", "count": 1}
+{"task_id": "pour_drink_001", "method": "Sequential Planning", "failure_type": "over-conservative serialization", "count": 2}
+{"task_id": "pack_box_002", "method": "Text-Order Heuristic", "failure_type": "missing state dependency", "count": 3}
+{"task_id": "pack_box_002", "method": "Text-Order Heuristic", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "pack_box_002", "method": "Text-Order Heuristic", "failure_type": "unreachable goal", "count": 1}
+{"task_id": "pack_box_002", "method": "Text-Order Heuristic", "failure_type": "over-conservative serialization", "count": 3}
+{"task_id": "pack_box_002", "method": "Direct Candidate Graph", "failure_type": "missing state dependency", "count": 4}
+{"task_id": "pack_box_002", "method": "Direct Candidate Graph", "failure_type": "false parallel", "count": 3}
+{"task_id": "pack_box_002", "method": "Direct Candidate Graph", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "pack_box_002", "method": "Direct Candidate Graph", "failure_type": "unreachable goal", "count": 1}
+{"task_id": "pack_box_002", "method": "Schema-Constrained Candidate", "failure_type": "missing state dependency", "count": 2}
+{"task_id": "pack_box_002", "method": "Schema-Constrained Candidate", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "pack_box_002", "method": "Schema-Constrained Candidate", "failure_type": "unreachable goal", "count": 1}
+{"task_id": "pack_box_002", "method": "Schema-Constrained Candidate", "failure_type": "over-conservative serialization", "count": 2}
+{"task_id": "pack_box_002", "method": "Sequential Planning", "failure_type": "over-conservative serialization", "count": 3}
+{"task_id": "pack_box_002", "method": "Verified ATG (Ours)", "failure_type": "missing state dependency", "count": 1}
+{"task_id": "pack_box_002", "method": "Verified ATG (Ours)", "failure_type": "false parallel", "count": 2}
+{"task_id": "pack_box_002", "method": "Verified ATG (Ours)", "failure_type": "wrong executor constraint", "count": 1}
+{"task_id": "assemble_bracket_003", "method": "Text-Order Heuristic", "failure_type": "missing state dependency", "count": 4}
+{"task_id": "assemble_bracket_003", "method": "Text-Order Heuristic", "failure_type": "unreachable goal", "count": 1}
+{"task_id": "assemble_bracket_003", "method": "Text-Order Heuristic", "failure_type": "over-conservative serialization", "count": 3}
+{"task_id": "assemble_bracket_003", "method": "Direct Candidate Graph", "failure_type": "missing state dependency", "count": 2}

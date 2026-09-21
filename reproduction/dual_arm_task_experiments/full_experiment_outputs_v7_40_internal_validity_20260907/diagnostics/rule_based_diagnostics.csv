@@ -1,0 +1,13 @@
+task_id,Node F1,Edge F1,Parallel Precision,Parallel Recall,Parallel F1,Goal Closure,Note
+pour_drink_001,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+pack_box_002,1.0,0.9411764705882353,0.6666666666666666,1.0,0.8,1.0,automated planning-level diagnostic; not a human rating
+assemble_bracket_003,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+sort_tray_004,1.0,0.9090909090909091,0.5,1.0,0.6666666666666666,1.0,automated planning-level diagnostic; not a human rating
+pour_drink_005,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+pack_box_006,1.0,0.9411764705882353,0.6666666666666666,1.0,0.8,1.0,automated planning-level diagnostic; not a human rating
+assemble_bracket_007,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+sort_tray_008,1.0,0.9090909090909091,0.5,1.0,0.6666666666666666,1.0,automated planning-level diagnostic; not a human rating
+pour_drink_009,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+pack_box_010,1.0,0.9411764705882353,0.6666666666666666,1.0,0.8,1.0,automated planning-level diagnostic; not a human rating
+assemble_bracket_011,1.0,1.0,1.0,1.0,1.0,1.0,automated planning-level diagnostic; not a human rating
+sort_tray_012,1.0,1.0,0.5,1.0,0.6666666666666666,1.0,automated planning-level diagnostic; not a human rating

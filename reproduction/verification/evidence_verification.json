@@ -1,0 +1,62 @@
+{
+  "historical_all_four_settings_equal": {
+    "comparison_details.jsonl": 1024,
+    "external_CodeLlama-13b_details.jsonl": 1988,
+    "external_mistral-7b_details.jsonl": 1956
+  },
+  "equal_total": 4968,
+  "jobshop_pairs": [
+    {
+      "id": "ft06",
+      "nodes": 36,
+      "resources": 6,
+      "simple_makespan": 152.0,
+      "full_makespan": 113.0,
+      "reduction_percent": 25.657894736842106
+    },
+    {
+      "id": "la01",
+      "nodes": 50,
+      "resources": 5,
+      "simple_makespan": 2272.0,
+      "full_makespan": 1706.0,
+      "reduction_percent": 24.911971830985916
+    },
+    {
+      "id": "la02",
+      "nodes": 50,
+      "resources": 5,
+      "simple_makespan": 2025.0,
+      "full_makespan": 1620.0,
+      "reduction_percent": 20.0
+    },
+    {
+      "id": "la03",
+      "nodes": 50,
+      "resources": 5,
+      "simple_makespan": 1732.0,
+      "full_makespan": 1368.0,
+      "reduction_percent": 21.016166281755197
+    },
+    {
+      "id": "la04",
+      "nodes": 50,
+      "resources": 5,
+      "simple_makespan": 2195.0,
+      "full_makespan": 1423.0,
+      "reduction_percent": 35.170842824601365
+    },
+    {
+      "id": "la05",
+      "nodes": 50,
+      "resources": 5,
+      "simple_makespan": 1779.0,
+      "full_makespan": 1289.0,
+      "reduction_percent": 27.543563799887576
+    }
+  ],
+  "jobshop_mean_paired_reduction_percent": 25.71673991234536,
+  "differences_limited_to_resource_relations": true,
+  "jobshop_order_edges": 0,
+  "public_source_valid_accepted": 41
+}

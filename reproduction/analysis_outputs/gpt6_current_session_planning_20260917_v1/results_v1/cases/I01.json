@@ -1,0 +1,3545 @@
+{
+  "task_id": "I01",
+  "spec": {
+    "task_id": "I01",
+    "domain": "inspection",
+    "title": "两零件尺寸检测",
+    "instruction": "准备两个零件和已校准量具，共用卡尺分别测量并记录尺寸，打印合并检验单，将两件已检零件放入检验完成托盘。",
+    "S0": [
+      "part_a_available",
+      "part_b_available",
+      "caliper_calibrated",
+      "inspection_tray_ready"
+    ],
+    "Sg": [
+      "inspection_lot_documented"
+    ],
+    "resources": [
+      "part_a",
+      "part_b",
+      "caliper",
+      "printer",
+      "inspection_tray"
+    ]
+  },
+  "raw_source": "raw_candidates_inspection.json",
+  "raw_candidate": {
+    "task_id": "I01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare part A for measurement",
+        "object": "part A",
+        "Pre": [
+          "part_a_available"
+        ],
+        "Post": [
+          "part_a_positioned"
+        ],
+        "d": 1,
+        "Res": [
+          "part_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare part B for measurement",
+        "object": "part B",
+        "Pre": [
+          "part_b_available"
+        ],
+        "Post": [
+          "part_b_positioned"
+        ],
+        "d": 1,
+        "Res": [
+          "part_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "measure and record part A",
+        "object": "part A",
+        "Pre": [
+          "part_a_positioned",
+          "caliper_calibrated"
+        ],
+        "Post": [
+          "part_a_measured"
+        ],
+        "d": 3,
+        "Res": [
+          "part_a",
+          "caliper"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "measure and record part B",
+        "object": "part B",
+        "Pre": [
+          "part_b_positioned",
+          "caliper_calibrated"
+        ],
+        "Post": [
+          "part_b_measured"
+        ],
+        "d": 3,
+        "Res": [
+          "part_b",
+          "caliper"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "print combined inspection sheet",
+        "object": "inspection sheet",
+        "Pre": [
+          "part_a_measured",
+          "part_b_measured"
+        ],
+        "Post": [
+          "combined_sheet_printed"
+        ],
+        "d": 2,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place inspected part A",
+        "object": "part A",
+        "Pre": [
+          "part_a_measured",
+          "inspection_tray_ready"
+        ],
+        "Post": [
+          "part_a_on_inspection_tray"
+        ],
+        "d": 1,
+        "Res": [
+          "part_a",
+          "inspection_tray"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "place inspected part B",
+        "object": "part B",
+        "Pre": [
+          "part_b_measured",
+          "inspection_tray_ready"
+        ],
+        "Post": [
+          "part_b_on_inspection_tray"
+        ],
+        "d": 1,
+        "Res": [
+          "part_b",
+          "inspection_tray"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "associate sheet with inspected lot",
+        "object": "inspection lot",
+        "Pre": [
+          "combined_sheet_printed",
+          "part_a_on_inspection_tray",
+          "part_b_on_inspection_tray"
+        ],
+        "Post": [
+          "inspection_lot_documented"
+        ],
+        "d": 1,
+        "Res": [
+          "inspection_tray"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t3",
+          "part_a_positioned"
+        ],
+        [
+          "t2",
+          "t4",
+          "part_b_positioned"
+        ],
+        [
+          "t3",
+          "t5",
+          "part_a_measured"
+        ],
+        [
+          "t4",
+          "t5",
+          "part_b_measured"
+        ],
+        [
+          "t3",
+          "t6",
+          "part_a_measured"
+        ],
+        [
+          "t4",
+          "t7",
+          "part_b_measured"
+        ],
+        [
+          "t5",
+          "t8",
+          "combined_sheet_printed"
+        ],
+        [
+          "t6",
+          "t8",
+          "part_a_on_inspection_tray"
+        ],
+        [
+          "t7",
+          "t8",
+          "part_b_on_inspection_tray"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t3",
+          "t4",
+          "caliper"
+        ],
+        [
+          "t6",
+          "t7",
+          "inspection_tray"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare part A for measurement",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available"
+        ],
+        "post_state": [
+          "part_a_positioned"
+        ],
+        "duration": 1,
+        "resource": [
+          "part_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare part B for measurement",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available"
+        ],
+        "post_state": [
+          "part_b_positioned"
+        ],
+        "duration": 1,
+        "resource": [
+          "part_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "measure and record part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_a_measured"
+        ],
+        "duration": 3,
+        "resource": [
+          "part_a",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "measure and record part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_b_measured"
+        ],
+        "duration": 3,
+        "resource": [
+          "part_b",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "print combined inspection sheet",
+        "object": "inspection sheet",
+        "pre_state": [
+          "part_a_measured",
+          "part_b_measured"
+        ],
+        "post_state": [
+          "combined_sheet_printed"
+        ],
+        "duration": 2,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place inspected part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_a_on_inspection_tray"
+        ],
+        "duration": 1,
+        "resource": [
+          "part_a",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "place inspected part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_b_on_inspection_tray"
+        ],
+        "duration": 1,
+        "resource": [
+          "part_b",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "associate sheet with inspected lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "combined_sheet_printed",
+          "part_a_on_inspection_tray",
+          "part_b_on_inspection_tray"
+        ],
+        "post_state": [
+          "inspection_lot_documented"
+        ],
+        "duration": 1,
+        "resource": [
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "state": "part_a_positioned"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "part_b_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "combined_sheet_printed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "part_a_on_inspection_tray"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "part_b_on_inspection_tray"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "resource": "caliper"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "resource": "inspection_tray"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "caliper_calibrated",
+        "inspection_tray_ready",
+        "part_a_available",
+        "part_b_available"
+      ],
+      "available_states": [
+        "caliper_calibrated",
+        "combined_sheet_printed",
+        "inspection_lot_documented",
+        "inspection_tray_ready",
+        "part_a_available",
+        "part_a_measured",
+        "part_a_on_inspection_tray",
+        "part_a_positioned",
+        "part_b_available",
+        "part_b_measured",
+        "part_b_on_inspection_tray",
+        "part_b_positioned"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "inspection_lot_documented"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 12.0,
+    "waiting_time": 10.0,
+    "executor_utilization": 0.5417,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "prepare part A for measurement",
+        "object": "part A",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "part_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare part B for measurement",
+        "object": "part B",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "measure and record part A",
+        "object": "part A",
+        "start": 1.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "part_a",
+          "caliper"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "measure and record part B",
+        "object": "part B",
+        "start": 4.0,
+        "finish": 7.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_b",
+          "caliper"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "print combined inspection sheet",
+        "object": "inspection sheet",
+        "start": 7.0,
+        "finish": 9.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "place inspected part A",
+        "object": "part A",
+        "start": 9.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "part_a",
+          "inspection_tray"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "place inspected part B",
+        "object": "part B",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_b",
+          "inspection_tray"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "associate sheet with inspected lot",
+        "object": "inspection lot",
+        "start": 11.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "inspection_tray"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 5.0
+    },
+    "utilization_unrounded": 0.5416666666666666
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "caliper_calibrated",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_b_available"
+        ],
+        "available_states": [
+          "caliper_calibrated",
+          "combined_sheet_printed",
+          "inspection_lot_documented",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_a_measured",
+          "part_a_on_inspection_tray",
+          "part_a_positioned",
+          "part_b_available",
+          "part_b_measured",
+          "part_b_on_inspection_tray",
+          "part_b_positioned"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "inspection_lot_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "caliper_calibrated",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_b_available"
+        ],
+        "available_states": [
+          "caliper_calibrated",
+          "combined_sheet_printed",
+          "inspection_lot_documented",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_a_measured",
+          "part_a_on_inspection_tray",
+          "part_a_positioned",
+          "part_b_available",
+          "part_b_measured",
+          "part_b_on_inspection_tray",
+          "part_b_positioned"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "inspection_lot_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "caliper_calibrated",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_b_available"
+          ],
+          "available_states": [
+            "caliper_calibrated",
+            "combined_sheet_printed",
+            "inspection_lot_documented",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_a_measured",
+            "part_a_on_inspection_tray",
+            "part_a_positioned",
+            "part_b_available",
+            "part_b_measured",
+            "part_b_on_inspection_tray",
+            "part_b_positioned"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "inspection_lot_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "caliper_calibrated",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_b_available"
+          ],
+          "available_states": [
+            "caliper_calibrated",
+            "combined_sheet_printed",
+            "inspection_lot_documented",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_a_measured",
+            "part_a_on_inspection_tray",
+            "part_a_positioned",
+            "part_b_available",
+            "part_b_measured",
+            "part_b_on_inspection_tray",
+            "part_b_positioned"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "inspection_lot_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 10.0,
+      "executor_utilization": 0.5417,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "start": 1.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "caliper"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "caliper"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "inspection_tray"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "inspection_tray"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "inspection_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "caliper_calibrated",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_b_available"
+        ],
+        "available_states": [
+          "caliper_calibrated",
+          "combined_sheet_printed",
+          "inspection_lot_documented",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_a_measured",
+          "part_a_on_inspection_tray",
+          "part_a_positioned",
+          "part_b_available",
+          "part_b_measured",
+          "part_b_on_inspection_tray",
+          "part_b_positioned"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "inspection_lot_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "caliper_calibrated",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_b_available"
+        ],
+        "available_states": [
+          "caliper_calibrated",
+          "combined_sheet_printed",
+          "inspection_lot_documented",
+          "inspection_tray_ready",
+          "part_a_available",
+          "part_a_measured",
+          "part_a_on_inspection_tray",
+          "part_a_positioned",
+          "part_b_available",
+          "part_b_measured",
+          "part_b_on_inspection_tray",
+          "part_b_positioned"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "inspection_lot_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "caliper_calibrated",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_b_available"
+          ],
+          "available_states": [
+            "caliper_calibrated",
+            "combined_sheet_printed",
+            "inspection_lot_documented",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_a_measured",
+            "part_a_on_inspection_tray",
+            "part_a_positioned",
+            "part_b_available",
+            "part_b_measured",
+            "part_b_on_inspection_tray",
+            "part_b_positioned"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "inspection_lot_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "caliper_calibrated",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_b_available"
+          ],
+          "available_states": [
+            "caliper_calibrated",
+            "combined_sheet_printed",
+            "inspection_lot_documented",
+            "inspection_tray_ready",
+            "part_a_available",
+            "part_a_measured",
+            "part_a_on_inspection_tray",
+            "part_a_positioned",
+            "part_b_available",
+            "part_b_measured",
+            "part_b_on_inspection_tray",
+            "part_b_positioned"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "inspection_lot_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 10.0,
+      "executor_utilization": 0.5417,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "start": 1.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "caliper"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "caliper"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "inspection_tray"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "inspection_tray"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "inspection_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare part A for measurement",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available"
+        ],
+        "post_state": [
+          "part_a_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare part B for measurement",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available"
+        ],
+        "post_state": [
+          "part_b_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "measure and record part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_a_measured"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "part_a",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "measure and record part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_b_measured"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "part_b",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "print combined inspection sheet",
+        "object": "inspection sheet",
+        "pre_state": [
+          "part_a_measured",
+          "part_b_measured"
+        ],
+        "post_state": [
+          "combined_sheet_printed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place inspected part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_a_on_inspection_tray"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_a",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "place inspected part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_b_on_inspection_tray"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_b",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "associate sheet with inspected lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "combined_sheet_printed",
+          "part_a_on_inspection_tray",
+          "part_b_on_inspection_tray"
+        ],
+        "post_state": [
+          "inspection_lot_documented"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_positioned"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "combined_sheet_printed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_on_inspection_tray"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_on_inspection_tray"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "caliper"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "inspection_tray"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 5.0
+    },
+    "utilization_unrounded": 0.5416666666666666
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare part A for measurement",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available"
+        ],
+        "post_state": [
+          "part_a_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare part B for measurement",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available"
+        ],
+        "post_state": [
+          "part_b_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "measure and record part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_a_measured"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "part_a",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "measure and record part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_positioned",
+          "caliper_calibrated"
+        ],
+        "post_state": [
+          "part_b_measured"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "part_b",
+          "caliper"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "print combined inspection sheet",
+        "object": "inspection sheet",
+        "pre_state": [
+          "part_a_measured",
+          "part_b_measured"
+        ],
+        "post_state": [
+          "combined_sheet_printed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place inspected part A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_a_on_inspection_tray"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_a",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "place inspected part B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_measured",
+          "inspection_tray_ready"
+        ],
+        "post_state": [
+          "part_b_on_inspection_tray"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "part_b",
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "associate sheet with inspected lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "combined_sheet_printed",
+          "part_a_on_inspection_tray",
+          "part_b_on_inspection_tray"
+        ],
+        "post_state": [
+          "inspection_lot_documented"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "inspection_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_positioned"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_measured"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_measured"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "combined_sheet_printed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_on_inspection_tray"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_on_inspection_tray"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "caliper"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "inspection_tray"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 5.0
+    },
+    "utilization_unrounded": 0.5416666666666666
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "caliper_calibrated",
+        "inspection_tray_ready",
+        "part_a_available",
+        "part_b_available"
+      ],
+      "available_states": [
+        "caliper_calibrated",
+        "combined_sheet_printed",
+        "inspection_lot_documented",
+        "inspection_tray_ready",
+        "part_a_available",
+        "part_a_measured",
+        "part_a_on_inspection_tray",
+        "part_a_positioned",
+        "part_b_available",
+        "part_b_measured",
+        "part_b_on_inspection_tray",
+        "part_b_positioned"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "inspection_lot_documented"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare part A for measurement",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available"
+          ],
+          "post_state": [
+            "part_a_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare part B for measurement",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available"
+          ],
+          "post_state": [
+            "part_b_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "measure and record part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_a_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_a",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "measure and record part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_positioned",
+            "caliper_calibrated"
+          ],
+          "post_state": [
+            "part_b_measured"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "part_b",
+            "caliper"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "print combined inspection sheet",
+          "object": "inspection sheet",
+          "pre_state": [
+            "part_a_measured",
+            "part_b_measured"
+          ],
+          "post_state": [
+            "combined_sheet_printed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place inspected part A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_a_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_a",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place inspected part B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_measured",
+            "inspection_tray_ready"
+          ],
+          "post_state": [
+            "part_b_on_inspection_tray"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "part_b",
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "associate sheet with inspected lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "combined_sheet_printed",
+            "part_a_on_inspection_tray",
+            "part_b_on_inspection_tray"
+          ],
+          "post_state": [
+            "inspection_lot_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "inspection_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_positioned"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_measured"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_measured"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "combined_sheet_printed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_on_inspection_tray"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_on_inspection_tray"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "caliper"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_tray"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "I01",
+    "domain": "inspection",
+    "title": "两零件尺寸检测",
+    "nodes": 8,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 9,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 2,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 6,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 13.0,
+    "cooperative_duration": 0,
+    "before_makespan": 12.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 12.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 12.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 6,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.0833333333333333,
+    "relative_duration_reduction_vs_serial": 0.07692307692307687,
+    "executor_utilization": 0.5416666666666666,
+    "left_busy_time": 8.0,
+    "right_busy_time": 5.0,
+    "scheduled_overlap_pairs": 1,
+    "critical_path_duration": 10.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

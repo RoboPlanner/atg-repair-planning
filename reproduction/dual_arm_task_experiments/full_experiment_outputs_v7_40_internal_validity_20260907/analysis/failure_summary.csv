@@ -1,0 +1,31 @@
+Method,Failure Type,Count
+Direct Candidate Graph,false parallel,311
+Direct Candidate Graph,missing state dependency,454
+Direct Candidate Graph,over-conservative serialization,0
+Direct Candidate Graph,resource conflict,10
+Direct Candidate Graph,unreachable goal,128
+Direct Candidate Graph,wrong executor constraint,160
+Schema-Constrained Candidate,false parallel,58
+Schema-Constrained Candidate,missing state dependency,240
+Schema-Constrained Candidate,over-conservative serialization,240
+Schema-Constrained Candidate,resource conflict,7
+Schema-Constrained Candidate,unreachable goal,89
+Schema-Constrained Candidate,wrong executor constraint,120
+Sequential Planning,false parallel,0
+Sequential Planning,missing state dependency,0
+Sequential Planning,over-conservative serialization,360
+Sequential Planning,resource conflict,0
+Sequential Planning,unreachable goal,0
+Sequential Planning,wrong executor constraint,0
+Text-Order Heuristic,false parallel,0
+Text-Order Heuristic,missing state dependency,540
+Text-Order Heuristic,over-conservative serialization,360
+Text-Order Heuristic,resource conflict,0
+Text-Order Heuristic,unreachable goal,139
+Text-Order Heuristic,wrong executor constraint,120
+Verified ATG (Ours),false parallel,120
+Verified ATG (Ours),missing state dependency,47
+Verified ATG (Ours),over-conservative serialization,0
+Verified ATG (Ours),resource conflict,0
+Verified ATG (Ours),unreachable goal,0
+Verified ATG (Ours),wrong executor constraint,120

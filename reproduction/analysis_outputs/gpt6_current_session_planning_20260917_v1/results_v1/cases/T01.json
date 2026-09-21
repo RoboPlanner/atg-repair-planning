@@ -1,0 +1,4215 @@
+{
+  "task_id": "T01",
+  "spec": {
+    "task_id": "T01",
+    "domain": "workcell_preparation",
+    "title": "定位夹具换装",
+    "instruction": "确认工作台安全就绪，准备新夹具和紧固件；拆下旧夹具后双单元移走，双单元安装新夹具，再共用工具完成两处锁紧和定位检查。",
+    "S0": [
+      "workcell_safe",
+      "old_fixture_installed",
+      "new_fixture_available",
+      "fasteners_available"
+    ],
+    "Sg": [
+      "new_fixture_verified"
+    ],
+    "resources": [
+      "workbench",
+      "old_fixture",
+      "new_fixture",
+      "driver",
+      "gauge"
+    ]
+  },
+  "raw_source": "raw_candidates_workcell.json",
+  "raw_candidate": {
+    "task_id": "T01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm workbench readiness",
+        "object": "workbench",
+        "Pre": [
+          "workcell_safe"
+        ],
+        "Post": [
+          "workbench_ready"
+        ],
+        "d": 2,
+        "Res": [
+          "workbench"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare new fixture",
+        "object": "new fixture",
+        "Pre": [
+          "new_fixture_available"
+        ],
+        "Post": [
+          "new_fixture_prepared"
+        ],
+        "d": 3,
+        "Res": [
+          "new_fixture"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare fasteners",
+        "object": "fasteners",
+        "Pre": [
+          "fasteners_available"
+        ],
+        "Post": [
+          "fasteners_prepared"
+        ],
+        "d": 2,
+        "Res": [],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "unfasten old fixture",
+        "object": "old fixture",
+        "Pre": [
+          "old_fixture_installed",
+          "workbench_ready"
+        ],
+        "Post": [
+          "old_fixture_unfastened"
+        ],
+        "d": 4,
+        "Res": [
+          "workbench",
+          "old_fixture",
+          "driver"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "remove old fixture together",
+        "object": "old fixture",
+        "Pre": [
+          "old_fixture_unfastened"
+        ],
+        "Post": [
+          "old_fixture_removed"
+        ],
+        "d": 3,
+        "Res": [
+          "workbench",
+          "old_fixture"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "install new fixture together",
+        "object": "new fixture",
+        "Pre": [
+          "old_fixture_removed",
+          "new_fixture_prepared"
+        ],
+        "Post": [
+          "new_fixture_installed"
+        ],
+        "d": 4,
+        "Res": [
+          "workbench",
+          "new_fixture"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "lock first fixture position",
+        "object": "new fixture",
+        "Pre": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "Post": [
+          "first_fixture_lock_complete"
+        ],
+        "d": 3,
+        "Res": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "lock second fixture position",
+        "object": "new fixture",
+        "Pre": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "Post": [
+          "second_fixture_lock_complete"
+        ],
+        "d": 3,
+        "Res": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "verify fixture positioning",
+        "object": "new fixture",
+        "Pre": [
+          "first_fixture_lock_complete",
+          "second_fixture_lock_complete"
+        ],
+        "Post": [
+          "new_fixture_verified"
+        ],
+        "d": 3,
+        "Res": [
+          "workbench",
+          "new_fixture",
+          "gauge"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "workbench_ready"
+        ],
+        [
+          "t4",
+          "t5",
+          "old_fixture_unfastened"
+        ],
+        [
+          "t5",
+          "t6",
+          "old_fixture_removed"
+        ],
+        [
+          "t2",
+          "t6",
+          "new_fixture_prepared"
+        ],
+        [
+          "t6",
+          "t7",
+          "new_fixture_installed"
+        ],
+        [
+          "t3",
+          "t7",
+          "fasteners_prepared"
+        ],
+        [
+          "t6",
+          "t8",
+          "new_fixture_installed"
+        ],
+        [
+          "t3",
+          "t8",
+          "fasteners_prepared"
+        ],
+        [
+          "t7",
+          "t9",
+          "first_fixture_lock_complete"
+        ],
+        [
+          "t8",
+          "t9",
+          "second_fixture_lock_complete"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t4",
+          "t5",
+          "old_fixture_unfastened"
+        ],
+        [
+          "t5",
+          "t6",
+          "old_fixture_removed"
+        ],
+        [
+          "t2",
+          "t6",
+          "new_fixture_prepared"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t7",
+          "t8",
+          "driver"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm workbench readiness",
+        "object": "workbench",
+        "pre_state": [
+          "workcell_safe"
+        ],
+        "post_state": [
+          "workbench_ready"
+        ],
+        "duration": 2,
+        "resource": [
+          "workbench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare new fixture",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_available"
+        ],
+        "post_state": [
+          "new_fixture_prepared"
+        ],
+        "duration": 3,
+        "resource": [
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare fasteners",
+        "object": "fasteners",
+        "pre_state": [
+          "fasteners_available"
+        ],
+        "post_state": [
+          "fasteners_prepared"
+        ],
+        "duration": 2,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "unfasten old fixture",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_installed",
+          "workbench_ready"
+        ],
+        "post_state": [
+          "old_fixture_unfastened"
+        ],
+        "duration": 4,
+        "resource": [
+          "workbench",
+          "old_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "remove old fixture together",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_unfastened"
+        ],
+        "post_state": [
+          "old_fixture_removed"
+        ],
+        "duration": 3,
+        "resource": [
+          "workbench",
+          "old_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "install new fixture together",
+        "object": "new fixture",
+        "pre_state": [
+          "old_fixture_removed",
+          "new_fixture_prepared"
+        ],
+        "post_state": [
+          "new_fixture_installed"
+        ],
+        "duration": 4,
+        "resource": [
+          "workbench",
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "lock first fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "first_fixture_lock_complete"
+        ],
+        "duration": 3,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "lock second fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "second_fixture_lock_complete"
+        ],
+        "duration": 3,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "verify fixture positioning",
+        "object": "new fixture",
+        "pre_state": [
+          "first_fixture_lock_complete",
+          "second_fixture_lock_complete"
+        ],
+        "post_state": [
+          "new_fixture_verified"
+        ],
+        "duration": 3,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "workbench_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "old_fixture_removed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "first_fixture_lock_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "second_fixture_lock_complete"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "old_fixture_removed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "resource": "driver"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "fasteners_available",
+        "new_fixture_available",
+        "old_fixture_installed",
+        "workcell_safe"
+      ],
+      "available_states": [
+        "fasteners_available",
+        "fasteners_prepared",
+        "first_fixture_lock_complete",
+        "new_fixture_available",
+        "new_fixture_installed",
+        "new_fixture_prepared",
+        "new_fixture_verified",
+        "old_fixture_installed",
+        "old_fixture_removed",
+        "old_fixture_unfastened",
+        "second_fixture_lock_complete",
+        "workbench_ready",
+        "workcell_safe"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "new_fixture_verified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 24.0,
+    "waiting_time": 11.0,
+    "executor_utilization": 0.7083,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "confirm workbench readiness",
+        "object": "workbench",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "workbench"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare new fixture",
+        "object": "new fixture",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "new_fixture"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare fasteners",
+        "object": "fasteners",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": []
+      },
+      {
+        "node_id": "t4",
+        "action": "unfasten old fixture",
+        "object": "old fixture",
+        "start": 4.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "workbench",
+          "old_fixture",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "remove old fixture together",
+        "object": "old fixture",
+        "start": 8.0,
+        "finish": 11.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "workbench",
+          "old_fixture"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "install new fixture together",
+        "object": "new fixture",
+        "start": 11.0,
+        "finish": 15.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "workbench",
+          "new_fixture"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "lock first fixture position",
+        "object": "new fixture",
+        "start": 15.0,
+        "finish": 18.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "lock second fixture position",
+        "object": "new fixture",
+        "start": 18.0,
+        "finish": 21.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "verify fixture positioning",
+        "object": "new fixture",
+        "start": 21.0,
+        "finish": 24.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "workbench",
+          "new_fixture",
+          "gauge"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "old_fixture_removed"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "fasteners_available",
+          "new_fixture_available",
+          "old_fixture_installed",
+          "workcell_safe"
+        ],
+        "available_states": [
+          "fasteners_available",
+          "fasteners_prepared",
+          "first_fixture_lock_complete",
+          "new_fixture_available",
+          "new_fixture_installed",
+          "new_fixture_prepared",
+          "new_fixture_verified",
+          "old_fixture_installed",
+          "old_fixture_removed",
+          "old_fixture_unfastened",
+          "second_fixture_lock_complete",
+          "workbench_ready",
+          "workcell_safe"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "new_fixture_verified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "fasteners_available",
+          "new_fixture_available",
+          "old_fixture_installed",
+          "workcell_safe"
+        ],
+        "available_states": [
+          "fasteners_available",
+          "fasteners_prepared",
+          "first_fixture_lock_complete",
+          "new_fixture_available",
+          "new_fixture_installed",
+          "new_fixture_prepared",
+          "new_fixture_verified",
+          "old_fixture_installed",
+          "old_fixture_removed",
+          "old_fixture_unfastened",
+          "second_fixture_lock_complete",
+          "workbench_ready",
+          "workcell_safe"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "new_fixture_verified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "fasteners_available",
+            "new_fixture_available",
+            "old_fixture_installed",
+            "workcell_safe"
+          ],
+          "available_states": [
+            "fasteners_available",
+            "fasteners_prepared",
+            "first_fixture_lock_complete",
+            "new_fixture_available",
+            "new_fixture_installed",
+            "new_fixture_prepared",
+            "new_fixture_verified",
+            "old_fixture_installed",
+            "old_fixture_removed",
+            "old_fixture_unfastened",
+            "second_fixture_lock_complete",
+            "workbench_ready",
+            "workcell_safe"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "new_fixture_verified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "fasteners_available",
+            "new_fixture_available",
+            "old_fixture_installed",
+            "workcell_safe"
+          ],
+          "available_states": [
+            "fasteners_available",
+            "fasteners_prepared",
+            "first_fixture_lock_complete",
+            "new_fixture_available",
+            "new_fixture_installed",
+            "new_fixture_prepared",
+            "new_fixture_verified",
+            "old_fixture_installed",
+            "old_fixture_removed",
+            "old_fixture_unfastened",
+            "second_fixture_lock_complete",
+            "workbench_ready",
+            "workcell_safe"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "new_fixture_verified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "old_fixture_unfastened",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for old_fixture_unfastened",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "old_fixture_removed",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for old_fixture_removed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "new_fixture_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for new_fixture_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "old_fixture_unfastened",
+          "resource": null,
+          "reason": "cooperative input state old_fixture_unfastened",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "new_fixture_prepared",
+          "resource": null,
+          "reason": "cooperative input state new_fixture_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "old_fixture_removed",
+          "resource": null,
+          "reason": "cooperative input state old_fixture_removed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 24.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.7083,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "new_fixture"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": []
+        },
+        {
+          "node_id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "start": 8.0,
+          "finish": 11.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "old_fixture"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "start": 11.0,
+          "finish": 15.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "start": 18.0,
+          "finish": 21.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "start": 21.0,
+          "finish": 24.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "old_fixture_removed"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "fasteners_available",
+          "new_fixture_available",
+          "old_fixture_installed",
+          "workcell_safe"
+        ],
+        "available_states": [
+          "fasteners_available",
+          "fasteners_prepared",
+          "first_fixture_lock_complete",
+          "new_fixture_available",
+          "new_fixture_installed",
+          "new_fixture_prepared",
+          "new_fixture_verified",
+          "old_fixture_installed",
+          "old_fixture_removed",
+          "old_fixture_unfastened",
+          "second_fixture_lock_complete",
+          "workbench_ready",
+          "workcell_safe"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "new_fixture_verified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "fasteners_available",
+          "new_fixture_available",
+          "old_fixture_installed",
+          "workcell_safe"
+        ],
+        "available_states": [
+          "fasteners_available",
+          "fasteners_prepared",
+          "first_fixture_lock_complete",
+          "new_fixture_available",
+          "new_fixture_installed",
+          "new_fixture_prepared",
+          "new_fixture_verified",
+          "old_fixture_installed",
+          "old_fixture_removed",
+          "old_fixture_unfastened",
+          "second_fixture_lock_complete",
+          "workbench_ready",
+          "workcell_safe"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "new_fixture_verified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "fasteners_available",
+            "new_fixture_available",
+            "old_fixture_installed",
+            "workcell_safe"
+          ],
+          "available_states": [
+            "fasteners_available",
+            "fasteners_prepared",
+            "first_fixture_lock_complete",
+            "new_fixture_available",
+            "new_fixture_installed",
+            "new_fixture_prepared",
+            "new_fixture_verified",
+            "old_fixture_installed",
+            "old_fixture_removed",
+            "old_fixture_unfastened",
+            "second_fixture_lock_complete",
+            "workbench_ready",
+            "workcell_safe"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "new_fixture_verified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "fasteners_available",
+            "new_fixture_available",
+            "old_fixture_installed",
+            "workcell_safe"
+          ],
+          "available_states": [
+            "fasteners_available",
+            "fasteners_prepared",
+            "first_fixture_lock_complete",
+            "new_fixture_available",
+            "new_fixture_installed",
+            "new_fixture_prepared",
+            "new_fixture_verified",
+            "old_fixture_installed",
+            "old_fixture_removed",
+            "old_fixture_unfastened",
+            "second_fixture_lock_complete",
+            "workbench_ready",
+            "workcell_safe"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "new_fixture_verified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "old_fixture_unfastened",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for old_fixture_unfastened",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "old_fixture_removed",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for old_fixture_removed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "new_fixture_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for new_fixture_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "old_fixture_unfastened",
+          "resource": null,
+          "reason": "cooperative input state old_fixture_unfastened",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "new_fixture_prepared",
+          "resource": null,
+          "reason": "cooperative input state new_fixture_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "old_fixture_removed",
+          "resource": null,
+          "reason": "cooperative input state old_fixture_removed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 24.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.7083,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "new_fixture"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": []
+        },
+        {
+          "node_id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "start": 8.0,
+          "finish": 11.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "old_fixture"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "start": 11.0,
+          "finish": 15.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "start": 18.0,
+          "finish": 21.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "start": 21.0,
+          "finish": 24.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm workbench readiness",
+        "object": "workbench",
+        "pre_state": [
+          "workcell_safe"
+        ],
+        "post_state": [
+          "workbench_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "workbench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare new fixture",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_available"
+        ],
+        "post_state": [
+          "new_fixture_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare fasteners",
+        "object": "fasteners",
+        "pre_state": [
+          "fasteners_available"
+        ],
+        "post_state": [
+          "fasteners_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "unfasten old fixture",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_installed",
+          "workbench_ready"
+        ],
+        "post_state": [
+          "old_fixture_unfastened"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "workbench",
+          "old_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "remove old fixture together",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_unfastened"
+        ],
+        "post_state": [
+          "old_fixture_removed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "old_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "install new fixture together",
+        "object": "new fixture",
+        "pre_state": [
+          "old_fixture_removed",
+          "new_fixture_prepared"
+        ],
+        "post_state": [
+          "new_fixture_installed"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "workbench",
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "lock first fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "first_fixture_lock_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "lock second fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "second_fixture_lock_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "verify fixture positioning",
+        "object": "new fixture",
+        "pre_state": [
+          "first_fixture_lock_complete",
+          "second_fixture_lock_complete"
+        ],
+        "post_state": [
+          "new_fixture_verified"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "workbench_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "old_fixture_removed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "first_fixture_lock_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "second_fixture_lock_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "old_fixture_removed"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm workbench readiness",
+        "object": "workbench",
+        "pre_state": [
+          "workcell_safe"
+        ],
+        "post_state": [
+          "workbench_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "workbench"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare new fixture",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_available"
+        ],
+        "post_state": [
+          "new_fixture_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare fasteners",
+        "object": "fasteners",
+        "pre_state": [
+          "fasteners_available"
+        ],
+        "post_state": [
+          "fasteners_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "unfasten old fixture",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_installed",
+          "workbench_ready"
+        ],
+        "post_state": [
+          "old_fixture_unfastened"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "workbench",
+          "old_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "remove old fixture together",
+        "object": "old fixture",
+        "pre_state": [
+          "old_fixture_unfastened"
+        ],
+        "post_state": [
+          "old_fixture_removed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "old_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "install new fixture together",
+        "object": "new fixture",
+        "pre_state": [
+          "old_fixture_removed",
+          "new_fixture_prepared"
+        ],
+        "post_state": [
+          "new_fixture_installed"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "workbench",
+          "new_fixture"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "lock first fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "first_fixture_lock_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "lock second fixture position",
+        "object": "new fixture",
+        "pre_state": [
+          "new_fixture_installed",
+          "fasteners_prepared"
+        ],
+        "post_state": [
+          "second_fixture_lock_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "verify fixture positioning",
+        "object": "new fixture",
+        "pre_state": [
+          "first_fixture_lock_complete",
+          "second_fixture_lock_complete"
+        ],
+        "post_state": [
+          "new_fixture_verified"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "workbench",
+          "new_fixture",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "workbench_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "old_fixture_removed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "new_fixture_installed"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "first_fixture_lock_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "second_fixture_lock_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "old_fixture_unfastened"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "new_fixture_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "old_fixture_removed"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.7083333333333334
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "fasteners_available",
+        "new_fixture_available",
+        "old_fixture_installed",
+        "workcell_safe"
+      ],
+      "available_states": [
+        "fasteners_available",
+        "fasteners_prepared",
+        "first_fixture_lock_complete",
+        "new_fixture_available",
+        "new_fixture_installed",
+        "new_fixture_prepared",
+        "new_fixture_verified",
+        "old_fixture_installed",
+        "old_fixture_removed",
+        "old_fixture_unfastened",
+        "second_fixture_lock_complete",
+        "workbench_ready",
+        "workcell_safe"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "new_fixture_verified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_removed"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_removed"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm workbench readiness",
+          "object": "workbench",
+          "pre_state": [
+            "workcell_safe"
+          ],
+          "post_state": [
+            "workbench_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "workbench"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare new fixture",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_available"
+          ],
+          "post_state": [
+            "new_fixture_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare fasteners",
+          "object": "fasteners",
+          "pre_state": [
+            "fasteners_available"
+          ],
+          "post_state": [
+            "fasteners_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "unfasten old fixture",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_installed",
+            "workbench_ready"
+          ],
+          "post_state": [
+            "old_fixture_unfastened"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "old_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "remove old fixture together",
+          "object": "old fixture",
+          "pre_state": [
+            "old_fixture_unfastened"
+          ],
+          "post_state": [
+            "old_fixture_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "old_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "install new fixture together",
+          "object": "new fixture",
+          "pre_state": [
+            "old_fixture_removed",
+            "new_fixture_prepared"
+          ],
+          "post_state": [
+            "new_fixture_installed"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "workbench",
+            "new_fixture"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "lock first fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "first_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "lock second fixture position",
+          "object": "new fixture",
+          "pre_state": [
+            "new_fixture_installed",
+            "fasteners_prepared"
+          ],
+          "post_state": [
+            "second_fixture_lock_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "verify fixture positioning",
+          "object": "new fixture",
+          "pre_state": [
+            "first_fixture_lock_complete",
+            "second_fixture_lock_complete"
+          ],
+          "post_state": [
+            "new_fixture_verified"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "workbench",
+            "new_fixture",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "workbench_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "old_fixture_removed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "new_fixture_installed"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "first_fixture_lock_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "second_fixture_lock_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_unfastened"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "new_fixture_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "old_fixture_removed"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "T01",
+    "domain": "workcell_preparation",
+    "title": "定位夹具换装",
+    "nodes": 9,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 10,
+    "raw_E_sync": 3,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 5,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 27.0,
+    "cooperative_duration": 7.0,
+    "before_makespan": 24.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 24.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 24.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 5,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 6,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 6,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.125,
+    "relative_duration_reduction_vs_serial": 0.11111111111111116,
+    "executor_utilization": 0.7083333333333334,
+    "left_busy_time": 21.0,
+    "right_busy_time": 13.0,
+    "scheduled_overlap_pairs": 2,
+    "critical_path_duration": 22.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

@@ -1,0 +1,6 @@
+Method,JSON Valid Rate,JSON Valid Rate Std,Schema Pass Rate,Schema Pass Rate Std,Cycle Rate,Cycle Rate Std,Unreachable Goal Rate,Unreachable Goal Rate Std,State Closure Rate,State Closure Rate Std,Invalid Edge Rate,Invalid Edge Rate Std
+Text-Order Heuristic,1.0,0.0,0.025,0.1566,0.0,0.0,0.7844,0.3574,0.6498,0.1936,0.0,0.0
+Direct Candidate Graph,1.0,0.0,0.0,0.0,0.0,0.0,0.725,0.4036,0.6554,0.21,0.0,0.0
+Schema-Constrained Candidate,1.0,0.0,0.7812,0.4147,0.0,0.0,0.5312,0.4879,0.8175,0.1851,0.0,0.0
+Sequential Planning,1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Verified ATG (Ours),1.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0

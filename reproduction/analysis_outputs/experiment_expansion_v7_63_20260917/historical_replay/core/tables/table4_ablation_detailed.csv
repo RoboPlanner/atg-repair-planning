@@ -1,0 +1,961 @@
+task_id,Setting,Edge F1,Missing Dependency,False Parallel,Parallel F1,Conflict Rate,Joint Accept,Plan Accept,Strict Schedule Failure,Diagnostic Speedup,Accepted Speedup,Sync Stability
+pour_drink_001,w/o State-Support Repair,0.7999999999999999,0.25,0.5,0.5714285714285714,0.0,0.0,0.0,"v3: missing=['kettle_grasped'], unsupported=[]; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.3789836347975886,,1.0
+pour_drink_001,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2818254603682948,1.2818254603682948,1.0
+pour_drink_001,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2818254603682948,1.2818254603682948,1.0
+pour_drink_001,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1195804195804195,1.1195804195804195,1.0
+pour_drink_001,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_001,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2818254603682948,1.2818254603682948,1.0
+pack_box_002,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v5: missing=[], unsupported=['bottle_grasped']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.5552367288378766,,1.0
+pack_box_002,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.5552367288378766,,1.0
+pack_box_002,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1782608695652175,,1.0
+pack_box_002,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.5552367288378766,1.5552367288378766,1.0
+pack_box_002,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_002,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.5552367288378766,1.5552367288378766,1.0
+assemble_bracket_003,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1324694024478041,1.1324694024478041,1.0
+assemble_bracket_003,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1324694024478041,,1.0
+assemble_bracket_003,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1324694024478041,1.1324694024478041,1.0
+assemble_bracket_003,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1124469589816124,1.1124469589816124,1.0
+assemble_bracket_003,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_003,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1324694024478041,1.1324694024478041,1.0
+sort_tray_004,w/o State-Support Repair,0.761904761904762,0.2727272727272727,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['red_block_in_left_bin']; unreachable goals: ['tray_covered']",1.0000000000000002,,1.0
+sort_tray_004,w/o Synchronization Repair,0.8571428571428572,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.0000000000000002,,1.0
+sort_tray_004,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.2580000000000002,,1.0
+sort_tray_004,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0000000000000002,1.0000000000000002,1.0
+sort_tray_004,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0000000000000002,,0.0
+sort_tray_004,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0000000000000002,1.0000000000000002,1.0
+pour_drink_005,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2572463768115942,1.2572463768115942,1.0
+pour_drink_005,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2572463768115942,1.2572463768115942,1.0
+pour_drink_005,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2572463768115942,1.2572463768115942,1.0
+pour_drink_005,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0843749999999999,1.0843749999999999,1.0
+pour_drink_005,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_005,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2572463768115942,1.2572463768115942,1.0
+pack_box_006,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4534005037783377,,1.0
+pack_box_006,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4534005037783377,,1.0
+pack_box_006,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.14484126984127,,1.0
+pack_box_006,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4534005037783377,1.4534005037783377,1.0
+pack_box_006,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_006,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4534005037783377,1.4534005037783377,1.0
+assemble_bracket_007,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0950938824954572,,1.0
+assemble_bracket_007,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1264797507788162,1.1264797507788162,1.0
+assemble_bracket_007,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1264797507788162,1.1264797507788162,1.0
+assemble_bracket_007,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0950938824954572,1.0950938824954572,1.0
+assemble_bracket_007,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_007,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1264797507788162,1.1264797507788162,1.0
+sort_tray_008,w/o State-Support Repair,0.7999999999999999,0.2727272727272727,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['tray_stable']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_008,w/o Synchronization Repair,0.7999999999999999,0.2727272727272727,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for red_block_in_left_bin from v2,1.0,,1.0
+sort_tray_008,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.212812160694897,,1.0
+sort_tray_008,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_008,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_008,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0,1.0,1.0
+pour_drink_009,w/o State-Support Repair,0.6666666666666666,0.375,1.0,0.0,0.0,0.0,0.0,"v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; v4: missing=[], unsupported=['kettle_grasped']; unreachable goals: ['drink_ready', 'kettle_returned']",1.1984251968503936,,1.0
+pour_drink_009,w/o Synchronization Repair,0.8571428571428571,0.25,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1; v3: missing synchronization for kettle_grasped from v2,1.2704507512520866,,1.0
+pour_drink_009,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2704507512520866,1.2704507512520866,1.0
+pour_drink_009,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1077147016011646,1.1077147016011646,1.0
+pour_drink_009,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_009,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2704507512520866,1.2704507512520866,1.0
+pack_box_010,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4448979591836735,1.4448979591836735,1.0
+pack_box_010,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.4448979591836735,,1.0
+pack_box_010,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.144396551724138,,1.0
+pack_box_010,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4448979591836735,1.4448979591836735,1.0
+pack_box_010,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_010,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4448979591836735,1.4448979591836735,1.0
+assemble_bracket_011,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1240259740259742,1.1240259740259742,1.0
+assemble_bracket_011,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1240259740259742,,1.0
+assemble_bracket_011,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1240259740259742,1.1240259740259742,1.0
+assemble_bracket_011,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1053639846743297,1.1053639846743297,1.0
+assemble_bracket_011,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_011,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1240259740259742,1.1240259740259742,1.0
+sort_tray_012,w/o State-Support Repair,0.9523809523809523,0.09090909090909091,,0.0,0.0,0.0,0.0,"v3: missing=[], unsupported=['tray_stable']; v5: missing=['blue_block_in_right_bin'], unsupported=[]; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_012,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for lid_grasped from v4,1.213389121338912,,1.0
+sort_tray_012,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.213389121338912,1.213389121338912,1.0
+sort_tray_012,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_012,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_012,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.213389121338912,1.213389121338912,1.0
+pour_drink_013,w/o State-Support Repair,0.6666666666666666,0.5,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=['kettle_grasped']; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.117208672086721,,1.0
+pour_drink_013,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1,1.2655410590943976,,1.0
+pour_drink_013,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2655410590943976,1.2655410590943976,1.0
+pour_drink_013,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.117208672086721,1.117208672086721,1.0
+pour_drink_013,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_013,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2655410590943976,1.2655410590943976,1.0
+pack_box_014,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.529338327091136,1.529338327091136,1.0
+pack_box_014,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.529338327091136,1.529338327091136,1.0
+pack_box_014,w/o Resource-Ordering Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.529338327091136,1.529338327091136,1.0
+pack_box_014,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.529338327091136,1.529338327091136,1.0
+pack_box_014,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_014,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.529338327091136,1.529338327091136,1.0
+assemble_bracket_015,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474966170500676,1.1474966170500676,1.0
+assemble_bracket_015,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474966170500676,1.1474966170500676,1.0
+assemble_bracket_015,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474966170500676,1.1474966170500676,1.0
+assemble_bracket_015,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0948999354422206,1.0948999354422206,1.0
+assemble_bracket_015,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_015,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474966170500676,1.1474966170500676,1.0
+sort_tray_016,w/o State-Support Repair,0.9523809523809523,0.09090909090909091,,0.0,0.0,0.0,0.0,"v3: missing=[], unsupported=['tray_stable']; v5: missing=['blue_block_in_right_bin'], unsupported=[]; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_016,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for lid_grasped from v4,1.1578947368421053,,1.0
+sort_tray_016,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1578947368421053,1.1578947368421053,1.0
+sort_tray_016,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_016,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_016,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1578947368421053,1.1578947368421053,1.0
+pour_drink_017,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2862129144851655,1.2862129144851655,1.0
+pour_drink_017,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2862129144851655,1.2862129144851655,1.0
+pour_drink_017,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2862129144851655,1.2862129144851655,1.0
+pour_drink_017,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.120912547528517,1.120912547528517,1.0
+pour_drink_017,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_017,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2862129144851655,1.2862129144851655,1.0
+pack_box_018,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4085051546391754,,1.0
+pack_box_018,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4085051546391754,1.4085051546391754,1.0
+pack_box_018,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.148109243697479,,1.0
+pack_box_018,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4085051546391754,1.4085051546391754,1.0
+pack_box_018,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_018,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4085051546391754,1.4085051546391754,1.0
+assemble_bracket_019,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0896259703599154,,1.0
+assemble_bracket_019,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.12372634643377,1.12372634643377,1.0
+assemble_bracket_019,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.12372634643377,1.12372634643377,1.0
+assemble_bracket_019,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0896259703599154,1.0896259703599154,1.0
+assemble_bracket_019,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_019,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.12372634643377,1.12372634643377,1.0
+sort_tray_020,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.175916230366492,1.175916230366492,1.0
+sort_tray_020,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for blue_block_in_right_bin from v3,1.175916230366492,,1.0
+sort_tray_020,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.175916230366492,1.175916230366492,1.0
+sort_tray_020,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_020,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_020,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.175916230366492,1.175916230366492,1.0
+pour_drink_021,w/o State-Support Repair,0.7692307692307693,0.375,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=['kettle_grasped']; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.113234253361642,,1.0
+pour_drink_021,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.338723404255319,1.338723404255319,1.0
+pour_drink_021,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.338723404255319,1.338723404255319,1.0
+pour_drink_021,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.113234253361642,1.113234253361642,1.0
+pour_drink_021,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_021,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.338723404255319,1.338723404255319,1.0
+pack_box_022,w/o State-Support Repair,0.75,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v6: missing=[], unsupported=['snack_in_box']; unreachable goals: ['box_packed']",1.4756242568370985,,1.0
+pack_box_022,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4756242568370985,,1.0
+pack_box_022,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1522748375116063,,1.0
+pack_box_022,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4756242568370985,1.4756242568370985,1.0
+pack_box_022,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_022,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4756242568370985,1.4756242568370985,1.0
+assemble_bracket_023,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.0,0.8,0.0,0.0,0.0,"v5: missing=[], unsupported=['screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0940170940170941,,1.0
+assemble_bracket_023,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377777777777778,1.1377777777777778,1.0
+assemble_bracket_023,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377777777777778,1.1377777777777778,1.0
+assemble_bracket_023,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0940170940170941,1.0940170940170941,1.0
+assemble_bracket_023,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_023,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377777777777778,1.1377777777777778,1.0
+sort_tray_024,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1578947368421053,1.1578947368421053,1.0
+sort_tray_024,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.1578947368421053,,1.0
+sort_tray_024,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1578947368421053,1.1578947368421053,1.0
+sort_tray_024,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_024,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_024,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1578947368421053,1.1578947368421053,1.0
+pour_drink_025,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610410094637226,1.2610410094637226,1.0
+pour_drink_025,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610410094637226,1.2610410094637226,1.0
+pour_drink_025,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610410094637226,1.2610410094637226,1.0
+pour_drink_025,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0892370572207084,1.0892370572207084,1.0
+pour_drink_025,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_025,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610410094637226,1.2610410094637226,1.0
+pack_box_026,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.563739376770538,1.563739376770538,1.0
+pack_box_026,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.563739376770538,,1.0
+pack_box_026,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1524008350730688,,1.0
+pack_box_026,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.563739376770538,1.563739376770538,1.0
+pack_box_026,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_026,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.563739376770538,1.563739376770538,1.0
+assemble_bracket_027,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.0,0.8,0.0,0.0,0.0,"v6: missing=[], unsupported=['screw_fastened']; unreachable goals: ['assembly_ready']",1.0926058865757358,,1.0
+assemble_bracket_027,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1743827160493827,,1.0
+assemble_bracket_027,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1743827160493827,1.1743827160493827,1.0
+assemble_bracket_027,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0926058865757358,1.0926058865757358,1.0
+assemble_bracket_027,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_027,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1743827160493827,1.1743827160493827,1.0
+sort_tray_028,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['lid_grasped']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_028,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for blue_block_in_right_bin from v3,1.2284803400637618,,1.0
+sort_tray_028,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2284803400637618,1.2284803400637618,1.0
+sort_tray_028,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_028,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_028,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2284803400637618,1.2284803400637618,1.0
+pour_drink_029,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610687022900762,1.2610687022900762,1.0
+pour_drink_029,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610687022900762,1.2610687022900762,1.0
+pour_drink_029,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610687022900762,1.2610687022900762,1.0
+pour_drink_029,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0918704560475876,1.0918704560475876,1.0
+pour_drink_029,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_029,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2610687022900762,1.2610687022900762,1.0
+pack_box_030,w/o State-Support Repair,0.8750000000000001,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['box_open']; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4224250325945242,,1.0
+pack_box_030,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4224250325945242,1.4224250325945242,1.0
+pack_box_030,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1412133891213392,,1.0
+pack_box_030,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4224250325945242,1.4224250325945242,1.0
+pack_box_030,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_030,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4224250325945242,1.4224250325945242,1.0
+assemble_bracket_031,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.1036988110964332,,1.0
+assemble_bracket_031,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1282916948008104,1.1282916948008104,1.0
+assemble_bracket_031,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1282916948008104,1.1282916948008104,1.0
+assemble_bracket_031,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1036988110964332,1.1036988110964332,1.0
+assemble_bracket_031,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_031,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1282916948008104,1.1282916948008104,1.0
+sort_tray_032,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['lid_grasped']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_032,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1,1.1652582159624414,,1.0
+sort_tray_032,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1652582159624414,1.1652582159624414,1.0
+sort_tray_032,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_032,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_032,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1652582159624414,1.1652582159624414,1.0
+pour_drink_033,w/o State-Support Repair,0.7999999999999999,0.25,0.5,0.5714285714285714,0.0,0.0,0.0,"v3: missing=['kettle_grasped'], unsupported=[]; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.3249011857707509,,1.0
+pour_drink_033,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2516803584764749,1.2516803584764749,1.0
+pour_drink_033,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2516803584764749,1.2516803584764749,1.0
+pour_drink_033,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0819883795997418,1.0819883795997418,1.0
+pour_drink_033,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_033,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2516803584764749,1.2516803584764749,1.0
+pack_box_034,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v5: missing=[], unsupported=['bottle_grasped']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4131227217496962,,1.0
+pack_box_034,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4131227217496962,1.4131227217496962,1.0
+pack_box_034,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1346341463414635,,1.0
+pack_box_034,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4131227217496962,1.4131227217496962,1.0
+pack_box_034,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_034,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4131227217496962,1.4131227217496962,1.0
+assemble_bracket_035,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0994550408719346,,1.0
+assemble_bracket_035,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1131034482758622,,1.0
+assemble_bracket_035,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1131034482758622,1.1131034482758622,1.0
+assemble_bracket_035,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0994550408719346,1.0994550408719346,1.0
+assemble_bracket_035,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_035,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1131034482758622,1.1131034482758622,1.0
+sort_tray_036,w/o State-Support Repair,0.9523809523809523,0.09090909090909091,,0.0,0.0,0.0,0.0,"v2: missing=[], unsupported=['tray_stable']; v5: missing=['red_block_in_left_bin'], unsupported=[]; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_036,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1743542435424354,1.1743542435424354,1.0
+sort_tray_036,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1743542435424354,1.1743542435424354,1.0
+sort_tray_036,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_036,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_036,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1743542435424354,1.1743542435424354,1.0
+pour_drink_037,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2594268476621417,1.2594268476621417,1.0
+pour_drink_037,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.2594268476621417,,1.0
+pour_drink_037,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2594268476621417,1.2594268476621417,1.0
+pour_drink_037,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.082307193778354,1.082307193778354,1.0
+pour_drink_037,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_037,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2594268476621417,1.2594268476621417,1.0
+pack_box_038,w/o State-Support Repair,0.75,0.3333333333333333,0.6,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bottle_grasped', 'box_open']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4679399727148703,,1.0
+pack_box_038,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4679399727148703,1.4679399727148703,1.0
+pack_box_038,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1837183718371838,,1.0
+pack_box_038,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4679399727148703,1.4679399727148703,1.0
+pack_box_038,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_038,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4679399727148703,1.4679399727148703,1.0
+assemble_bracket_039,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.1056701030927836,,1.0
+assemble_bracket_039,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1179153094462542,1.1179153094462542,1.0
+assemble_bracket_039,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1179153094462542,1.1179153094462542,1.0
+assemble_bracket_039,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1056701030927836,1.1056701030927836,1.0
+assemble_bracket_039,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_039,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1179153094462542,1.1179153094462542,1.0
+sort_tray_040,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770524233432247,1.1770524233432247,1.0
+sort_tray_040,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for blue_block_in_right_bin from v3,1.1770524233432247,,1.0
+sort_tray_040,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770524233432247,1.1770524233432247,1.0
+sort_tray_040,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_040,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_040,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770524233432247,1.1770524233432247,1.0
+pour_drink_041,w/o State-Support Repair,0.823529411764706,0.125,1.0,0.0,0.0,0.0,0.0,"v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready']",1.2191987906273622,,1.0
+pour_drink_041,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2562305295950156,1.2562305295950156,1.0
+pour_drink_041,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2562305295950156,1.2562305295950156,1.0
+pour_drink_041,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0891289669142472,1.0891289669142472,1.0
+pour_drink_041,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_041,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2562305295950156,1.2562305295950156,1.0
+pack_box_042,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4104575163398692,,1.0
+pack_box_042,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4104575163398692,,1.0
+pack_box_042,w/o Resource-Ordering Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4104575163398692,1.4104575163398692,1.0
+pack_box_042,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4104575163398692,1.4104575163398692,1.0
+pack_box_042,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_042,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4104575163398692,1.4104575163398692,1.0
+assemble_bracket_043,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1372679045092837,1.1372679045092837,1.0
+assemble_bracket_043,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1372679045092837,,1.0
+assemble_bracket_043,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1372679045092837,1.1372679045092837,1.0
+assemble_bracket_043,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1043142305215712,1.1043142305215712,1.0
+assemble_bracket_043,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_043,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1372679045092837,1.1372679045092837,1.0
+sort_tray_044,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661918328584995,1.1661918328584995,1.0
+sort_tray_044,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661918328584995,1.1661918328584995,1.0
+sort_tray_044,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661918328584995,1.1661918328584995,1.0
+sort_tray_044,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_044,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_044,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661918328584995,1.1661918328584995,1.0
+pour_drink_045,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2930273609885257,1.2930273609885257,1.0
+pour_drink_045,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2930273609885257,1.2930273609885257,1.0
+pour_drink_045,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2930273609885257,1.2930273609885257,1.0
+pour_drink_045,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1312741312741312,1.1312741312741312,1.0
+pour_drink_045,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_045,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2930273609885257,1.2930273609885257,1.0
+pack_box_046,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4568210262828534,1.4568210262828534,1.0
+pack_box_046,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4568210262828534,,1.0
+pack_box_046,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1311953352769677,,1.0
+pack_box_046,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4568210262828534,1.4568210262828534,1.0
+pack_box_046,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_046,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4568210262828534,1.4568210262828534,1.0
+assemble_bracket_047,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0919463087248322,,1.0
+assemble_bracket_047,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1417543859649124,,1.0
+assemble_bracket_047,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1417543859649124,1.1417543859649124,1.0
+assemble_bracket_047,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0919463087248322,1.0919463087248322,1.0
+assemble_bracket_047,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_047,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1417543859649124,1.1417543859649124,1.0
+sort_tray_048,w/o State-Support Repair,0.7777777777777778,0.36363636363636365,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['blue_block_in_right_bin', 'red_block_in_left_bin']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_048,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2129817444219066,1.2129817444219066,1.0
+sort_tray_048,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2129817444219066,1.2129817444219066,1.0
+sort_tray_048,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_048,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_048,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2129817444219066,1.2129817444219066,1.0
+pour_drink_049,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['kettle_grasped']; unreachable goals: ['kettle_returned']",1.1060225846925973,,1.0
+pour_drink_049,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2363253856942495,1.2363253856942495,1.0
+pour_drink_049,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2363253856942495,1.2363253856942495,1.0
+pour_drink_049,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1060225846925973,1.1060225846925973,1.0
+pour_drink_049,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_049,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2363253856942495,1.2363253856942495,1.0
+pack_box_050,w/o State-Support Repair,0.42857142857142855,0.6666666666666666,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['snack_grasped']; v6: missing=['snack_in_box'], unsupported=['bottle_in_box']; unreachable goals: ['box_packed']",1.4122596153846154,,1.0
+pack_box_050,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4122596153846154,1.4122596153846154,1.0
+pack_box_050,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1519607843137256,,1.0
+pack_box_050,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4122596153846154,1.4122596153846154,1.0
+pack_box_050,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_050,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4122596153846154,1.4122596153846154,1.0
+assemble_bracket_051,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1395973154362415,1.1395973154362415,1.0
+assemble_bracket_051,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1395973154362415,1.1395973154362415,1.0
+assemble_bracket_051,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1395973154362415,1.1395973154362415,1.0
+assemble_bracket_051,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.095483870967742,1.095483870967742,1.0
+assemble_bracket_051,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_051,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1395973154362415,1.1395973154362415,1.0
+sort_tray_052,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1735776277724206,1.1735776277724206,1.0
+sort_tray_052,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for lid_grasped from v4,1.1735776277724206,,1.0
+sort_tray_052,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1735776277724206,1.1735776277724206,1.0
+sort_tray_052,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_052,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_052,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1735776277724206,1.1735776277724206,1.0
+pour_drink_053,w/o State-Support Repair,0.8571428571428571,0.25,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.119352663519892,,1.0
+pour_drink_053,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2868217054263564,1.2868217054263564,1.0
+pour_drink_053,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2868217054263564,1.2868217054263564,1.0
+pour_drink_053,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.119352663519892,1.119352663519892,1.0
+pour_drink_053,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_053,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2868217054263564,1.2868217054263564,1.0
+pack_box_054,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4506866416978774,,1.0
+pack_box_054,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4506866416978774,1.4506866416978774,1.0
+pack_box_054,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.140333660451423,,1.0
+pack_box_054,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4506866416978774,1.4506866416978774,1.0
+pack_box_054,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_054,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4506866416978774,1.4506866416978774,1.0
+assemble_bracket_055,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.107533805537669,,1.0
+assemble_bracket_055,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1505016722408026,1.1505016722408026,1.0
+assemble_bracket_055,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1505016722408026,1.1505016722408026,1.0
+assemble_bracket_055,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.107533805537669,1.107533805537669,1.0
+assemble_bracket_055,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_055,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1505016722408026,1.1505016722408026,1.0
+sort_tray_056,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1686746987951806,1.1686746987951806,1.0
+sort_tray_056,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1686746987951806,1.1686746987951806,1.0
+sort_tray_056,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1686746987951806,1.1686746987951806,1.0
+sort_tray_056,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_056,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_056,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1686746987951806,1.1686746987951806,1.0
+pour_drink_057,w/o State-Support Repair,0.823529411764706,0.125,1.0,0.0,0.0,0.0,0.0,"v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready']",1.2376,,1.0
+pour_drink_057,w/o Synchronization Repair,0.8571428571428571,0.25,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1; v3: missing synchronization for kettle_grasped from v2,1.303285593934288,,1.0
+pour_drink_057,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.303285593934288,1.303285593934288,1.0
+pour_drink_057,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1283734500364697,1.1283734500364697,1.0
+pour_drink_057,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_057,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.303285593934288,1.303285593934288,1.0
+pack_box_058,w/o State-Support Repair,0.6250000000000001,0.4444444444444444,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['snack_grasped']; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4002590673575128,,1.0
+pack_box_058,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4002590673575128,1.4002590673575128,1.0
+pack_box_058,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1331236897274632,,1.0
+pack_box_058,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4002590673575128,1.4002590673575128,1.0
+pack_box_058,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_058,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4002590673575128,1.4002590673575128,1.0
+assemble_bracket_059,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1317944899478778,1.1317944899478778,1.0
+assemble_bracket_059,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1317944899478778,,1.0
+assemble_bracket_059,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1317944899478778,1.1317944899478778,1.0
+assemble_bracket_059,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0803127221037667,1.0803127221037667,1.0
+assemble_bracket_059,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_059,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1317944899478778,1.1317944899478778,1.0
+sort_tray_060,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.183788878416588,1.183788878416588,1.0
+sort_tray_060,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for lid_grasped from v4,1.183788878416588,,1.0
+sort_tray_060,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.183788878416588,1.183788878416588,1.0
+sort_tray_060,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_060,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_060,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.183788878416588,1.183788878416588,1.0
+pour_drink_061,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2825732899022801,1.2825732899022801,1.0
+pour_drink_061,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.2825732899022801,,1.0
+pour_drink_061,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2825732899022801,1.2825732899022801,1.0
+pour_drink_061,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.084710743801653,1.084710743801653,1.0
+pour_drink_061,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_061,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2825732899022801,1.2825732899022801,1.0
+pack_box_062,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v5: missing=[], unsupported=['bottle_grasped']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4159613059250304,,1.0
+pack_box_062,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4159613059250304,,1.0
+pack_box_062,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1248799231508166,,1.0
+pack_box_062,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4159613059250304,1.4159613059250304,1.0
+pack_box_062,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_062,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4159613059250304,1.4159613059250304,1.0
+assemble_bracket_063,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1175702155453953,1.1175702155453953,1.0
+assemble_bracket_063,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1175702155453953,,1.0
+assemble_bracket_063,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1175702155453953,1.1175702155453953,1.0
+assemble_bracket_063,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0918953414167198,1.0918953414167198,1.0
+assemble_bracket_063,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_063,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1175702155453953,1.1175702155453953,1.0
+sort_tray_064,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1529411764705884,1.1529411764705884,1.0
+sort_tray_064,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for lid_grasped from v4,1.1529411764705884,,1.0
+sort_tray_064,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1529411764705884,1.1529411764705884,1.0
+sort_tray_064,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_064,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_064,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1529411764705884,1.1529411764705884,1.0
+pour_drink_065,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2898785425101216,1.2898785425101216,1.0
+pour_drink_065,w/o Synchronization Repair,0.8571428571428571,0.25,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1; v3: missing synchronization for kettle_grasped from v2,1.2898785425101216,,1.0
+pour_drink_065,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2898785425101216,1.2898785425101216,1.0
+pour_drink_065,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.091095890410959,1.091095890410959,1.0
+pour_drink_065,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_065,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2898785425101216,1.2898785425101216,1.0
+pack_box_066,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4699248120300754,1.4699248120300754,1.0
+pack_box_066,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.4699248120300754,,1.0
+pack_box_066,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1602373887240358,,1.0
+pack_box_066,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4699248120300754,1.4699248120300754,1.0
+pack_box_066,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_066,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4699248120300754,1.4699248120300754,1.0
+assemble_bracket_067,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1274928774928776,1.1274928774928776,1.0
+assemble_bracket_067,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1274928774928776,,1.0
+assemble_bracket_067,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1274928774928776,1.1274928774928776,1.0
+assemble_bracket_067,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.090971743625086,1.090971743625086,1.0
+assemble_bracket_067,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_067,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1274928774928776,1.1274928774928776,1.0
+sort_tray_068,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770623742454729,1.1770623742454729,1.0
+sort_tray_068,w/o Synchronization Repair,0.8421052631578948,0.2727272727272727,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for lid_grasped from v4,1.1770623742454729,,1.0
+sort_tray_068,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770623742454729,1.1770623742454729,1.0
+sort_tray_068,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_068,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_068,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1770623742454729,1.1770623742454729,1.0
+pour_drink_069,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.249795918367347,1.249795918367347,1.0
+pour_drink_069,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.249795918367347,,1.0
+pour_drink_069,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.249795918367347,1.249795918367347,1.0
+pour_drink_069,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.096704871060172,1.096704871060172,1.0
+pour_drink_069,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_069,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.249795918367347,1.249795918367347,1.0
+pack_box_070,w/o State-Support Repair,0.7142857142857143,0.4444444444444444,0.6,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['box_open']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4385964912280702,,1.0
+pack_box_070,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.4385964912280702,,1.0
+pack_box_070,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.167853509664293,,1.0
+pack_box_070,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4385964912280702,1.4385964912280702,1.0
+pack_box_070,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_070,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4385964912280702,1.4385964912280702,1.0
+assemble_bracket_071,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1281249999999998,1.1281249999999998,1.0
+assemble_bracket_071,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1281249999999998,,1.0
+assemble_bracket_071,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1281249999999998,1.1281249999999998,1.0
+assemble_bracket_071,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.100609756097561,1.100609756097561,1.0
+assemble_bracket_071,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_071,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1281249999999998,1.1281249999999998,1.0
+sort_tray_072,w/o State-Support Repair,0.8571428571428572,0.18181818181818182,,0.0,0.0,0.0,0.0,"v2: missing=[], unsupported=['tray_stable']; v5: missing=['red_block_in_left_bin'], unsupported=[]; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_072,w/o Synchronization Repair,0.7368421052631579,0.36363636363636365,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for lid_grasped from v4,1.0,,1.0
+sort_tray_072,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.2471083070452156,,1.0
+sort_tray_072,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_072,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_072,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0,1.0,1.0
+pour_drink_073,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['cup_filled']; unreachable goals: ['kettle_returned']",1.104360257326662,,1.0
+pour_drink_073,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2489894907033146,1.2489894907033146,1.0
+pour_drink_073,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2489894907033146,1.2489894907033146,1.0
+pour_drink_073,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.104360257326662,1.104360257326662,1.0
+pour_drink_073,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_073,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2489894907033146,1.2489894907033146,1.0
+pack_box_074,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4944512946979038,1.4944512946979038,1.0
+pack_box_074,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4944512946979038,,1.0
+pack_box_074,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1477272727272727,,1.0
+pack_box_074,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4944512946979038,1.4944512946979038,1.0
+pack_box_074,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_074,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4944512946979038,1.4944512946979038,1.0
+assemble_bracket_075,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1247695144437613,1.1247695144437613,1.0
+assemble_bracket_075,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1247695144437613,,1.0
+assemble_bracket_075,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1247695144437613,1.1247695144437613,1.0
+assemble_bracket_075,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0905840286054826,1.0905840286054826,1.0
+assemble_bracket_075,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_075,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1247695144437613,1.1247695144437613,1.0
+sort_tray_076,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1879699248120301,1.1879699248120301,1.0
+sort_tray_076,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1,1.1879699248120301,,1.0
+sort_tray_076,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1879699248120301,1.1879699248120301,1.0
+sort_tray_076,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_076,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_076,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1879699248120301,1.1879699248120301,1.0
+pour_drink_077,w/o State-Support Repair,0.7692307692307693,0.375,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.1134948096885813,,1.0
+pour_drink_077,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2965350523771153,1.2965350523771153,1.0
+pour_drink_077,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2965350523771153,1.2965350523771153,1.0
+pour_drink_077,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1134948096885813,1.1134948096885813,1.0
+pour_drink_077,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_077,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2965350523771153,1.2965350523771153,1.0
+pack_box_078,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4170918367346939,,1.0
+pack_box_078,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4170918367346939,1.4170918367346939,1.0
+pack_box_078,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1512953367875647,,1.0
+pack_box_078,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4170918367346939,1.4170918367346939,1.0
+pack_box_078,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_078,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4170918367346939,1.4170918367346939,1.0
+assemble_bracket_079,w/o State-Support Repair,0.7692307692307692,0.2857142857142857,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned', 'screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0972316002700877,,1.0
+assemble_bracket_079,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1598857958600999,1.1598857958600999,1.0
+assemble_bracket_079,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1598857958600999,1.1598857958600999,1.0
+assemble_bracket_079,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0972316002700877,1.0972316002700877,1.0
+assemble_bracket_079,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_079,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1598857958600999,1.1598857958600999,1.0
+sort_tray_080,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['blue_block_in_right_bin']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_080,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2,1.1639810426540285,,1.0
+sort_tray_080,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1639810426540285,1.1639810426540285,1.0
+sort_tray_080,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_080,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_080,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1639810426540285,1.1639810426540285,1.0
+pour_drink_081,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v6: missing=[], unsupported=['tea_bag_in_cup']; unreachable goals: ['drink_ready']",1.128519855595668,,1.0
+pour_drink_081,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2874794069192752,1.2874794069192752,1.0
+pour_drink_081,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2874794069192752,1.2874794069192752,1.0
+pour_drink_081,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.128519855595668,1.128519855595668,1.0
+pour_drink_081,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_081,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2874794069192752,1.2874794069192752,1.0
+pack_box_082,w/o State-Support Repair,0.8750000000000001,0.2222222222222222,0.6,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['box_open']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.487116564417178,,1.0
+pack_box_082,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.487116564417178,1.487116564417178,1.0
+pack_box_082,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1423185673892555,,1.0
+pack_box_082,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.487116564417178,1.487116564417178,1.0
+pack_box_082,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_082,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.487116564417178,1.487116564417178,1.0
+assemble_bracket_083,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1127914303717705,1.1127914303717705,1.0
+assemble_bracket_083,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1127914303717705,1.1127914303717705,1.0
+assemble_bracket_083,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1127914303717705,1.1127914303717705,1.0
+assemble_bracket_083,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0834355828220859,1.0834355828220859,1.0
+assemble_bracket_083,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_083,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1127914303717705,1.1127914303717705,1.0
+sort_tray_084,w/o State-Support Repair,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_084,w/o Synchronization Repair,0.7999999999999999,0.2727272727272727,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for blue_block_in_right_bin from v3,1.0,,1.0
+sort_tray_084,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.2159574468085106,,1.0
+sort_tray_084,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_084,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_084,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0,1.0,1.0
+pour_drink_085,w/o State-Support Repair,0.8571428571428571,0.25,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.1101351351351352,,1.0
+pour_drink_085,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.298814229249012,,1.0
+pour_drink_085,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.298814229249012,1.298814229249012,1.0
+pour_drink_085,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1101351351351352,1.1101351351351352,1.0
+pour_drink_085,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_085,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.298814229249012,1.298814229249012,1.0
+pack_box_086,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4847374847374848,1.4847374847374848,1.0
+pack_box_086,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4847374847374848,1.4847374847374848,1.0
+pack_box_086,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1714836223506746,,1.0
+pack_box_086,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4847374847374848,1.4847374847374848,1.0
+pack_box_086,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_086,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4847374847374848,1.4847374847374848,1.0
+assemble_bracket_087,w/o State-Support Repair,0.4,0.7142857142857143,1.0,0.0,0.0,0.0,0.0,"v4: missing=['base_plate_positioned', 'bracket_grasped'], unsupported=[]; v5: missing=['bracket_aligned'], unsupported=['screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.1267806267806268,,1.0
+assemble_bracket_087,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1283880171184024,,1.0
+assemble_bracket_087,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1283880171184024,1.1283880171184024,1.0
+assemble_bracket_087,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0813397129186604,1.0813397129186604,1.0
+assemble_bracket_087,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_087,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1283880171184024,1.1283880171184024,1.0
+sort_tray_088,w/o State-Support Repair,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,0.9999999999999999,0.9999999999999999,1.0
+sort_tray_088,w/o Synchronization Repair,0.7999999999999999,0.2727272727272727,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for lid_grasped from v4,0.9999999999999999,,1.0
+sort_tray_088,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.2118834080717487,,1.0
+sort_tray_088,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,0.9999999999999999,0.9999999999999999,1.0
+sort_tray_088,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,0.9999999999999999,,0.0
+sort_tray_088,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,0.9999999999999999,0.9999999999999999,1.0
+pour_drink_089,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3038167938931298,1.3038167938931298,1.0
+pour_drink_089,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3038167938931298,1.3038167938931298,1.0
+pour_drink_089,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3038167938931298,1.3038167938931298,1.0
+pour_drink_089,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1178010471204187,1.1178010471204187,1.0
+pour_drink_089,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_089,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3038167938931298,1.3038167938931298,1.0
+pack_box_090,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4375,1.4375,1.0
+pack_box_090,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4375,,1.0
+pack_box_090,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1252446183953035,,1.0
+pack_box_090,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4375,1.4375,1.0
+pack_box_090,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_090,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4375,1.4375,1.0
+assemble_bracket_091,w/o State-Support Repair,0.6,0.5714285714285714,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=['screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0739795918367347,,1.0
+assemble_bracket_091,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1479209270620314,1.1479209270620314,1.0
+assemble_bracket_091,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1479209270620314,1.1479209270620314,1.0
+assemble_bracket_091,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0739795918367347,1.0739795918367347,1.0
+assemble_bracket_091,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_091,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1479209270620314,1.1479209270620314,1.0
+sort_tray_092,w/o State-Support Repair,0.7368421052631579,0.36363636363636365,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['blue_block_in_right_bin', 'lid_grasped']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_092,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1,1.1795918367346938,,1.0
+sort_tray_092,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1795918367346938,1.1795918367346938,1.0
+sort_tray_092,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_092,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_092,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1795918367346938,1.1795918367346938,1.0
+pour_drink_093,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2769360269360268,1.2769360269360268,1.0
+pour_drink_093,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2769360269360268,1.2769360269360268,1.0
+pour_drink_093,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2769360269360268,1.2769360269360268,1.0
+pour_drink_093,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.117907148120855,1.117907148120855,1.0
+pour_drink_093,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_093,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2769360269360268,1.2769360269360268,1.0
+pack_box_094,w/o State-Support Repair,0.8,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v6: missing=[], unsupported=['bottle_in_box']; unreachable goals: ['box_packed']",1.4294330518697225,,1.0
+pack_box_094,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4294330518697225,1.4294330518697225,1.0
+pack_box_094,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.126425855513308,,1.0
+pack_box_094,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4294330518697225,1.4294330518697225,1.0
+pack_box_094,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_094,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4294330518697225,1.4294330518697225,1.0
+assemble_bracket_095,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.096514745308311,,1.0
+assemble_bracket_095,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1456582633053223,1.1456582633053223,1.0
+assemble_bracket_095,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1456582633053223,1.1456582633053223,1.0
+assemble_bracket_095,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.096514745308311,1.096514745308311,1.0
+assemble_bracket_095,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_095,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1456582633053223,1.1456582633053223,1.0
+sort_tray_096,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1509803921568627,1.1509803921568627,1.0
+sort_tray_096,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2; v5: missing synchronization for lid_grasped from v4,1.1509803921568627,,1.0
+sort_tray_096,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1509803921568627,1.1509803921568627,1.0
+sort_tray_096,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_096,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_096,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1509803921568627,1.1509803921568627,1.0
+pour_drink_097,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.25,1.25,1.0
+pour_drink_097,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.25,1.25,1.0
+pour_drink_097,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.25,1.25,1.0
+pour_drink_097,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0856372218476062,1.0856372218476062,1.0
+pour_drink_097,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_097,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.25,1.25,1.0
+pack_box_098,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.457142857142857,1.457142857142857,1.0
+pack_box_098,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.457142857142857,,1.0
+pack_box_098,w/o Resource-Ordering Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.457142857142857,1.457142857142857,1.0
+pack_box_098,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.457142857142857,1.457142857142857,1.0
+pack_box_098,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_098,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.457142857142857,1.457142857142857,1.0
+assemble_bracket_099,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1400903808908973,1.1400903808908973,1.0
+assemble_bracket_099,w/o Synchronization Repair,0.8333333333333333,0.2857142857142857,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1; v4: missing synchronization for bracket_grasped from v2,1.1400903808908973,,1.0
+assemble_bracket_099,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1400903808908973,1.1400903808908973,1.0
+assemble_bracket_099,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.094175960346964,1.094175960346964,1.0
+assemble_bracket_099,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_099,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1400903808908973,1.1400903808908973,1.0
+sort_tray_100,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['tray_stable']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_100,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for lid_grasped from v4,1.191449814126394,,1.0
+sort_tray_100,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.191449814126394,1.191449814126394,1.0
+sort_tray_100,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_100,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_100,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.191449814126394,1.191449814126394,1.0
+pour_drink_101,w/o State-Support Repair,0.8571428571428571,0.25,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.1092198581560284,,1.0
+pour_drink_101,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3011647254575707,1.3011647254575707,1.0
+pour_drink_101,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3011647254575707,1.3011647254575707,1.0
+pour_drink_101,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1092198581560284,1.1092198581560284,1.0
+pour_drink_101,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_101,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3011647254575707,1.3011647254575707,1.0
+pack_box_102,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4738219895287956,1.4738219895287956,1.0
+pack_box_102,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4738219895287956,1.4738219895287956,1.0
+pack_box_102,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1765935214211076,,1.0
+pack_box_102,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4738219895287956,1.4738219895287956,1.0
+pack_box_102,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_102,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4738219895287956,1.4738219895287956,1.0
+assemble_bracket_103,w/o State-Support Repair,0.8333333333333333,0.2857142857142857,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0725094577553593,,1.0
+assemble_bracket_103,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377926421404683,1.1377926421404683,1.0
+assemble_bracket_103,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377926421404683,1.1377926421404683,1.0
+assemble_bracket_103,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0725094577553593,1.0725094577553593,1.0
+assemble_bracket_103,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_103,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1377926421404683,1.1377926421404683,1.0
+sort_tray_104,w/o State-Support Repair,0.7000000000000001,0.36363636363636365,,0.0,0.0,0.0,0.0,"v3: missing=[], unsupported=['tray_stable']; v5: missing=['blue_block_in_right_bin'], unsupported=['lid_grasped']; unreachable goals: ['tray_covered']",1.0000000000000002,,1.0
+sort_tray_104,w/o Synchronization Repair,0.8571428571428572,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1,1.0000000000000002,,1.0
+sort_tray_104,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.21012101210121,,1.0
+sort_tray_104,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0000000000000002,1.0000000000000002,1.0
+sort_tray_104,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0000000000000002,,0.0
+sort_tray_104,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0000000000000002,1.0000000000000002,1.0
+pour_drink_105,w/o State-Support Repair,0.7142857142857143,0.375,0.5,0.5714285714285714,0.0,0.0,0.0,"v3: missing=['kettle_grasped'], unsupported=[]; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.323753169907016,,1.0
+pour_drink_105,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1,1.2282352941176469,,1.0
+pour_drink_105,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2282352941176469,1.2282352941176469,1.0
+pour_drink_105,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0837370242214532,1.0837370242214532,1.0
+pour_drink_105,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_105,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2282352941176469,1.2282352941176469,1.0
+pack_box_106,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.527741935483871,1.527741935483871,1.0
+pack_box_106,w/o Synchronization Repair,0.8,0.3333333333333333,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4; v6: missing synchronization for bottle_in_box from v5,1.527741935483871,,1.0
+pack_box_106,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1653543307086613,,1.0
+pack_box_106,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.527741935483871,1.527741935483871,1.0
+pack_box_106,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_106,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.527741935483871,1.527741935483871,1.0
+assemble_bracket_107,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['bracket_aligned']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.108527131782946,,1.0
+assemble_bracket_107,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1738805970149255,1.1738805970149255,1.0
+assemble_bracket_107,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1738805970149255,1.1738805970149255,1.0
+assemble_bracket_107,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.108527131782946,1.108527131782946,1.0
+assemble_bracket_107,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_107,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1738805970149255,1.1738805970149255,1.0
+sort_tray_108,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['tray_stable']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_108,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for blue_block_in_right_bin from v3,1.2066198595787363,,1.0
+sort_tray_108,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2066198595787363,1.2066198595787363,1.0
+sort_tray_108,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_108,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_108,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2066198595787363,1.2066198595787363,1.0
+pour_drink_109,w/o State-Support Repair,0.75,0.25,1.0,0.0,0.0,0.0,0.0,"v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; v4: missing=[], unsupported=['cup_filled']; unreachable goals: ['drink_ready', 'kettle_returned']",1.154525386313466,,1.0
+pour_drink_109,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.236406619385343,1.236406619385343,1.0
+pour_drink_109,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.236406619385343,1.236406619385343,1.0
+pour_drink_109,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0850622406639003,1.0850622406639003,1.0
+pour_drink_109,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_109,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.236406619385343,1.236406619385343,1.0
+pack_box_110,w/o State-Support Repair,0.75,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['box_open']; v5: missing=[], unsupported=['bottle_grasped']; v6: missing=['bottle_in_box', 'snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.3932203389830509,,1.0
+pack_box_110,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.3932203389830509,,1.0
+pack_box_110,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1610169491525424,,1.0
+pack_box_110,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.3932203389830509,1.3932203389830509,1.0
+pack_box_110,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_110,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3932203389830509,1.3932203389830509,1.0
+assemble_bracket_111,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474269819193326,1.1474269819193326,1.0
+assemble_bracket_111,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474269819193326,1.1474269819193326,1.0
+assemble_bracket_111,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474269819193326,1.1474269819193326,1.0
+assemble_bracket_111,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1118598382749327,1.1118598382749327,1.0
+assemble_bracket_111,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_111,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1474269819193326,1.1474269819193326,1.0
+sort_tray_112,w/o State-Support Repair,0.9,0.18181818181818182,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['blue_block_in_right_bin']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_112,w/o Synchronization Repair,0.8421052631578948,0.2727272727272727,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for blue_block_in_right_bin from v3; v5: missing synchronization for lid_grasped from v4,1.16751269035533,,1.0
+sort_tray_112,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.16751269035533,1.16751269035533,1.0
+sort_tray_112,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_112,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_112,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.16751269035533,1.16751269035533,1.0
+pour_drink_113,w/o State-Support Repair,0.6666666666666666,0.5,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=['kettle_grasped']; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.1182943603851445,,1.0
+pour_drink_113,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.26144297905353,,1.0
+pour_drink_113,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.26144297905353,1.26144297905353,1.0
+pour_drink_113,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1182943603851445,1.1182943603851445,1.0
+pour_drink_113,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_113,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.26144297905353,1.26144297905353,1.0
+pack_box_114,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4378378378378378,1.4378378378378378,1.0
+pack_box_114,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4378378378378378,1.4378378378378378,1.0
+pack_box_114,w/o Resource-Ordering Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4378378378378378,1.4378378378378378,1.0
+pack_box_114,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4378378378378378,1.4378378378378378,1.0
+pack_box_114,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_114,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4378378378378378,1.4378378378378378,1.0
+assemble_bracket_115,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1320495185694635,1.1320495185694635,1.0
+assemble_bracket_115,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1320495185694635,1.1320495185694635,1.0
+assemble_bracket_115,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1320495185694635,1.1320495185694635,1.0
+assemble_bracket_115,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.093687707641196,1.093687707641196,1.0
+assemble_bracket_115,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_115,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1320495185694635,1.1320495185694635,1.0
+sort_tray_116,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1789473684210525,1.1789473684210525,1.0
+sort_tray_116,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2,1.1789473684210525,,1.0
+sort_tray_116,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1789473684210525,1.1789473684210525,1.0
+sort_tray_116,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_116,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_116,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1789473684210525,1.1789473684210525,1.0
+pour_drink_117,w/o State-Support Repair,0.7999999999999999,0.25,0.5,0.5714285714285714,0.0,0.0,0.0,"v3: missing=['kettle_grasped'], unsupported=[]; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.334215167548501,,1.0
+pour_drink_117,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2714285714285714,1.2714285714285714,1.0
+pour_drink_117,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2714285714285714,1.2714285714285714,1.0
+pour_drink_117,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1092375366568914,1.1092375366568914,1.0
+pour_drink_117,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_117,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2714285714285714,1.2714285714285714,1.0
+pack_box_118,w/o State-Support Repair,0.8,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v6: missing=[], unsupported=['bottle_in_box']; unreachable goals: ['box_packed']",1.4932349323493235,,1.0
+pack_box_118,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4932349323493235,1.4932349323493235,1.0
+pack_box_118,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1628352490421456,,1.0
+pack_box_118,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4932349323493235,1.4932349323493235,1.0
+pack_box_118,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_118,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4932349323493235,1.4932349323493235,1.0
+assemble_bracket_119,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1427581427581426,1.1427581427581426,1.0
+assemble_bracket_119,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1427581427581426,1.1427581427581426,1.0
+assemble_bracket_119,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1427581427581426,1.1427581427581426,1.0
+assemble_bracket_119,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.093501326259947,1.093501326259947,1.0
+assemble_bracket_119,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_119,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1427581427581426,1.1427581427581426,1.0
+sort_tray_120,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2001943634596697,1.2001943634596697,1.0
+sort_tray_120,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1,1.2001943634596697,,1.0
+sort_tray_120,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2001943634596697,1.2001943634596697,1.0
+sort_tray_120,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_120,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_120,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2001943634596697,1.2001943634596697,1.0
+pour_drink_121,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['kettle_grasped']; unreachable goals: ['kettle_returned']",1.096,,1.0
+pour_drink_121,w/o Synchronization Repair,0.8571428571428571,0.25,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1; v3: missing synchronization for kettle_grasped from v2,1.2763975155279506,,1.0
+pour_drink_121,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2763975155279506,1.2763975155279506,1.0
+pour_drink_121,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.096,1.096,1.0
+pour_drink_121,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_121,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2763975155279506,1.2763975155279506,1.0
+pack_box_122,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v5: missing=[], unsupported=['bottle_grasped']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.507208387942333,,1.0
+pack_box_122,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.507208387942333,1.507208387942333,1.0
+pack_box_122,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1758691206543965,,1.0
+pack_box_122,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.507208387942333,1.507208387942333,1.0
+pack_box_122,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_122,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.507208387942333,1.507208387942333,1.0
+assemble_bracket_123,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1155115511551155,1.1155115511551155,1.0
+assemble_bracket_123,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1155115511551155,,1.0
+assemble_bracket_123,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1155115511551155,1.1155115511551155,1.0
+assemble_bracket_123,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1038536903984322,1.1038536903984322,1.0
+assemble_bracket_123,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_123,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1155115511551155,1.1155115511551155,1.0
+sort_tray_124,w/o State-Support Repair,0.9523809523809523,0.09090909090909091,,0.0,0.0,0.0,0.0,"v2: missing=[], unsupported=['tray_stable']; v5: missing=['red_block_in_left_bin'], unsupported=[]; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_124,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.1645702306079666,,1.0
+sort_tray_124,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1645702306079666,1.1645702306079666,1.0
+sort_tray_124,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_124,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_124,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1645702306079666,1.1645702306079666,1.0
+pour_drink_125,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2795883361921097,1.2795883361921097,1.0
+pour_drink_125,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2795883361921097,1.2795883361921097,1.0
+pour_drink_125,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2795883361921097,1.2795883361921097,1.0
+pour_drink_125,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1192798199549887,1.1192798199549887,1.0
+pour_drink_125,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_125,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2795883361921097,1.2795883361921097,1.0
+pack_box_126,w/o State-Support Repair,0.8750000000000001,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['box_open']; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4633821571238348,,1.0
+pack_box_126,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4633821571238348,1.4633821571238348,1.0
+pack_box_126,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1248720573183213,,1.0
+pack_box_126,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4633821571238348,1.4633821571238348,1.0
+pack_box_126,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_126,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4633821571238348,1.4633821571238348,1.0
+assemble_bracket_127,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1437308868501532,1.1437308868501532,1.0
+assemble_bracket_127,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for base_plate_positioned from v1,1.1437308868501532,,1.0
+assemble_bracket_127,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1437308868501532,1.1437308868501532,1.0
+assemble_bracket_127,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0817064352856112,1.0817064352856112,1.0
+assemble_bracket_127,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_127,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1437308868501532,1.1437308868501532,1.0
+sort_tray_128,w/o State-Support Repair,0.8421052631578948,0.2727272727272727,,0.0,0.0,0.0,0.0,"v2: missing=[], unsupported=['tray_stable']; v5: missing=['red_block_in_left_bin'], unsupported=['tray_stable']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_128,w/o Synchronization Repair,0.9,0.18181818181818182,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for blue_block_in_right_bin from v3,1.195945945945946,,1.0
+sort_tray_128,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.195945945945946,1.195945945945946,1.0
+sort_tray_128,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_128,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_128,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.195945945945946,1.195945945945946,1.0
+pour_drink_129,w/o State-Support Repair,0.7692307692307693,0.375,0.0,0.8,0.0,0.0,0.0,"v3: missing=[], unsupported=['cup_stabilized']; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.1159609120521174,,1.0
+pour_drink_129,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.260485651214128,1.260485651214128,1.0
+pour_drink_129,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.260485651214128,1.260485651214128,1.0
+pour_drink_129,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1159609120521174,1.1159609120521174,1.0
+pour_drink_129,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_129,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.260485651214128,1.260485651214128,1.0
+pack_box_130,w/o State-Support Repair,0.75,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v6: missing=[], unsupported=['snack_in_box']; unreachable goals: ['box_packed']",1.4411400247831472,,1.0
+pack_box_130,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4411400247831472,,1.0
+pack_box_130,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1424361493123771,,1.0
+pack_box_130,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4411400247831472,1.4411400247831472,1.0
+pack_box_130,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_130,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4411400247831472,1.4411400247831472,1.0
+assemble_bracket_131,w/o State-Support Repair,0.7692307692307692,0.2857142857142857,0.6666666666666666,0.3333333333333333,0.0,0.0,0.0,"v4: missing=['bracket_grasped'], unsupported=[]; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.243666169895678,,1.0
+assemble_bracket_131,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1330617786829598,1.1330617786829598,1.0
+assemble_bracket_131,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1330617786829598,1.1330617786829598,1.0
+assemble_bracket_131,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1074983410749832,1.1074983410749832,1.0
+assemble_bracket_131,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_131,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1330617786829598,1.1330617786829598,1.0
+sort_tray_132,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2031558185404339,1.2031558185404339,1.0
+sort_tray_132,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2031558185404339,1.2031558185404339,1.0
+sort_tray_132,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2031558185404339,1.2031558185404339,1.0
+sort_tray_132,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_132,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_132,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2031558185404339,1.2031558185404339,1.0
+pour_drink_133,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v4: missing=[], unsupported=['cup_filled']; unreachable goals: ['kettle_returned']",1.1104613385315139,,1.0
+pour_drink_133,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.271577380952381,,1.0
+pour_drink_133,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.271577380952381,1.271577380952381,1.0
+pour_drink_133,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1104613385315139,1.1104613385315139,1.0
+pour_drink_133,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_133,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.271577380952381,1.271577380952381,1.0
+pack_box_134,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3995127892813641,1.3995127892813641,1.0
+pack_box_134,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.3995127892813641,,1.0
+pack_box_134,w/o Resource-Ordering Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3995127892813641,1.3995127892813641,1.0
+pack_box_134,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.3995127892813641,1.3995127892813641,1.0
+pack_box_134,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_134,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3995127892813641,1.3995127892813641,1.0
+assemble_bracket_135,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.0,0.8,0.0,0.0,0.0,"v5: missing=[], unsupported=['screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0785307156428119,,1.0
+assemble_bracket_135,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1360907271514344,1.1360907271514344,1.0
+assemble_bracket_135,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1360907271514344,1.1360907271514344,1.0
+assemble_bracket_135,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0785307156428119,1.0785307156428119,1.0
+assemble_bracket_135,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_135,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1360907271514344,1.1360907271514344,1.0
+sort_tray_136,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2206035379812696,1.2206035379812696,1.0
+sort_tray_136,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.2206035379812696,,1.0
+sort_tray_136,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2206035379812696,1.2206035379812696,1.0
+sort_tray_136,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_136,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_136,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2206035379812696,1.2206035379812696,1.0
+pour_drink_137,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2739197530864195,1.2739197530864195,1.0
+pour_drink_137,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2739197530864195,1.2739197530864195,1.0
+pour_drink_137,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2739197530864195,1.2739197530864195,1.0
+pour_drink_137,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.099933377748168,1.099933377748168,1.0
+pour_drink_137,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_137,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2739197530864195,1.2739197530864195,1.0
+pack_box_138,w/o State-Support Repair,0.8750000000000001,0.2222222222222222,0.6,0.4444444444444444,0.0,0.0,0.0,"v5: missing=[], unsupported=['box_open']; v6: missing=['bottle_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4251497005988025,,1.0
+pack_box_138,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4251497005988025,1.4251497005988025,1.0
+pack_box_138,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1689587426326131,,1.0
+pack_box_138,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4251497005988025,1.4251497005988025,1.0
+pack_box_138,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_138,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4251497005988025,1.4251497005988025,1.0
+assemble_bracket_139,w/o State-Support Repair,0.7692307692307692,0.2857142857142857,0.6666666666666666,0.3333333333333333,0.0,0.0,0.0,"v4: missing=['bracket_grasped'], unsupported=[]; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.21539600296077,,1.0
+assemble_bracket_139,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.141863699582754,1.141863699582754,1.0
+assemble_bracket_139,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.141863699582754,1.141863699582754,1.0
+assemble_bracket_139,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.082399472643375,1.082399472643375,1.0
+assemble_bracket_139,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_139,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.141863699582754,1.141863699582754,1.0
+sort_tray_140,w/o State-Support Repair,0.8421052631578948,0.2727272727272727,,0.0,0.0,0.0,0.0,"v2: missing=[], unsupported=['tray_stable']; v5: missing=['red_block_in_left_bin'], unsupported=['blue_block_in_right_bin']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_140,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for red_block_in_left_bin from v2,1.154672395273899,,1.0
+sort_tray_140,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.154672395273899,1.154672395273899,1.0
+sort_tray_140,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_140,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_140,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.154672395273899,1.154672395273899,1.0
+pour_drink_141,w/o State-Support Repair,0.9333333333333333,0.125,0.0,0.8,0.0,0.0,0.0,"v6: missing=[], unsupported=['tea_bag_in_cup']; unreachable goals: ['drink_ready']",1.0898437500000002,,1.0
+pour_drink_141,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2837423312883438,1.2837423312883438,1.0
+pour_drink_141,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2837423312883438,1.2837423312883438,1.0
+pour_drink_141,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0898437500000002,1.0898437500000002,1.0
+pour_drink_141,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_141,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2837423312883438,1.2837423312883438,1.0
+pack_box_142,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4585908529048208,1.4585908529048208,1.0
+pack_box_142,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for bottle_in_box from v5,1.4585908529048208,,1.0
+pack_box_142,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1579980372914622,,1.0
+pack_box_142,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4585908529048208,1.4585908529048208,1.0
+pack_box_142,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_142,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4585908529048208,1.4585908529048208,1.0
+assemble_bracket_143,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.0,0.8,0.0,0.0,0.0,"v5: missing=[], unsupported=['screwdriver_grasped']; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0971357409713574,,1.0
+assemble_bracket_143,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1523871811641595,,1.0
+assemble_bracket_143,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1523871811641595,1.1523871811641595,1.0
+assemble_bracket_143,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0971357409713574,1.0971357409713574,1.0
+assemble_bracket_143,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_143,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1523871811641595,1.1523871811641595,1.0
+sort_tray_144,w/o State-Support Repair,0.7999999999999999,0.2727272727272727,,0.0,0.0,0.0,0.0,"v5: missing=[], unsupported=['blue_block_in_right_bin']; unreachable goals: ['tray_covered']",1.0,,1.0
+sort_tray_144,w/o Synchronization Repair,0.7368421052631579,0.36363636363636365,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for tray_stable from v1; v5: missing synchronization for blue_block_in_right_bin from v3; v5: missing synchronization for lid_grasped from v4,1.0,,1.0
+sort_tray_144,w/o Resource-Ordering Repair,0.9523809523809523,0.09090909090909091,,0.0,1.0,0.0,0.0,"unordered shared resources: [('v2', 'v3', ('tray',))]",1.2508751458576428,,1.0
+sort_tray_144,w/o Order-Edge Compression,0.9090909090909091,0.09090909090909091,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_144,w/o Executor Assignment,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_144,Full Model,0.9090909090909091,0.09090909090909091,0.5,0.6666666666666666,0.0,1.0,1.0,,1.0,1.0,1.0
+pour_drink_145,w/o State-Support Repair,0.7999999999999999,0.25,0.5,0.5714285714285714,0.0,0.0,0.0,"v3: missing=['kettle_grasped'], unsupported=[]; v4: missing=['cup_filled'], unsupported=[]; v5: missing=['cup_filled'], unsupported=[]; v6: missing=['tea_bag_in_cup'], unsupported=[]; unreachable goals: ['drink_ready', 'kettle_returned']",1.3166118421052633,,1.0
+pour_drink_145,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3166118421052633,1.3166118421052633,1.0
+pour_drink_145,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3166118421052633,1.3166118421052633,1.0
+pour_drink_145,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.108725761772853,1.108725761772853,1.0
+pour_drink_145,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_145,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.3166118421052633,1.3166118421052633,1.0
+pack_box_146,w/o State-Support Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3757725587144625,1.3757725587144625,1.0
+pack_box_146,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3757725587144625,1.3757725587144625,1.0
+pack_box_146,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.126518218623482,,1.0
+pack_box_146,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.3757725587144625,1.3757725587144625,1.0
+pack_box_146,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_146,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.3757725587144625,1.3757725587144625,1.0
+assemble_bracket_147,w/o State-Support Repair,0.7272727272727273,0.42857142857142855,0.6666666666666666,0.4444444444444444,0.0,0.0,0.0,"v4: missing=[], unsupported=['base_plate_positioned']; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.0923366834170853,,1.0
+assemble_bracket_147,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1373446697187704,1.1373446697187704,1.0
+assemble_bracket_147,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1373446697187704,1.1373446697187704,1.0
+assemble_bracket_147,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0923366834170853,1.0923366834170853,1.0
+assemble_bracket_147,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_147,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1373446697187704,1.1373446697187704,1.0
+sort_tray_148,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1877431906614786,1.1877431906614786,1.0
+sort_tray_148,w/o Synchronization Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1877431906614786,1.1877431906614786,1.0
+sort_tray_148,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1877431906614786,1.1877431906614786,1.0
+sort_tray_148,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_148,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_148,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1877431906614786,1.1877431906614786,1.0
+pour_drink_149,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.257100149476831,1.257100149476831,1.0
+pour_drink_149,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for kettle_grasped from v2,1.257100149476831,,1.0
+pour_drink_149,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.257100149476831,1.257100149476831,1.0
+pour_drink_149,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1168658698539176,1.1168658698539176,1.0
+pour_drink_149,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_149,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.257100149476831,1.257100149476831,1.0
+pack_box_150,w/o State-Support Repair,0.75,0.3333333333333333,0.5,0.5,0.0,0.0,0.0,"v6: missing=[], unsupported=['snack_in_box']; unreachable goals: ['box_packed']",1.4372523117569354,,1.0
+pack_box_150,w/o Synchronization Repair,0.8750000000000001,0.2222222222222222,0.3333333333333333,0.8,0.0,0.0,0.0,v6: missing synchronization for snack_in_box from v4,1.4372523117569354,,1.0
+pack_box_150,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1476793248945145,,1.0
+pack_box_150,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4372523117569354,1.4372523117569354,1.0
+pack_box_150,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_150,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4372523117569354,1.4372523117569354,1.0
+assemble_bracket_151,w/o State-Support Repair,0.923076923076923,0.14285714285714285,0.0,0.8,0.0,0.0,0.0,"v6: missing=[], unsupported=['screw_fastened']; unreachable goals: ['assembly_ready']",1.096774193548387,,1.0
+assemble_bracket_151,w/o Synchronization Repair,0.923076923076923,0.14285714285714285,0.0,1.0,0.0,0.0,0.0,v4: missing synchronization for bracket_grasped from v2,1.1400894187779433,,1.0
+assemble_bracket_151,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1400894187779433,1.1400894187779433,1.0
+assemble_bracket_151,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.096774193548387,1.096774193548387,1.0
+assemble_bracket_151,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_151,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1400894187779433,1.1400894187779433,1.0
+sort_tray_152,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1950718685831623,1.1950718685831623,1.0
+sort_tray_152,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.1950718685831623,,1.0
+sort_tray_152,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1950718685831623,1.1950718685831623,1.0
+sort_tray_152,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_152,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_152,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1950718685831623,1.1950718685831623,1.0
+pour_drink_153,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2431800467653935,1.2431800467653935,1.0
+pour_drink_153,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2431800467653935,1.2431800467653935,1.0
+pour_drink_153,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2431800467653935,1.2431800467653935,1.0
+pour_drink_153,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0857726344452008,1.0857726344452008,1.0
+pour_drink_153,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_153,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.2431800467653935,1.2431800467653935,1.0
+pack_box_154,w/o State-Support Repair,0.8750000000000001,0.2222222222222222,0.5,0.5,0.0,0.0,0.0,"v4: missing=[], unsupported=['box_open']; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.418181818181818,,1.0
+pack_box_154,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.418181818181818,1.418181818181818,1.0
+pack_box_154,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1481844946025515,,1.0
+pack_box_154,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.418181818181818,1.418181818181818,1.0
+pack_box_154,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_154,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.418181818181818,1.418181818181818,1.0
+assemble_bracket_155,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1440733464309105,1.1440733464309105,1.0
+assemble_bracket_155,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1440733464309105,1.1440733464309105,1.0
+assemble_bracket_155,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1440733464309105,1.1440733464309105,1.0
+assemble_bracket_155,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.08307501549907,1.08307501549907,1.0
+assemble_bracket_155,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_155,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.1440733464309105,1.1440733464309105,1.0
+sort_tray_156,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661307609860665,1.1661307609860665,1.0
+sort_tray_156,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.1661307609860665,,1.0
+sort_tray_156,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661307609860665,1.1661307609860665,1.0
+sort_tray_156,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_156,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_156,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.1661307609860665,1.1661307609860665,1.0
+pour_drink_157,w/o State-Support Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.273738872403561,1.273738872403561,1.0
+pour_drink_157,w/o Synchronization Repair,0.9333333333333333,0.125,0.0,1.0,0.0,0.0,0.0,v3: missing synchronization for cup_stabilized from v1,1.273738872403561,,1.0
+pour_drink_157,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.273738872403561,1.273738872403561,1.0
+pour_drink_157,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.1027617212588312,1.1027617212588312,1.0
+pour_drink_157,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v3: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pour_drink_157,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.273738872403561,1.273738872403561,1.0
+pack_box_158,w/o State-Support Repair,0.823529411764706,0.2222222222222222,0.6666666666666666,0.2857142857142857,0.0,0.0,0.0,"v4: missing=['snack_grasped'], unsupported=[]; v6: missing=['snack_in_box'], unsupported=[]; unreachable goals: ['box_packed']",1.4763061968408262,,1.0
+pack_box_158,w/o Synchronization Repair,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4763061968408264,1.4763061968408264,1.0
+pack_box_158,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,0.0,0.0,v4->v5: resource label 'box' is not shared by both endpoints,1.1626794258373208,,1.0
+pack_box_158,w/o Order-Edge Compression,0.9411764705882353,0.1111111111111111,0.5,0.5,0.0,1.0,1.0,,1.4763061968408264,1.4763061968408264,1.0
+pack_box_158,w/o Executor Assignment,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,0.0,v5: executor occupancy violates mode or candidate_arm; v6: executor occupancy violates mode or candidate_arm,1.0,,0.0
+pack_box_158,Full Model,0.9411764705882353,0.1111111111111111,0.3333333333333333,0.8,0.0,1.0,1.0,,1.4763061968408264,1.4763061968408264,1.0
+assemble_bracket_159,w/o State-Support Repair,0.7692307692307692,0.2857142857142857,0.6666666666666666,0.3333333333333333,0.0,0.0,0.0,"v4: missing=['bracket_grasped'], unsupported=[]; v5: missing=['bracket_aligned'], unsupported=[]; v6: missing=['screw_fastened'], unsupported=[]; unreachable goals: ['assembly_ready']",1.193709792709078,,1.0
+assemble_bracket_159,w/o Synchronization Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.16214335421016,1.16214335421016,1.0
+assemble_bracket_159,w/o Resource-Ordering Repair,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.16214335421016,1.16214335421016,1.0
+assemble_bracket_159,w/o Order-Edge Compression,1.0,0.0,0.0,0.8,0.0,1.0,1.0,,1.0802069857697283,1.0802069857697283,1.0
+assemble_bracket_159,w/o Executor Assignment,1.0,0.0,0.0,1.0,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm,1.0,,0.0
+assemble_bracket_159,Full Model,1.0,0.0,0.0,1.0,0.0,1.0,1.0,,1.16214335421016,1.16214335421016,1.0
+sort_tray_160,w/o State-Support Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2098360655737705,1.2098360655737705,1.0
+sort_tray_160,w/o Synchronization Repair,0.9523809523809523,0.09090909090909091,0.5,0.6666666666666666,0.0,0.0,0.0,v5: missing synchronization for lid_grasped from v4,1.2098360655737705,,1.0
+sort_tray_160,w/o Resource-Ordering Repair,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2098360655737705,1.2098360655737705,1.0
+sort_tray_160,w/o Order-Edge Compression,1.0,0.0,,0.0,0.0,1.0,1.0,,1.0,1.0,1.0
+sort_tray_160,w/o Executor Assignment,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,0.0,v2: executor occupancy violates mode or candidate_arm; v4: executor occupancy violates mode or candidate_arm; v5: executor occupancy violates mode or candidate_arm,1.0,,0.0
+sort_tray_160,Full Model,1.0,0.0,0.5,0.6666666666666666,0.0,1.0,1.0,,1.2098360655737705,1.2098360655737705,1.0

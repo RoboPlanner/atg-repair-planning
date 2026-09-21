@@ -1,0 +1,128 @@
+{
+  "results": [
+    {
+      "group": "public_recipe",
+      "method": "audit_only",
+      "n": 6,
+      "accepted": 2,
+      "source_semantics_valid": 2,
+      "mean_speedup": 1.0
+    },
+    {
+      "group": "public_recipe",
+      "method": "field_match",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.0714285714285714
+    },
+    {
+      "group": "public_recipe",
+      "method": "field_match_compressed",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.0714285714285714
+    },
+    {
+      "group": "public_recipe",
+      "method": "full",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.0714285714285714
+    },
+    {
+      "group": "public_normative_or",
+      "method": "audit_only",
+      "n": 1,
+      "accepted": 0,
+      "source_semantics_valid": 0,
+      "mean_speedup": null
+    },
+    {
+      "group": "public_normative_or",
+      "method": "field_match",
+      "n": 1,
+      "accepted": 1,
+      "source_semantics_valid": 1,
+      "mean_speedup": 1.5
+    },
+    {
+      "group": "public_normative_or",
+      "method": "field_match_compressed",
+      "n": 1,
+      "accepted": 1,
+      "source_semantics_valid": 1,
+      "mean_speedup": 1.5
+    },
+    {
+      "group": "public_normative_or",
+      "method": "full",
+      "n": 1,
+      "accepted": 1,
+      "source_semantics_valid": 1,
+      "mean_speedup": 1.5
+    },
+    {
+      "group": "public_jobshop_projection",
+      "method": "audit_only",
+      "n": 6,
+      "accepted": 0,
+      "source_semantics_valid": 0,
+      "mean_speedup": null
+    },
+    {
+      "group": "public_jobshop_projection",
+      "method": "field_match",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.276085265483734
+    },
+    {
+      "group": "public_jobshop_projection",
+      "method": "field_match_compressed",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.276085265483734
+    },
+    {
+      "group": "public_jobshop_projection",
+      "method": "full",
+      "n": 6,
+      "accepted": 6,
+      "source_semantics_valid": 6,
+      "mean_speedup": 1.7199504966338066
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "alternative_route",
+      "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\alternative_route.json",
+      "reason": "minimum coalition size exceeds two"
+    },
+    {
+      "id": "parallel_branch",
+      "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\parallel_branch.json",
+      "reason": "minimum coalition size exceeds two"
+    },
+    {
+      "id": "standard_ab",
+      "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\standard_ab.json",
+      "reason": "minimum coalition size exceeds two"
+    },
+    {
+      "id": "standard_abc",
+      "source": "sources\\AssemblyGrid_v1\\Experiments\\recipes\\standard_abc.json",
+      "reason": "minimum coalition size exceeds two"
+    },
+    {
+      "id": "public_exclusive_xor",
+      "source": "sources\\AssemblyGrid_v1\\Experiments\\env\\tests\\test_alternative_routes.py",
+      "reason": "unresolved exclusive route outside fixed-node interface"
+    }
+  ],
+  "independent_failures": []
+}

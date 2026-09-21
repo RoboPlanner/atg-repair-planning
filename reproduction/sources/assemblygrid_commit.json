@@ -1,0 +1,101 @@
+{
+  "sha": "ce61f635e47d312d633eda022b5f08bc4dbe888f",
+  "node_id": "C_kwDOUY0JDtoAKGNlNjFmNjM1ZTQ3ZDMxMmQ2MzNlZGEwMjJiNWYwOGJjNGRiZTg4OGY",
+  "commit": {
+    "author": {
+      "name": "Fouad-Bahrpeyma",
+      "email": "32637724+Fouad-Bahrpeyma@users.noreply.github.com",
+      "date": "2026-09-17T08:01:09Z"
+    },
+    "committer": {
+      "name": "Fouad-Bahrpeyma",
+      "email": "32637724+Fouad-Bahrpeyma@users.noreply.github.com",
+      "date": "2026-09-17T08:01:09Z"
+    },
+    "message": "Add AssemblyGrid copyright captions to README images",
+    "tree": {
+      "sha": "9003d8bbd576cef335a360b2eff0e622aa99dd7b",
+      "url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/git/trees/9003d8bbd576cef335a360b2eff0e622aa99dd7b"
+    },
+    "url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/git/commits/ce61f635e47d312d633eda022b5f08bc4dbe888f",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/commits/ce61f635e47d312d633eda022b5f08bc4dbe888f",
+  "html_url": "https://github.com/Fouad-Bahrpeyma/AssemblyGrid_v1/commit/ce61f635e47d312d633eda022b5f08bc4dbe888f",
+  "comments_url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/commits/ce61f635e47d312d633eda022b5f08bc4dbe888f/comments",
+  "author": {
+    "login": "Fouad-Bahrpeyma",
+    "id": 32637724,
+    "node_id": "MDQ6VXNlcjMyNjM3NzI0",
+    "avatar_url": "https://avatars.githubusercontent.com/u/32637724?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Fouad-Bahrpeyma",
+    "html_url": "https://github.com/Fouad-Bahrpeyma",
+    "followers_url": "https://api.github.com/users/Fouad-Bahrpeyma/followers",
+    "following_url": "https://api.github.com/users/Fouad-Bahrpeyma/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Fouad-Bahrpeyma/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Fouad-Bahrpeyma/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Fouad-Bahrpeyma/subscriptions",
+    "organizations_url": "https://api.github.com/users/Fouad-Bahrpeyma/orgs",
+    "repos_url": "https://api.github.com/users/Fouad-Bahrpeyma/repos",
+    "events_url": "https://api.github.com/users/Fouad-Bahrpeyma/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Fouad-Bahrpeyma/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "Fouad-Bahrpeyma",
+    "id": 32637724,
+    "node_id": "MDQ6VXNlcjMyNjM3NzI0",
+    "avatar_url": "https://avatars.githubusercontent.com/u/32637724?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Fouad-Bahrpeyma",
+    "html_url": "https://github.com/Fouad-Bahrpeyma",
+    "followers_url": "https://api.github.com/users/Fouad-Bahrpeyma/followers",
+    "following_url": "https://api.github.com/users/Fouad-Bahrpeyma/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Fouad-Bahrpeyma/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Fouad-Bahrpeyma/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Fouad-Bahrpeyma/subscriptions",
+    "organizations_url": "https://api.github.com/users/Fouad-Bahrpeyma/orgs",
+    "repos_url": "https://api.github.com/users/Fouad-Bahrpeyma/repos",
+    "events_url": "https://api.github.com/users/Fouad-Bahrpeyma/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Fouad-Bahrpeyma/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "b284a8e1b6d1ccd5e9dc191a9c84c0d7af7eaec8",
+      "url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/commits/b284a8e1b6d1ccd5e9dc191a9c84c0d7af7eaec8",
+      "html_url": "https://github.com/Fouad-Bahrpeyma/AssemblyGrid_v1/commit/b284a8e1b6d1ccd5e9dc191a9c84c0d7af7eaec8"
+    }
+  ],
+  "stats": {
+    "total": 219,
+    "additions": 111,
+    "deletions": 108
+  },
+  "files": [
+    {
+      "sha": "669fb3f910453f1f9eb32210bed7c2b763febf37",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 111,
+      "deletions": 108,
+      "changes": 219,
+      "blob_url": "https://github.com/Fouad-Bahrpeyma/AssemblyGrid_v1/blob/ce61f635e47d312d633eda022b5f08bc4dbe888f/README.md",
+      "raw_url": "https://github.com/Fouad-Bahrpeyma/AssemblyGrid_v1/raw/ce61f635e47d312d633eda022b5f08bc4dbe888f/README.md",
+      "contents_url": "https://api.github.com/repos/Fouad-Bahrpeyma/AssemblyGrid_v1/contents/README.md?ref=ce61f635e47d312d633eda022b5f08bc4dbe888f",
+      "patch": "@@ -1,108 +1,111 @@\n-# AssemblyGrid v1\r\n-\r\n-<p align=\"center\">\r\n-  <img src=\"docs/media/assemblygrid_overview.webp\" width=\"100%\" alt=\"AssemblyGrid multi-robot production animation\">\r\n-</p>\r\n-\r\n-<p align=\"center\">\r\n-  <img src=\"docs/media/assemblygrid_handoff.webp\" width=\"100%\" alt=\"AssemblyGrid multi-robot handoff and assembly animation\">\r\n-</p>\r\n-\r\n-AssemblyGrid is a benchmark for multi-robot production with recipe-driven material flow, temporary robot coalitions, local observations, and task-level geometric constraints.\r\n-\r\n-The official suite contains nine scenarios: Flow, Coalition and Concurrency, each with easy, medium and hard configurations. The geometry profile is `abstract-v1`. Task success and benchmark metrics are independent of the controller's training reward.\r\n-\r\n-<p align=\"center\">\r\n-  <img\r\n-    src=\"docs/media/AssemblyGrid_9Scenarios_3x3_PANELS_README_HQ.webp\"\r\n-    width=\"100%\"\r\n-    alt=\"AssemblyGrid v1 - Flow, Concurrency and Coalition scenarios at easy, medium and hard difficulty\">\r\n-</p>\r\n-\r\n-<p align=\"center\">\r\n-  <img\r\n-    src=\"docs/media/AssemblyGrid_9Scenarios_ONE_PANEL_README_HQ.webp\"\r\n-    width=\"100%\"\r\n-    alt=\"AssemblyGrid v1 - all nine scenarios in one shared environment\">\r\n-</p>\r\n-\r\n-## Install\r\n-\r\n-Use Python 3.11 in a virtual environment:\r\n-\r\n-```sh\r\n-python -m venv .venv\r\n-```\r\n-\r\n-Activate it with `.venv\\Scripts\\activate` on Windows or `source .venv/bin/activate` on Linux/macOS, then install:\r\n-\r\n-```sh\r\n-python -m pip install -r requirements-v1-lock.txt\r\n-```\r\n-\r\n-## Run\r\n-\r\n-From the repository root:\r\n-\r\n-```sh\r\n-python examples/quickstart_core.py\r\n-python examples/quickstart_official.py\r\n-python examples/quickstart_algorithm_support.py\r\n-python tools/verify_instances.py\r\n-python -m pytest Experiments/env/tests -q\r\n-```\r\n-\r\n-## Use the benchmark\r\n-\r\n-`Experiments/env/standards.py` provides `official_instance_suite(index)`. Each index produces the nine official scenario configurations. `official/official_realizations.json` contains 45 verified realizations across indices 0–4; the loader in `Experiments/env/official.py` checks their content identity.\r\n-\r\n-Use `AssemblyGridCore` for direct simulation or `AssemblyGridParallelEnv` in `pettingzoo_env.py` for the PettingZoo parallel interface. Each agent selects an action using its observation and action mask. Read production and coordination metrics from `env.core.metrics()`. Privileged state access must be declared separately from local execution observations.\r\n-\r\n-## Contents\r\n-\r\n-- `Experiments/env/`: simulator, interfaces, IPPO/MAPPO/QMIX controllers and tests.\r\n-- `Experiments/configs/`: runnable configurations.\r\n-- `Experiments/recipes/`: recipe definitions.\r\n-- `official/`: official realization catalogue, plus the historical geometry catalogue\r\n-  (`historical_realizations.json`), excluded from every official aggregate.\r\n-- `schemas/`: recipe and result schemas.\r\n-- `examples/`: runnable examples.\r\n-- `reference_training/`: the IPPO/MAPPO/QMIX training code of the reported 270-run\r\n-  campaign, including the `StructuredActor` policy network and the campaign runners.\r\n-  `Experiments/env/marl/` holds the smaller interface-demonstration implementations.\r\n-- `tools/verify_instances.py`: verification of all official catalogue entries.\r\n-- `Experiments/env/audits.py`: release audits for action-space addressability and\r\n-  coalition-formation sanity (`python Experiments/env/audits.py`).\r\n-\r\n-## Citation\r\n-\r\n-If you use AssemblyGrid v1 in your research, experiments, or derived work, please cite the accompanying paper:\r\n-\r\n-> Fouad Bahrpeyma, David Heik, and Dirk Reichelt.  \r\n-> **AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints.**  \r\n-> arXiv preprint arXiv:2609.16075, 2026.  \r\n-> [AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints](https://doi.org/10.48550/arXiv.2609.16075)\r\n-\r\n-### BibTeX\r\n-\r\n-```bibtex\r\n-@article{bahrpeyma2026assemblygrid,\r\n-  title   = {AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints},\r\n-  author  = {Bahrpeyma, Fouad and Heik, David and Reichelt, Dirk},\r\n-  journal = {arXiv preprint arXiv:2609.16075},\r\n-  year    = {2026},\r\n-  doi     = {10.48550/arXiv.2609.16075},\r\n-  url     = {https://arxiv.org/abs/2609.16075}\r\n-}\r\n-```\r\n-\r\n-We appreciate citations to the paper when AssemblyGrid v1 is used as a benchmark, experimental environment, or basis for further development.\r\n-\r\n-Citation metadata for this GitHub repository and its associated software release is provided in `CITATION.cff`.\r\n-\r\n-## License\r\n-\r\n-Released under the MIT License, Copyright (c) 2026 Fouad Bahrpeyma. See `LICENSE`.\r\n-\r\n-The release history is recorded in `CHANGELOG.md`.\r\n-\r\n+# AssemblyGrid v1\n+\n+<p align=\"center\">\n+  <img src=\"docs/media/assemblygrid_overview.webp\" width=\"100%\" alt=\"AssemblyGrid multi-robot production animation\">\n+</p>\n+<p align=\"left\"><sub>AssemblyGrid v1, copyright (c) 2026 Fouad Bahrpeyma</sub></p>\n+\n+<p align=\"center\">\n+  <img src=\"docs/media/assemblygrid_handoff.webp\" width=\"100%\" alt=\"AssemblyGrid multi-robot handoff and assembly animation\">\n+</p>\n+<p align=\"left\"><sub>AssemblyGrid v1, copyright (c) 2026 Fouad Bahrpeyma</sub></p>\n+\n+AssemblyGrid is a benchmark for multi-robot production with recipe-driven material flow, temporary robot coalitions, local observations, and task-level geometric constraints.\n+\n+The official suite contains nine scenarios: Flow, Coalition and Concurrency, each with easy, medium and hard configurations. The geometry profile is `abstract-v1`. Task success and benchmark metrics are independent of the controller's training reward.\n+\n+<p align=\"center\">\n+  <img\n+    src=\"docs/media/AssemblyGrid_9Scenarios_3x3_PANELS_README_HQ.webp\"\n+    width=\"100%\"\n+    alt=\"AssemblyGrid v1 - Flow, Concurrency and Coalition scenarios at easy, medium and hard difficulty\">\n+</p>\n+<p align=\"left\"><sub>AssemblyGrid v1, copyright (c) 2026 Fouad Bahrpeyma</sub></p>\n+\n+<p align=\"center\">\n+  <img\n+    src=\"docs/media/AssemblyGrid_9Scenarios_ONE_PANEL_README_HQ.webp\"\n+    width=\"100%\"\n+    alt=\"AssemblyGrid v1 - all nine scenarios in one shared environment\">\n+</p>\n+<p align=\"left\"><sub>AssemblyGrid v1, copyright (c) 2026 Fouad Bahrpeyma</sub></p>\n+\n+## Install\n+\n+Use Python 3.11 in a virtual environment:\n+\n+```sh\n+python -m venv .venv\n+```\n+\n+Activate it with `.venv\\Scripts\\activate` on Windows or `source .venv/bin/activate` on Linux/macOS, then install:\n+\n+```sh\n+python -m pip install -r requirements-v1-lock.txt\n+```\n+\n+## Run\n+\n+From the repository root:\n+\n+```sh\n+python examples/quickstart_core.py\n+python examples/quickstart_official.py\n+python examples/quickstart_algorithm_support.py\n+python tools/verify_instances.py\n+python -m pytest Experiments/env/tests -q\n+```\n+\n+## Use the benchmark\n+\n+`Experiments/env/standards.py` provides `official_instance_suite(index)`. Each index produces the nine official scenario configurations. `official/official_realizations.json` contains 45 verified realizations across indices 0–4; the loader in `Experiments/env/official.py` checks their content identity.\n+\n+Use `AssemblyGridCore` for direct simulation or `AssemblyGridParallelEnv` in `pettingzoo_env.py` for the PettingZoo parallel interface. Each agent selects an action using its observation and action mask. Read production and coordination metrics from `env.core.metrics()`. Privileged state access must be declared separately from local execution observations.\n+\n+## Contents\n+\n+- `Experiments/env/`: simulator, interfaces, IPPO/MAPPO/QMIX controllers and tests.\n+- `Experiments/configs/`: runnable configurations.\n+- `Experiments/recipes/`: recipe definitions.\n+- `official/`: official realization catalogue, plus the historical geometry catalogue\n+  (`historical_realizations.json`), excluded from every official aggregate.\n+- `schemas/`: recipe and result schemas.\n+- `examples/`: runnable examples.\n+- `reference_training/`: the IPPO/MAPPO/QMIX training code of the reported 270-run\n+  campaign, including the `StructuredActor` policy network and the campaign runners.\n+  `Experiments/env/marl/` holds the smaller interface-demonstration implementations.\n+- `tools/verify_instances.py`: verification of all official catalogue entries.\n+- `Experiments/env/audits.py`: release audits for action-space addressability and\n+  coalition-formation sanity (`python Experiments/env/audits.py`).\n+\n+## Citation\n+\n+If you use AssemblyGrid v1 in your research, experiments, or derived work, please cite the accompanying paper:\n+\n+> Fouad Bahrpeyma, David Heik, and Dirk Reichelt.  \n+> **AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints.**  \n+> arXiv preprint arXiv:2609.16075, 2026.  \n+> [AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints](https://doi.org/10.48550/arXiv.2609.16075)\n+\n+### BibTeX\n+\n+```bibtex\n+@article{bahrpeyma2026assemblygrid,\n+  title   = {AssemblyGrid v1: A Benchmark for Multi-Robot Production with Temporary Coalitions, Local Information, and Geometric Constraints},\n+  author  = {Bahrpeyma, Fouad and Heik, David and Reichelt, Dirk},\n+  journal = {arXiv preprint arXiv:2609.16075},\n+  year    = {2026},\n+  doi     = {10.48550/arXiv.2609.16075},\n+  url     = {https://arxiv.org/abs/2609.16075}\n+}\n+```\n+\n+We appreciate citations to the paper when AssemblyGrid v1 is used as a benchmark, experimental environment, or basis for further development.\n+\n+Citation metadata for this GitHub repository and its associated software release is provided in `CITATION.cff`.\n+\n+## License\n+\n+Released under the MIT License, Copyright (c) 2026 Fouad Bahrpeyma. See `LICENSE`.\n+\n+The release history is recorded in `CHANGELOG.md`."
+    }
+  ]
+}

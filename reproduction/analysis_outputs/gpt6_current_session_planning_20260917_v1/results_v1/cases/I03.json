@@ -1,0 +1,5586 @@
+{
+  "task_id": "I03",
+  "spec": {
+    "task_id": "I03",
+    "domain": "inspection",
+    "title": "两工件视觉外观检验",
+    "instruction": "准备左右工件和拍摄参数。共用相机分别完成上表面拍摄；双单元翻转较大的左工件，拍摄其背面；审核两件结果后打印标签并分别入合格托盘。",
+    "S0": [
+      "large_part_available",
+      "small_part_available",
+      "camera_profile_ready",
+      "pass_tray_ready"
+    ],
+    "Sg": [
+      "both_parts_released"
+    ],
+    "resources": [
+      "large_part",
+      "small_part",
+      "camera",
+      "review_terminal",
+      "printer",
+      "pass_tray"
+    ]
+  },
+  "raw_source": "raw_candidates_inspection.json",
+  "raw_candidate": {
+    "task_id": "I03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "position large part",
+        "object": "large part",
+        "Pre": [
+          "large_part_available"
+        ],
+        "Post": [
+          "large_part_positioned"
+        ],
+        "d": 2,
+        "Res": [
+          "large_part"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "position small part",
+        "object": "small part",
+        "Pre": [
+          "small_part_available"
+        ],
+        "Post": [
+          "small_part_positioned"
+        ],
+        "d": 1,
+        "Res": [
+          "small_part"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "configure camera",
+        "object": "camera",
+        "Pre": [
+          "camera_profile_ready"
+        ],
+        "Post": [
+          "camera_configured"
+        ],
+        "d": 2,
+        "Res": [
+          "camera"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "image large part top",
+        "object": "large part",
+        "Pre": [
+          "large_part_positioned",
+          "camera_configured"
+        ],
+        "Post": [
+          "large_top_imaged"
+        ],
+        "d": 2,
+        "Res": [
+          "large_part",
+          "camera"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "image small part",
+        "object": "small part",
+        "Pre": [
+          "small_part_positioned",
+          "camera_configured"
+        ],
+        "Post": [
+          "small_part_imaged"
+        ],
+        "d": 2,
+        "Res": [
+          "small_part",
+          "camera"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "turn large part",
+        "object": "large part",
+        "Pre": [
+          "large_top_imaged"
+        ],
+        "Post": [
+          "large_part_turned"
+        ],
+        "d": 3,
+        "Res": [
+          "large_part"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "image large part back",
+        "object": "large part",
+        "Pre": [
+          "large_part_turned",
+          "camera_configured"
+        ],
+        "Post": [
+          "large_back_imaged"
+        ],
+        "d": 2,
+        "Res": [
+          "large_part",
+          "camera"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "review image set",
+        "object": "inspection images",
+        "Pre": [
+          "large_top_imaged",
+          "large_back_imaged",
+          "small_part_imaged"
+        ],
+        "Post": [
+          "image_review_complete"
+        ],
+        "d": 3,
+        "Res": [
+          "review_terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "print large part label",
+        "object": "large label",
+        "Pre": [
+          "image_review_complete"
+        ],
+        "Post": [
+          "large_label_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "print small part label",
+        "object": "small label",
+        "Pre": [
+          "image_review_complete"
+        ],
+        "Post": [
+          "small_label_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "label and place large part",
+        "object": "large part",
+        "Pre": [
+          "large_label_printed",
+          "pass_tray_ready"
+        ],
+        "Post": [
+          "large_part_released"
+        ],
+        "d": 2,
+        "Res": [
+          "large_part",
+          "pass_tray"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "label and place small part",
+        "object": "small part",
+        "Pre": [
+          "small_label_printed",
+          "pass_tray_ready"
+        ],
+        "Post": [
+          "small_part_released"
+        ],
+        "d": 1,
+        "Res": [
+          "small_part",
+          "pass_tray"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "close inspection lot",
+        "object": "inspection lot",
+        "Pre": [
+          "large_part_released",
+          "small_part_released"
+        ],
+        "Post": [
+          "both_parts_released"
+        ],
+        "d": 1,
+        "Res": [],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "large_part_positioned"
+        ],
+        [
+          "t3",
+          "t4",
+          "camera_configured"
+        ],
+        [
+          "t2",
+          "t5",
+          "small_part_positioned"
+        ],
+        [
+          "t3",
+          "t5",
+          "camera_configured"
+        ],
+        [
+          "t4",
+          "t6",
+          "large_top_imaged"
+        ],
+        [
+          "t6",
+          "t7",
+          "large_part_turned"
+        ],
+        [
+          "t3",
+          "t7",
+          "camera_configured"
+        ],
+        [
+          "t4",
+          "t8",
+          "large_top_imaged"
+        ],
+        [
+          "t7",
+          "t8",
+          "large_back_imaged"
+        ],
+        [
+          "t5",
+          "t8",
+          "small_part_imaged"
+        ],
+        [
+          "t8",
+          "t9",
+          "image_review_complete"
+        ],
+        [
+          "t8",
+          "t10",
+          "image_review_complete"
+        ],
+        [
+          "t9",
+          "t11",
+          "large_label_printed"
+        ],
+        [
+          "t10",
+          "t12",
+          "small_label_printed"
+        ],
+        [
+          "t11",
+          "t13",
+          "large_part_released"
+        ],
+        [
+          "t12",
+          "t13",
+          "small_part_released"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t4",
+          "t6",
+          "large_top_imaged"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t4",
+          "t5",
+          "camera"
+        ],
+        [
+          "t5",
+          "t7",
+          "camera"
+        ],
+        [
+          "t9",
+          "t10",
+          "printer"
+        ],
+        [
+          "t11",
+          "t12",
+          "pass_tray"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "position large part",
+        "object": "large part",
+        "pre_state": [
+          "large_part_available"
+        ],
+        "post_state": [
+          "large_part_positioned"
+        ],
+        "duration": 2,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "position small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_available"
+        ],
+        "post_state": [
+          "small_part_positioned"
+        ],
+        "duration": 1,
+        "resource": [
+          "small_part"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "configure camera",
+        "object": "camera",
+        "pre_state": [
+          "camera_profile_ready"
+        ],
+        "post_state": [
+          "camera_configured"
+        ],
+        "duration": 2,
+        "resource": [
+          "camera"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "image large part top",
+        "object": "large part",
+        "pre_state": [
+          "large_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_top_imaged"
+        ],
+        "duration": 2,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "image small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "small_part_imaged"
+        ],
+        "duration": 2,
+        "resource": [
+          "small_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "turn large part",
+        "object": "large part",
+        "pre_state": [
+          "large_top_imaged"
+        ],
+        "post_state": [
+          "large_part_turned"
+        ],
+        "duration": 3,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "image large part back",
+        "object": "large part",
+        "pre_state": [
+          "large_part_turned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_back_imaged"
+        ],
+        "duration": 2,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "review image set",
+        "object": "inspection images",
+        "pre_state": [
+          "large_top_imaged",
+          "large_back_imaged",
+          "small_part_imaged"
+        ],
+        "post_state": [
+          "image_review_complete"
+        ],
+        "duration": 3,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "print large part label",
+        "object": "large label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "large_label_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "print small part label",
+        "object": "small label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "small_label_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "label and place large part",
+        "object": "large part",
+        "pre_state": [
+          "large_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "large_part_released"
+        ],
+        "duration": 2,
+        "resource": [
+          "large_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "label and place small part",
+        "object": "small part",
+        "pre_state": [
+          "small_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "small_part_released"
+        ],
+        "duration": 1,
+        "resource": [
+          "small_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "close inspection lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "large_part_released",
+          "small_part_released"
+        ],
+        "post_state": [
+          "both_parts_released"
+        ],
+        "duration": 1,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "large_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "small_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "large_part_turned"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "large_back_imaged"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "small_part_imaged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "large_label_printed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "state": "small_label_printed"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "state": "large_part_released"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "state": "small_part_released"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "camera"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "resource_mutex",
+        "resource": "camera"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "resource": "printer"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "resource": "pass_tray"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "camera_profile_ready",
+        "large_part_available",
+        "pass_tray_ready",
+        "small_part_available"
+      ],
+      "available_states": [
+        "both_parts_released",
+        "camera_configured",
+        "camera_profile_ready",
+        "image_review_complete",
+        "large_back_imaged",
+        "large_label_printed",
+        "large_part_available",
+        "large_part_positioned",
+        "large_part_released",
+        "large_part_turned",
+        "large_top_imaged",
+        "pass_tray_ready",
+        "small_label_printed",
+        "small_part_available",
+        "small_part_imaged",
+        "small_part_positioned",
+        "small_part_released"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "both_parts_released"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 20.0,
+    "waiting_time": 13.0,
+    "executor_utilization": 0.65,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "position large part",
+        "object": "large part",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "large_part"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "position small part",
+        "object": "small part",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "small_part"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "configure camera",
+        "object": "camera",
+        "start": 1.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "camera"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "image large part top",
+        "object": "large part",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "large_part",
+          "camera"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "image small part",
+        "object": "small part",
+        "start": 5.0,
+        "finish": 7.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "small_part",
+          "camera"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "turn large part",
+        "object": "large part",
+        "start": 7.0,
+        "finish": 10.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "large_part"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "image large part back",
+        "object": "large part",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "large_part",
+          "camera"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "review image set",
+        "object": "inspection images",
+        "start": 12.0,
+        "finish": 15.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "review_terminal"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "print large part label",
+        "object": "large label",
+        "start": 15.0,
+        "finish": 16.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "print small part label",
+        "object": "small label",
+        "start": 16.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "label and place large part",
+        "object": "large part",
+        "start": 16.0,
+        "finish": 18.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "large_part",
+          "pass_tray"
+        ]
+      },
+      {
+        "node_id": "t12",
+        "action": "label and place small part",
+        "object": "small part",
+        "start": 18.0,
+        "finish": 19.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "small_part",
+          "pass_tray"
+        ]
+      },
+      {
+        "node_id": "t13",
+        "action": "close inspection lot",
+        "object": "inspection lot",
+        "start": 19.0,
+        "finish": 20.0,
+        "executors": [
+          "left"
+        ],
+        "resources": []
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t10",
+        "t11",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.65
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "large_top_imaged"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "camera_profile_ready",
+          "large_part_available",
+          "pass_tray_ready",
+          "small_part_available"
+        ],
+        "available_states": [
+          "both_parts_released",
+          "camera_configured",
+          "camera_profile_ready",
+          "image_review_complete",
+          "large_back_imaged",
+          "large_label_printed",
+          "large_part_available",
+          "large_part_positioned",
+          "large_part_released",
+          "large_part_turned",
+          "large_top_imaged",
+          "pass_tray_ready",
+          "small_label_printed",
+          "small_part_available",
+          "small_part_imaged",
+          "small_part_positioned",
+          "small_part_released"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "both_parts_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "camera_profile_ready",
+          "large_part_available",
+          "pass_tray_ready",
+          "small_part_available"
+        ],
+        "available_states": [
+          "both_parts_released",
+          "camera_configured",
+          "camera_profile_ready",
+          "image_review_complete",
+          "large_back_imaged",
+          "large_label_printed",
+          "large_part_available",
+          "large_part_positioned",
+          "large_part_released",
+          "large_part_turned",
+          "large_top_imaged",
+          "pass_tray_ready",
+          "small_label_printed",
+          "small_part_available",
+          "small_part_imaged",
+          "small_part_positioned",
+          "small_part_released"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "both_parts_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "camera_profile_ready",
+            "large_part_available",
+            "pass_tray_ready",
+            "small_part_available"
+          ],
+          "available_states": [
+            "both_parts_released",
+            "camera_configured",
+            "camera_profile_ready",
+            "image_review_complete",
+            "large_back_imaged",
+            "large_label_printed",
+            "large_part_available",
+            "large_part_positioned",
+            "large_part_released",
+            "large_part_turned",
+            "large_top_imaged",
+            "pass_tray_ready",
+            "small_label_printed",
+            "small_part_available",
+            "small_part_imaged",
+            "small_part_positioned",
+            "small_part_released"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "both_parts_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "camera_profile_ready",
+            "large_part_available",
+            "pass_tray_ready",
+            "small_part_available"
+          ],
+          "available_states": [
+            "both_parts_released",
+            "camera_configured",
+            "camera_profile_ready",
+            "image_review_complete",
+            "large_back_imaged",
+            "large_label_printed",
+            "large_part_available",
+            "large_part_positioned",
+            "large_part_released",
+            "large_part_turned",
+            "large_top_imaged",
+            "pass_tray_ready",
+            "small_label_printed",
+            "small_part_available",
+            "small_part_imaged",
+            "small_part_positioned",
+            "small_part_released"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "both_parts_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "large_top_imaged",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for large_top_imaged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "large_top_imaged",
+          "resource": null,
+          "reason": "cooperative input state large_top_imaged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 20.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.65,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "start": 5.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "large_part"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "start": 12.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "start": 15.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "start": 16.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "start": 16.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "start": 18.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "start": 19.0,
+          "finish": 20.0,
+          "executors": [
+            "left"
+          ],
+          "resources": []
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "large_top_imaged"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "camera_profile_ready",
+          "large_part_available",
+          "pass_tray_ready",
+          "small_part_available"
+        ],
+        "available_states": [
+          "both_parts_released",
+          "camera_configured",
+          "camera_profile_ready",
+          "image_review_complete",
+          "large_back_imaged",
+          "large_label_printed",
+          "large_part_available",
+          "large_part_positioned",
+          "large_part_released",
+          "large_part_turned",
+          "large_top_imaged",
+          "pass_tray_ready",
+          "small_label_printed",
+          "small_part_available",
+          "small_part_imaged",
+          "small_part_positioned",
+          "small_part_released"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "both_parts_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "camera_profile_ready",
+          "large_part_available",
+          "pass_tray_ready",
+          "small_part_available"
+        ],
+        "available_states": [
+          "both_parts_released",
+          "camera_configured",
+          "camera_profile_ready",
+          "image_review_complete",
+          "large_back_imaged",
+          "large_label_printed",
+          "large_part_available",
+          "large_part_positioned",
+          "large_part_released",
+          "large_part_turned",
+          "large_top_imaged",
+          "pass_tray_ready",
+          "small_label_printed",
+          "small_part_available",
+          "small_part_imaged",
+          "small_part_positioned",
+          "small_part_released"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "both_parts_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "camera_profile_ready",
+            "large_part_available",
+            "pass_tray_ready",
+            "small_part_available"
+          ],
+          "available_states": [
+            "both_parts_released",
+            "camera_configured",
+            "camera_profile_ready",
+            "image_review_complete",
+            "large_back_imaged",
+            "large_label_printed",
+            "large_part_available",
+            "large_part_positioned",
+            "large_part_released",
+            "large_part_turned",
+            "large_top_imaged",
+            "pass_tray_ready",
+            "small_label_printed",
+            "small_part_available",
+            "small_part_imaged",
+            "small_part_positioned",
+            "small_part_released"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "both_parts_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "camera_profile_ready",
+            "large_part_available",
+            "pass_tray_ready",
+            "small_part_available"
+          ],
+          "available_states": [
+            "both_parts_released",
+            "camera_configured",
+            "camera_profile_ready",
+            "image_review_complete",
+            "large_back_imaged",
+            "large_label_printed",
+            "large_part_available",
+            "large_part_positioned",
+            "large_part_released",
+            "large_part_turned",
+            "large_top_imaged",
+            "pass_tray_ready",
+            "small_label_printed",
+            "small_part_available",
+            "small_part_imaged",
+            "small_part_positioned",
+            "small_part_released"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "both_parts_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "large_top_imaged",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for large_top_imaged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "large_top_imaged",
+          "resource": null,
+          "reason": "cooperative input state large_top_imaged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 20.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.65,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "start": 5.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "large_part"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "camera"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "start": 12.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "start": 15.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "start": 16.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "start": 16.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "large_part",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "start": 18.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "small_part",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "start": 19.0,
+          "finish": 20.0,
+          "executors": [
+            "left"
+          ],
+          "resources": []
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "position large part",
+        "object": "large part",
+        "pre_state": [
+          "large_part_available"
+        ],
+        "post_state": [
+          "large_part_positioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "position small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_available"
+        ],
+        "post_state": [
+          "small_part_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "small_part"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "configure camera",
+        "object": "camera",
+        "pre_state": [
+          "camera_profile_ready"
+        ],
+        "post_state": [
+          "camera_configured"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "camera"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "image large part top",
+        "object": "large part",
+        "pre_state": [
+          "large_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_top_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "image small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "small_part_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "small_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "turn large part",
+        "object": "large part",
+        "pre_state": [
+          "large_top_imaged"
+        ],
+        "post_state": [
+          "large_part_turned"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "image large part back",
+        "object": "large part",
+        "pre_state": [
+          "large_part_turned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_back_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "review image set",
+        "object": "inspection images",
+        "pre_state": [
+          "large_top_imaged",
+          "large_back_imaged",
+          "small_part_imaged"
+        ],
+        "post_state": [
+          "image_review_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "print large part label",
+        "object": "large label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "large_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "print small part label",
+        "object": "small label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "small_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "label and place large part",
+        "object": "large part",
+        "pre_state": [
+          "large_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "large_part_released"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "label and place small part",
+        "object": "small part",
+        "pre_state": [
+          "small_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "small_part_released"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "small_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "close inspection lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "large_part_released",
+          "small_part_released"
+        ],
+        "post_state": [
+          "both_parts_released"
+        ],
+        "duration": 1.0,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_turned"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_back_imaged"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_imaged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_label_printed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_label_printed"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_released"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_released"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "camera"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "camera"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pass_tray"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "large_top_imaged"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t10",
+        "t11",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.65
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "position large part",
+        "object": "large part",
+        "pre_state": [
+          "large_part_available"
+        ],
+        "post_state": [
+          "large_part_positioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "position small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_available"
+        ],
+        "post_state": [
+          "small_part_positioned"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "small_part"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "configure camera",
+        "object": "camera",
+        "pre_state": [
+          "camera_profile_ready"
+        ],
+        "post_state": [
+          "camera_configured"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "camera"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "image large part top",
+        "object": "large part",
+        "pre_state": [
+          "large_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_top_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "image small part",
+        "object": "small part",
+        "pre_state": [
+          "small_part_positioned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "small_part_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "small_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "turn large part",
+        "object": "large part",
+        "pre_state": [
+          "large_top_imaged"
+        ],
+        "post_state": [
+          "large_part_turned"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "large_part"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "image large part back",
+        "object": "large part",
+        "pre_state": [
+          "large_part_turned",
+          "camera_configured"
+        ],
+        "post_state": [
+          "large_back_imaged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "camera"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "review image set",
+        "object": "inspection images",
+        "pre_state": [
+          "large_top_imaged",
+          "large_back_imaged",
+          "small_part_imaged"
+        ],
+        "post_state": [
+          "image_review_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "print large part label",
+        "object": "large label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "large_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "print small part label",
+        "object": "small label",
+        "pre_state": [
+          "image_review_complete"
+        ],
+        "post_state": [
+          "small_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "label and place large part",
+        "object": "large part",
+        "pre_state": [
+          "large_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "large_part_released"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "large_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "label and place small part",
+        "object": "small part",
+        "pre_state": [
+          "small_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "small_part_released"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "small_part",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "close inspection lot",
+        "object": "inspection lot",
+        "pre_state": [
+          "large_part_released",
+          "small_part_released"
+        ],
+        "post_state": [
+          "both_parts_released"
+        ],
+        "duration": 1.0,
+        "resource": [],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_positioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_turned"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "camera_configured"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_top_imaged"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_back_imaged"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_imaged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "image_review_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_label_printed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_label_printed"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "large_part_released"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "small_part_released"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "camera"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "camera"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pass_tray"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "large_top_imaged"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t10",
+        "t11",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.65
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "camera_profile_ready",
+        "large_part_available",
+        "pass_tray_ready",
+        "small_part_available"
+      ],
+      "available_states": [
+        "both_parts_released",
+        "camera_configured",
+        "camera_profile_ready",
+        "image_review_complete",
+        "large_back_imaged",
+        "large_label_printed",
+        "large_part_available",
+        "large_part_positioned",
+        "large_part_released",
+        "large_part_turned",
+        "large_top_imaged",
+        "pass_tray_ready",
+        "small_label_printed",
+        "small_part_available",
+        "small_part_imaged",
+        "small_part_positioned",
+        "small_part_released"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "both_parts_released"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "large_top_imaged"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "large_top_imaged"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "position large part",
+          "object": "large part",
+          "pre_state": [
+            "large_part_available"
+          ],
+          "post_state": [
+            "large_part_positioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "position small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_available"
+          ],
+          "post_state": [
+            "small_part_positioned"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "configure camera",
+          "object": "camera",
+          "pre_state": [
+            "camera_profile_ready"
+          ],
+          "post_state": [
+            "camera_configured"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "camera"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "image large part top",
+          "object": "large part",
+          "pre_state": [
+            "large_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_top_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "image small part",
+          "object": "small part",
+          "pre_state": [
+            "small_part_positioned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "small_part_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "small_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "turn large part",
+          "object": "large part",
+          "pre_state": [
+            "large_top_imaged"
+          ],
+          "post_state": [
+            "large_part_turned"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "large_part"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "image large part back",
+          "object": "large part",
+          "pre_state": [
+            "large_part_turned",
+            "camera_configured"
+          ],
+          "post_state": [
+            "large_back_imaged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "camera"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "review image set",
+          "object": "inspection images",
+          "pre_state": [
+            "large_top_imaged",
+            "large_back_imaged",
+            "small_part_imaged"
+          ],
+          "post_state": [
+            "image_review_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "print large part label",
+          "object": "large label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "large_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print small part label",
+          "object": "small label",
+          "pre_state": [
+            "image_review_complete"
+          ],
+          "post_state": [
+            "small_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label and place large part",
+          "object": "large part",
+          "pre_state": [
+            "large_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "large_part_released"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "large_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "label and place small part",
+          "object": "small part",
+          "pre_state": [
+            "small_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "small_part_released"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "small_part",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "close inspection lot",
+          "object": "inspection lot",
+          "pre_state": [
+            "large_part_released",
+            "small_part_released"
+          ],
+          "post_state": [
+            "both_parts_released"
+          ],
+          "duration": 1.0,
+          "resource": [],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_positioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_turned"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "camera_configured"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_top_imaged"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_back_imaged"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_imaged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "image_review_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_label_printed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_label_printed"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "large_part_released"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "small_part_released"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "camera"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pass_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "large_top_imaged"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "I03",
+    "domain": "inspection",
+    "title": "两工件视觉外观检验",
+    "nodes": 13,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 16,
+    "raw_E_sync": 1,
+    "raw_E_mutex": 4,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 5,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 23.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 20.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 20.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 20.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 5,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 2,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 2,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.15,
+    "relative_duration_reduction_vs_serial": 0.13043478260869568,
+    "executor_utilization": 0.65,
+    "left_busy_time": 13.0,
+    "right_busy_time": 13.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 17.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

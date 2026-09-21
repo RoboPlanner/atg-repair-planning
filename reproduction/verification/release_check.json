@@ -1,0 +1,7 @@
+{
+  "implementation_tests": 55,
+  "evidence_tests": 6,
+  "packaged_command_validated": true,
+  "all_reproduced_outputs_identical": true,
+  "numeric_denominator_overflow_also_rejected": true
+}

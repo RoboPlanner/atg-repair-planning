@@ -1,0 +1,6 @@
+Method,Critical Path,Critical Path Std,Waiting Time,Waiting Time Std,Executor Utilization,Executor Utilization Std,Estimated Makespan,Estimated Makespan Std,Speedup,Speedup Std
+Text-Order Heuristic,13.9736,2.5078,7.1407,1.6853,0.6358,0.0219,13.9736,2.5078,1.0,0.0
+Direct Candidate Graph,9.6928,2.6314,2.5614,2.1624,0.7873,0.0744,11.3809,2.313,1.2383,0.1095
+Schema-Constrained Candidate,12.2533,2.635,4.9794,2.2697,0.7029,0.0506,12.7029,2.4336,1.1066,0.0858
+Sequential Planning,13.9736,2.5078,7.1407,1.6853,0.6358,0.0219,13.9736,2.5078,1.0,0.0
+Verified ATG (Ours),10.6671,2.7561,2.2567,2.0492,0.7956,0.0751,11.3416,2.6257,1.2535,0.1347

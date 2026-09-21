@@ -1,0 +1,30 @@
+{
+  "comparison": "Full serialized result, including graph, audit, edit log, schedule and rejection reasons; excludes historical runtime measurements",
+  "groups": [
+    {
+      "group": "information",
+      "evaluations": 576,
+      "accepted": 337,
+      "mismatches": []
+    },
+    {
+      "group": "deletion",
+      "evaluations": 216,
+      "accepted": 216,
+      "mismatches": []
+    },
+    {
+      "group": "duration",
+      "evaluations": 168,
+      "accepted": 168,
+      "mismatches": []
+    },
+    {
+      "group": "shape",
+      "evaluations": 24,
+      "accepted": 24,
+      "mismatches": []
+    }
+  ],
+  "all_unchanged": true
+}

@@ -1,0 +1,1048 @@
+{
+  "records": 24,
+  "protocol_valid": 24,
+  "parsed": 24,
+  "counts": {
+    "before_joint_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "before_strict_accepted": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "after_joint_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "full_accepted": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "no_compression_accepted": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "full_replay_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "no_compression_replay_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "full_export_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "no_compression_export_valid": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    },
+    "compression_graph_same": {
+      "passed": 24,
+      "evaluated": 24,
+      "total": 24
+    }
+  },
+  "statistics": {
+    "nodes": {
+      "n": 24,
+      "mean": 10.583333333333334,
+      "sample_sd": 2.430184581765195,
+      "median": 10.5,
+      "min": 7,
+      "max": 16,
+      "sum": 254
+    },
+    "cooperative_nodes": {
+      "n": 24,
+      "mean": 1,
+      "sample_sd": 0.7801894976054939,
+      "median": 1.0,
+      "min": 0,
+      "max": 2,
+      "sum": 24
+    },
+    "serial_duration": {
+      "n": 24,
+      "mean": 21.125,
+      "sample_sd": 5.527107113443547,
+      "median": 21.5,
+      "min": 13.0,
+      "max": 35.0,
+      "sum": 507.0
+    },
+    "full_makespan": {
+      "n": 24,
+      "mean": 17.25,
+      "sample_sd": 4.997825614161144,
+      "median": 17.5,
+      "min": 9.0,
+      "max": 30.0,
+      "sum": 414.0
+    },
+    "speedup_vs_same_nodes_serial": {
+      "n": 24,
+      "mean": 1.2411109833180436,
+      "sample_sd": 0.14020248962084478,
+      "median": 1.173913043478261,
+      "min": 1.0555555555555556,
+      "max": 1.5454545454545454,
+      "sum": 29.786663599633044
+    },
+    "relative_duration_reduction_vs_serial": {
+      "n": 24,
+      "mean": 0.1848612429435611,
+      "sample_sd": 0.08731984088111881,
+      "median": 0.14814814814814814,
+      "min": 0.052631578947368474,
+      "max": 0.3529411764705882,
+      "sum": 4.436669830645466
+    },
+    "executor_utilization": {
+      "n": 24,
+      "mean": 0.7062640580973508,
+      "sample_sd": 0.06988727254147525,
+      "median": 0.7083333333333334,
+      "min": 0.5416666666666666,
+      "max": 0.8157894736842105,
+      "sum": 16.95033739433642
+    },
+    "before_parallel_pairs": {
+      "n": 24,
+      "mean": 9.375,
+      "sample_sd": 6.939568336406247,
+      "median": 7.0,
+      "min": 1,
+      "max": 33,
+      "sum": 225
+    },
+    "after_parallel_pairs": {
+      "n": 24,
+      "mean": 9.375,
+      "sample_sd": 6.939568336406247,
+      "median": 7.0,
+      "min": 1,
+      "max": 33,
+      "sum": 225
+    },
+    "scheduled_overlap_pairs": {
+      "n": 24,
+      "mean": 2.7916666666666665,
+      "sample_sd": 1.350657381543832,
+      "median": 3.0,
+      "min": 1,
+      "max": 5,
+      "sum": 67
+    },
+    "accepted_events": {
+      "n": 24,
+      "mean": 3.4166666666666665,
+      "sample_sd": 3.0348220586281878,
+      "median": 4.0,
+      "min": 0,
+      "max": 10,
+      "sum": 82
+    },
+    "rejected_events": {
+      "n": 24,
+      "mean": 0,
+      "sample_sd": 0.0,
+      "median": 0.0,
+      "min": 0,
+      "max": 0,
+      "sum": 0
+    },
+    "makespan_reduction_vs_raw_strict": {
+      "n": 24,
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "sum": 0.0
+    },
+    "compression_makespan_reduction": {
+      "n": 24,
+      "mean": 0.0,
+      "sample_sd": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "sum": 0.0
+    }
+  },
+  "gates": {
+    "schema_valid": {
+      "before": 24,
+      "after": 24
+    },
+    "closed": {
+      "before": 24,
+      "after": 24
+    },
+    "goal_reachable": {
+      "before": 24,
+      "after": 24
+    },
+    "acyclic": {
+      "before": 24,
+      "after": 24
+    },
+    "synchronization_complete": {
+      "before": 24,
+      "after": 24
+    },
+    "resource_ordered": {
+      "before": 24,
+      "after": 24
+    }
+  },
+  "domains": {
+    "assembly": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 9.5,
+        "sample_sd": 2.516611478423583,
+        "median": 9.0,
+        "min": 7,
+        "max": 13,
+        "sum": 38
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 1,
+        "sample_sd": 0.816496580927726,
+        "median": 1.0,
+        "min": 0,
+        "max": 2,
+        "sum": 4
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 21.5,
+        "sample_sd": 5.744562646538029,
+        "median": 22.0,
+        "min": 14.0,
+        "max": 28.0,
+        "sum": 86.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 17.25,
+        "sample_sd": 3.5,
+        "median": 19.0,
+        "min": 12.0,
+        "max": 19.0,
+        "sum": 69.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.2390350877192984,
+        "sample_sd": 0.15648739276237952,
+        "median": 1.1622807017543861,
+        "min": 1.1578947368421053,
+        "max": 1.4736842105263157,
+        "sum": 4.9561403508771935
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.18425324675324675,
+        "sample_sd": 0.09150143292884383,
+        "median": 0.13961038961038963,
+        "min": 0.13636363636363635,
+        "max": 0.3214285714285714,
+        "sum": 0.737012987012987
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.7099780701754386,
+        "sample_sd": 0.09847077308389018,
+        "median": 0.7225877192982456,
+        "min": 0.5789473684210527,
+        "max": 0.8157894736842105,
+        "sum": 2.8399122807017543
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 7.25,
+        "sample_sd": 8.098353742170895,
+        "median": 4.5,
+        "min": 1,
+        "max": 19,
+        "sum": 29
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 7.25,
+        "sample_sd": 8.098353742170895,
+        "median": 4.5,
+        "min": 1,
+        "max": 19,
+        "sum": 29
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 2.5,
+        "sample_sd": 1.7320508075688772,
+        "median": 2.0,
+        "min": 1,
+        "max": 5,
+        "sum": 10
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 3.5,
+        "sample_sd": 2.516611478423583,
+        "median": 4.0,
+        "min": 0,
+        "max": 6,
+        "sum": 14
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    },
+    "inspection": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 10.25,
+        "sample_sd": 2.0615528128088303,
+        "median": 10.0,
+        "min": 8,
+        "max": 13,
+        "sum": 41
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 1.25,
+        "sample_sd": 0.9574271077563381,
+        "median": 1.5,
+        "min": 0,
+        "max": 2,
+        "sum": 5
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 20.0,
+        "sample_sd": 5.291502622129181,
+        "median": 21.0,
+        "min": 13.0,
+        "max": 25.0,
+        "sum": 80.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 18.0,
+        "sample_sd": 4.320493798938574,
+        "median": 19.0,
+        "min": 12.0,
+        "max": 22.0,
+        "sum": 72.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.1063131313131314,
+        "sample_sd": 0.04440712390834195,
+        "median": 1.1098484848484849,
+        "min": 1.0555555555555556,
+        "max": 1.15,
+        "sum": 4.425252525252525
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.09499735961978525,
+        "sample_sd": 0.036526164325777745,
+        "median": 0.09846153846153843,
+        "min": 0.052631578947368474,
+        "max": 0.13043478260869568,
+        "sum": 0.379989438479141
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.6476641414141414,
+        "sample_sd": 0.07453142832238438,
+        "median": 0.6722222222222223,
+        "min": 0.5416666666666666,
+        "max": 0.7045454545454546,
+        "sum": 2.5906565656565657
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 5.5,
+        "sample_sd": 0.5773502691896257,
+        "median": 5.5,
+        "min": 5,
+        "max": 6,
+        "sum": 22
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 5.5,
+        "sample_sd": 0.5773502691896257,
+        "median": 5.5,
+        "min": 5,
+        "max": 6,
+        "sum": 22
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 1.75,
+        "sample_sd": 0.9574271077563381,
+        "median": 1.5,
+        "min": 1,
+        "max": 3,
+        "sum": 7
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 3,
+        "sample_sd": 2.581988897471611,
+        "median": 3.0,
+        "min": 0,
+        "max": 6,
+        "sum": 12
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    },
+    "packaging": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 10.75,
+        "sample_sd": 2.0615528128088303,
+        "median": 11.0,
+        "min": 8,
+        "max": 13,
+        "sum": 43
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 1.25,
+        "sample_sd": 0.5,
+        "median": 1.0,
+        "min": 1,
+        "max": 2,
+        "sum": 5
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 19.25,
+        "sample_sd": 3.5,
+        "median": 19.5,
+        "min": 15.0,
+        "max": 23.0,
+        "sum": 77.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 14.75,
+        "sample_sd": 2.5,
+        "median": 14.5,
+        "min": 12.0,
+        "max": 18.0,
+        "sum": 59.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.303373015873016,
+        "sample_sd": 0.06621278791096778,
+        "median": 1.2817460317460316,
+        "min": 1.25,
+        "max": 1.4,
+        "sum": 5.213492063492064
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.23133195307108348,
+        "sample_sd": 0.03748981314938958,
+        "median": 0.21980676328502413,
+        "min": 0.19999999999999996,
+        "max": 0.2857142857142857,
+        "sum": 0.9253278122843339
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.7763888888888889,
+        "sample_sd": 0.030555555555555575,
+        "median": 0.775,
+        "min": 0.75,
+        "max": 0.8055555555555556,
+        "sum": 3.1055555555555556
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 8.5,
+        "sample_sd": 3.872983346207417,
+        "median": 9.5,
+        "min": 3,
+        "max": 12,
+        "sum": 34
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 8.5,
+        "sample_sd": 3.872983346207417,
+        "median": 9.5,
+        "min": 3,
+        "max": 12,
+        "sum": 34
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 3.75,
+        "sample_sd": 0.9574271077563381,
+        "median": 3.5,
+        "min": 3,
+        "max": 5,
+        "sum": 15
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 4.5,
+        "sample_sd": 1.9148542155126762,
+        "median": 5.0,
+        "min": 2,
+        "max": 6,
+        "sum": 18
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    },
+    "sorting": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 10.75,
+        "sample_sd": 3.8622100754188224,
+        "median": 10.0,
+        "min": 7,
+        "max": 16,
+        "sum": 43
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 0.25,
+        "sample_sd": 0.5,
+        "median": 0.0,
+        "min": 0,
+        "max": 1,
+        "sum": 1
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 17.75,
+        "sample_sd": 4.425306015783918,
+        "median": 18.0,
+        "min": 13.0,
+        "max": 22.0,
+        "sum": 71.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 13.25,
+        "sample_sd": 3.8622100754188224,
+        "median": 13.5,
+        "min": 9.0,
+        "max": 17.0,
+        "sum": 53.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.3545937314319667,
+        "sample_sd": 0.08718511622238721,
+        "median": 1.3693181818181817,
+        "min": 1.2352941176470589,
+        "max": 1.4444444444444444,
+        "sum": 5.418374925727867
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.25939060939060943,
+        "sample_sd": 0.04937293047673078,
+        "median": 0.2696969696969697,
+        "min": 0.19047619047619047,
+        "max": 0.3076923076923077,
+        "sum": 1.0375624375624377
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.7007343657159834,
+        "sample_sd": 0.06881331731887973,
+        "median": 0.702020202020202,
+        "min": 0.6176470588235294,
+        "max": 0.78125,
+        "sum": 2.8029374628639334
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 15.25,
+        "sample_sd": 12.5,
+        "median": 11.0,
+        "min": 6,
+        "max": 33,
+        "sum": 61
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 15.25,
+        "sample_sd": 12.5,
+        "median": 11.0,
+        "min": 6,
+        "max": 33,
+        "sum": 61
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 3.25,
+        "sample_sd": 1.2583057392117916,
+        "median": 3.0,
+        "min": 2,
+        "max": 5,
+        "sum": 13
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 0.5,
+        "sample_sd": 1.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 2,
+        "sum": 2
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    },
+    "warehouse": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 11,
+        "sample_sd": 2.943920288775949,
+        "median": 11.0,
+        "min": 8,
+        "max": 14,
+        "sum": 44
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 1,
+        "sample_sd": 0.816496580927726,
+        "median": 1.0,
+        "min": 0,
+        "max": 2,
+        "sum": 4
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 20.0,
+        "sample_sd": 5.291502622129181,
+        "median": 19.0,
+        "min": 15.0,
+        "max": 27.0,
+        "sum": 80.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 16.75,
+        "sample_sd": 5.315072906367325,
+        "median": 16.5,
+        "min": 11.0,
+        "max": 23.0,
+        "sum": 67.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.2240148295640287,
+        "sample_sd": 0.21849348244802164,
+        "median": 1.139588100686499,
+        "min": 1.0714285714285714,
+        "max": 1.5454545454545454,
+        "sum": 4.896059318256115
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.16574852163087456,
+        "sample_sd": 0.1292797965472712,
+        "median": 0.12169312169312169,
+        "min": 0.06666666666666665,
+        "max": 0.3529411764705882,
+        "sum": 0.6629940865234982
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.7070548158934886,
+        "sample_sd": 0.06570678359947175,
+        "median": 0.7119565217391304,
+        "min": 0.631578947368421,
+        "max": 0.7727272727272727,
+        "sum": 2.8282192635739545
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 9.75,
+        "sample_sd": 5.795112883571236,
+        "median": 10.5,
+        "min": 2,
+        "max": 16,
+        "sum": 39
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 9.75,
+        "sample_sd": 5.795112883571236,
+        "median": 10.5,
+        "min": 2,
+        "max": 16,
+        "sum": 39
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 2.25,
+        "sample_sd": 1.5,
+        "median": 2.0,
+        "min": 1,
+        "max": 4,
+        "sum": 9
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 4,
+        "sample_sd": 4.320493798938574,
+        "median": 3.0,
+        "min": 0,
+        "max": 10,
+        "sum": 16
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    },
+    "workcell_preparation": {
+      "records": 4,
+      "before_accepted": 4,
+      "full_accepted": 4,
+      "nodes": {
+        "n": 4,
+        "mean": 11.25,
+        "sample_sd": 2.0615528128088303,
+        "median": 11.0,
+        "min": 9,
+        "max": 14,
+        "sum": 45
+      },
+      "cooperative_nodes": {
+        "n": 4,
+        "mean": 1.25,
+        "sample_sd": 0.9574271077563381,
+        "median": 1.5,
+        "min": 0,
+        "max": 2,
+        "sum": 5
+      },
+      "serial_duration": {
+        "n": 4,
+        "mean": 28.25,
+        "sample_sd": 4.716990566028302,
+        "median": 27.0,
+        "min": 24.0,
+        "max": 35.0,
+        "sum": 113.0
+      },
+      "full_makespan": {
+        "n": 4,
+        "mean": 23.5,
+        "sample_sd": 5.322906474223771,
+        "median": 23.5,
+        "min": 17.0,
+        "max": 30.0,
+        "sum": 94.0
+      },
+      "speedup_vs_same_nodes_serial": {
+        "n": 4,
+        "mean": 1.2193361040068202,
+        "sample_sd": 0.1300838081090641,
+        "median": 1.1702898550724639,
+        "min": 1.125,
+        "max": 1.411764705882353,
+        "sum": 4.877344416027281
+      },
+      "relative_duration_reduction_vs_serial": {
+        "n": 4,
+        "mean": 0.1734457671957672,
+        "sample_sd": 0.08049311334788999,
+        "median": 0.14550264550264552,
+        "min": 0.11111111111111116,
+        "max": 0.29166666666666663,
+        "sum": 0.6937830687830688
+      },
+      "executor_utilization": {
+        "n": 4,
+        "mean": 0.6957640664961637,
+        "sample_sd": 0.029424402352038113,
+        "median": 0.7071078431372549,
+        "min": 0.6521739130434783,
+        "max": 0.7166666666666667,
+        "sum": 2.783056265984655
+      },
+      "before_parallel_pairs": {
+        "n": 4,
+        "mean": 10,
+        "sample_sd": 4.96655480858378,
+        "median": 9.5,
+        "min": 5,
+        "max": 16,
+        "sum": 40
+      },
+      "after_parallel_pairs": {
+        "n": 4,
+        "mean": 10,
+        "sample_sd": 4.96655480858378,
+        "median": 9.5,
+        "min": 5,
+        "max": 16,
+        "sum": 40
+      },
+      "scheduled_overlap_pairs": {
+        "n": 4,
+        "mean": 3.25,
+        "sample_sd": 1.2583057392117916,
+        "median": 3.0,
+        "min": 2,
+        "max": 5,
+        "sum": 13
+      },
+      "accepted_events": {
+        "n": 4,
+        "mean": 5,
+        "sample_sd": 4.163331998932265,
+        "median": 5.0,
+        "min": 0,
+        "max": 10,
+        "sum": 20
+      },
+      "rejected_events": {
+        "n": 4,
+        "mean": 0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0,
+        "max": 0,
+        "sum": 0
+      },
+      "makespan_reduction_vs_raw_strict": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      },
+      "compression_makespan_reduction": {
+        "n": 4,
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "sum": 0.0
+      }
+    }
+  },
+  "event_counts": {
+    "state_closure": {
+      "accepted": 0,
+      "rejected": 0
+    },
+    "synchronization": {
+      "accepted": 82,
+      "rejected": 0
+    },
+    "resource_mutex": {
+      "accepted": 0,
+      "rejected": 0
+    },
+    "compression": {
+      "accepted": 0,
+      "rejected": 0
+    }
+  },
+  "input_edge_counts": {
+    "E_state": 266,
+    "E_sync": 41,
+    "E_mutex": 54,
+    "E_order": 0
+  },
+  "evaluation_errors": [],
+  "pooled_serial_to_schedule_ratio": 1.2246376811594204,
+  "pooled_executor_utilization": 0.7041062801932367,
+  "frozen_files_verified_after_evaluation": {
+    "task_specs.json": true,
+    "common_prompt.txt": true,
+    "generation_protocol.md": true,
+    "frozen_evaluator/cli.py": true,
+    "frozen_evaluator/experiments.py": true,
+    "frozen_evaluator/extended_experiments.py": true,
+    "frozen_evaluator/generation.py": true,
+    "frozen_evaluator/metrics.py": true,
+    "frozen_evaluator/optimization.py": true,
+    "frozen_evaluator/pipeline.py": true,
+    "frozen_evaluator/planning.py": true,
+    "frozen_evaluator/schema.py": true,
+    "frozen_evaluator/verification.py": true,
+    "frozen_evaluator/__init__.py": true,
+    "raw_candidates_assembly.json": true,
+    "raw_candidates_inspection.json": true,
+    "raw_candidates_packaging.json": true,
+    "raw_candidates_sorting.json": true,
+    "raw_candidates_warehouse.json": true,
+    "raw_candidates_workcell.json": true
+  }
+}

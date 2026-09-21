@@ -1,0 +1,5492 @@
+{
+  "task_id": "P04",
+  "spec": {
+    "task_id": "P04",
+    "domain": "packaging",
+    "title": "双容器保温运输箱",
+    "instruction": "准备运输外箱、两个保温内衬和两件已密封样品。分别装好内衬及样品，放入吸附垫；双单元先装第一容器再装第二容器，加入记录卡，封箱称重并标识。样品已密封，本任务不处理样品内容。",
+    "S0": [
+      "shipper_ready",
+      "liner_a_available",
+      "liner_b_available",
+      "sealed_sample_a",
+      "sealed_sample_b",
+      "pads_available",
+      "record_data_ready"
+    ],
+    "Sg": [
+      "insulated_shipper_ready"
+    ],
+    "resources": [
+      "shipper",
+      "liner_a",
+      "liner_b",
+      "sample_a",
+      "sample_b",
+      "pads",
+      "printer",
+      "scale",
+      "sealer"
+    ]
+  },
+  "raw_source": "raw_candidates_packaging.json",
+  "raw_candidate": {
+    "task_id": "P04",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare liner A",
+        "object": "liner A",
+        "Pre": [
+          "liner_a_available"
+        ],
+        "Post": [
+          "liner_a_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "liner_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare liner B",
+        "object": "liner B",
+        "Pre": [
+          "liner_b_available"
+        ],
+        "Post": [
+          "liner_b_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "liner_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "place sealed sample A in liner",
+        "object": "sample A",
+        "Pre": [
+          "liner_a_prepared",
+          "sealed_sample_a"
+        ],
+        "Post": [
+          "sample_a_in_liner"
+        ],
+        "d": 2,
+        "Res": [
+          "sample_a",
+          "liner_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place sealed sample B in liner",
+        "object": "sample B",
+        "Pre": [
+          "liner_b_prepared",
+          "sealed_sample_b"
+        ],
+        "Post": [
+          "sample_b_in_liner"
+        ],
+        "d": 2,
+        "Res": [
+          "sample_b",
+          "liner_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "pad container A",
+        "object": "liner A",
+        "Pre": [
+          "sample_a_in_liner",
+          "pads_available"
+        ],
+        "Post": [
+          "container_a_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "liner_a",
+          "pads"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "pad container B",
+        "object": "liner B",
+        "Pre": [
+          "sample_b_in_liner",
+          "pads_available"
+        ],
+        "Post": [
+          "container_b_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "liner_b",
+          "pads"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "print record card",
+        "object": "record card",
+        "Pre": [
+          "record_data_ready"
+        ],
+        "Post": [
+          "record_card_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "load first container",
+        "object": "container A",
+        "Pre": [
+          "container_a_complete",
+          "shipper_ready"
+        ],
+        "Post": [
+          "container_a_loaded"
+        ],
+        "d": 3,
+        "Res": [
+          "shipper",
+          "liner_a"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t9",
+        "action": "load second container",
+        "object": "container B",
+        "Pre": [
+          "container_a_loaded",
+          "container_b_complete"
+        ],
+        "Post": [
+          "both_containers_loaded"
+        ],
+        "d": 3,
+        "Res": [
+          "shipper",
+          "liner_b"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t10",
+        "action": "insert record card",
+        "object": "shipper",
+        "Pre": [
+          "both_containers_loaded",
+          "record_card_ready"
+        ],
+        "Post": [
+          "shipper_record_inserted"
+        ],
+        "d": 1,
+        "Res": [
+          "shipper"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "seal insulated shipper",
+        "object": "shipper",
+        "Pre": [
+          "shipper_record_inserted"
+        ],
+        "Post": [
+          "shipper_sealed"
+        ],
+        "d": 2,
+        "Res": [
+          "shipper",
+          "sealer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "weigh insulated shipper",
+        "object": "shipper",
+        "Pre": [
+          "shipper_sealed"
+        ],
+        "Post": [
+          "shipper_weighed"
+        ],
+        "d": 2,
+        "Res": [
+          "shipper",
+          "scale"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "label insulated shipper",
+        "object": "shipper",
+        "Pre": [
+          "shipper_weighed"
+        ],
+        "Post": [
+          "insulated_shipper_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "shipper",
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t3",
+          "liner_a_prepared"
+        ],
+        [
+          "t2",
+          "t4",
+          "liner_b_prepared"
+        ],
+        [
+          "t3",
+          "t5",
+          "sample_a_in_liner"
+        ],
+        [
+          "t4",
+          "t6",
+          "sample_b_in_liner"
+        ],
+        [
+          "t5",
+          "t8",
+          "container_a_complete"
+        ],
+        [
+          "t8",
+          "t9",
+          "container_a_loaded"
+        ],
+        [
+          "t6",
+          "t9",
+          "container_b_complete"
+        ],
+        [
+          "t9",
+          "t10",
+          "both_containers_loaded"
+        ],
+        [
+          "t7",
+          "t10",
+          "record_card_ready"
+        ],
+        [
+          "t10",
+          "t11",
+          "shipper_record_inserted"
+        ],
+        [
+          "t11",
+          "t12",
+          "shipper_sealed"
+        ],
+        [
+          "t12",
+          "t13",
+          "shipper_weighed"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t5",
+          "t8",
+          "container_a_complete"
+        ],
+        [
+          "t8",
+          "t9",
+          "container_a_loaded"
+        ],
+        [
+          "t6",
+          "t9",
+          "container_b_complete"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t5",
+          "t6",
+          "pads"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare liner A",
+        "object": "liner A",
+        "pre_state": [
+          "liner_a_available"
+        ],
+        "post_state": [
+          "liner_a_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare liner B",
+        "object": "liner B",
+        "pre_state": [
+          "liner_b_available"
+        ],
+        "post_state": [
+          "liner_b_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "place sealed sample A in liner",
+        "object": "sample A",
+        "pre_state": [
+          "liner_a_prepared",
+          "sealed_sample_a"
+        ],
+        "post_state": [
+          "sample_a_in_liner"
+        ],
+        "duration": 2,
+        "resource": [
+          "sample_a",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place sealed sample B in liner",
+        "object": "sample B",
+        "pre_state": [
+          "liner_b_prepared",
+          "sealed_sample_b"
+        ],
+        "post_state": [
+          "sample_b_in_liner"
+        ],
+        "duration": 2,
+        "resource": [
+          "sample_b",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "pad container A",
+        "object": "liner A",
+        "pre_state": [
+          "sample_a_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_a_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "liner_a",
+          "pads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "pad container B",
+        "object": "liner B",
+        "pre_state": [
+          "sample_b_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_b_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "liner_b",
+          "pads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "print record card",
+        "object": "record card",
+        "pre_state": [
+          "record_data_ready"
+        ],
+        "post_state": [
+          "record_card_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "load first container",
+        "object": "container A",
+        "pre_state": [
+          "container_a_complete",
+          "shipper_ready"
+        ],
+        "post_state": [
+          "container_a_loaded"
+        ],
+        "duration": 3,
+        "resource": [
+          "shipper",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t9",
+        "action": "load second container",
+        "object": "container B",
+        "pre_state": [
+          "container_a_loaded",
+          "container_b_complete"
+        ],
+        "post_state": [
+          "both_containers_loaded"
+        ],
+        "duration": 3,
+        "resource": [
+          "shipper",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t10",
+        "action": "insert record card",
+        "object": "shipper",
+        "pre_state": [
+          "both_containers_loaded",
+          "record_card_ready"
+        ],
+        "post_state": [
+          "shipper_record_inserted"
+        ],
+        "duration": 1,
+        "resource": [
+          "shipper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "seal insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_record_inserted"
+        ],
+        "post_state": [
+          "shipper_sealed"
+        ],
+        "duration": 2,
+        "resource": [
+          "shipper",
+          "sealer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "weigh insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_sealed"
+        ],
+        "post_state": [
+          "shipper_weighed"
+        ],
+        "duration": 2,
+        "resource": [
+          "shipper",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "label insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_weighed"
+        ],
+        "post_state": [
+          "insulated_shipper_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "shipper",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "state": "liner_a_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "liner_b_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "sample_a_in_liner"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "sample_b_in_liner"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "state": "container_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "both_containers_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "state": "record_card_ready"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "shipper_record_inserted"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "state": "shipper_sealed"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "state": "shipper_weighed"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "synchronization",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "synchronization",
+        "state": "container_b_complete"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "resource": "pads"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "liner_a_available",
+        "liner_b_available",
+        "pads_available",
+        "record_data_ready",
+        "sealed_sample_a",
+        "sealed_sample_b",
+        "shipper_ready"
+      ],
+      "available_states": [
+        "both_containers_loaded",
+        "container_a_complete",
+        "container_a_loaded",
+        "container_b_complete",
+        "insulated_shipper_ready",
+        "liner_a_available",
+        "liner_a_prepared",
+        "liner_b_available",
+        "liner_b_prepared",
+        "pads_available",
+        "record_card_ready",
+        "record_data_ready",
+        "sample_a_in_liner",
+        "sample_b_in_liner",
+        "sealed_sample_a",
+        "sealed_sample_b",
+        "shipper_ready",
+        "shipper_record_inserted",
+        "shipper_sealed",
+        "shipper_weighed"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "insulated_shipper_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 18.0,
+    "waiting_time": 4.0,
+    "executor_utilization": 0.8056,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "prepare liner A",
+        "object": "liner A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "liner_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare liner B",
+        "object": "liner B",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "liner_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "place sealed sample A in liner",
+        "object": "sample A",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "sample_a",
+          "liner_a"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "place sealed sample B in liner",
+        "object": "sample B",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "sample_b",
+          "liner_b"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "pad container A",
+        "object": "liner A",
+        "start": 4.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "liner_a",
+          "pads"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "pad container B",
+        "object": "liner B",
+        "start": 5.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "liner_b",
+          "pads"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "print record card",
+        "object": "record card",
+        "start": 5.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "load first container",
+        "object": "container A",
+        "start": 6.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "shipper",
+          "liner_a"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "load second container",
+        "object": "container B",
+        "start": 9.0,
+        "finish": 12.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "shipper",
+          "liner_b"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "insert record card",
+        "object": "shipper",
+        "start": 12.0,
+        "finish": 13.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "shipper"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "seal insulated shipper",
+        "object": "shipper",
+        "start": 13.0,
+        "finish": 15.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "shipper",
+          "sealer"
+        ]
+      },
+      {
+        "node_id": "t12",
+        "action": "weigh insulated shipper",
+        "object": "shipper",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "shipper",
+          "scale"
+        ]
+      },
+      {
+        "node_id": "t13",
+        "action": "label insulated shipper",
+        "object": "shipper",
+        "start": 17.0,
+        "finish": 18.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "shipper",
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        2.0
+      ],
+      [
+        "t6",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.8055555555555556
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_b_complete"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "liner_a_available",
+          "liner_b_available",
+          "pads_available",
+          "record_data_ready",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready"
+        ],
+        "available_states": [
+          "both_containers_loaded",
+          "container_a_complete",
+          "container_a_loaded",
+          "container_b_complete",
+          "insulated_shipper_ready",
+          "liner_a_available",
+          "liner_a_prepared",
+          "liner_b_available",
+          "liner_b_prepared",
+          "pads_available",
+          "record_card_ready",
+          "record_data_ready",
+          "sample_a_in_liner",
+          "sample_b_in_liner",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready",
+          "shipper_record_inserted",
+          "shipper_sealed",
+          "shipper_weighed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "insulated_shipper_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "liner_a_available",
+          "liner_b_available",
+          "pads_available",
+          "record_data_ready",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready"
+        ],
+        "available_states": [
+          "both_containers_loaded",
+          "container_a_complete",
+          "container_a_loaded",
+          "container_b_complete",
+          "insulated_shipper_ready",
+          "liner_a_available",
+          "liner_a_prepared",
+          "liner_b_available",
+          "liner_b_prepared",
+          "pads_available",
+          "record_card_ready",
+          "record_data_ready",
+          "sample_a_in_liner",
+          "sample_b_in_liner",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready",
+          "shipper_record_inserted",
+          "shipper_sealed",
+          "shipper_weighed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "insulated_shipper_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "liner_a_available",
+            "liner_b_available",
+            "pads_available",
+            "record_data_ready",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready"
+          ],
+          "available_states": [
+            "both_containers_loaded",
+            "container_a_complete",
+            "container_a_loaded",
+            "container_b_complete",
+            "insulated_shipper_ready",
+            "liner_a_available",
+            "liner_a_prepared",
+            "liner_b_available",
+            "liner_b_prepared",
+            "pads_available",
+            "record_card_ready",
+            "record_data_ready",
+            "sample_a_in_liner",
+            "sample_b_in_liner",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready",
+            "shipper_record_inserted",
+            "shipper_sealed",
+            "shipper_weighed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "insulated_shipper_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "liner_a_available",
+            "liner_b_available",
+            "pads_available",
+            "record_data_ready",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready"
+          ],
+          "available_states": [
+            "both_containers_loaded",
+            "container_a_complete",
+            "container_a_loaded",
+            "container_b_complete",
+            "insulated_shipper_ready",
+            "liner_a_available",
+            "liner_a_prepared",
+            "liner_b_available",
+            "liner_b_prepared",
+            "pads_available",
+            "record_card_ready",
+            "record_data_ready",
+            "sample_a_in_liner",
+            "sample_b_in_liner",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready",
+            "shipper_record_inserted",
+            "shipper_sealed",
+            "shipper_weighed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "insulated_shipper_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t8",
+          "edge_type": "synchronization",
+          "state": "container_a_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_a_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_a_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t6",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_b_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_b_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t8",
+          "edge_type": "synchronization",
+          "state": "container_a_complete",
+          "resource": null,
+          "reason": "cooperative input state container_a_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_a_loaded",
+          "resource": null,
+          "reason": "cooperative input state container_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t6",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_b_complete",
+          "resource": null,
+          "reason": "cooperative input state container_b_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 18.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.8056,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sample_a",
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sample_b",
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "start": 4.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "liner_a",
+            "pads"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "liner_b",
+            "pads"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "start": 9.0,
+          "finish": 12.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "sealer"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper",
+            "scale"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "start": 17.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "container_b_complete"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "liner_a_available",
+          "liner_b_available",
+          "pads_available",
+          "record_data_ready",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready"
+        ],
+        "available_states": [
+          "both_containers_loaded",
+          "container_a_complete",
+          "container_a_loaded",
+          "container_b_complete",
+          "insulated_shipper_ready",
+          "liner_a_available",
+          "liner_a_prepared",
+          "liner_b_available",
+          "liner_b_prepared",
+          "pads_available",
+          "record_card_ready",
+          "record_data_ready",
+          "sample_a_in_liner",
+          "sample_b_in_liner",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready",
+          "shipper_record_inserted",
+          "shipper_sealed",
+          "shipper_weighed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "insulated_shipper_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "liner_a_available",
+          "liner_b_available",
+          "pads_available",
+          "record_data_ready",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready"
+        ],
+        "available_states": [
+          "both_containers_loaded",
+          "container_a_complete",
+          "container_a_loaded",
+          "container_b_complete",
+          "insulated_shipper_ready",
+          "liner_a_available",
+          "liner_a_prepared",
+          "liner_b_available",
+          "liner_b_prepared",
+          "pads_available",
+          "record_card_ready",
+          "record_data_ready",
+          "sample_a_in_liner",
+          "sample_b_in_liner",
+          "sealed_sample_a",
+          "sealed_sample_b",
+          "shipper_ready",
+          "shipper_record_inserted",
+          "shipper_sealed",
+          "shipper_weighed"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "insulated_shipper_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "liner_a_available",
+            "liner_b_available",
+            "pads_available",
+            "record_data_ready",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready"
+          ],
+          "available_states": [
+            "both_containers_loaded",
+            "container_a_complete",
+            "container_a_loaded",
+            "container_b_complete",
+            "insulated_shipper_ready",
+            "liner_a_available",
+            "liner_a_prepared",
+            "liner_b_available",
+            "liner_b_prepared",
+            "pads_available",
+            "record_card_ready",
+            "record_data_ready",
+            "sample_a_in_liner",
+            "sample_b_in_liner",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready",
+            "shipper_record_inserted",
+            "shipper_sealed",
+            "shipper_weighed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "insulated_shipper_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "liner_a_available",
+            "liner_b_available",
+            "pads_available",
+            "record_data_ready",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready"
+          ],
+          "available_states": [
+            "both_containers_loaded",
+            "container_a_complete",
+            "container_a_loaded",
+            "container_b_complete",
+            "insulated_shipper_ready",
+            "liner_a_available",
+            "liner_a_prepared",
+            "liner_b_available",
+            "liner_b_prepared",
+            "pads_available",
+            "record_card_ready",
+            "record_data_ready",
+            "sample_a_in_liner",
+            "sample_b_in_liner",
+            "sealed_sample_a",
+            "sealed_sample_b",
+            "shipper_ready",
+            "shipper_record_inserted",
+            "shipper_sealed",
+            "shipper_weighed"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "insulated_shipper_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t8",
+          "edge_type": "synchronization",
+          "state": "container_a_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_a_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_a_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t6",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_b_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for container_b_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t8",
+          "edge_type": "synchronization",
+          "state": "container_a_complete",
+          "resource": null,
+          "reason": "cooperative input state container_a_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_a_loaded",
+          "resource": null,
+          "reason": "cooperative input state container_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t6",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "container_b_complete",
+          "resource": null,
+          "reason": "cooperative input state container_b_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 18.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.8056,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "sample_a",
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "sample_b",
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "start": 4.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "liner_a",
+            "pads"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "liner_b",
+            "pads"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "liner_a"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "start": 9.0,
+          "finish": 12.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "liner_b"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "shipper",
+            "sealer"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper",
+            "scale"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "start": 17.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "shipper",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare liner A",
+        "object": "liner A",
+        "pre_state": [
+          "liner_a_available"
+        ],
+        "post_state": [
+          "liner_a_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare liner B",
+        "object": "liner B",
+        "pre_state": [
+          "liner_b_available"
+        ],
+        "post_state": [
+          "liner_b_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "place sealed sample A in liner",
+        "object": "sample A",
+        "pre_state": [
+          "liner_a_prepared",
+          "sealed_sample_a"
+        ],
+        "post_state": [
+          "sample_a_in_liner"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sample_a",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place sealed sample B in liner",
+        "object": "sample B",
+        "pre_state": [
+          "liner_b_prepared",
+          "sealed_sample_b"
+        ],
+        "post_state": [
+          "sample_b_in_liner"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sample_b",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "pad container A",
+        "object": "liner A",
+        "pre_state": [
+          "sample_a_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_a_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "liner_a",
+          "pads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "pad container B",
+        "object": "liner B",
+        "pre_state": [
+          "sample_b_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_b_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "liner_b",
+          "pads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "print record card",
+        "object": "record card",
+        "pre_state": [
+          "record_data_ready"
+        ],
+        "post_state": [
+          "record_card_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "load first container",
+        "object": "container A",
+        "pre_state": [
+          "container_a_complete",
+          "shipper_ready"
+        ],
+        "post_state": [
+          "container_a_loaded"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "shipper",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "load second container",
+        "object": "container B",
+        "pre_state": [
+          "container_a_loaded",
+          "container_b_complete"
+        ],
+        "post_state": [
+          "both_containers_loaded"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "shipper",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "insert record card",
+        "object": "shipper",
+        "pre_state": [
+          "both_containers_loaded",
+          "record_card_ready"
+        ],
+        "post_state": [
+          "shipper_record_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "shipper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "seal insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_record_inserted"
+        ],
+        "post_state": [
+          "shipper_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "shipper",
+          "sealer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "weigh insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_sealed"
+        ],
+        "post_state": [
+          "shipper_weighed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "shipper",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "label insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_weighed"
+        ],
+        "post_state": [
+          "insulated_shipper_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "shipper",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "liner_a_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "liner_b_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "sample_a_in_liner"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "sample_b_in_liner"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "both_containers_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "record_card_ready"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_record_inserted"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_sealed"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_weighed"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pads"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_b_complete"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        2.0
+      ],
+      [
+        "t6",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.8055555555555556
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "prepare liner A",
+        "object": "liner A",
+        "pre_state": [
+          "liner_a_available"
+        ],
+        "post_state": [
+          "liner_a_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare liner B",
+        "object": "liner B",
+        "pre_state": [
+          "liner_b_available"
+        ],
+        "post_state": [
+          "liner_b_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "place sealed sample A in liner",
+        "object": "sample A",
+        "pre_state": [
+          "liner_a_prepared",
+          "sealed_sample_a"
+        ],
+        "post_state": [
+          "sample_a_in_liner"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sample_a",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place sealed sample B in liner",
+        "object": "sample B",
+        "pre_state": [
+          "liner_b_prepared",
+          "sealed_sample_b"
+        ],
+        "post_state": [
+          "sample_b_in_liner"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "sample_b",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "pad container A",
+        "object": "liner A",
+        "pre_state": [
+          "sample_a_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_a_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "liner_a",
+          "pads"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "pad container B",
+        "object": "liner B",
+        "pre_state": [
+          "sample_b_in_liner",
+          "pads_available"
+        ],
+        "post_state": [
+          "container_b_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "liner_b",
+          "pads"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "print record card",
+        "object": "record card",
+        "pre_state": [
+          "record_data_ready"
+        ],
+        "post_state": [
+          "record_card_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "load first container",
+        "object": "container A",
+        "pre_state": [
+          "container_a_complete",
+          "shipper_ready"
+        ],
+        "post_state": [
+          "container_a_loaded"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "shipper",
+          "liner_a"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "load second container",
+        "object": "container B",
+        "pre_state": [
+          "container_a_loaded",
+          "container_b_complete"
+        ],
+        "post_state": [
+          "both_containers_loaded"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "shipper",
+          "liner_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "insert record card",
+        "object": "shipper",
+        "pre_state": [
+          "both_containers_loaded",
+          "record_card_ready"
+        ],
+        "post_state": [
+          "shipper_record_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "shipper"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "seal insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_record_inserted"
+        ],
+        "post_state": [
+          "shipper_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "shipper",
+          "sealer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "weigh insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_sealed"
+        ],
+        "post_state": [
+          "shipper_weighed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "shipper",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "label insulated shipper",
+        "object": "shipper",
+        "pre_state": [
+          "shipper_weighed"
+        ],
+        "post_state": [
+          "insulated_shipper_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "shipper",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "liner_a_prepared"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "liner_b_prepared"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "sample_a_in_liner"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "sample_b_in_liner"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "container_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "both_containers_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "record_card_ready"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_record_inserted"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_sealed"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "shipper_weighed"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pads"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_a_loaded"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "container_b_complete"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t3",
+        "t4",
+        2.0
+      ],
+      [
+        "t6",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.8055555555555556
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "liner_a_available",
+        "liner_b_available",
+        "pads_available",
+        "record_data_ready",
+        "sealed_sample_a",
+        "sealed_sample_b",
+        "shipper_ready"
+      ],
+      "available_states": [
+        "both_containers_loaded",
+        "container_a_complete",
+        "container_a_loaded",
+        "container_b_complete",
+        "insulated_shipper_ready",
+        "liner_a_available",
+        "liner_a_prepared",
+        "liner_b_available",
+        "liner_b_prepared",
+        "pads_available",
+        "record_card_ready",
+        "record_data_ready",
+        "sample_a_in_liner",
+        "sample_b_in_liner",
+        "sealed_sample_a",
+        "sealed_sample_b",
+        "shipper_ready",
+        "shipper_record_inserted",
+        "shipper_sealed",
+        "shipper_weighed"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "insulated_shipper_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_b_complete"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_b_complete"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "prepare liner A",
+          "object": "liner A",
+          "pre_state": [
+            "liner_a_available"
+          ],
+          "post_state": [
+            "liner_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare liner B",
+          "object": "liner B",
+          "pre_state": [
+            "liner_b_available"
+          ],
+          "post_state": [
+            "liner_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "place sealed sample A in liner",
+          "object": "sample A",
+          "pre_state": [
+            "liner_a_prepared",
+            "sealed_sample_a"
+          ],
+          "post_state": [
+            "sample_a_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_a",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place sealed sample B in liner",
+          "object": "sample B",
+          "pre_state": [
+            "liner_b_prepared",
+            "sealed_sample_b"
+          ],
+          "post_state": [
+            "sample_b_in_liner"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "sample_b",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "pad container A",
+          "object": "liner A",
+          "pre_state": [
+            "sample_a_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_a",
+            "pads"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "pad container B",
+          "object": "liner B",
+          "pre_state": [
+            "sample_b_in_liner",
+            "pads_available"
+          ],
+          "post_state": [
+            "container_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "liner_b",
+            "pads"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print record card",
+          "object": "record card",
+          "pre_state": [
+            "record_data_ready"
+          ],
+          "post_state": [
+            "record_card_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load first container",
+          "object": "container A",
+          "pre_state": [
+            "container_a_complete",
+            "shipper_ready"
+          ],
+          "post_state": [
+            "container_a_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_a"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load second container",
+          "object": "container B",
+          "pre_state": [
+            "container_a_loaded",
+            "container_b_complete"
+          ],
+          "post_state": [
+            "both_containers_loaded"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "shipper",
+            "liner_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "insert record card",
+          "object": "shipper",
+          "pre_state": [
+            "both_containers_loaded",
+            "record_card_ready"
+          ],
+          "post_state": [
+            "shipper_record_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "seal insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_record_inserted"
+          ],
+          "post_state": [
+            "shipper_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "sealer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "weigh insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_sealed"
+          ],
+          "post_state": [
+            "shipper_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "shipper",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "label insulated shipper",
+          "object": "shipper",
+          "pre_state": [
+            "shipper_weighed"
+          ],
+          "post_state": [
+            "insulated_shipper_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "shipper",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_a_prepared"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "liner_b_prepared"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_a_in_liner"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "sample_b_in_liner"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "container_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "both_containers_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "record_card_ready"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_record_inserted"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_sealed"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "shipper_weighed"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pads"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_a_loaded"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "container_b_complete"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "P04",
+    "domain": "packaging",
+    "title": "双容器保温运输箱",
+    "nodes": 13,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 12,
+    "raw_E_sync": 3,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 12,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 23.0,
+    "cooperative_duration": 6.0,
+    "before_makespan": 18.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 18.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 18.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 12,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 6,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 6,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.2777777777777777,
+    "relative_duration_reduction_vs_serial": 0.21739130434782605,
+    "executor_utilization": 0.8055555555555556,
+    "left_busy_time": 16.0,
+    "right_busy_time": 13.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 17.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "clock": "time.perf_counter",
+  "warmup_runs_per_instance_method": 10,
+  "measured_runs_per_instance_method": 50,
+  "reported_instance_statistic": "median elapsed milliseconds",
+  "reference_graphs_per_bucket": 1,
+  "candidate_perturbation_replicates_per_bucket": 6,
+  "structure_seed": 0,
+  "candidate_seed_formula": "structure_seed*100000 + node_count*100 + sample_idx",
+  "node_buckets": [
+    4,
+    6,
+    8,
+    10
+  ]
+}

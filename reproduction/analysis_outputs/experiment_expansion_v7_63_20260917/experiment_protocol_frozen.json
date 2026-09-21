@@ -1,0 +1,93 @@
+{
+  "frozen_utc": "2026-09-17T11:09:15.569355+00:00",
+  "primary_questions": [
+    "GPT-6 candidate interface acceptance",
+    "repair contribution with matched information inputs",
+    "sensitivity to relation loss, branching, resources, cooperation and duration",
+    "strict list schedule versus MILP on exactly the same accepted graph"
+  ],
+  "groups": {
+    "gpt6_direct": 24,
+    "information_views": 96,
+    "relation_deletion": 216,
+    "duration": 168,
+    "factorial_graphs": 24
+  },
+  "ablation_flags": [
+    "full",
+    "no_state",
+    "no_sync",
+    "no_resource",
+    "no_compression",
+    "no_executor"
+  ],
+  "structural_baseline": "same node fields and exactly the same raw edges for every ablation",
+  "primary_metrics": [
+    "six-gate acceptance",
+    "strict plan acceptance",
+    "net typed edge changes",
+    "replay equality",
+    "exported schedule validity",
+    "symbolic makespan",
+    "ratio to serial duration",
+    "list/MILP gap on solver-proven optimal cases"
+  ],
+  "exclusions": [
+    "no independent reference F1 for GPT-6 or derived variants",
+    "no API latency or hardware results",
+    "no significance claims",
+    "no natural LLM error rate from injected deletions",
+    "no dropping failures",
+    "no editing frozen candidates after evaluation"
+  ],
+  "milp": {
+    "library": "SciPy 1.15.3 optimize.milp / bundled HiGHS",
+    "time_limit_seconds": 10,
+    "mip_rel_gap": 0,
+    "same_graph": "all accepted typed precedence edges fixed; candidate arm choice and ordering optimized",
+    "controls": [
+      "same nodes,durations,resources,Cand,mode",
+      "serial feasible upper bound",
+      "status,bound,gap saved",
+      "validate output independently",
+      "if timeout, report feasible incumbent and bound; never label optimal"
+    ]
+  },
+  "timing": {
+    "suite": "24 constructed factorial graphs only",
+    "warmups": 3,
+    "repeats": 10,
+    "statistic": "median per graph",
+    "scope": "from saved graph object through deterministic repair, audit and strict list schedule; excludes generation, file IO, and MILP"
+  },
+  "code_changes": [
+    {
+      "file": "planning.py",
+      "before_sha256": "d5abcfcaccac1b7e983fbad173b8315170e7f660b4716fdaf4a46f779631a1a1",
+      "after_sha256": "e63cdab9ab38bd2a53eaf09d8737faf5cb415ae41dfa66d210212af1eb7f7248"
+    },
+    {
+      "file": "verification.py",
+      "before_sha256": "62c75afa2408f55e9c06ade3a360f620fae7fb99f50bb7a6a61b3de12f7949fa",
+      "after_sha256": "a6ea7c6347aa2568baa3a0b789bca97dac0bfef8463f6a396027d48b5a32856f"
+    }
+  ],
+  "files": {
+    "inputs\\branch_resource_cooperation24.jsonl": "3c9550913b958f69bfde268cc7cd2ffb0c3ace079afe5175b057cba96989d372",
+    "inputs\\duration_variants168.jsonl": "aef3b4c1c72599e24274ffd818eaabefa91e36f52623f5b2f0f00a8e4038e2a2",
+    "inputs\\gpt6_base24.jsonl": "fbdced991fb9a848358ca95b3f37b85d79c6d0f8f08b17e17aa081c5da234688",
+    "inputs\\information_views96.jsonl": "3c7ff1caca9780303ccebe0f569b72a0f76a34abe2f41155eb5163d75ad879c3",
+    "inputs\\relation_deletion216.jsonl": "b2a5d3ffc60822d6325d19d8bda7914020a8face8e4759757e8148a21eba0ed5",
+    "implementation_v7_63\\atomic_task\\cli.py": "c46b274ca0f38c79896f7b20c40b2301790db9fabc200165626a5d55d1709b38",
+    "implementation_v7_63\\atomic_task\\experiments.py": "e7cfe75d587779a010d55f3989eb38760eeb05ec066434714689dc70048c9f7a",
+    "implementation_v7_63\\atomic_task\\extended_experiments.py": "415db63b6c5652cf06f8f5aa0afa20f50beaba7e5be1bb32ab8666655c45ba7e",
+    "implementation_v7_63\\atomic_task\\generation.py": "ccd8bc9959181f819c054dcec6a6918e3cbfa59e8fa430f257a61d3d167ff9df",
+    "implementation_v7_63\\atomic_task\\metrics.py": "52c59607a8574aba3a4842589201adb34b265d3833cab93b5ad3b1909226d4da",
+    "implementation_v7_63\\atomic_task\\optimization.py": "09f5d14d0a7df391589c21d9bcfe4e9f529dae0ea575b1074db28e5d93fea536",
+    "implementation_v7_63\\atomic_task\\pipeline.py": "3951ce0a949dc21ce7d9ff404471178b3e596319b5d80da516468c4e2a732731",
+    "implementation_v7_63\\atomic_task\\planning.py": "e63cdab9ab38bd2a53eaf09d8737faf5cb415ae41dfa66d210212af1eb7f7248",
+    "implementation_v7_63\\atomic_task\\schema.py": "6fd748182f78432e260d7b02aa593a53ca74344e498ed46c168624e13148277f",
+    "implementation_v7_63\\atomic_task\\verification.py": "a6ea7c6347aa2568baa3a0b789bca97dac0bfef8463f6a396027d48b5a32856f",
+    "implementation_v7_63\\atomic_task\\__init__.py": "12191b732f2b981b963a8d40138d2abb508a444545dbeef4c9f2025700e558eb"
+  }
+}

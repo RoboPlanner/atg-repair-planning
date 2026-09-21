@@ -1,0 +1,5095 @@
+{
+  "task_id": "T03",
+  "spec": {
+    "task_id": "T03",
+    "domain": "workcell_preparation",
+    "title": "工位清场与备料",
+    "instruction": "收集左区和右区余料，双单元将满周转盘移走，清洁两个作业区；核对两套新料，分别放回对应区域，更新工位看板并检查开工就绪。",
+    "S0": [
+      "left_area_idle",
+      "right_area_idle",
+      "waste_tray_available",
+      "new_material_a",
+      "new_material_b",
+      "job_data_ready"
+    ],
+    "Sg": [
+      "workcell_ready_for_job"
+    ],
+    "resources": [
+      "left_area",
+      "right_area",
+      "waste_tray",
+      "cleaning_kit",
+      "material_a",
+      "material_b",
+      "scanner",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_workcell.json",
+  "raw_candidate": {
+    "task_id": "T03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "collect leftovers from left area",
+        "object": "left area",
+        "Pre": [
+          "left_area_idle",
+          "waste_tray_available"
+        ],
+        "Post": [
+          "left_leftovers_collected"
+        ],
+        "d": 3,
+        "Res": [
+          "left_area",
+          "waste_tray"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "collect leftovers from right area",
+        "object": "right area",
+        "Pre": [
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "Post": [
+          "right_leftovers_collected"
+        ],
+        "d": 3,
+        "Res": [
+          "right_area",
+          "waste_tray"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "move loaded waste tray together",
+        "object": "waste tray",
+        "Pre": [
+          "left_leftovers_collected",
+          "right_leftovers_collected"
+        ],
+        "Post": [
+          "waste_tray_removed"
+        ],
+        "d": 3,
+        "Res": [
+          "waste_tray"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t4",
+        "action": "clean left work area",
+        "object": "left area",
+        "Pre": [
+          "waste_tray_removed",
+          "left_area_idle"
+        ],
+        "Post": [
+          "left_area_clean"
+        ],
+        "d": 3,
+        "Res": [
+          "left_area",
+          "cleaning_kit"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "clean right work area",
+        "object": "right area",
+        "Pre": [
+          "waste_tray_removed",
+          "right_area_idle"
+        ],
+        "Post": [
+          "right_area_clean"
+        ],
+        "d": 3,
+        "Res": [
+          "right_area",
+          "cleaning_kit"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "check new material A",
+        "object": "material A",
+        "Pre": [
+          "new_material_a",
+          "job_data_ready"
+        ],
+        "Post": [
+          "material_a_verified"
+        ],
+        "d": 2,
+        "Res": [
+          "material_a",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "check new material B",
+        "object": "material B",
+        "Pre": [
+          "new_material_b",
+          "job_data_ready"
+        ],
+        "Post": [
+          "material_b_verified"
+        ],
+        "d": 2,
+        "Res": [
+          "material_b",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "place material A in left area",
+        "object": "material A",
+        "Pre": [
+          "left_area_clean",
+          "material_a_verified"
+        ],
+        "Post": [
+          "left_area_stocked"
+        ],
+        "d": 2,
+        "Res": [
+          "left_area",
+          "material_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "place material B in right area",
+        "object": "material B",
+        "Pre": [
+          "right_area_clean",
+          "material_b_verified"
+        ],
+        "Post": [
+          "right_area_stocked"
+        ],
+        "d": 2,
+        "Res": [
+          "right_area",
+          "material_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "update workcell job board",
+        "object": "job board",
+        "Pre": [
+          "left_area_stocked",
+          "right_area_stocked",
+          "job_data_ready"
+        ],
+        "Post": [
+          "job_board_updated"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "confirm readiness for new job",
+        "object": "workcell",
+        "Pre": [
+          "job_board_updated",
+          "left_area_stocked",
+          "right_area_stocked"
+        ],
+        "Post": [
+          "workcell_ready_for_job"
+        ],
+        "d": 2,
+        "Res": [
+          "left_area",
+          "right_area"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t3",
+          "left_leftovers_collected"
+        ],
+        [
+          "t2",
+          "t3",
+          "right_leftovers_collected"
+        ],
+        [
+          "t3",
+          "t4",
+          "waste_tray_removed"
+        ],
+        [
+          "t3",
+          "t5",
+          "waste_tray_removed"
+        ],
+        [
+          "t4",
+          "t8",
+          "left_area_clean"
+        ],
+        [
+          "t6",
+          "t8",
+          "material_a_verified"
+        ],
+        [
+          "t5",
+          "t9",
+          "right_area_clean"
+        ],
+        [
+          "t7",
+          "t9",
+          "material_b_verified"
+        ],
+        [
+          "t8",
+          "t10",
+          "left_area_stocked"
+        ],
+        [
+          "t9",
+          "t10",
+          "right_area_stocked"
+        ],
+        [
+          "t10",
+          "t11",
+          "job_board_updated"
+        ],
+        [
+          "t8",
+          "t11",
+          "left_area_stocked"
+        ],
+        [
+          "t9",
+          "t11",
+          "right_area_stocked"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t3",
+          "left_leftovers_collected"
+        ],
+        [
+          "t2",
+          "t3",
+          "right_leftovers_collected"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "waste_tray"
+        ],
+        [
+          "t4",
+          "t5",
+          "cleaning_kit"
+        ],
+        [
+          "t6",
+          "t7",
+          "scanner"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "collect leftovers from left area",
+        "object": "left area",
+        "pre_state": [
+          "left_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "left_leftovers_collected"
+        ],
+        "duration": 3,
+        "resource": [
+          "left_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "collect leftovers from right area",
+        "object": "right area",
+        "pre_state": [
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "right_leftovers_collected"
+        ],
+        "duration": 3,
+        "resource": [
+          "right_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "move loaded waste tray together",
+        "object": "waste tray",
+        "pre_state": [
+          "left_leftovers_collected",
+          "right_leftovers_collected"
+        ],
+        "post_state": [
+          "waste_tray_removed"
+        ],
+        "duration": 3,
+        "resource": [
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t4",
+        "action": "clean left work area",
+        "object": "left area",
+        "pre_state": [
+          "waste_tray_removed",
+          "left_area_idle"
+        ],
+        "post_state": [
+          "left_area_clean"
+        ],
+        "duration": 3,
+        "resource": [
+          "left_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "clean right work area",
+        "object": "right area",
+        "pre_state": [
+          "waste_tray_removed",
+          "right_area_idle"
+        ],
+        "post_state": [
+          "right_area_clean"
+        ],
+        "duration": 3,
+        "resource": [
+          "right_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "check new material A",
+        "object": "material A",
+        "pre_state": [
+          "new_material_a",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_a_verified"
+        ],
+        "duration": 2,
+        "resource": [
+          "material_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "check new material B",
+        "object": "material B",
+        "pre_state": [
+          "new_material_b",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_b_verified"
+        ],
+        "duration": 2,
+        "resource": [
+          "material_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "place material A in left area",
+        "object": "material A",
+        "pre_state": [
+          "left_area_clean",
+          "material_a_verified"
+        ],
+        "post_state": [
+          "left_area_stocked"
+        ],
+        "duration": 2,
+        "resource": [
+          "left_area",
+          "material_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "place material B in right area",
+        "object": "material B",
+        "pre_state": [
+          "right_area_clean",
+          "material_b_verified"
+        ],
+        "post_state": [
+          "right_area_stocked"
+        ],
+        "duration": 2,
+        "resource": [
+          "right_area",
+          "material_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "update workcell job board",
+        "object": "job board",
+        "pre_state": [
+          "left_area_stocked",
+          "right_area_stocked",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "job_board_updated"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "confirm readiness for new job",
+        "object": "workcell",
+        "pre_state": [
+          "job_board_updated",
+          "left_area_stocked",
+          "right_area_stocked"
+        ],
+        "post_state": [
+          "workcell_ready_for_job"
+        ],
+        "duration": 2,
+        "resource": [
+          "left_area",
+          "right_area"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "state": "right_leftovers_collected"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "state": "left_area_clean"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "material_a_verified"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "state": "right_area_clean"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "material_b_verified"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "job_board_updated"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "state": "right_leftovers_collected"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "waste_tray"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "cleaning_kit"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "job_data_ready",
+        "left_area_idle",
+        "new_material_a",
+        "new_material_b",
+        "right_area_idle",
+        "waste_tray_available"
+      ],
+      "available_states": [
+        "job_board_updated",
+        "job_data_ready",
+        "left_area_clean",
+        "left_area_idle",
+        "left_area_stocked",
+        "left_leftovers_collected",
+        "material_a_verified",
+        "material_b_verified",
+        "new_material_a",
+        "new_material_b",
+        "right_area_clean",
+        "right_area_idle",
+        "right_area_stocked",
+        "right_leftovers_collected",
+        "waste_tray_available",
+        "waste_tray_removed",
+        "workcell_ready_for_job"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "workcell_ready_for_job"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 23.0,
+    "waiting_time": 12.0,
+    "executor_utilization": 0.6522,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "collect leftovers from left area",
+        "object": "left area",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "left_area",
+          "waste_tray"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "collect leftovers from right area",
+        "object": "right area",
+        "start": 3.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "right_area",
+          "waste_tray"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "move loaded waste tray together",
+        "object": "waste tray",
+        "start": 6.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "waste_tray"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "clean left work area",
+        "object": "left area",
+        "start": 9.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "left_area",
+          "cleaning_kit"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "clean right work area",
+        "object": "right area",
+        "start": 12.0,
+        "finish": 15.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "right_area",
+          "cleaning_kit"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "check new material A",
+        "object": "material A",
+        "start": 12.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "material_a",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "check new material B",
+        "object": "material B",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "material_b",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "place material A in left area",
+        "object": "material A",
+        "start": 14.0,
+        "finish": 16.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "left_area",
+          "material_a"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "place material B in right area",
+        "object": "material B",
+        "start": 17.0,
+        "finish": 19.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "right_area",
+          "material_b"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "update workcell job board",
+        "object": "job board",
+        "start": 19.0,
+        "finish": 21.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "confirm readiness for new job",
+        "object": "workcell",
+        "start": 21.0,
+        "finish": 23.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "left_area",
+          "right_area"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t5",
+        "t6",
+        2.0
+      ],
+      [
+        "t5",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t8",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.6521739130434783
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "right_leftovers_collected"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "job_data_ready",
+          "left_area_idle",
+          "new_material_a",
+          "new_material_b",
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "available_states": [
+          "job_board_updated",
+          "job_data_ready",
+          "left_area_clean",
+          "left_area_idle",
+          "left_area_stocked",
+          "left_leftovers_collected",
+          "material_a_verified",
+          "material_b_verified",
+          "new_material_a",
+          "new_material_b",
+          "right_area_clean",
+          "right_area_idle",
+          "right_area_stocked",
+          "right_leftovers_collected",
+          "waste_tray_available",
+          "waste_tray_removed",
+          "workcell_ready_for_job"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "workcell_ready_for_job"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "job_data_ready",
+          "left_area_idle",
+          "new_material_a",
+          "new_material_b",
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "available_states": [
+          "job_board_updated",
+          "job_data_ready",
+          "left_area_clean",
+          "left_area_idle",
+          "left_area_stocked",
+          "left_leftovers_collected",
+          "material_a_verified",
+          "material_b_verified",
+          "new_material_a",
+          "new_material_b",
+          "right_area_clean",
+          "right_area_idle",
+          "right_area_stocked",
+          "right_leftovers_collected",
+          "waste_tray_available",
+          "waste_tray_removed",
+          "workcell_ready_for_job"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "workcell_ready_for_job"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "job_data_ready",
+            "left_area_idle",
+            "new_material_a",
+            "new_material_b",
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "available_states": [
+            "job_board_updated",
+            "job_data_ready",
+            "left_area_clean",
+            "left_area_idle",
+            "left_area_stocked",
+            "left_leftovers_collected",
+            "material_a_verified",
+            "material_b_verified",
+            "new_material_a",
+            "new_material_b",
+            "right_area_clean",
+            "right_area_idle",
+            "right_area_stocked",
+            "right_leftovers_collected",
+            "waste_tray_available",
+            "waste_tray_removed",
+            "workcell_ready_for_job"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "workcell_ready_for_job"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "job_data_ready",
+            "left_area_idle",
+            "new_material_a",
+            "new_material_b",
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "available_states": [
+            "job_board_updated",
+            "job_data_ready",
+            "left_area_clean",
+            "left_area_idle",
+            "left_area_stocked",
+            "left_leftovers_collected",
+            "material_a_verified",
+            "material_b_verified",
+            "new_material_a",
+            "new_material_b",
+            "right_area_clean",
+            "right_area_idle",
+            "right_area_stocked",
+            "right_leftovers_collected",
+            "waste_tray_available",
+            "waste_tray_removed",
+            "workcell_ready_for_job"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "workcell_ready_for_job"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "left_leftovers_collected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for left_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "right_leftovers_collected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for right_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "left_leftovers_collected",
+          "resource": null,
+          "reason": "cooperative input state left_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "right_leftovers_collected",
+          "resource": null,
+          "reason": "cooperative input state right_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 23.0,
+      "waiting_time": 12.0,
+      "executor_utilization": 0.6522,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "start": 9.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "cleaning_kit"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "start": 12.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "cleaning_kit"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "material_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "material_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "start": 14.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "material_a"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "material_b"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "start": 19.0,
+          "finish": 21.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "start": 21.0,
+          "finish": 23.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "right_area"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "right_leftovers_collected"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "job_data_ready",
+          "left_area_idle",
+          "new_material_a",
+          "new_material_b",
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "available_states": [
+          "job_board_updated",
+          "job_data_ready",
+          "left_area_clean",
+          "left_area_idle",
+          "left_area_stocked",
+          "left_leftovers_collected",
+          "material_a_verified",
+          "material_b_verified",
+          "new_material_a",
+          "new_material_b",
+          "right_area_clean",
+          "right_area_idle",
+          "right_area_stocked",
+          "right_leftovers_collected",
+          "waste_tray_available",
+          "waste_tray_removed",
+          "workcell_ready_for_job"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "workcell_ready_for_job"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "job_data_ready",
+          "left_area_idle",
+          "new_material_a",
+          "new_material_b",
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "available_states": [
+          "job_board_updated",
+          "job_data_ready",
+          "left_area_clean",
+          "left_area_idle",
+          "left_area_stocked",
+          "left_leftovers_collected",
+          "material_a_verified",
+          "material_b_verified",
+          "new_material_a",
+          "new_material_b",
+          "right_area_clean",
+          "right_area_idle",
+          "right_area_stocked",
+          "right_leftovers_collected",
+          "waste_tray_available",
+          "waste_tray_removed",
+          "workcell_ready_for_job"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "workcell_ready_for_job"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "job_data_ready",
+            "left_area_idle",
+            "new_material_a",
+            "new_material_b",
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "available_states": [
+            "job_board_updated",
+            "job_data_ready",
+            "left_area_clean",
+            "left_area_idle",
+            "left_area_stocked",
+            "left_leftovers_collected",
+            "material_a_verified",
+            "material_b_verified",
+            "new_material_a",
+            "new_material_b",
+            "right_area_clean",
+            "right_area_idle",
+            "right_area_stocked",
+            "right_leftovers_collected",
+            "waste_tray_available",
+            "waste_tray_removed",
+            "workcell_ready_for_job"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "workcell_ready_for_job"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "job_data_ready",
+            "left_area_idle",
+            "new_material_a",
+            "new_material_b",
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "available_states": [
+            "job_board_updated",
+            "job_data_ready",
+            "left_area_clean",
+            "left_area_idle",
+            "left_area_stocked",
+            "left_leftovers_collected",
+            "material_a_verified",
+            "material_b_verified",
+            "new_material_a",
+            "new_material_b",
+            "right_area_clean",
+            "right_area_idle",
+            "right_area_stocked",
+            "right_leftovers_collected",
+            "waste_tray_available",
+            "waste_tray_removed",
+            "workcell_ready_for_job"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "workcell_ready_for_job"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "left_leftovers_collected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for left_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "right_leftovers_collected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for right_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "left_leftovers_collected",
+          "resource": null,
+          "reason": "cooperative input state left_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t3",
+          "edge_type": "synchronization",
+          "state": "right_leftovers_collected",
+          "resource": null,
+          "reason": "cooperative input state right_leftovers_collected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 23.0,
+      "waiting_time": 12.0,
+      "executor_utilization": 0.6522,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "waste_tray"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "start": 9.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "cleaning_kit"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "start": 12.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "cleaning_kit"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "material_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "material_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "start": 14.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "material_a"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "start": 17.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "right_area",
+            "material_b"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "start": 19.0,
+          "finish": 21.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "start": 21.0,
+          "finish": 23.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "left_area",
+            "right_area"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "collect leftovers from left area",
+        "object": "left area",
+        "pre_state": [
+          "left_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "left_leftovers_collected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "left_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "collect leftovers from right area",
+        "object": "right area",
+        "pre_state": [
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "right_leftovers_collected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "right_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "move loaded waste tray together",
+        "object": "waste tray",
+        "pre_state": [
+          "left_leftovers_collected",
+          "right_leftovers_collected"
+        ],
+        "post_state": [
+          "waste_tray_removed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "clean left work area",
+        "object": "left area",
+        "pre_state": [
+          "waste_tray_removed",
+          "left_area_idle"
+        ],
+        "post_state": [
+          "left_area_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "left_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "clean right work area",
+        "object": "right area",
+        "pre_state": [
+          "waste_tray_removed",
+          "right_area_idle"
+        ],
+        "post_state": [
+          "right_area_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "right_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "check new material A",
+        "object": "material A",
+        "pre_state": [
+          "new_material_a",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_a_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "material_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "check new material B",
+        "object": "material B",
+        "pre_state": [
+          "new_material_b",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_b_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "material_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "place material A in left area",
+        "object": "material A",
+        "pre_state": [
+          "left_area_clean",
+          "material_a_verified"
+        ],
+        "post_state": [
+          "left_area_stocked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "left_area",
+          "material_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "place material B in right area",
+        "object": "material B",
+        "pre_state": [
+          "right_area_clean",
+          "material_b_verified"
+        ],
+        "post_state": [
+          "right_area_stocked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "right_area",
+          "material_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "update workcell job board",
+        "object": "job board",
+        "pre_state": [
+          "left_area_stocked",
+          "right_area_stocked",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "job_board_updated"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "confirm readiness for new job",
+        "object": "workcell",
+        "pre_state": [
+          "job_board_updated",
+          "left_area_stocked",
+          "right_area_stocked"
+        ],
+        "post_state": [
+          "workcell_ready_for_job"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "left_area",
+          "right_area"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_leftovers_collected"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_clean"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "material_a_verified"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_clean"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "material_b_verified"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "job_board_updated"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "waste_tray"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "cleaning_kit"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "right_leftovers_collected"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t5",
+        "t6",
+        2.0
+      ],
+      [
+        "t5",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t8",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.6521739130434783
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "collect leftovers from left area",
+        "object": "left area",
+        "pre_state": [
+          "left_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "left_leftovers_collected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "left_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "collect leftovers from right area",
+        "object": "right area",
+        "pre_state": [
+          "right_area_idle",
+          "waste_tray_available"
+        ],
+        "post_state": [
+          "right_leftovers_collected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "right_area",
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "move loaded waste tray together",
+        "object": "waste tray",
+        "pre_state": [
+          "left_leftovers_collected",
+          "right_leftovers_collected"
+        ],
+        "post_state": [
+          "waste_tray_removed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "waste_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "clean left work area",
+        "object": "left area",
+        "pre_state": [
+          "waste_tray_removed",
+          "left_area_idle"
+        ],
+        "post_state": [
+          "left_area_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "left_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "clean right work area",
+        "object": "right area",
+        "pre_state": [
+          "waste_tray_removed",
+          "right_area_idle"
+        ],
+        "post_state": [
+          "right_area_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "right_area",
+          "cleaning_kit"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "check new material A",
+        "object": "material A",
+        "pre_state": [
+          "new_material_a",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_a_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "material_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "check new material B",
+        "object": "material B",
+        "pre_state": [
+          "new_material_b",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "material_b_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "material_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "place material A in left area",
+        "object": "material A",
+        "pre_state": [
+          "left_area_clean",
+          "material_a_verified"
+        ],
+        "post_state": [
+          "left_area_stocked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "left_area",
+          "material_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "place material B in right area",
+        "object": "material B",
+        "pre_state": [
+          "right_area_clean",
+          "material_b_verified"
+        ],
+        "post_state": [
+          "right_area_stocked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "right_area",
+          "material_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "update workcell job board",
+        "object": "job board",
+        "pre_state": [
+          "left_area_stocked",
+          "right_area_stocked",
+          "job_data_ready"
+        ],
+        "post_state": [
+          "job_board_updated"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "confirm readiness for new job",
+        "object": "workcell",
+        "pre_state": [
+          "job_board_updated",
+          "left_area_stocked",
+          "right_area_stocked"
+        ],
+        "post_state": [
+          "workcell_ready_for_job"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "left_area",
+          "right_area"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_leftovers_collected"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "waste_tray_removed"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_clean"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "material_a_verified"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_clean"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "material_b_verified"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "job_board_updated"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_area_stocked"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_area_stocked"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "waste_tray"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "cleaning_kit"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "left_leftovers_collected"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "synchronization",
+        "reason": "",
+        "state": "right_leftovers_collected"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t5",
+        "t6",
+        2.0
+      ],
+      [
+        "t5",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t8",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 13.0
+    },
+    "utilization_unrounded": 0.6521739130434783
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "job_data_ready",
+        "left_area_idle",
+        "new_material_a",
+        "new_material_b",
+        "right_area_idle",
+        "waste_tray_available"
+      ],
+      "available_states": [
+        "job_board_updated",
+        "job_data_ready",
+        "left_area_clean",
+        "left_area_idle",
+        "left_area_stocked",
+        "left_leftovers_collected",
+        "material_a_verified",
+        "material_b_verified",
+        "new_material_a",
+        "new_material_b",
+        "right_area_clean",
+        "right_area_idle",
+        "right_area_stocked",
+        "right_leftovers_collected",
+        "waste_tray_available",
+        "waste_tray_removed",
+        "workcell_ready_for_job"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "workcell_ready_for_job"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "collect leftovers from left area",
+          "object": "left area",
+          "pre_state": [
+            "left_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "left_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "collect leftovers from right area",
+          "object": "right area",
+          "pre_state": [
+            "right_area_idle",
+            "waste_tray_available"
+          ],
+          "post_state": [
+            "right_leftovers_collected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "move loaded waste tray together",
+          "object": "waste tray",
+          "pre_state": [
+            "left_leftovers_collected",
+            "right_leftovers_collected"
+          ],
+          "post_state": [
+            "waste_tray_removed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "waste_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "clean left work area",
+          "object": "left area",
+          "pre_state": [
+            "waste_tray_removed",
+            "left_area_idle"
+          ],
+          "post_state": [
+            "left_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "left_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "clean right work area",
+          "object": "right area",
+          "pre_state": [
+            "waste_tray_removed",
+            "right_area_idle"
+          ],
+          "post_state": [
+            "right_area_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "right_area",
+            "cleaning_kit"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "check new material A",
+          "object": "material A",
+          "pre_state": [
+            "new_material_a",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_a_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "check new material B",
+          "object": "material B",
+          "pre_state": [
+            "new_material_b",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "material_b_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "material_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "place material A in left area",
+          "object": "material A",
+          "pre_state": [
+            "left_area_clean",
+            "material_a_verified"
+          ],
+          "post_state": [
+            "left_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "material_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "place material B in right area",
+          "object": "material B",
+          "pre_state": [
+            "right_area_clean",
+            "material_b_verified"
+          ],
+          "post_state": [
+            "right_area_stocked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "right_area",
+            "material_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "update workcell job board",
+          "object": "job board",
+          "pre_state": [
+            "left_area_stocked",
+            "right_area_stocked",
+            "job_data_ready"
+          ],
+          "post_state": [
+            "job_board_updated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm readiness for new job",
+          "object": "workcell",
+          "pre_state": [
+            "job_board_updated",
+            "left_area_stocked",
+            "right_area_stocked"
+          ],
+          "post_state": [
+            "workcell_ready_for_job"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "left_area",
+            "right_area"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "waste_tray_removed"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_clean"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_a_verified"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_clean"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "material_b_verified"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "job_board_updated"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_area_stocked"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_area_stocked"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "waste_tray"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "cleaning_kit"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "left_leftovers_collected"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "synchronization",
+          "reason": "",
+          "state": "right_leftovers_collected"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "T03",
+    "domain": "workcell_preparation",
+    "title": "工位清场与备料",
+    "nodes": 11,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 13,
+    "raw_E_sync": 2,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 7,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 27.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 23.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 23.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 23.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 7,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 4,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 4,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.173913043478261,
+    "relative_duration_reduction_vs_serial": 0.14814814814814814,
+    "executor_utilization": 0.6521739130434783,
+    "left_busy_time": 17.0,
+    "right_busy_time": 13.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 21.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

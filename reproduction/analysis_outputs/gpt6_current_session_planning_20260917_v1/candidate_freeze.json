@@ -1,0 +1,36 @@
+{
+  "frozen_at_utc": "2026-09-17T09:59:55.1996909Z",
+  "status": "All six raw candidate files saved before parsing or evaluation",
+  "files": [
+    {
+      "file": "raw_candidates_assembly.json",
+      "bytes": 9317,
+      "sha256": "123cbbd4e65235416dbd67e3a94714256086a1248e1e4f00dcd867769c33b1d7"
+    },
+    {
+      "file": "raw_candidates_inspection.json",
+      "bytes": 10737,
+      "sha256": "a477764adeca0922a9c15594a2e6f9398e52db3b854b0246f69f5897f1727c75"
+    },
+    {
+      "file": "raw_candidates_packaging.json",
+      "bytes": 10390,
+      "sha256": "de9ce071dda4245d93e5dc2ce091b64fc4ab9e26326a7a8537471494a826b99f"
+    },
+    {
+      "file": "raw_candidates_sorting.json",
+      "bytes": 11105,
+      "sha256": "807a4fd0de2587f498087ce2615bb4beb7332bd0d088c8987324e1aae4ea1c8d"
+    },
+    {
+      "file": "raw_candidates_warehouse.json",
+      "bytes": 11307,
+      "sha256": "f5e5ad675fef3f0058993fa25273494222fa88a87952b30c0a592af6907f39c3"
+    },
+    {
+      "file": "raw_candidates_workcell.json",
+      "bytes": 12748,
+      "sha256": "c79ccefc0454b5512461166f6668fc36c0a333c9de8effd6904b21da7e2630fd"
+    }
+  ]
+}

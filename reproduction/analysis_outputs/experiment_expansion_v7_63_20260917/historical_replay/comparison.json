@@ -1,0 +1,34 @@
+{
+  "table1": {
+    "rows": 4,
+    "differences": []
+  },
+  "table2": {
+    "rows": 5,
+    "differences": []
+  },
+  "table3": {
+    "rows": 5,
+    "differences": []
+  },
+  "table4": {
+    "rows": 6,
+    "differences": []
+  },
+  "table1_detailed": {
+    "rows": 640,
+    "differences": []
+  },
+  "table2_detailed": {
+    "rows": 800,
+    "differences": []
+  },
+  "table3_detailed": {
+    "rows": 800,
+    "differences": []
+  },
+  "table4_detailed": {
+    "rows": 960,
+    "differences": []
+  }
+}

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use AssemblyGrid, please cite this software release."
+title: "AssemblyGrid"
+type: software
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/Fouad-Bahrpeyma/AssemblyGrid_v1"
+doi: "10.5281/zenodo.22734115"
+authors:
+  - family-names: "Bahrpeyma"
+    given-names: "Fouad"
+    email: "Bahrpeyma@ieee.org"
+    affiliation: "Faculty of Computer Science/Mathematics, Dresden University of Applied Sciences (HTW Dresden), Dresden, Germany"
+  - family-names: "Heik"
+    given-names: "David"
+    email: "david.heik@htw-dresden.de"
+    affiliation: "Faculty of Computer Science/Mathematics, Dresden University of Applied Sciences (HTW Dresden), Dresden, Germany"
+  - family-names: "Reichelt"
+    given-names: "Dirk"
+    email: "dirk.reichelt@htw-dresden.de"
+    affiliation: "Faculty of Computer Science/Mathematics, Dresden University of Applied Sciences (HTW Dresden), Dresden, Germany"

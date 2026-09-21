@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/WxxShirley/GNN4TaskPlan",
+  "commit": "f1486690f4fa00030bc7035f0dcc41904889aa2c",
+  "sha256": {
+    "LICENSE": "3805e5e6b1794250c49cf8211ee42bf19a5d99cc4682cab388b910da3018fc15",
+    "README.md": "ac5ab3d30e418bccf6bde7e4835d11f26376e977d5c4906fbd1644dbda4390d2",
+    "trainfree\\direct.py": "acec001fef78bc5aa32a3bef531a9580f1cabad52d4f6acb370784d50f5fd6a5",
+    "data\\huggingface\\data.json": "a06292ec63ae8ac0b0a513b38152c0d43eced2905870f4d7deabf0907c6659b7",
+    "data\\huggingface\\graph_desc.json": "48f774a01d1452ddf918ced6f04218fe311863725a0d6624d6e191e7ea6c4694",
+    "data\\huggingface\\split_ids.json": "eef2bd8fbdd574368591b362ba2736b8c6f4cca96ba20cd7ed04b2108ef225c3",
+    "data\\huggingface\\tool_desc.json": "0eb0654faea9a5f07c0102ca57bfc6de3f9e03d8a00c2776b82e22b1b7c31fbd",
+    "prediction\\huggingface\\CodeLlama-13b\\direct.json": "6c7af706faa1cc74c042d0a95682599d5f04946f6774db98f2fa8d5a7c7405ff",
+    "prediction\\huggingface\\mistral-7b\\direct.json": "d5b9170915bc0e317e057bd1dc6b1017e5ba991d709bf1ba95e89821ff92a7b5"
+  },
+  "protocol_sha256": "9b284cf3a4718fb42534fcbb36d88eaacb40dd8124b571b0636fe1d15804af0c"
+}

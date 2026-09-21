@@ -1,0 +1,641 @@
+task_id,Method,Node F1,Edge F1,State Acc,Arm-Constraint Acc,Topo Error
+pour_drink_001,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_001,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_001,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_001,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_002,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_002,Direct Candidate Graph,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_002,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_002,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_003,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_003,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_003,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_003,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_004,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_004,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_004,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_004,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_005,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_005,Direct Candidate Graph,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_005,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_005,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_006,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_006,Direct Candidate Graph,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_006,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_006,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_007,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_007,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_007,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_007,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_008,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_008,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_008,Schema-Constrained Candidate,1.0,0.7777777777777778,1.0,0.8,0.0
+sort_tray_008,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_009,Text-Order Heuristic,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_009,Direct Candidate Graph,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_009,Schema-Constrained Candidate,1.0,0.5454545454545454,1.0,1.0,0.0
+pour_drink_009,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_010,Text-Order Heuristic,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_010,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_010,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_010,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_011,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_011,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_011,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_011,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_012,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_012,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_012,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_012,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_013,Text-Order Heuristic,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_013,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_013,Schema-Constrained Candidate,1.0,0.6666666666666666,1.0,1.0,0.0
+pour_drink_013,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_014,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_014,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_014,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_014,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_015,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_015,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_015,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_015,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_016,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_016,Direct Candidate Graph,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_016,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_016,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_017,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_017,Direct Candidate Graph,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_017,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_017,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_018,Text-Order Heuristic,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_018,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_018,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_018,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_019,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_019,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_019,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_019,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_020,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_020,Direct Candidate Graph,1.0,0.5333333333333333,0.6,0.8,0.0
+sort_tray_020,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_020,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_021,Text-Order Heuristic,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_021,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_021,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_021,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_022,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_022,Direct Candidate Graph,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_022,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_022,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_023,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_023,Direct Candidate Graph,1.0,0.4444444444444445,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_023,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_023,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_024,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_024,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_024,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_024,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_025,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_025,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_025,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_025,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_026,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_026,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_026,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_026,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_027,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_027,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_027,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_027,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_028,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_028,Direct Candidate Graph,1.0,0.625,0.6,0.8,0.0
+sort_tray_028,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_028,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_029,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_029,Direct Candidate Graph,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_029,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_029,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_030,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_030,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_030,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_030,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_031,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_031,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_031,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_031,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_032,Text-Order Heuristic,1.0,0.5333333333333333,0.6,0.8,0.0
+sort_tray_032,Direct Candidate Graph,1.0,0.9,0.6,0.8,0.0
+sort_tray_032,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_032,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_033,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_033,Direct Candidate Graph,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_033,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_033,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_034,Text-Order Heuristic,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_034,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_034,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_034,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_035,Text-Order Heuristic,1.0,0.25,0.6666666666666666,1.0,0.0
+assemble_bracket_035,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_035,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_035,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_036,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_036,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_036,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_036,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_037,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_037,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_037,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_037,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_038,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_038,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_038,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_038,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_039,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_039,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_039,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_039,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_040,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_040,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_040,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_040,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_041,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_041,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_041,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_041,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_042,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_042,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_042,Schema-Constrained Candidate,1.0,0.8,1.0,0.8333333333333334,0.0
+pack_box_042,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_043,Text-Order Heuristic,1.0,1.0,0.6666666666666666,1.0,0.0
+assemble_bracket_043,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_043,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_043,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_044,Text-Order Heuristic,1.0,0.9,0.6,0.8,0.0
+sort_tray_044,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_044,Schema-Constrained Candidate,1.0,1.0,1.0,0.8,0.0
+sort_tray_044,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_045,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_045,Direct Candidate Graph,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_045,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_045,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_046,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_046,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_046,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_046,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_047,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_047,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_047,Schema-Constrained Candidate,1.0,0.7272727272727273,1.0,0.8333333333333334,0.0
+assemble_bracket_047,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_048,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_048,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_048,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_048,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_049,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_049,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_049,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_049,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_050,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_050,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_050,Schema-Constrained Candidate,1.0,0.8,1.0,0.8333333333333334,0.0
+pack_box_050,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_051,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_051,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_051,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_051,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_052,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_052,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_052,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_052,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_053,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_053,Direct Candidate Graph,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_053,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_053,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_054,Text-Order Heuristic,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_054,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_054,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_054,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_055,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_055,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_055,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_055,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_056,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_056,Direct Candidate Graph,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_056,Schema-Constrained Candidate,1.0,1.0,1.0,0.8,0.0
+sort_tray_056,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_057,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_057,Direct Candidate Graph,1.0,0.4,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_057,Schema-Constrained Candidate,1.0,0.7692307692307693,1.0,1.0,0.0
+pour_drink_057,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_058,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_058,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_058,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_058,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_059,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_059,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_059,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_059,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_060,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_060,Direct Candidate Graph,1.0,0.9,0.6,0.8,0.0
+sort_tray_060,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_060,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_061,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_061,Direct Candidate Graph,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_061,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_061,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_062,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_062,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_062,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_062,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_063,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_063,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_063,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_063,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_064,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_064,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_064,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_064,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_065,Text-Order Heuristic,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_065,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_065,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_065,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_066,Text-Order Heuristic,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_066,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_066,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_066,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_067,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_067,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_067,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_067,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_068,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_068,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_068,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_068,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_069,Text-Order Heuristic,1.0,0.2222222222222222,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_069,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_069,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_069,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_070,Text-Order Heuristic,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_070,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+pack_box_070,Schema-Constrained Candidate,1.0,0.8,1.0,0.8333333333333334,0.0
+pack_box_070,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_071,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_071,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_071,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_071,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_072,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_072,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_072,Schema-Constrained Candidate,1.0,0.7058823529411764,1.0,0.8,0.0
+sort_tray_072,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_073,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_073,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_073,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_073,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_074,Text-Order Heuristic,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_074,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_074,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_074,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_075,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_075,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_075,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_075,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_076,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_076,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_076,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_076,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_077,Text-Order Heuristic,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_077,Direct Candidate Graph,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_077,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_077,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_078,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_078,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_078,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_078,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_079,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_079,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_079,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_079,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_080,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_080,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_080,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_080,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_081,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_081,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_081,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_081,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_082,Text-Order Heuristic,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+pack_box_082,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_082,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_082,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_083,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_083,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_083,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_083,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_084,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_084,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_084,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_084,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_085,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_085,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_085,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_085,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_086,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_086,Direct Candidate Graph,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_086,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+pack_box_086,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_087,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_087,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_087,Schema-Constrained Candidate,1.0,0.6,1.0,0.8333333333333334,0.0
+assemble_bracket_087,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_088,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_088,Direct Candidate Graph,1.0,0.625,0.6,0.8,0.0
+sort_tray_088,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_088,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_089,Text-Order Heuristic,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_089,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_089,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_089,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_090,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_090,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_090,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_090,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_091,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_091,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_091,Schema-Constrained Candidate,1.0,0.7272727272727273,1.0,0.8333333333333334,0.0
+assemble_bracket_091,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_092,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_092,Direct Candidate Graph,1.0,0.625,0.6,0.8,0.0
+sort_tray_092,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_092,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_093,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_093,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_093,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_093,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_094,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_094,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_094,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_094,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_095,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_095,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_095,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_095,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_096,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_096,Direct Candidate Graph,1.0,0.9,0.6,0.8,0.0
+sort_tray_096,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_096,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_097,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_097,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_097,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_097,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_098,Text-Order Heuristic,1.0,0.5,0.6666666666666666,0.8333333333333334,0.0
+pack_box_098,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_098,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_098,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_099,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_099,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_099,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_099,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_100,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_100,Direct Candidate Graph,1.0,0.9523809523809523,0.6,0.8,0.0
+sort_tray_100,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_100,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_101,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_101,Direct Candidate Graph,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_101,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_101,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_102,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_102,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_102,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+pack_box_102,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_103,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_103,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_103,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_103,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_104,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_104,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_104,Schema-Constrained Candidate,1.0,0.7777777777777778,1.0,0.8,0.0
+sort_tray_104,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_105,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_105,Direct Candidate Graph,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_105,Schema-Constrained Candidate,1.0,0.7692307692307693,1.0,1.0,0.0
+pour_drink_105,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_106,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_106,Direct Candidate Graph,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_106,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_106,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_107,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_107,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_107,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_107,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_108,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_108,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_108,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_108,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_109,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_109,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_109,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_109,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_110,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_110,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_110,Schema-Constrained Candidate,1.0,0.8,1.0,0.8333333333333334,0.0
+pack_box_110,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_111,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_111,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_111,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_111,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_112,Text-Order Heuristic,1.0,0.9,0.6,0.8,0.0
+sort_tray_112,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_112,Schema-Constrained Candidate,1.0,0.7777777777777778,1.0,0.8,0.0
+sort_tray_112,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_113,Text-Order Heuristic,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_113,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_113,Schema-Constrained Candidate,1.0,0.6666666666666666,1.0,1.0,0.0
+pour_drink_113,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_114,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_114,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_114,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_114,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_115,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_115,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_115,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_115,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_116,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_116,Direct Candidate Graph,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_116,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_116,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_117,Text-Order Heuristic,1.0,0.5454545454545454,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_117,Direct Candidate Graph,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_117,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_117,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_118,Text-Order Heuristic,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_118,Direct Candidate Graph,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_118,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_118,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_119,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_119,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_119,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_119,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_120,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_120,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_120,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_120,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_121,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_121,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_121,Schema-Constrained Candidate,1.0,0.7692307692307693,1.0,1.0,0.0
+pour_drink_121,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_122,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_122,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_122,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_122,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_123,Text-Order Heuristic,1.0,0.923076923076923,0.6666666666666666,1.0,0.0
+assemble_bracket_123,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_123,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_123,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_124,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_124,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_124,Schema-Constrained Candidate,1.0,0.9,1.0,0.8,0.0
+sort_tray_124,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_125,Text-Order Heuristic,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_125,Direct Candidate Graph,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_125,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_125,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_126,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_126,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_126,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_126,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_127,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_127,Direct Candidate Graph,1.0,0.4444444444444445,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_127,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_127,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_128,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_128,Direct Candidate Graph,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_128,Schema-Constrained Candidate,1.0,0.7777777777777778,1.0,0.8,0.0
+sort_tray_128,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_129,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_129,Direct Candidate Graph,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_129,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_129,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_130,Text-Order Heuristic,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_130,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_130,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_130,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_131,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_131,Direct Candidate Graph,1.0,0.8333333333333333,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_131,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_131,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_132,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_132,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_132,Schema-Constrained Candidate,1.0,1.0,1.0,0.8,0.0
+sort_tray_132,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_133,Text-Order Heuristic,1.0,0.6666666666666666,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_133,Direct Candidate Graph,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_133,Schema-Constrained Candidate,1.0,0.8571428571428571,1.0,1.0,0.0
+pour_drink_133,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_134,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_134,Direct Candidate Graph,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_134,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_134,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_135,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_135,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_135,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_135,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_136,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_136,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_136,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_136,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_137,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_137,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_137,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_137,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_138,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_138,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_138,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_138,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_139,Text-Order Heuristic,1.0,0.4444444444444445,0.6666666666666666,1.0,0.0
+assemble_bracket_139,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_139,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_139,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_140,Text-Order Heuristic,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_140,Direct Candidate Graph,1.0,0.625,0.6,0.8,0.0
+sort_tray_140,Schema-Constrained Candidate,1.0,0.8421052631578948,1.0,0.8,0.0
+sort_tray_140,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_141,Text-Order Heuristic,1.0,0.9333333333333333,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_141,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_141,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_141,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_142,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_142,Direct Candidate Graph,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_142,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_142,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_143,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_143,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_143,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_143,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_144,Text-Order Heuristic,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_144,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_144,Schema-Constrained Candidate,1.0,0.7058823529411764,1.0,0.8,0.0
+sort_tray_144,Verified ATG (Ours),1.0,0.9090909090909091,1.0,0.8,0.0
+pour_drink_145,Text-Order Heuristic,1.0,1.0,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_145,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_145,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_145,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_146,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_146,Direct Candidate Graph,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_146,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+pack_box_146,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_147,Text-Order Heuristic,1.0,0.4444444444444445,0.6666666666666666,1.0,0.0
+assemble_bracket_147,Direct Candidate Graph,1.0,0.7272727272727273,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_147,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_147,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_148,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_148,Direct Candidate Graph,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_148,Schema-Constrained Candidate,1.0,1.0,1.0,0.8,0.0
+sort_tray_148,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_149,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_149,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_149,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_149,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_150,Text-Order Heuristic,1.0,0.8,0.6666666666666666,0.8333333333333334,0.0
+pack_box_150,Direct Candidate Graph,1.0,0.9411764705882353,0.6666666666666666,0.8333333333333334,0.0
+pack_box_150,Schema-Constrained Candidate,1.0,0.8750000000000001,1.0,0.8333333333333334,0.0
+pack_box_150,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_151,Text-Order Heuristic,1.0,0.8333333333333333,0.6666666666666666,1.0,0.0
+assemble_bracket_151,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_151,Schema-Constrained Candidate,1.0,0.8333333333333333,1.0,0.8333333333333334,0.0
+assemble_bracket_151,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_152,Text-Order Heuristic,1.0,0.5333333333333333,0.6,0.8,0.0
+sort_tray_152,Direct Candidate Graph,1.0,0.7058823529411764,0.6,0.8,0.0
+sort_tray_152,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_152,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_153,Text-Order Heuristic,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_153,Direct Candidate Graph,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_153,Schema-Constrained Candidate,1.0,1.0,1.0,1.0,0.0
+pour_drink_153,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_154,Text-Order Heuristic,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_154,Direct Candidate Graph,1.0,0.7142857142857143,0.6666666666666666,0.8333333333333334,0.0
+pack_box_154,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_154,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_155,Text-Order Heuristic,1.0,0.6,0.6666666666666666,1.0,0.0
+assemble_bracket_155,Direct Candidate Graph,1.0,0.923076923076923,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_155,Schema-Constrained Candidate,1.0,1.0,1.0,0.8333333333333334,0.0
+assemble_bracket_155,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_156,Text-Order Heuristic,1.0,0.7777777777777778,0.6,0.8,0.0
+sort_tray_156,Direct Candidate Graph,1.0,0.9523809523809523,0.6,0.8,0.0
+sort_tray_156,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_156,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0
+pour_drink_157,Text-Order Heuristic,1.0,0.8571428571428571,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_157,Direct Candidate Graph,1.0,0.7692307692307693,0.6666666666666666,0.8333333333333334,0.0
+pour_drink_157,Schema-Constrained Candidate,1.0,0.9333333333333333,1.0,1.0,0.0
+pour_drink_157,Verified ATG (Ours),1.0,1.0,1.0,1.0,0.0
+pack_box_158,Text-Order Heuristic,1.0,0.8750000000000001,0.6666666666666666,0.8333333333333334,0.0
+pack_box_158,Direct Candidate Graph,1.0,0.6153846153846153,0.6666666666666666,0.8333333333333334,0.0
+pack_box_158,Schema-Constrained Candidate,1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+pack_box_158,Verified ATG (Ours),1.0,0.9411764705882353,1.0,0.8333333333333334,0.0
+assemble_bracket_159,Text-Order Heuristic,1.0,0.7272727272727273,0.6666666666666666,1.0,0.0
+assemble_bracket_159,Direct Candidate Graph,1.0,0.6,0.6666666666666666,0.8333333333333334,0.0
+assemble_bracket_159,Schema-Constrained Candidate,1.0,0.923076923076923,1.0,0.8333333333333334,0.0
+assemble_bracket_159,Verified ATG (Ours),1.0,1.0,1.0,0.8333333333333334,0.0
+sort_tray_160,Text-Order Heuristic,1.0,0.625,0.6,0.8,0.0
+sort_tray_160,Direct Candidate Graph,1.0,0.8421052631578948,0.6,0.8,0.0
+sort_tray_160,Schema-Constrained Candidate,1.0,0.9523809523809523,1.0,0.8,0.0
+sort_tray_160,Verified ATG (Ours),1.0,1.0,1.0,0.8,0.0

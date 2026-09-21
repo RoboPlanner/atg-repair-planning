@@ -1,0 +1,1601 @@
+task_id,Challenge,Schema Pass,Closure Pass,Goal Pass,Acyclic Pass,Sync Pass,Resource Pass,Joint Accept
+pour_drink_001,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_001,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_001,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_001,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_001,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_001,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_001,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_001,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_001,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_001,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_002,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_002,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_002,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_002,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_002,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_002,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_002,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_002,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_002,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_002,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_003,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_003,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_003,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_003,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_003,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_003,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_003,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_003,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_003,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_003,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_004,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_004,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_004,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_004,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_004,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_004,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_004,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_004,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_004,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_004,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_005,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_005,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_005,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_005,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_005,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_005,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_005,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_005,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_005,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_005,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_006,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_006,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_006,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_006,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_006,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_006,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_006,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_006,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_006,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_006,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_007,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_007,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_007,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_007,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_007,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_007,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_007,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_007,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_007,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_007,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_008,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_008,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_008,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_008,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_008,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_008,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_008,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_008,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_008,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_008,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_009,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_009,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_009,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_009,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_009,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_009,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_009,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_009,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_009,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_009,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_010,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_010,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_010,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_010,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_010,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_010,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_010,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_010,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_010,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_010,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_011,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_011,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_011,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_011,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_011,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_011,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_011,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_011,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_011,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_011,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_012,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_012,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_012,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_012,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_012,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_012,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_012,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_012,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_012,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_012,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_013,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_013,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_013,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_013,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_013,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_013,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_013,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_013,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_013,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_013,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_014,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_014,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_014,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_014,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_014,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_014,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_014,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_014,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_014,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_014,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_015,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_015,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_015,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_015,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_015,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_015,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_015,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_015,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_015,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_015,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_016,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_016,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_016,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_016,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_016,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_016,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_016,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_016,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_016,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_016,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_017,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_017,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_017,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_017,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_017,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_017,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_017,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_017,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_017,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_017,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_018,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_018,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_018,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_018,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_018,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_018,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_018,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_018,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_018,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_018,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_019,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_019,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_019,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_019,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_019,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_019,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_019,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_019,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_019,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_019,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_020,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_020,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_020,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_020,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_020,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_020,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_020,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_020,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_020,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_020,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_021,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_021,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_021,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_021,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_021,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_021,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_021,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_021,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_021,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_021,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_022,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_022,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_022,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_022,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_022,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_022,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_022,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_022,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_022,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_022,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_023,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_023,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_023,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_023,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_023,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_023,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_023,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_023,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_023,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_023,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_024,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_024,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_024,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_024,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_024,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_024,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_024,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_024,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_024,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_024,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_025,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_025,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_025,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_025,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_025,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_025,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_025,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_025,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_025,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_025,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_026,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_026,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_026,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_026,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_026,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_026,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_026,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_026,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_026,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_026,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_027,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_027,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_027,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_027,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_027,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_027,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_027,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_027,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_027,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_027,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_028,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_028,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_028,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_028,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_028,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_028,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_028,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_028,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_028,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_028,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_029,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_029,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_029,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_029,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_029,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_029,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_029,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_029,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_029,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_029,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_030,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_030,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_030,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_030,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_030,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_030,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_030,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_030,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_030,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_030,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_031,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_031,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_031,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_031,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_031,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_031,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_031,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_031,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_031,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_031,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_032,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_032,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_032,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_032,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_032,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_032,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_032,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_032,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_032,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_032,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_033,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_033,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_033,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_033,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_033,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_033,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_033,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_033,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_033,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_033,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_034,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_034,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_034,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_034,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_034,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_034,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_034,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_034,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_034,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_034,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_035,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_035,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_035,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_035,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_035,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_035,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_035,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_035,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_035,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_035,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_036,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_036,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_036,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_036,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_036,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_036,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_036,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_036,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_036,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_036,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_037,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_037,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_037,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_037,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_037,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_037,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_037,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_037,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_037,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_037,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_038,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_038,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_038,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_038,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_038,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_038,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_038,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_038,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_038,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_038,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_039,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_039,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_039,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_039,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_039,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_039,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_039,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_039,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_039,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_039,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_040,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_040,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_040,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_040,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_040,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_040,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_040,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_040,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_040,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_040,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_041,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_041,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_041,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_041,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_041,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_041,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_041,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_041,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_041,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_041,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_042,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_042,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_042,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_042,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_042,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_042,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_042,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_042,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_042,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_042,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_043,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_043,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_043,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_043,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_043,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_043,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_043,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_043,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_043,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_043,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_044,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_044,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_044,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_044,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_044,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_044,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_044,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_044,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_044,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_044,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_045,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_045,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_045,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_045,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_045,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_045,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_045,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_045,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_045,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_045,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_046,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_046,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_046,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_046,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_046,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_046,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_046,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_046,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_046,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_046,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_047,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_047,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_047,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_047,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_047,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_047,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_047,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_047,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_047,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_047,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_048,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_048,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_048,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_048,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_048,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_048,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_048,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_048,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_048,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_048,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_049,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_049,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_049,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_049,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_049,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_049,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_049,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_049,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_049,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_049,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_050,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_050,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_050,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_050,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_050,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_050,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_050,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_050,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_050,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_050,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_051,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_051,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_051,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_051,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_051,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_051,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_051,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_051,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_051,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_051,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_052,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_052,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_052,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_052,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_052,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_052,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_052,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_052,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_052,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_052,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_053,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_053,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_053,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_053,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_053,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_053,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_053,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_053,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_053,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_053,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_054,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_054,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_054,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_054,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_054,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_054,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_054,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_054,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_054,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_054,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_055,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_055,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_055,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_055,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_055,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_055,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_055,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_055,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_055,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_055,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_056,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_056,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_056,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_056,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_056,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_056,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_056,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_056,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_056,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_056,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_057,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_057,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_057,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_057,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_057,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_057,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_057,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_057,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_057,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_057,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_058,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_058,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_058,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_058,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_058,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_058,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_058,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_058,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_058,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_058,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_059,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_059,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_059,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_059,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_059,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_059,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_059,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_059,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_059,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_059,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_060,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_060,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_060,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_060,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_060,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_060,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_060,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_060,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_060,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_060,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_061,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_061,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_061,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_061,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_061,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_061,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_061,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_061,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_061,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_061,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_062,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_062,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_062,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_062,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_062,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_062,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_062,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_062,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_062,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_062,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_063,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_063,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_063,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_063,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_063,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_063,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_063,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_063,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_063,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_063,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_064,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_064,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_064,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_064,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_064,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_064,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_064,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_064,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_064,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_064,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_065,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_065,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_065,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_065,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_065,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_065,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_065,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_065,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_065,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_065,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_066,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_066,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_066,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_066,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_066,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_066,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_066,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_066,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_066,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_066,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_067,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_067,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_067,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_067,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_067,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_067,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_067,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_067,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_067,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_067,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_068,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_068,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_068,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_068,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_068,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_068,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_068,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_068,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_068,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_068,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_069,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_069,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_069,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_069,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_069,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_069,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_069,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_069,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_069,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_069,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_070,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_070,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_070,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_070,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_070,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_070,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_070,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_070,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_070,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_070,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_071,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_071,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_071,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_071,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_071,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_071,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_071,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_071,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_071,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_071,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_072,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_072,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_072,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_072,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_072,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_072,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_072,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_072,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_072,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_072,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_073,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_073,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_073,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_073,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_073,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_073,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_073,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_073,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_073,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_073,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_074,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_074,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_074,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_074,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_074,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_074,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_074,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_074,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_074,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_074,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_075,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_075,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_075,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_075,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_075,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_075,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_075,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_075,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_075,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_075,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_076,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_076,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_076,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_076,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_076,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_076,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_076,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_076,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_076,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_076,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_077,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_077,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_077,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_077,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_077,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_077,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_077,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_077,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_077,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_077,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_078,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_078,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_078,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_078,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_078,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_078,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_078,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_078,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_078,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_078,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_079,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_079,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_079,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_079,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_079,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_079,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_079,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_079,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_079,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_079,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_080,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_080,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_080,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_080,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_080,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_080,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_080,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_080,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_080,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_080,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_081,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_081,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_081,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_081,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_081,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_081,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_081,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_081,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_081,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_081,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_082,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_082,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_082,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_082,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_082,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_082,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_082,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_082,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_082,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_082,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_083,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_083,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_083,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_083,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_083,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_083,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_083,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_083,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_083,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_083,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_084,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_084,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_084,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_084,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_084,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_084,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_084,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_084,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_084,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_084,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_085,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_085,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_085,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_085,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_085,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_085,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_085,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_085,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_085,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_085,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_086,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_086,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_086,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_086,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_086,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_086,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_086,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_086,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_086,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_086,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_087,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_087,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_087,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_087,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_087,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_087,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_087,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_087,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_087,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_087,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_088,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_088,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_088,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_088,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_088,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_088,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_088,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_088,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_088,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_088,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_089,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_089,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_089,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_089,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_089,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_089,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_089,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_089,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_089,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_089,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_090,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_090,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_090,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_090,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_090,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_090,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_090,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_090,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_090,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_090,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_091,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_091,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_091,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_091,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_091,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_091,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_091,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_091,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_091,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_091,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_092,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_092,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_092,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_092,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_092,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_092,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_092,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_092,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_092,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_092,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_093,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_093,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_093,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_093,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_093,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_093,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_093,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_093,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_093,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_093,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_094,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_094,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_094,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_094,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_094,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_094,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_094,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_094,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_094,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_094,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_095,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_095,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_095,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_095,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_095,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_095,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_095,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_095,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_095,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_095,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_096,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_096,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_096,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_096,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_096,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_096,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_096,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_096,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_096,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_096,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_097,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_097,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_097,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_097,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_097,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_097,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_097,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_097,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_097,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_097,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_098,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_098,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_098,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_098,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_098,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_098,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_098,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_098,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_098,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_098,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_099,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_099,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_099,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_099,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_099,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_099,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_099,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_099,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_099,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_099,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_100,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_100,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_100,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_100,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_100,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_100,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_100,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_100,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_100,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_100,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_101,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_101,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_101,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_101,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_101,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_101,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_101,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_101,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_101,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_101,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_102,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_102,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_102,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_102,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_102,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_102,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_102,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_102,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_102,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_102,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_103,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_103,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_103,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_103,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_103,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_103,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_103,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_103,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_103,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_103,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_104,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_104,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_104,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_104,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_104,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_104,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_104,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_104,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_104,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_104,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_105,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_105,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_105,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_105,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_105,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_105,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_105,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_105,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_105,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_105,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_106,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_106,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_106,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_106,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_106,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_106,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_106,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_106,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_106,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_106,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_107,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_107,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_107,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_107,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_107,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_107,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_107,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_107,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_107,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_107,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_108,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_108,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_108,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_108,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_108,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_108,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_108,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_108,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_108,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_108,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_109,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_109,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_109,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_109,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_109,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_109,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_109,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_109,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_109,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_109,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_110,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_110,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_110,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_110,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_110,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_110,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_110,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_110,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_110,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_110,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_111,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_111,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_111,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_111,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_111,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_111,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_111,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_111,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_111,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_111,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_112,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_112,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_112,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_112,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_112,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_112,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_112,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_112,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_112,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_112,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_113,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_113,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_113,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_113,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_113,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_113,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_113,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_113,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_113,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_113,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_114,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_114,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_114,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_114,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_114,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_114,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_114,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_114,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_114,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_114,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_115,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_115,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_115,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_115,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_115,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_115,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_115,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_115,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_115,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_115,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_116,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_116,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_116,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_116,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_116,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_116,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_116,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_116,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_116,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_116,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_117,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_117,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_117,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_117,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_117,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_117,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_117,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_117,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_117,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_117,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_118,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_118,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_118,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_118,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_118,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_118,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_118,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_118,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_118,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_118,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_119,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_119,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_119,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_119,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_119,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_119,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_119,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_119,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_119,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_119,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_120,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_120,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_120,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_120,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_120,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_120,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_120,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_120,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_120,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_120,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_121,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_121,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_121,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_121,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_121,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_121,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_121,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_121,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_121,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_121,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_122,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_122,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_122,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_122,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_122,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_122,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_122,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_122,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_122,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_122,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_123,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_123,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_123,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_123,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_123,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_123,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_123,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_123,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_123,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_123,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_124,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_124,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_124,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_124,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_124,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_124,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_124,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_124,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_124,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_124,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_125,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_125,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_125,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_125,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_125,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_125,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_125,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_125,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_125,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_125,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_126,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_126,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_126,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_126,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_126,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_126,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_126,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_126,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_126,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_126,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_127,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_127,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_127,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_127,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_127,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_127,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_127,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_127,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_127,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_127,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_128,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_128,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_128,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_128,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_128,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_128,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_128,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_128,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_128,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_128,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_129,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_129,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_129,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_129,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_129,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_129,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_129,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_129,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_129,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_129,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_130,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_130,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_130,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_130,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_130,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_130,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_130,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_130,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_130,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_130,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_131,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_131,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_131,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_131,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_131,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_131,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_131,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_131,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_131,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_131,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_132,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_132,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_132,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_132,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_132,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_132,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_132,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_132,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_132,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_132,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_133,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_133,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_133,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_133,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_133,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_133,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_133,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_133,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_133,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_133,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_134,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_134,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_134,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_134,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_134,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_134,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_134,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_134,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_134,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_134,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_135,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_135,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_135,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_135,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_135,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_135,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_135,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_135,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_135,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_135,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_136,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_136,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_136,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_136,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_136,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_136,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_136,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_136,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_136,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_136,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_137,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_137,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_137,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_137,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_137,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_137,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_137,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_137,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_137,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_137,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_138,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_138,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_138,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_138,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_138,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_138,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_138,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_138,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_138,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_138,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_139,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_139,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_139,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_139,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_139,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_139,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_139,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_139,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_139,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_139,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_140,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_140,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_140,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_140,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_140,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_140,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_140,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_140,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_140,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_140,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_141,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_141,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_141,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_141,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_141,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_141,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_141,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_141,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_141,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_141,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_142,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_142,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_142,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_142,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_142,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_142,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_142,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_142,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_142,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_142,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_143,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_143,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_143,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_143,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_143,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_143,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_143,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_143,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_143,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_143,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_144,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_144,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_144,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_144,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_144,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_144,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_144,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_144,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_144,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_144,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_145,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_145,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_145,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_145,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_145,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_145,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_145,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_145,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_145,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_145,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_146,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_146,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_146,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_146,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_146,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_146,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_146,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_146,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_146,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_146,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_147,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_147,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_147,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_147,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_147,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_147,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_147,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_147,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_147,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_147,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_148,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_148,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_148,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_148,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_148,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_148,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_148,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_148,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_148,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_148,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_149,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_149,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_149,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_149,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_149,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_149,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_149,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_149,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_149,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_149,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_150,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_150,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_150,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_150,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_150,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_150,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_150,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_150,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_150,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_150,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_151,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_151,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_151,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_151,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_151,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_151,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_151,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_151,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_151,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_151,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_152,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_152,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_152,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_152,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_152,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_152,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_152,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_152,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_152,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_152,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_153,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_153,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_153,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_153,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_153,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_153,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_153,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_153,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_153,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_153,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_154,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_154,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_154,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_154,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_154,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_154,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_154,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_154,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_154,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_154,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_155,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_155,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_155,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_155,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_155,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_155,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_155,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_155,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_155,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_155,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_156,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_156,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_156,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_156,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_156,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_156,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_156,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_156,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_156,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_156,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_157,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pour_drink_157,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_157,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pour_drink_157,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pour_drink_157,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_157,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+pour_drink_157,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pour_drink_157,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pour_drink_157,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pour_drink_157,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+pack_box_158,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+pack_box_158,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_158,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_158,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+pack_box_158,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_158,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+pack_box_158,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+pack_box_158,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+pack_box_158,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+pack_box_158,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_159,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+assemble_bracket_159,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_159,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+assemble_bracket_159,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+assemble_bracket_159,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_159,Wrong state-support label,0.0,0.0,0.0,1.0,0.0,1.0,0.0
+assemble_bracket_159,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+assemble_bracket_159,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+assemble_bracket_159,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+assemble_bracket_159,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_160,Valid refined ATG,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+sort_tray_160,Schema-invalid executor label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_160,Open precondition,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_160,Directed cycle,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+sort_tray_160,Missing synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_160,Wrong state-support label,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+sort_tray_160,Orphan synchronization,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+sort_tray_160,Invalid resource label,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+sort_tray_160,Unordered shared resource,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+sort_tray_160,Unreachable goal,1.0,1.0,0.0,1.0,1.0,1.0,0.0

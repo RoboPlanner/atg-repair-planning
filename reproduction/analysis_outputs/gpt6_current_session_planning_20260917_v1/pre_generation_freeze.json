@@ -1,0 +1,22 @@
+{
+  "frozen_at_utc": "2026-09-17T09:41:14.548564+00:00",
+  "expected_candidates": 24,
+  "input_files": {
+    "task_specs.json": "00eb62fc089373666f8e71b8de767fd734a2e9ffc26a7a4f4b06219e15edf116",
+    "common_prompt.txt": "4f39908ae64c09fb7d7ffd05f6351db3378b835afa7ea1eea2de49dfe6084445",
+    "generation_protocol.md": "3f40f425ec5af79cc6efb46087e97b419aee8d6ba3aa478a9a2036da33cb803c"
+  },
+  "code_files": {
+    "cli.py": "c46b274ca0f38c79896f7b20c40b2301790db9fabc200165626a5d55d1709b38",
+    "experiments.py": "e7cfe75d587779a010d55f3989eb38760eeb05ec066434714689dc70048c9f7a",
+    "extended_experiments.py": "415db63b6c5652cf06f8f5aa0afa20f50beaba7e5be1bb32ab8666655c45ba7e",
+    "generation.py": "ccd8bc9959181f819c054dcec6a6918e3cbfa59e8fa430f257a61d3d167ff9df",
+    "metrics.py": "52c59607a8574aba3a4842589201adb34b265d3833cab93b5ad3b1909226d4da",
+    "optimization.py": "09f5d14d0a7df391589c21d9bcfe4e9f529dae0ea575b1074db28e5d93fea536",
+    "pipeline.py": "3951ce0a949dc21ce7d9ff404471178b3e596319b5d80da516468c4e2a732731",
+    "planning.py": "d5abcfcaccac1b7e983fbad173b8315170e7f660b4716fdaf4a46f779631a1a1",
+    "schema.py": "6fd748182f78432e260d7b02aa593a53ca74344e498ed46c168624e13148277f",
+    "verification.py": "62c75afa2408f55e9c06ade3a360f620fae7fb99f50bb7a6a61b3de12f7949fa",
+    "__init__.py": "12191b732f2b981b963a8d40138d2abb508a444545dbeef4c9f2025700e558eb"
+  }
+}

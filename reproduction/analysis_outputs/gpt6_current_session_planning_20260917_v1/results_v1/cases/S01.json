@@ -1,0 +1,3162 @@
+{
+  "task_id": "S01",
+  "spec": {
+    "task_id": "S01",
+    "domain": "sorting",
+    "title": "三类包裹分拣",
+    "instruction": "分别扫描A、B、C包裹并读取目标分类，使用同一扫码器；将它们放入各自目标格，三个分类结果完成后记录批次完成。",
+    "S0": [
+      "parcel_a_ready",
+      "parcel_b_ready",
+      "parcel_c_ready",
+      "bins_ready",
+      "sort_manifest_ready"
+    ],
+    "Sg": [
+      "sorting_batch_recorded"
+    ],
+    "resources": [
+      "parcel_a",
+      "parcel_b",
+      "parcel_c",
+      "scanner",
+      "bin_a",
+      "bin_b",
+      "bin_c",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_sorting.json",
+  "raw_candidate": {
+    "task_id": "S01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan and classify parcel A",
+        "object": "parcel A",
+        "Pre": [
+          "parcel_a_ready",
+          "sort_manifest_ready"
+        ],
+        "Post": [
+          "parcel_a_classified"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_a",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan and classify parcel B",
+        "object": "parcel B",
+        "Pre": [
+          "parcel_b_ready",
+          "sort_manifest_ready"
+        ],
+        "Post": [
+          "parcel_b_classified"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_b",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan and classify parcel C",
+        "object": "parcel C",
+        "Pre": [
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "Post": [
+          "parcel_c_classified"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_c",
+          "scanner"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place parcel A in assigned bin",
+        "object": "parcel A",
+        "Pre": [
+          "parcel_a_classified",
+          "bins_ready"
+        ],
+        "Post": [
+          "parcel_a_sorted"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_a",
+          "bin_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place parcel B in assigned bin",
+        "object": "parcel B",
+        "Pre": [
+          "parcel_b_classified",
+          "bins_ready"
+        ],
+        "Post": [
+          "parcel_b_sorted"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_b",
+          "bin_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place parcel C in assigned bin",
+        "object": "parcel C",
+        "Pre": [
+          "parcel_c_classified",
+          "bins_ready"
+        ],
+        "Post": [
+          "parcel_c_sorted"
+        ],
+        "d": 2,
+        "Res": [
+          "parcel_c",
+          "bin_c"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record sorted batch",
+        "object": "sorting record",
+        "Pre": [
+          "parcel_a_sorted",
+          "parcel_b_sorted",
+          "parcel_c_sorted"
+        ],
+        "Post": [
+          "sorting_batch_recorded"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "parcel_a_classified"
+        ],
+        [
+          "t2",
+          "t5",
+          "parcel_b_classified"
+        ],
+        [
+          "t3",
+          "t6",
+          "parcel_c_classified"
+        ],
+        [
+          "t4",
+          "t7",
+          "parcel_a_sorted"
+        ],
+        [
+          "t5",
+          "t7",
+          "parcel_b_sorted"
+        ],
+        [
+          "t6",
+          "t7",
+          "parcel_c_sorted"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "scanner"
+        ],
+        [
+          "t2",
+          "t3",
+          "scanner"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan and classify parcel A",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_a_classified"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan and classify parcel B",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_b_classified"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan and classify parcel C",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_c_classified"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_c",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place parcel A in assigned bin",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_a_sorted"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_a",
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place parcel B in assigned bin",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_b_sorted"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_b",
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place parcel C in assigned bin",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_c_sorted"
+        ],
+        "duration": 2,
+        "resource": [
+          "parcel_c",
+          "bin_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record sorted batch",
+        "object": "sorting record",
+        "pre_state": [
+          "parcel_a_sorted",
+          "parcel_b_sorted",
+          "parcel_c_sorted"
+        ],
+        "post_state": [
+          "sorting_batch_recorded"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "parcel_a_classified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "parcel_b_classified"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "parcel_c_classified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "parcel_a_sorted"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "parcel_b_sorted"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "parcel_c_sorted"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bins_ready",
+        "parcel_a_ready",
+        "parcel_b_ready",
+        "parcel_c_ready",
+        "sort_manifest_ready"
+      ],
+      "available_states": [
+        "bins_ready",
+        "parcel_a_classified",
+        "parcel_a_ready",
+        "parcel_a_sorted",
+        "parcel_b_classified",
+        "parcel_b_ready",
+        "parcel_b_sorted",
+        "parcel_c_classified",
+        "parcel_c_ready",
+        "parcel_c_sorted",
+        "sort_manifest_ready",
+        "sorting_batch_recorded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "sorting_batch_recorded"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 9.0,
+    "waiting_time": 4.0,
+    "executor_utilization": 0.7222,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "scan and classify parcel A",
+        "object": "parcel A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "parcel_a",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "scan and classify parcel B",
+        "object": "parcel B",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "parcel_b",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "scan and classify parcel C",
+        "object": "parcel C",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "parcel_c",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "place parcel A in assigned bin",
+        "object": "parcel A",
+        "start": 6.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "parcel_a",
+          "bin_a"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "place parcel B in assigned bin",
+        "object": "parcel B",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "parcel_b",
+          "bin_b"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "place parcel C in assigned bin",
+        "object": "parcel C",
+        "start": 6.0,
+        "finish": 8.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "parcel_c",
+          "bin_c"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "record sorted batch",
+        "object": "sorting record",
+        "start": 8.0,
+        "finish": 9.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t3",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t6",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 6.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7222222222222222
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bins_ready",
+          "parcel_a_ready",
+          "parcel_b_ready",
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "available_states": [
+          "bins_ready",
+          "parcel_a_classified",
+          "parcel_a_ready",
+          "parcel_a_sorted",
+          "parcel_b_classified",
+          "parcel_b_ready",
+          "parcel_b_sorted",
+          "parcel_c_classified",
+          "parcel_c_ready",
+          "parcel_c_sorted",
+          "sort_manifest_ready",
+          "sorting_batch_recorded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sorting_batch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bins_ready",
+          "parcel_a_ready",
+          "parcel_b_ready",
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "available_states": [
+          "bins_ready",
+          "parcel_a_classified",
+          "parcel_a_ready",
+          "parcel_a_sorted",
+          "parcel_b_classified",
+          "parcel_b_ready",
+          "parcel_b_sorted",
+          "parcel_c_classified",
+          "parcel_c_ready",
+          "parcel_c_sorted",
+          "sort_manifest_ready",
+          "sorting_batch_recorded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sorting_batch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bins_ready",
+            "parcel_a_ready",
+            "parcel_b_ready",
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "available_states": [
+            "bins_ready",
+            "parcel_a_classified",
+            "parcel_a_ready",
+            "parcel_a_sorted",
+            "parcel_b_classified",
+            "parcel_b_ready",
+            "parcel_b_sorted",
+            "parcel_c_classified",
+            "parcel_c_ready",
+            "parcel_c_sorted",
+            "sort_manifest_ready",
+            "sorting_batch_recorded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sorting_batch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bins_ready",
+            "parcel_a_ready",
+            "parcel_b_ready",
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "available_states": [
+            "bins_ready",
+            "parcel_a_classified",
+            "parcel_a_ready",
+            "parcel_a_sorted",
+            "parcel_b_classified",
+            "parcel_b_ready",
+            "parcel_b_sorted",
+            "parcel_c_classified",
+            "parcel_c_ready",
+            "parcel_c_sorted",
+            "sort_manifest_ready",
+            "sorting_batch_recorded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sorting_batch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 9.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7222,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_c",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_a",
+            "bin_a"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_b",
+            "bin_b"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_c",
+            "bin_c"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "start": 8.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bins_ready",
+          "parcel_a_ready",
+          "parcel_b_ready",
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "available_states": [
+          "bins_ready",
+          "parcel_a_classified",
+          "parcel_a_ready",
+          "parcel_a_sorted",
+          "parcel_b_classified",
+          "parcel_b_ready",
+          "parcel_b_sorted",
+          "parcel_c_classified",
+          "parcel_c_ready",
+          "parcel_c_sorted",
+          "sort_manifest_ready",
+          "sorting_batch_recorded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sorting_batch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bins_ready",
+          "parcel_a_ready",
+          "parcel_b_ready",
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "available_states": [
+          "bins_ready",
+          "parcel_a_classified",
+          "parcel_a_ready",
+          "parcel_a_sorted",
+          "parcel_b_classified",
+          "parcel_b_ready",
+          "parcel_b_sorted",
+          "parcel_c_classified",
+          "parcel_c_ready",
+          "parcel_c_sorted",
+          "sort_manifest_ready",
+          "sorting_batch_recorded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "sorting_batch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bins_ready",
+            "parcel_a_ready",
+            "parcel_b_ready",
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "available_states": [
+            "bins_ready",
+            "parcel_a_classified",
+            "parcel_a_ready",
+            "parcel_a_sorted",
+            "parcel_b_classified",
+            "parcel_b_ready",
+            "parcel_b_sorted",
+            "parcel_c_classified",
+            "parcel_c_ready",
+            "parcel_c_sorted",
+            "sort_manifest_ready",
+            "sorting_batch_recorded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sorting_batch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bins_ready",
+            "parcel_a_ready",
+            "parcel_b_ready",
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "available_states": [
+            "bins_ready",
+            "parcel_a_classified",
+            "parcel_a_ready",
+            "parcel_a_sorted",
+            "parcel_b_classified",
+            "parcel_b_ready",
+            "parcel_b_sorted",
+            "parcel_c_classified",
+            "parcel_c_ready",
+            "parcel_c_sorted",
+            "sort_manifest_ready",
+            "sorting_batch_recorded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "sorting_batch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 9.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7222,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_c",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "parcel_a",
+            "bin_a"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_b",
+            "bin_b"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "parcel_c",
+            "bin_c"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "start": 8.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan and classify parcel A",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_a_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan and classify parcel B",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_b_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan and classify parcel C",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_c_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_c",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place parcel A in assigned bin",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_a_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_a",
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place parcel B in assigned bin",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_b_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_b",
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place parcel C in assigned bin",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_c_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_c",
+          "bin_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record sorted batch",
+        "object": "sorting record",
+        "pre_state": [
+          "parcel_a_sorted",
+          "parcel_b_sorted",
+          "parcel_c_sorted"
+        ],
+        "post_state": [
+          "sorting_batch_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_a_classified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_b_classified"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_c_classified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_a_sorted"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_b_sorted"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_c_sorted"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t3",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t6",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 6.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7222222222222222
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan and classify parcel A",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_a_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan and classify parcel B",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_b_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan and classify parcel C",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_ready",
+          "sort_manifest_ready"
+        ],
+        "post_state": [
+          "parcel_c_classified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_c",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place parcel A in assigned bin",
+        "object": "parcel A",
+        "pre_state": [
+          "parcel_a_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_a_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_a",
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place parcel B in assigned bin",
+        "object": "parcel B",
+        "pre_state": [
+          "parcel_b_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_b_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_b",
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place parcel C in assigned bin",
+        "object": "parcel C",
+        "pre_state": [
+          "parcel_c_classified",
+          "bins_ready"
+        ],
+        "post_state": [
+          "parcel_c_sorted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "parcel_c",
+          "bin_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record sorted batch",
+        "object": "sorting record",
+        "pre_state": [
+          "parcel_a_sorted",
+          "parcel_b_sorted",
+          "parcel_c_sorted"
+        ],
+        "post_state": [
+          "sorting_batch_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_a_classified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_b_classified"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_c_classified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_a_sorted"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_b_sorted"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "parcel_c_sorted"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t3",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t6",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 6.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.7222222222222222
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bins_ready",
+        "parcel_a_ready",
+        "parcel_b_ready",
+        "parcel_c_ready",
+        "sort_manifest_ready"
+      ],
+      "available_states": [
+        "bins_ready",
+        "parcel_a_classified",
+        "parcel_a_ready",
+        "parcel_a_sorted",
+        "parcel_b_classified",
+        "parcel_b_ready",
+        "parcel_b_sorted",
+        "parcel_c_classified",
+        "parcel_c_ready",
+        "parcel_c_sorted",
+        "sort_manifest_ready",
+        "sorting_batch_recorded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "sorting_batch_recorded"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan and classify parcel A",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_a_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan and classify parcel B",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_b_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan and classify parcel C",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_ready",
+            "sort_manifest_ready"
+          ],
+          "post_state": [
+            "parcel_c_classified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place parcel A in assigned bin",
+          "object": "parcel A",
+          "pre_state": [
+            "parcel_a_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_a_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_a",
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place parcel B in assigned bin",
+          "object": "parcel B",
+          "pre_state": [
+            "parcel_b_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_b_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_b",
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place parcel C in assigned bin",
+          "object": "parcel C",
+          "pre_state": [
+            "parcel_c_classified",
+            "bins_ready"
+          ],
+          "post_state": [
+            "parcel_c_sorted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "parcel_c",
+            "bin_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record sorted batch",
+          "object": "sorting record",
+          "pre_state": [
+            "parcel_a_sorted",
+            "parcel_b_sorted",
+            "parcel_c_sorted"
+          ],
+          "post_state": [
+            "sorting_batch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_classified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_classified"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_classified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_a_sorted"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_b_sorted"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "parcel_c_sorted"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "S01",
+    "domain": "sorting",
+    "title": "三类包裹分拣",
+    "nodes": 7,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 6,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 2,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 6,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 13.0,
+    "cooperative_duration": 0,
+    "before_makespan": 9.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 9.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 9.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 6,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.4444444444444444,
+    "relative_duration_reduction_vs_serial": 0.3076923076923077,
+    "executor_utilization": 0.7222222222222222,
+    "left_busy_time": 6.0,
+    "right_busy_time": 7.0,
+    "scheduled_overlap_pairs": 2,
+    "critical_path_duration": 9.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

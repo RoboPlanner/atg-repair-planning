@@ -1,0 +1,11 @@
+Challenge,N,Schema Pass,Closure Pass,Goal Pass,Acyclic Pass,Sync Pass,Resource Pass,Joint Accept
+Valid refined ATG,160,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Schema-invalid executor label,160,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+Open precondition,160,1.0,0.0,0.0,1.0,1.0,1.0,0.0
+Directed cycle,160,1.0,0.0,0.0,0.0,1.0,1.0,0.0
+Missing synchronization,160,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+Wrong state-support label,160,0.0,0.0,0.0,1.0,0.5,1.0,0.0
+Orphan synchronization,160,1.0,1.0,1.0,1.0,0.0,1.0,0.0
+Invalid resource label,160,0.0,1.0,1.0,1.0,1.0,1.0,0.0
+Unordered shared resource,160,1.0,1.0,1.0,1.0,1.0,0.0,0.0
+Unreachable goal,160,1.0,1.0,0.0,1.0,1.0,1.0,0.0

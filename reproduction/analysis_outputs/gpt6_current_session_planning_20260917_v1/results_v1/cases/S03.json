@@ -1,0 +1,4785 @@
+{
+  "task_id": "S03",
+  "spec": {
+    "task_id": "S03",
+    "domain": "sorting",
+    "title": "三组紧固件配对",
+    "instruction": "从三组紧固件中分别挑出螺栓与螺母，使用同一量规核对配合规格；将每组匹配件装入单独小袋，打印合并清单，三袋齐备后装入周转盒。",
+    "S0": [
+      "fastener_group_a",
+      "fastener_group_b",
+      "fastener_group_c",
+      "bags_available",
+      "tote_ready",
+      "gauge_ready"
+    ],
+    "Sg": [
+      "matched_fasteners_collected"
+    ],
+    "resources": [
+      "group_a",
+      "group_b",
+      "group_c",
+      "gauge",
+      "bag_a",
+      "bag_b",
+      "bag_c",
+      "printer",
+      "tote"
+    ]
+  },
+  "raw_source": "raw_candidates_sorting.json",
+  "raw_candidate": {
+    "task_id": "S03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "select fasteners from group A",
+        "object": "group A",
+        "Pre": [
+          "fastener_group_a"
+        ],
+        "Post": [
+          "fasteners_a_selected"
+        ],
+        "d": 2,
+        "Res": [
+          "group_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "select fasteners from group B",
+        "object": "group B",
+        "Pre": [
+          "fastener_group_b"
+        ],
+        "Post": [
+          "fasteners_b_selected"
+        ],
+        "d": 2,
+        "Res": [
+          "group_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "select fasteners from group C",
+        "object": "group C",
+        "Pre": [
+          "fastener_group_c"
+        ],
+        "Post": [
+          "fasteners_c_selected"
+        ],
+        "d": 2,
+        "Res": [
+          "group_c"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "gauge group A match",
+        "object": "group A",
+        "Pre": [
+          "fasteners_a_selected",
+          "gauge_ready"
+        ],
+        "Post": [
+          "fasteners_a_matched"
+        ],
+        "d": 3,
+        "Res": [
+          "group_a",
+          "gauge"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "gauge group B match",
+        "object": "group B",
+        "Pre": [
+          "fasteners_b_selected",
+          "gauge_ready"
+        ],
+        "Post": [
+          "fasteners_b_matched"
+        ],
+        "d": 3,
+        "Res": [
+          "group_b",
+          "gauge"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "gauge group C match",
+        "object": "group C",
+        "Pre": [
+          "fasteners_c_selected",
+          "gauge_ready"
+        ],
+        "Post": [
+          "fasteners_c_matched"
+        ],
+        "d": 3,
+        "Res": [
+          "group_c",
+          "gauge"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "bag matched group A",
+        "object": "bag A",
+        "Pre": [
+          "fasteners_a_matched",
+          "bags_available"
+        ],
+        "Post": [
+          "bag_a_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "group_a",
+          "bag_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "bag matched group B",
+        "object": "bag B",
+        "Pre": [
+          "fasteners_b_matched",
+          "bags_available"
+        ],
+        "Post": [
+          "bag_b_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "group_b",
+          "bag_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "bag matched group C",
+        "object": "bag C",
+        "Pre": [
+          "fasteners_c_matched",
+          "bags_available"
+        ],
+        "Post": [
+          "bag_c_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "group_c",
+          "bag_c"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "print combined fastener list",
+        "object": "fastener list",
+        "Pre": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete"
+        ],
+        "Post": [
+          "fastener_list_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "collect bags and list in tote",
+        "object": "fastener tote",
+        "Pre": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "fastener_list_printed",
+          "tote_ready"
+        ],
+        "Post": [
+          "matched_fasteners_collected"
+        ],
+        "d": 2,
+        "Res": [
+          "bag_a",
+          "bag_b",
+          "bag_c",
+          "tote"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "fasteners_a_selected"
+        ],
+        [
+          "t2",
+          "t5",
+          "fasteners_b_selected"
+        ],
+        [
+          "t3",
+          "t6",
+          "fasteners_c_selected"
+        ],
+        [
+          "t4",
+          "t7",
+          "fasteners_a_matched"
+        ],
+        [
+          "t5",
+          "t8",
+          "fasteners_b_matched"
+        ],
+        [
+          "t6",
+          "t9",
+          "fasteners_c_matched"
+        ],
+        [
+          "t7",
+          "t10",
+          "bag_a_complete"
+        ],
+        [
+          "t8",
+          "t10",
+          "bag_b_complete"
+        ],
+        [
+          "t9",
+          "t10",
+          "bag_c_complete"
+        ],
+        [
+          "t7",
+          "t11",
+          "bag_a_complete"
+        ],
+        [
+          "t8",
+          "t11",
+          "bag_b_complete"
+        ],
+        [
+          "t9",
+          "t11",
+          "bag_c_complete"
+        ],
+        [
+          "t10",
+          "t11",
+          "fastener_list_printed"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t4",
+          "t5",
+          "gauge"
+        ],
+        [
+          "t5",
+          "t6",
+          "gauge"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "select fasteners from group A",
+        "object": "group A",
+        "pre_state": [
+          "fastener_group_a"
+        ],
+        "post_state": [
+          "fasteners_a_selected"
+        ],
+        "duration": 2,
+        "resource": [
+          "group_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "select fasteners from group B",
+        "object": "group B",
+        "pre_state": [
+          "fastener_group_b"
+        ],
+        "post_state": [
+          "fasteners_b_selected"
+        ],
+        "duration": 2,
+        "resource": [
+          "group_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "select fasteners from group C",
+        "object": "group C",
+        "pre_state": [
+          "fastener_group_c"
+        ],
+        "post_state": [
+          "fasteners_c_selected"
+        ],
+        "duration": 2,
+        "resource": [
+          "group_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "gauge group A match",
+        "object": "group A",
+        "pre_state": [
+          "fasteners_a_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_a_matched"
+        ],
+        "duration": 3,
+        "resource": [
+          "group_a",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "gauge group B match",
+        "object": "group B",
+        "pre_state": [
+          "fasteners_b_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_b_matched"
+        ],
+        "duration": 3,
+        "resource": [
+          "group_b",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "gauge group C match",
+        "object": "group C",
+        "pre_state": [
+          "fasteners_c_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_c_matched"
+        ],
+        "duration": 3,
+        "resource": [
+          "group_c",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "bag matched group A",
+        "object": "bag A",
+        "pre_state": [
+          "fasteners_a_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_a_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "group_a",
+          "bag_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "bag matched group B",
+        "object": "bag B",
+        "pre_state": [
+          "fasteners_b_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_b_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "group_b",
+          "bag_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "bag matched group C",
+        "object": "bag C",
+        "pre_state": [
+          "fasteners_c_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_c_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "group_c",
+          "bag_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "print combined fastener list",
+        "object": "fastener list",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete"
+        ],
+        "post_state": [
+          "fastener_list_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "collect bags and list in tote",
+        "object": "fastener tote",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "fastener_list_printed",
+          "tote_ready"
+        ],
+        "post_state": [
+          "matched_fasteners_collected"
+        ],
+        "duration": 2,
+        "resource": [
+          "bag_a",
+          "bag_b",
+          "bag_c",
+          "tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "fasteners_a_selected"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "fasteners_b_selected"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "fasteners_c_selected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "fasteners_a_matched"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "fasteners_b_matched"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "state": "fasteners_c_matched"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t11",
+        "type": "state_support",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "fastener_list_printed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "gauge"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "resource": "gauge"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bags_available",
+        "fastener_group_a",
+        "fastener_group_b",
+        "fastener_group_c",
+        "gauge_ready",
+        "tote_ready"
+      ],
+      "available_states": [
+        "bag_a_complete",
+        "bag_b_complete",
+        "bag_c_complete",
+        "bags_available",
+        "fastener_group_a",
+        "fastener_group_b",
+        "fastener_group_c",
+        "fastener_list_printed",
+        "fasteners_a_matched",
+        "fasteners_a_selected",
+        "fasteners_b_matched",
+        "fasteners_b_selected",
+        "fasteners_c_matched",
+        "fasteners_c_selected",
+        "gauge_ready",
+        "matched_fasteners_collected",
+        "tote_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "matched_fasteners_collected"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 17.0,
+    "waiting_time": 11.0,
+    "executor_utilization": 0.6176,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "select fasteners from group A",
+        "object": "group A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "group_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "select fasteners from group B",
+        "object": "group B",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "group_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "select fasteners from group C",
+        "object": "group C",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "group_c"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "gauge group A match",
+        "object": "group A",
+        "start": 4.0,
+        "finish": 7.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "group_a",
+          "gauge"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "gauge group B match",
+        "object": "group B",
+        "start": 7.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "group_b",
+          "gauge"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "gauge group C match",
+        "object": "group C",
+        "start": 10.0,
+        "finish": 13.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "group_c",
+          "gauge"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "bag matched group A",
+        "object": "bag A",
+        "start": 13.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "group_a",
+          "bag_a"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "bag matched group B",
+        "object": "bag B",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "group_b",
+          "bag_b"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "bag matched group C",
+        "object": "bag C",
+        "start": 13.0,
+        "finish": 14.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "group_c",
+          "bag_c"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "print combined fastener list",
+        "object": "fastener list",
+        "start": 14.0,
+        "finish": 15.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "collect bags and list in tote",
+        "object": "fastener tote",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "bag_a",
+          "bag_b",
+          "bag_c",
+          "tote"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t6",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.6176470588235294
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "gauge_ready",
+          "tote_ready"
+        ],
+        "available_states": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "fastener_list_printed",
+          "fasteners_a_matched",
+          "fasteners_a_selected",
+          "fasteners_b_matched",
+          "fasteners_b_selected",
+          "fasteners_c_matched",
+          "fasteners_c_selected",
+          "gauge_ready",
+          "matched_fasteners_collected",
+          "tote_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "matched_fasteners_collected"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "gauge_ready",
+          "tote_ready"
+        ],
+        "available_states": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "fastener_list_printed",
+          "fasteners_a_matched",
+          "fasteners_a_selected",
+          "fasteners_b_matched",
+          "fasteners_b_selected",
+          "fasteners_c_matched",
+          "fasteners_c_selected",
+          "gauge_ready",
+          "matched_fasteners_collected",
+          "tote_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "matched_fasteners_collected"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "gauge_ready",
+            "tote_ready"
+          ],
+          "available_states": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "fastener_list_printed",
+            "fasteners_a_matched",
+            "fasteners_a_selected",
+            "fasteners_b_matched",
+            "fasteners_b_selected",
+            "fasteners_c_matched",
+            "fasteners_c_selected",
+            "gauge_ready",
+            "matched_fasteners_collected",
+            "tote_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "matched_fasteners_collected"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "gauge_ready",
+            "tote_ready"
+          ],
+          "available_states": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "fastener_list_printed",
+            "fasteners_a_matched",
+            "fasteners_a_selected",
+            "fasteners_b_matched",
+            "fasteners_b_selected",
+            "fasteners_c_matched",
+            "fasteners_c_selected",
+            "gauge_ready",
+            "matched_fasteners_collected",
+            "tote_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "matched_fasteners_collected"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 17.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.6176,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_c"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "start": 10.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_c",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a",
+            "bag_a"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b",
+            "bag_b"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_c",
+            "bag_c"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "gauge_ready",
+          "tote_ready"
+        ],
+        "available_states": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "fastener_list_printed",
+          "fasteners_a_matched",
+          "fasteners_a_selected",
+          "fasteners_b_matched",
+          "fasteners_b_selected",
+          "fasteners_c_matched",
+          "fasteners_c_selected",
+          "gauge_ready",
+          "matched_fasteners_collected",
+          "tote_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "matched_fasteners_collected"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "gauge_ready",
+          "tote_ready"
+        ],
+        "available_states": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "bags_available",
+          "fastener_group_a",
+          "fastener_group_b",
+          "fastener_group_c",
+          "fastener_list_printed",
+          "fasteners_a_matched",
+          "fasteners_a_selected",
+          "fasteners_b_matched",
+          "fasteners_b_selected",
+          "fasteners_c_matched",
+          "fasteners_c_selected",
+          "gauge_ready",
+          "matched_fasteners_collected",
+          "tote_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "matched_fasteners_collected"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "gauge_ready",
+            "tote_ready"
+          ],
+          "available_states": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "fastener_list_printed",
+            "fasteners_a_matched",
+            "fasteners_a_selected",
+            "fasteners_b_matched",
+            "fasteners_b_selected",
+            "fasteners_c_matched",
+            "fasteners_c_selected",
+            "gauge_ready",
+            "matched_fasteners_collected",
+            "tote_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "matched_fasteners_collected"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "gauge_ready",
+            "tote_ready"
+          ],
+          "available_states": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "bags_available",
+            "fastener_group_a",
+            "fastener_group_b",
+            "fastener_group_c",
+            "fastener_list_printed",
+            "fasteners_a_matched",
+            "fasteners_a_selected",
+            "fasteners_b_matched",
+            "fasteners_b_selected",
+            "fasteners_c_matched",
+            "fasteners_c_selected",
+            "gauge_ready",
+            "matched_fasteners_collected",
+            "tote_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "matched_fasteners_collected"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 17.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.6176,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_c"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "start": 7.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "start": 10.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_c",
+            "gauge"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "group_a",
+            "bag_a"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_b",
+            "bag_b"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "group_c",
+            "bag_c"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "select fasteners from group A",
+        "object": "group A",
+        "pre_state": [
+          "fastener_group_a"
+        ],
+        "post_state": [
+          "fasteners_a_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "select fasteners from group B",
+        "object": "group B",
+        "pre_state": [
+          "fastener_group_b"
+        ],
+        "post_state": [
+          "fasteners_b_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "select fasteners from group C",
+        "object": "group C",
+        "pre_state": [
+          "fastener_group_c"
+        ],
+        "post_state": [
+          "fasteners_c_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "gauge group A match",
+        "object": "group A",
+        "pre_state": [
+          "fasteners_a_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_a_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_a",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "gauge group B match",
+        "object": "group B",
+        "pre_state": [
+          "fasteners_b_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_b_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_b",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "gauge group C match",
+        "object": "group C",
+        "pre_state": [
+          "fasteners_c_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_c_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_c",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "bag matched group A",
+        "object": "bag A",
+        "pre_state": [
+          "fasteners_a_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_a_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_a",
+          "bag_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "bag matched group B",
+        "object": "bag B",
+        "pre_state": [
+          "fasteners_b_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_b_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_b",
+          "bag_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "bag matched group C",
+        "object": "bag C",
+        "pre_state": [
+          "fasteners_c_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_c_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_c",
+          "bag_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "print combined fastener list",
+        "object": "fastener list",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete"
+        ],
+        "post_state": [
+          "fastener_list_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "collect bags and list in tote",
+        "object": "fastener tote",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "fastener_list_printed",
+          "tote_ready"
+        ],
+        "post_state": [
+          "matched_fasteners_collected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bag_a",
+          "bag_b",
+          "bag_c",
+          "tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_a_selected"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_b_selected"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_c_selected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_a_matched"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_b_matched"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_c_matched"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_list_printed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "gauge"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "gauge"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t6",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.6176470588235294
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "select fasteners from group A",
+        "object": "group A",
+        "pre_state": [
+          "fastener_group_a"
+        ],
+        "post_state": [
+          "fasteners_a_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "select fasteners from group B",
+        "object": "group B",
+        "pre_state": [
+          "fastener_group_b"
+        ],
+        "post_state": [
+          "fasteners_b_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "select fasteners from group C",
+        "object": "group C",
+        "pre_state": [
+          "fastener_group_c"
+        ],
+        "post_state": [
+          "fasteners_c_selected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "group_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "gauge group A match",
+        "object": "group A",
+        "pre_state": [
+          "fasteners_a_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_a_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_a",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "gauge group B match",
+        "object": "group B",
+        "pre_state": [
+          "fasteners_b_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_b_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_b",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "gauge group C match",
+        "object": "group C",
+        "pre_state": [
+          "fasteners_c_selected",
+          "gauge_ready"
+        ],
+        "post_state": [
+          "fasteners_c_matched"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "group_c",
+          "gauge"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "bag matched group A",
+        "object": "bag A",
+        "pre_state": [
+          "fasteners_a_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_a_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_a",
+          "bag_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "bag matched group B",
+        "object": "bag B",
+        "pre_state": [
+          "fasteners_b_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_b_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_b",
+          "bag_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "bag matched group C",
+        "object": "bag C",
+        "pre_state": [
+          "fasteners_c_matched",
+          "bags_available"
+        ],
+        "post_state": [
+          "bag_c_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "group_c",
+          "bag_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "print combined fastener list",
+        "object": "fastener list",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete"
+        ],
+        "post_state": [
+          "fastener_list_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "collect bags and list in tote",
+        "object": "fastener tote",
+        "pre_state": [
+          "bag_a_complete",
+          "bag_b_complete",
+          "bag_c_complete",
+          "fastener_list_printed",
+          "tote_ready"
+        ],
+        "post_state": [
+          "matched_fasteners_collected"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "bag_a",
+          "bag_b",
+          "bag_c",
+          "tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_a_selected"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_b_selected"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_c_selected"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_a_matched"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_b_matched"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "fasteners_c_matched"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t7",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_a_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_b_complete"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "bag_c_complete"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "fastener_list_printed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "gauge"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "gauge"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t6",
+        "t8",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 12.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.6176470588235294
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bags_available",
+        "fastener_group_a",
+        "fastener_group_b",
+        "fastener_group_c",
+        "gauge_ready",
+        "tote_ready"
+      ],
+      "available_states": [
+        "bag_a_complete",
+        "bag_b_complete",
+        "bag_c_complete",
+        "bags_available",
+        "fastener_group_a",
+        "fastener_group_b",
+        "fastener_group_c",
+        "fastener_list_printed",
+        "fasteners_a_matched",
+        "fasteners_a_selected",
+        "fasteners_b_matched",
+        "fasteners_b_selected",
+        "fasteners_c_matched",
+        "fasteners_c_selected",
+        "gauge_ready",
+        "matched_fasteners_collected",
+        "tote_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "matched_fasteners_collected"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "select fasteners from group A",
+          "object": "group A",
+          "pre_state": [
+            "fastener_group_a"
+          ],
+          "post_state": [
+            "fasteners_a_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "select fasteners from group B",
+          "object": "group B",
+          "pre_state": [
+            "fastener_group_b"
+          ],
+          "post_state": [
+            "fasteners_b_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "select fasteners from group C",
+          "object": "group C",
+          "pre_state": [
+            "fastener_group_c"
+          ],
+          "post_state": [
+            "fasteners_c_selected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "group_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "gauge group A match",
+          "object": "group A",
+          "pre_state": [
+            "fasteners_a_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_a_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_a",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "gauge group B match",
+          "object": "group B",
+          "pre_state": [
+            "fasteners_b_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_b_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_b",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "gauge group C match",
+          "object": "group C",
+          "pre_state": [
+            "fasteners_c_selected",
+            "gauge_ready"
+          ],
+          "post_state": [
+            "fasteners_c_matched"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "group_c",
+            "gauge"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "bag matched group A",
+          "object": "bag A",
+          "pre_state": [
+            "fasteners_a_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_a_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_a",
+            "bag_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "bag matched group B",
+          "object": "bag B",
+          "pre_state": [
+            "fasteners_b_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_b_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_b",
+            "bag_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "bag matched group C",
+          "object": "bag C",
+          "pre_state": [
+            "fasteners_c_matched",
+            "bags_available"
+          ],
+          "post_state": [
+            "bag_c_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "group_c",
+            "bag_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "print combined fastener list",
+          "object": "fastener list",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete"
+          ],
+          "post_state": [
+            "fastener_list_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "collect bags and list in tote",
+          "object": "fastener tote",
+          "pre_state": [
+            "bag_a_complete",
+            "bag_b_complete",
+            "bag_c_complete",
+            "fastener_list_printed",
+            "tote_ready"
+          ],
+          "post_state": [
+            "matched_fasteners_collected"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "bag_a",
+            "bag_b",
+            "bag_c",
+            "tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_selected"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_selected"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_selected"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_a_matched"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_b_matched"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "fasteners_c_matched"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t7",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_a_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_b_complete"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "bag_c_complete"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "fastener_list_printed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "gauge"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "S03",
+    "domain": "sorting",
+    "title": "三组紧固件配对",
+    "nodes": 11,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 3,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 13,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 2,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 15,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 21.0,
+    "cooperative_duration": 0,
+    "before_makespan": 17.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 17.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 17.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 15,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.2352941176470589,
+    "relative_duration_reduction_vs_serial": 0.19047619047619047,
+    "executor_utilization": 0.6176470588235294,
+    "left_busy_time": 12.0,
+    "right_busy_time": 9.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 15.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

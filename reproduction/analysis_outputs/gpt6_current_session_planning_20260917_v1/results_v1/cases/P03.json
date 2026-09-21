@@ -1,0 +1,4632 @@
+{
+  "task_id": "P03",
+  "spec": {
+    "task_id": "P03",
+    "domain": "packaging",
+    "title": "退回设备附件打包",
+    "instruction": "主机、电源和线缆分别核对，三件物品共用扫码器；主机套保护袋，附件整理入附件袋，双单元放入主机后加入附件及退货单，再封箱标识。",
+    "S0": [
+      "return_box_ready",
+      "unit_available",
+      "adapter_available",
+      "cable_available",
+      "return_order_ready"
+    ],
+    "Sg": [
+      "return_package_identified"
+    ],
+    "resources": [
+      "scanner",
+      "unit",
+      "adapter",
+      "cable",
+      "accessory_bag",
+      "return_box",
+      "printer",
+      "tape_dispenser"
+    ]
+  },
+  "raw_source": "raw_candidates_packaging.json",
+  "raw_candidate": {
+    "task_id": "P03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan returned unit",
+        "object": "unit",
+        "Pre": [
+          "unit_available",
+          "return_order_ready"
+        ],
+        "Post": [
+          "unit_identified"
+        ],
+        "d": 2,
+        "Res": [
+          "unit",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan adapter",
+        "object": "adapter",
+        "Pre": [
+          "adapter_available",
+          "return_order_ready"
+        ],
+        "Post": [
+          "adapter_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "adapter",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan cable",
+        "object": "cable",
+        "Pre": [
+          "cable_available",
+          "return_order_ready"
+        ],
+        "Post": [
+          "cable_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "cable",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "bag returned unit",
+        "object": "unit",
+        "Pre": [
+          "unit_identified"
+        ],
+        "Post": [
+          "unit_protected"
+        ],
+        "d": 3,
+        "Res": [
+          "unit"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "bag accessories",
+        "object": "accessories",
+        "Pre": [
+          "adapter_identified",
+          "cable_identified"
+        ],
+        "Post": [
+          "accessories_bagged"
+        ],
+        "d": 2,
+        "Res": [
+          "adapter",
+          "cable",
+          "accessory_bag"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print return form",
+        "object": "return form",
+        "Pre": [
+          "return_order_ready"
+        ],
+        "Post": [
+          "return_form_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "place protected unit",
+        "object": "unit",
+        "Pre": [
+          "unit_protected",
+          "return_box_ready"
+        ],
+        "Post": [
+          "unit_in_return_box"
+        ],
+        "d": 3,
+        "Res": [
+          "unit",
+          "return_box"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t8",
+        "action": "insert accessories",
+        "object": "accessory bag",
+        "Pre": [
+          "unit_in_return_box",
+          "accessories_bagged"
+        ],
+        "Post": [
+          "accessories_in_return_box"
+        ],
+        "d": 1,
+        "Res": [
+          "return_box",
+          "accessory_bag"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "insert return form",
+        "object": "return form",
+        "Pre": [
+          "accessories_in_return_box",
+          "return_form_printed"
+        ],
+        "Post": [
+          "return_documents_inserted"
+        ],
+        "d": 1,
+        "Res": [
+          "return_box"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "seal return carton",
+        "object": "return box",
+        "Pre": [
+          "return_documents_inserted"
+        ],
+        "Post": [
+          "return_box_sealed"
+        ],
+        "d": 2,
+        "Res": [
+          "return_box",
+          "tape_dispenser"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "identify return package",
+        "object": "return box",
+        "Pre": [
+          "return_box_sealed"
+        ],
+        "Post": [
+          "return_package_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "return_box",
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "unit_identified"
+        ],
+        [
+          "t2",
+          "t5",
+          "adapter_identified"
+        ],
+        [
+          "t3",
+          "t5",
+          "cable_identified"
+        ],
+        [
+          "t4",
+          "t7",
+          "unit_protected"
+        ],
+        [
+          "t7",
+          "t8",
+          "unit_in_return_box"
+        ],
+        [
+          "t5",
+          "t8",
+          "accessories_bagged"
+        ],
+        [
+          "t8",
+          "t9",
+          "accessories_in_return_box"
+        ],
+        [
+          "t6",
+          "t9",
+          "return_form_printed"
+        ],
+        [
+          "t9",
+          "t10",
+          "return_documents_inserted"
+        ],
+        [
+          "t10",
+          "t11",
+          "return_box_sealed"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t4",
+          "t7",
+          "unit_protected"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "scanner"
+        ],
+        [
+          "t2",
+          "t3",
+          "scanner"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "unit_identified"
+        ],
+        "duration": 2,
+        "resource": [
+          "unit",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan adapter",
+        "object": "adapter",
+        "pre_state": [
+          "adapter_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "adapter_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "adapter",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan cable",
+        "object": "cable",
+        "pre_state": [
+          "cable_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "cable_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "cable",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "bag returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_identified"
+        ],
+        "post_state": [
+          "unit_protected"
+        ],
+        "duration": 3,
+        "resource": [
+          "unit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "bag accessories",
+        "object": "accessories",
+        "pre_state": [
+          "adapter_identified",
+          "cable_identified"
+        ],
+        "post_state": [
+          "accessories_bagged"
+        ],
+        "duration": 2,
+        "resource": [
+          "adapter",
+          "cable",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print return form",
+        "object": "return form",
+        "pre_state": [
+          "return_order_ready"
+        ],
+        "post_state": [
+          "return_form_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "place protected unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_protected",
+          "return_box_ready"
+        ],
+        "post_state": [
+          "unit_in_return_box"
+        ],
+        "duration": 3,
+        "resource": [
+          "unit",
+          "return_box"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t8",
+        "action": "insert accessories",
+        "object": "accessory bag",
+        "pre_state": [
+          "unit_in_return_box",
+          "accessories_bagged"
+        ],
+        "post_state": [
+          "accessories_in_return_box"
+        ],
+        "duration": 1,
+        "resource": [
+          "return_box",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "insert return form",
+        "object": "return form",
+        "pre_state": [
+          "accessories_in_return_box",
+          "return_form_printed"
+        ],
+        "post_state": [
+          "return_documents_inserted"
+        ],
+        "duration": 1,
+        "resource": [
+          "return_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "seal return carton",
+        "object": "return box",
+        "pre_state": [
+          "return_documents_inserted"
+        ],
+        "post_state": [
+          "return_box_sealed"
+        ],
+        "duration": 2,
+        "resource": [
+          "return_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "identify return package",
+        "object": "return box",
+        "pre_state": [
+          "return_box_sealed"
+        ],
+        "post_state": [
+          "return_package_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "return_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "unit_identified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "adapter_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "cable_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "unit_protected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "unit_in_return_box"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "accessories_bagged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "accessories_in_return_box"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "state": "return_form_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "return_documents_inserted"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "return_box_sealed"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "state": "unit_protected"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "adapter_available",
+        "cable_available",
+        "return_box_ready",
+        "return_order_ready",
+        "unit_available"
+      ],
+      "available_states": [
+        "accessories_bagged",
+        "accessories_in_return_box",
+        "adapter_available",
+        "adapter_identified",
+        "cable_available",
+        "cable_identified",
+        "return_box_ready",
+        "return_box_sealed",
+        "return_documents_inserted",
+        "return_form_printed",
+        "return_order_ready",
+        "return_package_identified",
+        "unit_available",
+        "unit_identified",
+        "unit_in_return_box",
+        "unit_protected"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "return_package_identified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 14.0,
+    "waiting_time": 6.0,
+    "executor_utilization": 0.75,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "scan returned unit",
+        "object": "unit",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "unit",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "scan adapter",
+        "object": "adapter",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "adapter",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "scan cable",
+        "object": "cable",
+        "start": 3.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "cable",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "bag returned unit",
+        "object": "unit",
+        "start": 2.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "unit"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "bag accessories",
+        "object": "accessories",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "adapter",
+          "cable",
+          "accessory_bag"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "print return form",
+        "object": "return form",
+        "start": 5.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "place protected unit",
+        "object": "unit",
+        "start": 6.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "unit",
+          "return_box"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "insert accessories",
+        "object": "accessory bag",
+        "start": 9.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "return_box",
+          "accessory_bag"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "insert return form",
+        "object": "return form",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "return_box"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "seal return carton",
+        "object": "return box",
+        "start": 11.0,
+        "finish": 13.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "return_box",
+          "tape_dispenser"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "identify return package",
+        "object": "return box",
+        "start": 13.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "return_box",
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t4",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "unit_protected"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "adapter_available",
+          "cable_available",
+          "return_box_ready",
+          "return_order_ready",
+          "unit_available"
+        ],
+        "available_states": [
+          "accessories_bagged",
+          "accessories_in_return_box",
+          "adapter_available",
+          "adapter_identified",
+          "cable_available",
+          "cable_identified",
+          "return_box_ready",
+          "return_box_sealed",
+          "return_documents_inserted",
+          "return_form_printed",
+          "return_order_ready",
+          "return_package_identified",
+          "unit_available",
+          "unit_identified",
+          "unit_in_return_box",
+          "unit_protected"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "return_package_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "adapter_available",
+          "cable_available",
+          "return_box_ready",
+          "return_order_ready",
+          "unit_available"
+        ],
+        "available_states": [
+          "accessories_bagged",
+          "accessories_in_return_box",
+          "adapter_available",
+          "adapter_identified",
+          "cable_available",
+          "cable_identified",
+          "return_box_ready",
+          "return_box_sealed",
+          "return_documents_inserted",
+          "return_form_printed",
+          "return_order_ready",
+          "return_package_identified",
+          "unit_available",
+          "unit_identified",
+          "unit_in_return_box",
+          "unit_protected"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "return_package_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "adapter_available",
+            "cable_available",
+            "return_box_ready",
+            "return_order_ready",
+            "unit_available"
+          ],
+          "available_states": [
+            "accessories_bagged",
+            "accessories_in_return_box",
+            "adapter_available",
+            "adapter_identified",
+            "cable_available",
+            "cable_identified",
+            "return_box_ready",
+            "return_box_sealed",
+            "return_documents_inserted",
+            "return_form_printed",
+            "return_order_ready",
+            "return_package_identified",
+            "unit_available",
+            "unit_identified",
+            "unit_in_return_box",
+            "unit_protected"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "return_package_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "adapter_available",
+            "cable_available",
+            "return_box_ready",
+            "return_order_ready",
+            "unit_available"
+          ],
+          "available_states": [
+            "accessories_bagged",
+            "accessories_in_return_box",
+            "adapter_available",
+            "adapter_identified",
+            "cable_available",
+            "cable_identified",
+            "return_box_ready",
+            "return_box_sealed",
+            "return_documents_inserted",
+            "return_form_printed",
+            "return_order_ready",
+            "return_package_identified",
+            "unit_available",
+            "unit_identified",
+            "unit_in_return_box",
+            "unit_protected"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "return_package_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "unit_protected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for unit_protected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "unit_protected",
+          "resource": null,
+          "reason": "cooperative input state unit_protected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 14.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "unit",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "adapter",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cable",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "unit"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "unit",
+            "return_box"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "return_box",
+            "accessory_bag"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "return_box"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "return_box",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "return_box",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "unit_protected"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "adapter_available",
+          "cable_available",
+          "return_box_ready",
+          "return_order_ready",
+          "unit_available"
+        ],
+        "available_states": [
+          "accessories_bagged",
+          "accessories_in_return_box",
+          "adapter_available",
+          "adapter_identified",
+          "cable_available",
+          "cable_identified",
+          "return_box_ready",
+          "return_box_sealed",
+          "return_documents_inserted",
+          "return_form_printed",
+          "return_order_ready",
+          "return_package_identified",
+          "unit_available",
+          "unit_identified",
+          "unit_in_return_box",
+          "unit_protected"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "return_package_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "adapter_available",
+          "cable_available",
+          "return_box_ready",
+          "return_order_ready",
+          "unit_available"
+        ],
+        "available_states": [
+          "accessories_bagged",
+          "accessories_in_return_box",
+          "adapter_available",
+          "adapter_identified",
+          "cable_available",
+          "cable_identified",
+          "return_box_ready",
+          "return_box_sealed",
+          "return_documents_inserted",
+          "return_form_printed",
+          "return_order_ready",
+          "return_package_identified",
+          "unit_available",
+          "unit_identified",
+          "unit_in_return_box",
+          "unit_protected"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "return_package_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "adapter_available",
+            "cable_available",
+            "return_box_ready",
+            "return_order_ready",
+            "unit_available"
+          ],
+          "available_states": [
+            "accessories_bagged",
+            "accessories_in_return_box",
+            "adapter_available",
+            "adapter_identified",
+            "cable_available",
+            "cable_identified",
+            "return_box_ready",
+            "return_box_sealed",
+            "return_documents_inserted",
+            "return_form_printed",
+            "return_order_ready",
+            "return_package_identified",
+            "unit_available",
+            "unit_identified",
+            "unit_in_return_box",
+            "unit_protected"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "return_package_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "adapter_available",
+            "cable_available",
+            "return_box_ready",
+            "return_order_ready",
+            "unit_available"
+          ],
+          "available_states": [
+            "accessories_bagged",
+            "accessories_in_return_box",
+            "adapter_available",
+            "adapter_identified",
+            "cable_available",
+            "cable_identified",
+            "return_box_ready",
+            "return_box_sealed",
+            "return_documents_inserted",
+            "return_form_printed",
+            "return_order_ready",
+            "return_package_identified",
+            "unit_available",
+            "unit_identified",
+            "unit_in_return_box",
+            "unit_protected"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "return_package_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "unit_protected",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for unit_protected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "unit_protected",
+          "resource": null,
+          "reason": "cooperative input state unit_protected",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 14.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "unit",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "adapter",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cable",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "unit"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "unit",
+            "return_box"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "return_box",
+            "accessory_bag"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "return_box"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "return_box",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "return_box",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "unit_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "unit",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan adapter",
+        "object": "adapter",
+        "pre_state": [
+          "adapter_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "adapter_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "adapter",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan cable",
+        "object": "cable",
+        "pre_state": [
+          "cable_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "cable_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "cable",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "bag returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_identified"
+        ],
+        "post_state": [
+          "unit_protected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "unit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "bag accessories",
+        "object": "accessories",
+        "pre_state": [
+          "adapter_identified",
+          "cable_identified"
+        ],
+        "post_state": [
+          "accessories_bagged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "adapter",
+          "cable",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print return form",
+        "object": "return form",
+        "pre_state": [
+          "return_order_ready"
+        ],
+        "post_state": [
+          "return_form_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "place protected unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_protected",
+          "return_box_ready"
+        ],
+        "post_state": [
+          "unit_in_return_box"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "unit",
+          "return_box"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "insert accessories",
+        "object": "accessory bag",
+        "pre_state": [
+          "unit_in_return_box",
+          "accessories_bagged"
+        ],
+        "post_state": [
+          "accessories_in_return_box"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "insert return form",
+        "object": "return form",
+        "pre_state": [
+          "accessories_in_return_box",
+          "return_form_printed"
+        ],
+        "post_state": [
+          "return_documents_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "seal return carton",
+        "object": "return box",
+        "pre_state": [
+          "return_documents_inserted"
+        ],
+        "post_state": [
+          "return_box_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "return_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "identify return package",
+        "object": "return box",
+        "pre_state": [
+          "return_box_sealed"
+        ],
+        "post_state": [
+          "return_package_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_identified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "adapter_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "cable_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_protected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_in_return_box"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessories_bagged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessories_in_return_box"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_form_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_documents_inserted"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_box_sealed"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "unit_protected"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t4",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "unit_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "unit",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan adapter",
+        "object": "adapter",
+        "pre_state": [
+          "adapter_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "adapter_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "adapter",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan cable",
+        "object": "cable",
+        "pre_state": [
+          "cable_available",
+          "return_order_ready"
+        ],
+        "post_state": [
+          "cable_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "cable",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "bag returned unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_identified"
+        ],
+        "post_state": [
+          "unit_protected"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "unit"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "bag accessories",
+        "object": "accessories",
+        "pre_state": [
+          "adapter_identified",
+          "cable_identified"
+        ],
+        "post_state": [
+          "accessories_bagged"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "adapter",
+          "cable",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print return form",
+        "object": "return form",
+        "pre_state": [
+          "return_order_ready"
+        ],
+        "post_state": [
+          "return_form_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "place protected unit",
+        "object": "unit",
+        "pre_state": [
+          "unit_protected",
+          "return_box_ready"
+        ],
+        "post_state": [
+          "unit_in_return_box"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "unit",
+          "return_box"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "insert accessories",
+        "object": "accessory bag",
+        "pre_state": [
+          "unit_in_return_box",
+          "accessories_bagged"
+        ],
+        "post_state": [
+          "accessories_in_return_box"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box",
+          "accessory_bag"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "insert return form",
+        "object": "return form",
+        "pre_state": [
+          "accessories_in_return_box",
+          "return_form_printed"
+        ],
+        "post_state": [
+          "return_documents_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "seal return carton",
+        "object": "return box",
+        "pre_state": [
+          "return_documents_inserted"
+        ],
+        "post_state": [
+          "return_box_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "return_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "identify return package",
+        "object": "return box",
+        "pre_state": [
+          "return_box_sealed"
+        ],
+        "post_state": [
+          "return_package_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "return_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_identified"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "adapter_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "cable_identified"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_protected"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "unit_in_return_box"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessories_bagged"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessories_in_return_box"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_form_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_documents_inserted"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "return_box_sealed"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "unit_protected"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t4",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 11.0,
+      "right": 10.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "adapter_available",
+        "cable_available",
+        "return_box_ready",
+        "return_order_ready",
+        "unit_available"
+      ],
+      "available_states": [
+        "accessories_bagged",
+        "accessories_in_return_box",
+        "adapter_available",
+        "adapter_identified",
+        "cable_available",
+        "cable_identified",
+        "return_box_ready",
+        "return_box_sealed",
+        "return_documents_inserted",
+        "return_form_printed",
+        "return_order_ready",
+        "return_package_identified",
+        "unit_available",
+        "unit_identified",
+        "unit_in_return_box",
+        "unit_protected"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "return_package_identified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "unit_protected"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "unit_protected"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "unit_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "unit",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan adapter",
+          "object": "adapter",
+          "pre_state": [
+            "adapter_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "adapter_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "adapter",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan cable",
+          "object": "cable",
+          "pre_state": [
+            "cable_available",
+            "return_order_ready"
+          ],
+          "post_state": [
+            "cable_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cable",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "bag returned unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_identified"
+          ],
+          "post_state": [
+            "unit_protected"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "bag accessories",
+          "object": "accessories",
+          "pre_state": [
+            "adapter_identified",
+            "cable_identified"
+          ],
+          "post_state": [
+            "accessories_bagged"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "adapter",
+            "cable",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print return form",
+          "object": "return form",
+          "pre_state": [
+            "return_order_ready"
+          ],
+          "post_state": [
+            "return_form_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "place protected unit",
+          "object": "unit",
+          "pre_state": [
+            "unit_protected",
+            "return_box_ready"
+          ],
+          "post_state": [
+            "unit_in_return_box"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "unit",
+            "return_box"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert accessories",
+          "object": "accessory bag",
+          "pre_state": [
+            "unit_in_return_box",
+            "accessories_bagged"
+          ],
+          "post_state": [
+            "accessories_in_return_box"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "accessory_bag"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "insert return form",
+          "object": "return form",
+          "pre_state": [
+            "accessories_in_return_box",
+            "return_form_printed"
+          ],
+          "post_state": [
+            "return_documents_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "seal return carton",
+          "object": "return box",
+          "pre_state": [
+            "return_documents_inserted"
+          ],
+          "post_state": [
+            "return_box_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "return_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "identify return package",
+          "object": "return box",
+          "pre_state": [
+            "return_box_sealed"
+          ],
+          "post_state": [
+            "return_package_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "return_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_identified"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "adapter_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cable_identified"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_protected"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "unit_in_return_box"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_bagged"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessories_in_return_box"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_form_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_documents_inserted"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "return_box_sealed"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "unit_protected"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "P03",
+    "domain": "packaging",
+    "title": "退回设备附件打包",
+    "nodes": 11,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 10,
+    "raw_E_sync": 1,
+    "raw_E_mutex": 2,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 9,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 18.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 14.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 14.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 14.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 9,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 2,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 2,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.2857142857142858,
+    "relative_duration_reduction_vs_serial": 0.2222222222222222,
+    "executor_utilization": 0.75,
+    "left_busy_time": 11.0,
+    "right_busy_time": 10.0,
+    "scheduled_overlap_pairs": 4,
+    "critical_path_duration": 13.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}
