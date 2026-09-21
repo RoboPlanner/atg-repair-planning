@@ -12,6 +12,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/style.css">
   <script src="assets/site.js" defer></script>
+  <link rel="stylesheet" href="assets/replays.css">
+  <script src="assets/data/replays.js" defer></script>
+  <script src="assets/replays.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -22,9 +25,24 @@
   <h1>Verifiable Atomic Task Graph<br class="wide"> Relation Repair for <br class="wide"> <span>Dual-Unit Parallel Planning</span></h1>
   <p class="subtitle">A deterministic bridge from candidate task relations<br class="wide"> to audited schedules at the planning layer.</p>
   <p class="status">Research manuscript <span aria-hidden="true">/</span> Code &amp; evaluation snapshot v7.70</p>
-  <div class="actions"><a class="button primary" href="assets/downloads/ATG_reproduction_v7_70.zip" download>↓ Code &amp; data <span>4.6 MiB</span></a><a class="button" href="#reproduce">Reproduce results ↗</a><a class="button" href="#abstract">Read overview</a></div>
+  <div class="actions"><a class="button primary" href="assets/downloads/ATG_reproduction_v7_70.zip" download>↓ Code &amp; data <span>4.6 MiB</span></a><a class="button" href="#reproduce">Reproduce results ↗</a><a class="button" href="#experiments">▶ Watch experiments</a></div>
   <p class="local-note" id="local-note">Local project preview. A public project URL has not been assigned.</p>
 </section>
+
+<section class="replay-section" id="experiments"><div class="container">
+  <div class="replay-intro"><p class="eyebrow">Experiment replays</p><h2>Watch the accepted schedules unfold.</h2><p>Animated directly from frozen experimental records. Task states, shared occupancy, and completion times follow the stored schedules. Playback uses symbolic time, not robot footage.</p></div>
+  <div class="experiment-player" id="experiment-player">
+    <div class="replay-tabs" role="group" aria-label="Experiment selection"><button type="button" data-replay-case="0" class="active" aria-pressed="true">Controlled repair</button><button type="button" data-replay-case="1" aria-pressed="false">Public cooperation</button><button type="button" data-replay-case="2" aria-pressed="false">Resource comparison</button></div>
+    <div class="replay-heading"><div><h3 id="replay-title">Controlled drink preparation</h3><p id="replay-subtitle">Loading the archived record…</p></div><span class="replay-badge">Accepted · independently checked</span></div>
+    <div class="replay-legend"><span><i class="left"></i>L unit</span><span><i class="right"></i>R unit</span><span><i class="both"></i>B occupies L + R</span><span>Filling bars = elapsed task time</span></div>
+    <p class="replay-mobile-hint">Swipe the diagram horizontally to inspect the complete timeline.</p>
+    <div class="replay-viewport" id="replay-svg"></div>
+    <div class="replay-controls"><button type="button" id="replay-play" aria-label="Pause experiment animation">Pause</button><button type="button" id="replay-restart">Restart</button><label for="replay-speed">Speed</label><select id="replay-speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select><div class="replay-scrub"><label for="replay-seek">Time</label><input id="replay-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Experiment time"><output id="replay-time" class="replay-time">0 / 12.49</output></div></div>
+    <div class="replay-live" id="replay-units"></div><p class="replay-summary" id="replay-summary" aria-live="polite"></p>
+    <div class="replay-note"><p id="replay-note"></p><p class="replay-source" id="replay-source"></p><div class="replay-links"><a id="replay-download" href="assets/animations/controlled-pour.svg" download>Download this animated SVG ↓</a><a href="assets/data/replays.json">Schedules &amp; source hashes ↗</a></div></div>
+  </div>
+  <noscript><p>JavaScript is disabled. Open the standalone <a href="assets/animations/controlled-pour.svg">controlled experiment animation</a>, <a href="assets/animations/public-cooperation.svg">public cooperation animation</a>, or <a href="assets/animations/resource-comparison.svg">resource comparison animation</a>.</p></noscript>
+</div></section>
 
 <section class="container teaser" aria-labelledby="teaser-title">
   <div class="figure-top"><span class="eyebrow" id="teaser-title">From candidate graph to accepted plan</span><a href="assets/images/figure1.png" target="_blank" rel="noopener">View full resolution ↗</a></div>

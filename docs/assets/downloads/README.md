@@ -54,6 +54,18 @@ Open **http://127.0.0.1:8765/**. Keep the process running; Ctrl+C stops it. The 
 
 The static page also opens directly as `docs/index.html`. It works without external fonts, analytics, a build system, or CDN scripts. Relative asset URLs are compatible with a GitHub Pages project subpath. The method figures can be switched and opened at full resolution. The downloadable ZIP retains the frozen supplementary bytes.
 
+### Experimental animations
+
+Open **http://127.0.0.1:8765/#experiments** for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
+
+These are symbolic planning-layer replays, not robot footage or new experimental samples. The six-node controlled case is distinct from the five-node tea illustration. The ft06 comparison uses a common time axis and reports its instance-specific result; aggregate and negative results remain in the evidence section.
+
+```sh
+python tools/build_replays.py
+```
+
+This regenerates the player data and animated SVGs from the archived records after independent graph/schedule checks and, where applicable, public-source checks. It does not modify the frozen archive. See [replay provenance and verification](documentation/EXPERIMENT_REPLAYS.md).
+
 The layout references [Nerfies](https://github.com/nerfies/nerfies.github.io) and [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template). The page implementation is original; template code, authors, media, and acceptance badges were not copied. See [template sources](documentation/TEMPLATE_SOURCES.md).
 
 ## Repository layout
@@ -64,6 +76,8 @@ docs/                         Static GitHub Pages-ready website
   assets/images/              Current manuscript figure exports
   assets/downloads/           Frozen supplementary ZIP and guides
   assets/data/evidence.json    Source-linked result summaries
+  assets/data/replays.json     Frozen schedule data and source hashes
+  assets/animations/           Standalone animated SVG replays
 documentation/                Code/evidence map, provenance, release steps
 examples/tea_candidate.json    Illustrative nine-field input
 tools/                        Preview, integrity, test and plan entry points

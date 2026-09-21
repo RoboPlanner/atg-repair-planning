@@ -1,0 +1,155 @@
+{
+  "sources_untouched": true,
+  "cases": [
+    {
+      "id": "pour_drink_001",
+      "method": "full",
+      "graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "v1",
+          "v2",
+          "v3",
+          "v4",
+          "v5",
+          "v6"
+        ]
+      },
+      "schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "public_source": null
+    },
+    {
+      "id": "parallel_branch_light",
+      "method": "full",
+      "graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "prepare_a",
+          "prepare_b",
+          "join_branches"
+        ]
+      },
+      "schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "public_source": {
+        "valid": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "ft06",
+      "method": "field_match_compressed",
+      "graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "j00_o00",
+          "j00_o01",
+          "j00_o02",
+          "j00_o03",
+          "j01_o00",
+          "j00_o04",
+          "j01_o01",
+          "j00_o05",
+          "j02_o00",
+          "j01_o02",
+          "j01_o03",
+          "j01_o04",
+          "j01_o05",
+          "j02_o01",
+          "j02_o02",
+          "j02_o03",
+          "j02_o04",
+          "j02_o05",
+          "j03_o00",
+          "j03_o01",
+          "j03_o02",
+          "j03_o03",
+          "j04_o00",
+          "j03_o04",
+          "j04_o01",
+          "j03_o05",
+          "j04_o02",
+          "j05_o00",
+          "j04_o03",
+          "j04_o04",
+          "j04_o05",
+          "j05_o01",
+          "j05_o02",
+          "j05_o03",
+          "j05_o04",
+          "j05_o05"
+        ]
+      },
+      "schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "public_source": {
+        "valid": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "ft06",
+      "method": "full",
+      "graph": {
+        "valid": true,
+        "issues": [],
+        "topological_order": [
+          "j00_o00",
+          "j01_o00",
+          "j00_o01",
+          "j02_o00",
+          "j03_o00",
+          "j00_o02",
+          "j01_o01",
+          "j02_o01",
+          "j03_o01",
+          "j01_o02",
+          "j02_o02",
+          "j03_o02",
+          "j05_o00",
+          "j01_o03",
+          "j02_o03",
+          "j04_o00",
+          "j05_o01",
+          "j00_o03",
+          "j01_o04",
+          "j02_o04",
+          "j05_o02",
+          "j00_o04",
+          "j02_o05",
+          "j03_o03",
+          "j04_o01",
+          "j05_o03",
+          "j01_o05",
+          "j03_o04",
+          "j04_o02",
+          "j00_o05",
+          "j04_o03",
+          "j03_o05",
+          "j04_o04",
+          "j05_o04",
+          "j04_o05",
+          "j05_o05"
+        ]
+      },
+      "schedule": {
+        "valid": true,
+        "issues": []
+      },
+      "public_source": {
+        "valid": true,
+        "issues": []
+      }
+    }
+  ]
+}
