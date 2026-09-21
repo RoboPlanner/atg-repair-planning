@@ -13,6 +13,8 @@ Checked on 2026-09-21 against the unchanged v7.70 supplementary snapshot.
 
 Local generated runs and preview logs are ignored by Git. Follow the root README to repeat the checks on a different machine.
 
+The separate 2026-09-22 physics experiment, six video checks and package reproduction are documented in [SIMULATION_VALIDATION.md](SIMULATION_VALIDATION.md). The historical checks below retain their original dates and scope.
+
 ## Experimental animation update — 2026-09-22
 
 - Regenerated three replay cases from four archived accepted schedules. All four independently passed graph and interval/resource checks; all three applicable public-source schedule checks passed. See `replay_verification.json`.

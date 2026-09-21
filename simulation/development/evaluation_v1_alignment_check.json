@@ -1,0 +1,538 @@
+{
+  "records": [
+    {
+      "trial": "cooperative_0_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010383475782247654
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0003698801148726189,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_0_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010352012588637422
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0003700500525929598,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_1_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010554971505362526
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00037004411549415524,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_1_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010475754707869947
+      },
+      "maximum_pose_reconstruction_difference_m": 0.000369830984958698,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_2_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010420043552358254
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00037004491800760476,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_2_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010424717204940447
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00037004734628924557,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_3_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010514764452355912
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0003700345488516264,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_3_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010534876709714074
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00037004258528309034,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_4_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010320494882906676
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00037004494106592314,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_4_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010402974159894817
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00036982770331179355,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "parallel_0_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.007372956802036834,
+        "B": 0.007258164209514551
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00047939006804399687,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_0_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012519526897525333,
+        "B": 0.011345115780339194
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004778007290843633,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_1_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.006888248591443071,
+        "B": 0.007393470798085533
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004766781997035022,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_1_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012668597549589683,
+        "B": 0.007707027545859199
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00047620563807751834,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_2_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.007125218558073507,
+        "B": 0.007476617236386578
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004798650323729928,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_2_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01315604584100863,
+        "B": 0.005451257547908821
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004814960690162401,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_3_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.0068338956712363464,
+        "B": 0.007436185642107277
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004778088636124505,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_3_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01300453774502537,
+        "B": 0.005786146694255264
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0004785238469622378,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_4_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.00697141942708517,
+        "B": 0.007147177864279268
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00047871273660742854,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_4_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01265911409413425,
+        "B": 0.006335621448359162
+      },
+      "maximum_pose_reconstruction_difference_m": 0.00047736465497448305,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_0_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.008122304401150127,
+        "B": 0.015499803669131677
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0008980788977781312,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_0_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.016683219809410198,
+        "B": 0.01583287102507293
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009033405007683555,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_1_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01524123725684426,
+        "B": 0.01581496703436228
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009091185625522512,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_1_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.017099474145145465,
+        "B": 0.015629694783651463
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009089928784171675,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.080000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_2_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.00899155658759181,
+        "B": 0.015740568723327845
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009018045697150998,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_2_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01770092863312725,
+        "B": 0.016143534252488052
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009042062130327826,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_3_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01518762225502007,
+        "B": 0.014668776664814125
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0009016560685148976,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_3_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.015528901880693597,
+        "B": 0.016546017957226086
+      },
+      "maximum_pose_reconstruction_difference_m": 0.000907819174505003,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.080000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_4_full",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012209174019838082,
+        "B": 0.015950659117942006
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0008880594063840979,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_4_serial",
+      "valid": false,
+      "issues": [
+        "Pose log inconsistent with generalized coordinates"
+      ],
+      "reconstructed_goal_errors_m": {
+        "A": 0.015629655614795818,
+        "B": 0.014371841266833798
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0008937638777939456,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    }
+  ],
+  "passed": 0,
+  "total": 30,
+  "sampling_interval_s": 0.04,
+  "scope": "Independent event/capacity checks and forward-kinematics reconstruction of stored physical states; contact/dwell recheck is sampled, not continuous collision certification."
+}

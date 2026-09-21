@@ -1,0 +1,139 @@
+{
+  "case": "cooperative",
+  "seed": 0,
+  "initial_states": [
+    "tray_available"
+  ],
+  "goal_states": [
+    "tray_placed",
+    "L_clear",
+    "R_clear"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "L_ready"
+        ],
+        "duration": 3,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "R_ready"
+        ],
+        "duration": 3,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "transfer",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "L_ready",
+          "R_ready"
+        ],
+        "post_state": [
+          "tray_placed"
+        ],
+        "duration": 12,
+        "resource": [
+          "tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_placed"
+        ],
+        "post_state": [
+          "L_clear"
+        ],
+        "duration": 2,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_placed"
+        ],
+        "post_state": [
+          "R_clear"
+        ],
+        "duration": 2,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_positions": {
+    "A": [
+      0.4527392337464291,
+      -0.4846042657247226,
+      0.47
+    ],
+    "B": [
+      0.4408194704787239,
+      0.47033055271057056,
+      0.47
+    ],
+    "tray": [
+      0.40626540478400547,
+      0.008255111545554436,
+      0.457
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.65,
+      -0.35,
+      0.465
+    ],
+    "B": [
+      0.65,
+      0.35,
+      0.465
+    ],
+    "tray": [
+      0.62,
+      0,
+      0.457
+    ]
+  }
+}

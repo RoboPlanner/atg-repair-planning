@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-09-21T18:20:33Z",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "cases": [
+    "parallel",
+    "shared",
+    "cooperative"
+  ],
+  "modes": [
+    "full",
+    "serial"
+  ],
+  "record_seed": 0,
+  "success": "All observed task postconditions and goals; final object Euclidean error < 0.03 m; speed < 0.02 m/s; no inter-arm contact deeper than 1 mm; no physics warnings; no shared-zone conflict; both grippers contact the tray in >90% of the designated carry interval.",
+  "control": "Same fixed primitives, durations, assignment and accepted graph; serial control executes a topological serialization.",
+  "grasp": "Physical finger contacts; no attachments, welds or object-pose resets after initialization.",
+  "perturbation": "Initial XY positions uniform +/- 0.01 m; fixed task templates; not independent industrial tasks.",
+  "logging": "Body poses and qpos synchronized after mj_step by mj_forward; state snapshots use actual post-step simulation time.",
+  "source_sha256": {
+    "run_experiments.py": "ca2fc1cf01e60c06232aaba87c7d21a73b7174fd421b6b9c3f7eccae718ea90b",
+    "sim_core.py": "85fa5b533660c8fd0123ef0fbe78f83e5642eec4c44eb24bd501592608229040"
+  }
+}

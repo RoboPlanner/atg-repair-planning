@@ -4,13 +4,13 @@
 
 [中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
 
-Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Layer Parallel Planning for Dual Execution Units* (Chinese manuscript experimental snapshot v7.70). The later v7.71 manuscript edit adds a local project-page link; it does not change the experimental snapshot. This is a local Git release preparation; no public repository, DOI, or venue acceptance is asserted.
+Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Layer Parallel Planning for Dual Execution Units* (Chinese manuscript experimental snapshot v7.70). The v7.71 manuscript adds a local project-page link; v7.74 adds a separate MuJoCo execution study. The original v7.70 planning archive remains unchanged. This is a local Git release preparation; no public repository, DOI, or venue acceptance is asserted.
 
 `L` and `R` are two abstract base execution units. Cooperative mode `B` occupies **both units simultaneously**. Candidates may originate from a language model, rules, or a user. A fixed deterministic pipeline performs state closure → sync pairing → resource orientation → conservative order compression. Six joint graph checks and actual schedule validation gate accepted outputs. Failed checks return diagnostics; rejection does not establish infeasibility.
 
 ## Quick start
 
-Use **Python 3.11+**. The current implementation and three current evaluation suites use the standard library only. No API key, model endpoint, GPU, or robot connection is needed. Commands below run from the repository root unless a `cd` is shown.
+Use **Python 3.11+**. The planning implementation and its three frozen evaluation suites use the standard library only. The optional new physics simulation has separate dependencies listed below. No API key, model endpoint, GPU, or robot connection is needed. Commands below run from the repository root unless a `cd` is shown.
 
 ```sh
 python tools/verify_archive.py
@@ -54,6 +54,18 @@ Open **http://127.0.0.1:8765/**. Keep the process running; Ctrl+C stops it. The 
 
 The static page also opens directly as `docs/index.html`. It works without external fonts, analytics, a build system, or CDN scripts. Relative asset URLs are compatible with a GitHub Pages project subpath. The method figures can be switched and opened at full resolution. The downloadable ZIP retains the frozen supplementary bytes.
 
+### New physics simulation videos
+
+Open **http://127.0.0.1:8765/#simulation** for six actual MuJoCo recordings of dual-Panda execution, with scene and full/serial switches. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
+
+```sh
+python -m pip install -r simulation/requirements.txt
+python simulation/run_experiments.py --output local_runs/mujoco_new
+python simulation/verify_results.py local_runs/mujoco_new
+```
+
+Use Python 3.11 and FFmpeg on PATH; add `--record-seed -999` to omit video. The supplied models, frictional contacts, state/event logs, independent checker and documented development failures are in [simulation/README.md](simulation/README.md). The downloadable [simulation supplement](docs/assets/downloads/ATG_MuJoCo_simulation_v1.zip) includes the formal planning code it needs. This is a separate addition; the symbolic replays below retain their original meaning.
+
 ### Experimental animations
 
 Open **http://127.0.0.1:8765/#experiments** for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
@@ -78,6 +90,7 @@ docs/                         Static GitHub Pages-ready website
   assets/data/evidence.json    Source-linked result summaries
   assets/data/replays.json     Frozen schedule data and source hashes
   assets/animations/           Standalone animated SVG replays
+simulation/                   New MuJoCo execution study, models and 30 run logs
 documentation/                Code/evidence map, provenance, release steps
 examples/tea_candidate.json    Illustrative nine-field input
 tools/                        Preview, integrity, test and plan entry points

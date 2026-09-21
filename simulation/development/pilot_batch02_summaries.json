@@ -1,0 +1,236 @@
+[
+  {
+    "case": "parallel",
+    "seed": -1,
+    "mode": "full",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 12.0,
+    "simulation_end_s": 12.502000000000844,
+    "goal_errors_m": {
+      "A": 0.00771486914599604,
+      "B": 0.007160282834805621
+    },
+    "object_speeds_m_s": {
+      "A": 1.0646300095942364e-14,
+      "B": 1.106309268072087e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "A_available",
+      "A_held",
+      "A_placed",
+      "B_available",
+      "B_held",
+      "B_placed"
+    ],
+    "station_dwell_s": {
+      "A": 0.0,
+      "B": 0.0
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.911041743948285e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  },
+  {
+    "case": "parallel",
+    "seed": -1,
+    "mode": "serial",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 24.0,
+    "simulation_end_s": 24.5019999999973,
+    "goal_errors_m": {
+      "A": 0.012730944790064634,
+      "B": 0.006111227019227324
+    },
+    "object_speeds_m_s": {
+      "A": 7.23320298330444e-15,
+      "B": 1.0679713913190765e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "A_available",
+      "A_held",
+      "A_placed",
+      "B_available",
+      "B_held",
+      "B_placed"
+    ],
+    "station_dwell_s": {
+      "A": 0.0,
+      "B": 0.0
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.911041743948285e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  },
+  {
+    "case": "shared",
+    "seed": -1,
+    "mode": "full",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 28.0,
+    "simulation_end_s": 28.501999999995082,
+    "goal_errors_m": {
+      "A": 0.01604726345400677,
+      "B": 0.01587803101777637
+    },
+    "object_speeds_m_s": {
+      "A": 1.1727568103770531e-14,
+      "B": 1.1228212829490744e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "A_available",
+      "A_held",
+      "A_inspected",
+      "A_placed",
+      "B_available",
+      "B_held",
+      "B_inspected",
+      "B_placed"
+    ],
+    "station_dwell_s": {
+      "A": 2.073999999999993,
+      "B": 2.0719999999999934
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.911041743948285e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  },
+  {
+    "case": "shared",
+    "seed": -1,
+    "mode": "serial",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 40.0,
+    "simulation_end_s": 40.502000000003534,
+    "goal_errors_m": {
+      "A": 0.01700760862354427,
+      "B": 0.01437745807650522
+    },
+    "object_speeds_m_s": {
+      "A": 1.1815341311330802e-14,
+      "B": 1.1399086687936907e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "A_available",
+      "A_held",
+      "A_inspected",
+      "A_placed",
+      "B_available",
+      "B_held",
+      "B_inspected",
+      "B_placed"
+    ],
+    "station_dwell_s": {
+      "A": 2.1079999999999894,
+      "B": 2.0719999999999934
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.942181538119094e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  },
+  {
+    "case": "cooperative",
+    "seed": -1,
+    "mode": "full",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 17.0,
+    "simulation_end_s": 17.50200000000118,
+    "goal_errors_m": {
+      "tray": 0.0010383301472788602
+    },
+    "object_speeds_m_s": {
+      "tray": 1.1483596546860961e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "L_clear",
+      "L_ready",
+      "R_clear",
+      "R_ready",
+      "tray_available",
+      "tray_placed"
+    ],
+    "station_dwell_s": {
+      "A": 0.0,
+      "B": 0.0
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.880695258495478e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  },
+  {
+    "case": "cooperative",
+    "seed": -1,
+    "mode": "serial",
+    "accepted": true,
+    "execution_success": true,
+    "planned_makespan_s": 22.0,
+    "simulation_end_s": 22.501999999998407,
+    "goal_errors_m": {
+      "tray": 0.001037678490310973
+    },
+    "object_speeds_m_s": {
+      "tray": 1.1324850996450803e-14
+    },
+    "failure_reasons": [],
+    "states": [
+      "L_clear",
+      "L_ready",
+      "R_clear",
+      "R_ready",
+      "tray_available",
+      "tray_placed"
+    ],
+    "station_dwell_s": {
+      "A": 0.0,
+      "B": 0.0
+    },
+    "cross_arm_penetration_contacts": 0,
+    "peak_cross_arm_penetration_m": 0.0,
+    "max_ik_residual": 9.995775348388044e-06,
+    "physics_warnings": 0,
+    "mujoco_version": "3.3.3",
+    "python_version": "3.11.14",
+    "physics_dt_s": 0.002,
+    "control_dt_s": 0.02,
+    "video_fps": null
+  }
+]

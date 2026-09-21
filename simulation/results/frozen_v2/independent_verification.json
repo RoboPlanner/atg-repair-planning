@@ -1,0 +1,478 @@
+{
+  "records": [
+    {
+      "trial": "cooperative_0_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010386635307517776
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_0_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010374610781772775
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_1_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.001046145715044996
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_1_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010553843764962102
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_2_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010370801842540438
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_2_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010378769889903743
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_3_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010491089570669233
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_3_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010574322134059696
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_4_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010348931434556406
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "cooperative_4_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010340071795764307
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": 1.0
+    },
+    {
+      "trial": "parallel_0_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.0073157327710415936,
+        "B": 0.007464916879872247
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_0_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012726086969930068,
+        "B": 0.00631064514447864
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_1_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.006985137466658281,
+        "B": 0.007137685037249089
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_1_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.013090636265564967,
+        "B": 0.007707031294990156
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_2_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.007125193480331337,
+        "B": 0.007476616334159368
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_2_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.013020323476922635,
+        "B": 0.005451305070728775
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_3_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.0070573890435799026,
+        "B": 0.00748318111203043
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_3_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.013004542452311394,
+        "B": 0.0057861460260987645
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_4_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.007056849401842002,
+        "B": 0.007067276657374905
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "parallel_4_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012659129003471032,
+        "B": 0.006335654998744417
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_0_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01680387113045287,
+        "B": 0.015687119872588987
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_0_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.015949493718059538,
+        "B": 0.015594760724434742
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_1_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01420646520021443,
+        "B": 0.01601169977743234
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_1_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01628165494749128,
+        "B": 0.015733610899462784
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.080000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_2_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.008991576987815476,
+        "B": 0.015740569790805566
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_2_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.0171759530804708,
+        "B": 0.01615475907367693
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_3_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01224260958740094,
+        "B": 0.014583596174396859
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_3_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.01552890437249583,
+        "B": 0.016546020380747643
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.120000000000001,
+        "B": 2.080000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_4_full",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.008128688251265455,
+        "B": 0.015740914968733057
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    },
+    {
+      "trial": "shared_4_serial",
+      "valid": true,
+      "issues": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.015642485532199515,
+        "B": 0.015383177067735324
+      },
+      "maximum_pose_reconstruction_difference_m": 0.0,
+      "sampled_station_overlap": 0,
+      "sampled_station_dwell_s": {
+        "A": 2.080000000000001,
+        "B": 2.040000000000001
+      },
+      "sampled_dual_contact_fraction": null
+    }
+  ],
+  "passed": 30,
+  "total": 30,
+  "sampling_interval_s": 0.04,
+  "scope": "Independent event/capacity checks and forward-kinematics reconstruction of stored physical states; contact/dwell recheck is sampled, not continuous collision certification."
+}

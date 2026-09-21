@@ -1,0 +1,45 @@
+{
+  "case": "shared",
+  "seed": 4,
+  "mode": "full",
+  "accepted": true,
+  "execution_success": true,
+  "planned_makespan_s": 28.0,
+  "simulation_end_s": 28.501999999995082,
+  "goal_errors_m": {
+    "A": 0.008128688251265455,
+    "B": 0.015740914968733057
+  },
+  "object_speeds_m_s": {
+    "A": 1.1852272646964382e-14,
+    "B": 1.073635112642379e-14
+  },
+  "failure_reasons": [],
+  "states": [
+    "A_available",
+    "A_held",
+    "A_inspected",
+    "A_placed",
+    "B_available",
+    "B_held",
+    "B_inspected",
+    "B_placed"
+  ],
+  "station_dwell_s": {
+    "A": 2.0719999999999934,
+    "B": 2.0779999999999927
+  },
+  "station_conflict_steps": 0,
+  "cooperative_carry_steps": 0,
+  "both_grippers_contact_steps": 0,
+  "both_grippers_contact_fraction": null,
+  "cross_arm_penetration_contacts": 0,
+  "peak_cross_arm_penetration_m": 0.0,
+  "max_ik_residual": 9.999889475908078e-06,
+  "physics_warnings": 0,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14",
+  "physics_dt_s": 0.002,
+  "control_dt_s": 0.02,
+  "video_fps": null
+}

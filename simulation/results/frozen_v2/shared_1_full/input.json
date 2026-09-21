@@ -1,0 +1,167 @@
+{
+  "case": "shared",
+  "seed": 1,
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "inspect_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_inspected"
+        ],
+        "duration": 8,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_inspected"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "inspect_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_inspected"
+        ],
+        "duration": 8,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_inspected"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_positions": {
+    "A": [
+      0.45023643249400513,
+      -0.4709907260734813,
+      0.47
+    ],
+    "B": [
+      0.4428831922543927,
+      0.4889729889427449,
+      0.47
+    ],
+    "tray": [
+      0.39623662904020973,
+      -0.0015334710205484863,
+      0.457
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.65,
+      -0.35,
+      0.465
+    ],
+    "B": [
+      0.65,
+      0.35,
+      0.465
+    ],
+    "tray": [
+      0.62,
+      0,
+      0.457
+    ]
+  }
+}

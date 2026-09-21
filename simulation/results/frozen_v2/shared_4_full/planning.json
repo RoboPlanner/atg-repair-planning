@@ -1,0 +1,663 @@
+{
+  "accepted": true,
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "inspect_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_inspected"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_inspected"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "inspect_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_inspected"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_inspected"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "pick_L",
+        "target": "inspect_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_held",
+        "state": "A_held"
+      },
+      {
+        "source": "pick_R",
+        "target": "inspect_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_held",
+        "state": "B_held"
+      },
+      {
+        "source": "inspect_L",
+        "target": "place_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_inspected",
+        "state": "A_inspected"
+      },
+      {
+        "source": "inspect_R",
+        "target": "place_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_inspected",
+        "state": "B_inspected"
+      },
+      {
+        "source": "inspect_L",
+        "target": "inspect_R",
+        "type": "resource_mutex",
+        "reason": "minimum-critical-path orientation for shared resource station",
+        "resource": "station"
+      }
+    ]
+  },
+  "audit": {
+    "valid": true,
+    "before": {
+      "valid": false,
+      "acyclic": true,
+      "closure_rate": 0.25,
+      "initial_states": [
+        "A_available",
+        "B_available"
+      ],
+      "available_states": [
+        "A_available",
+        "A_held",
+        "B_available",
+        "B_held"
+      ],
+      "executable_nodes": [
+        "pick_L",
+        "pick_R"
+      ],
+      "issues": [
+        {
+          "node_id": "inspect_L",
+          "missing_states": [
+            "A_held"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "inspect_R",
+          "missing_states": [
+            "B_held"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "place_L",
+          "missing_states": [
+            "A_inspected"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "place_R",
+          "missing_states": [
+            "B_inspected"
+          ],
+          "unsupported_states": []
+        }
+      ],
+      "reachable_goals": [],
+      "unreachable_goals": [
+        "A_placed",
+        "B_placed"
+      ],
+      "cycle_error": null
+    },
+    "after": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "A_available",
+        "B_available"
+      ],
+      "available_states": [
+        "A_available",
+        "A_held",
+        "A_inspected",
+        "A_placed",
+        "B_available",
+        "B_held",
+        "B_inspected",
+        "B_placed"
+      ],
+      "executable_nodes": [
+        "pick_L",
+        "inspect_L",
+        "pick_R",
+        "inspect_R",
+        "place_L",
+        "place_R"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "A_placed",
+        "B_placed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "resource_conflicts_before": [
+      [
+        "inspect_L",
+        "inspect_R",
+        [
+          "station"
+        ]
+      ],
+      [
+        "inspect_L",
+        "pick_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "inspect_L",
+        "place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "inspect_R",
+        "pick_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "inspect_R",
+        "place_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "pick_L",
+        "place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "pick_R",
+        "place_R",
+        [
+          "B"
+        ]
+      ]
+    ],
+    "resource_conflicts_after": [],
+    "joint_before": {
+      "valid": false,
+      "checks": {
+        "schema_valid": true,
+        "closed": false,
+        "goal_reachable": false,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": false
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [
+        [
+          "inspect_L",
+          "inspect_R",
+          [
+            "station"
+          ]
+        ],
+        [
+          "inspect_L",
+          "pick_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "inspect_L",
+          "place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "inspect_R",
+          "pick_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "inspect_R",
+          "place_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "pick_L",
+          "place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "pick_R",
+          "place_R",
+          [
+            "B"
+          ]
+        ]
+      ],
+      "state_audit": {
+        "valid": false,
+        "acyclic": true,
+        "closure_rate": 0.25,
+        "initial_states": [
+          "A_available",
+          "B_available"
+        ],
+        "available_states": [
+          "A_available",
+          "A_held",
+          "B_available",
+          "B_held"
+        ],
+        "executable_nodes": [
+          "pick_L",
+          "pick_R"
+        ],
+        "issues": [
+          {
+            "node_id": "inspect_L",
+            "missing_states": [
+              "A_held"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "inspect_R",
+            "missing_states": [
+              "B_held"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "place_L",
+            "missing_states": [
+              "A_inspected"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "place_R",
+            "missing_states": [
+              "B_inspected"
+            ],
+            "unsupported_states": []
+          }
+        ],
+        "reachable_goals": [],
+        "unreachable_goals": [
+          "A_placed",
+          "B_placed"
+        ],
+        "cycle_error": null
+      },
+      "failure_reasons": [
+        "inspect_L: missing=['A_held'], unsupported=[]",
+        "inspect_R: missing=['B_held'], unsupported=[]",
+        "place_L: missing=['A_inspected'], unsupported=[]",
+        "place_R: missing=['B_inspected'], unsupported=[]",
+        "unreachable goals: ['A_placed', 'B_placed']",
+        "unordered shared resources: [('inspect_L', 'inspect_R', ('station',)), ('inspect_L', 'pick_L', ('A',)), ('inspect_L', 'place_L', ('A',)), ('inspect_R', 'pick_R', ('B',)), ('inspect_R', 'place_R', ('B',)), ('pick_L', 'place_L', ('A',)), ('pick_R', 'place_R', ('B',))]"
+      ]
+    },
+    "joint_after": {
+      "valid": true,
+      "checks": {
+        "schema_valid": true,
+        "closed": true,
+        "goal_reachable": true,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": true
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [],
+      "state_audit": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "A_available",
+          "B_available"
+        ],
+        "available_states": [
+          "A_available",
+          "A_held",
+          "A_inspected",
+          "A_placed",
+          "B_available",
+          "B_held",
+          "B_inspected",
+          "B_placed"
+        ],
+        "executable_nodes": [
+          "pick_L",
+          "inspect_L",
+          "pick_R",
+          "inspect_R",
+          "place_L",
+          "place_R"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "A_placed",
+          "B_placed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "failure_reasons": []
+    },
+    "events": [
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "pick_L",
+        "target": "inspect_L",
+        "edge_type": "state_support",
+        "state": "A_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "pick_R",
+        "target": "inspect_R",
+        "edge_type": "state_support",
+        "state": "B_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "inspect_L",
+        "target": "place_L",
+        "edge_type": "state_support",
+        "state": "A_inspected",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_inspected",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "inspect_R",
+        "target": "place_R",
+        "edge_type": "state_support",
+        "state": "B_inspected",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_inspected",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "resource_mutex",
+        "action": "add_resource_mutex",
+        "accepted": true,
+        "source": "inspect_L",
+        "target": "inspect_R",
+        "edge_type": "resource_mutex",
+        "state": null,
+        "resource": "station",
+        "reason": "selected lower critical-path orientation for station",
+        "before_critical_path": null,
+        "after_critical_path": 28.0
+      }
+    ],
+    "failure_reasons": []
+  },
+  "schedule": {
+    "estimated_makespan": 28.0,
+    "waiting_time": 8.0,
+    "executor_utilization": 0.7143,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "start": 0.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A"
+        ]
+      },
+      {
+        "node_id": "inspect_L",
+        "action": "inspect",
+        "object": "A",
+        "start": 6.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A",
+          "station"
+        ]
+      },
+      {
+        "node_id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "start": 0.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B"
+        ]
+      },
+      {
+        "node_id": "inspect_R",
+        "action": "inspect",
+        "object": "B",
+        "start": 14.0,
+        "finish": 22.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B",
+          "station"
+        ]
+      },
+      {
+        "node_id": "place_L",
+        "action": "place",
+        "object": "A",
+        "start": 14.0,
+        "finish": 20.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A"
+        ]
+      },
+      {
+        "node_id": "place_R",
+        "action": "place",
+        "object": "B",
+        "start": 22.0,
+        "finish": 28.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B"
+        ]
+      }
+    ]
+  },
+  "failure_reasons": [],
+  "independent_graph": {
+    "valid": true,
+    "issues": [],
+    "topological_order": [
+      "pick_L",
+      "pick_R",
+      "inspect_L",
+      "inspect_R",
+      "place_L",
+      "place_R"
+    ]
+  },
+  "independent_schedule": {
+    "valid": true,
+    "issues": []
+  }
+}

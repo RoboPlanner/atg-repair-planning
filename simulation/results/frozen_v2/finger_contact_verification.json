@@ -1,0 +1,147 @@
+{
+  "scope": "Additional post-evaluation audit of finger-specific contacts from stored 40 ms samples; original online counts include any robot-link contact. No full-rate finger-contact claim is made.",
+  "total": 10,
+  "passed": 10,
+  "records": [
+    {
+      "trial": "cooperative_0_full",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_0_serial",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_1_full",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_1_serial",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_2_full",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_2_serial",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_3_full",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_3_serial",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_4_full",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    },
+    {
+      "trial": "cooperative_4_serial",
+      "sampled_frames": 152,
+      "both_fingers_frames": 152,
+      "fraction": 1.0,
+      "contacting_bodies": [
+        "L_panda_leftfinger",
+        "L_panda_rightfinger",
+        "R_panda_leftfinger",
+        "R_panda_rightfinger",
+        "world"
+      ],
+      "passed": true
+    }
+  ]
+}

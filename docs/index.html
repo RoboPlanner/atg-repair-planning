@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="assets/replays.css">
   <script src="assets/data/replays.js" defer></script>
   <script src="assets/replays.js" defer></script>
+  <link rel="stylesheet" href="assets/simulation.css">
+  <script src="assets/data/simulation.js" defer></script>
+  <script src="assets/simulation-player.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -24,10 +27,22 @@
   <p class="eyebrow">Task planning · Relation repair · Verifiable scheduling</p>
   <h1>Verifiable Atomic Task Graph<br class="wide"> Relation Repair for <br class="wide"> <span>Dual-Unit Parallel Planning</span></h1>
   <p class="subtitle">A deterministic bridge from candidate task relations<br class="wide"> to audited schedules at the planning layer.</p>
-  <p class="status">Research manuscript <span aria-hidden="true">/</span> Code &amp; evaluation snapshot v7.70</p>
-  <div class="actions"><a class="button primary" href="assets/downloads/ATG_reproduction_v7_70.zip" download>↓ Code &amp; data <span>4.6 MiB</span></a><a class="button" href="#reproduce">Reproduce results ↗</a><a class="button" href="#experiments">▶ Watch experiments</a></div>
+  <p class="status">Research manuscript <span aria-hidden="true">/</span> Planning archive v7.70 + new MuJoCo experiments</p>
+  <div class="actions"><a class="button primary" href="assets/downloads/ATG_reproduction_v7_70.zip" download>↓ Code &amp; data <span>4.6 MiB</span></a><a class="button" href="#reproduce">Reproduce results ↗</a><a class="button" href="#simulation">▶ Simulation videos</a></div>
   <p class="local-note" id="local-note">Local project preview. A public project URL has not been assigned.</p>
 </section>
+
+<section class="simulation-section" id="simulation"><div class="container">
+  <div class="simulation-intro"><p class="eyebrow">New physical simulation experiments</p><h2>Accepted plans, executed by two arms.</h2><p>Actual MuJoCo recordings of parallel sorting, a shared service station, and cooperative tray transfer. Two Panda models execute fixed skills through position actuators and frictional grasps. Thirty runs pair full scheduling with a serial control across five initial positions per scene.</p></div>
+  <div class="simulation-card" id="simulation-player">
+    <div class="simulation-tabs" role="group" aria-label="Simulation scene"><button data-sim-case="parallel" aria-pressed="true">Parallel sorting</button><button data-sim-case="shared" aria-pressed="false">Shared station</button><button data-sim-case="cooperative" aria-pressed="false">Cooperative transfer</button></div>
+    <div class="simulation-title"><div><h3 id="simulation-title">Parallel sorting</h3><p id="simulation-subtitle">Seed 0, fixed before evaluation · 5 paired initial positions per scene</p></div><div class="simulation-methods" role="group" aria-label="Simulation method"><button data-sim-mode="full" aria-pressed="true">Full method</button><button data-sim-mode="serial" aria-pressed="false">Serial control</button></div></div>
+    <video id="simulation-video" controls muted playsinline preload="metadata" poster="assets/videos/parallel_full.png" aria-label="Parallel sorting, full method, actual MuJoCo recording"><source src="assets/videos/parallel_full.mp4" type="video/mp4">Your browser does not support MP4 video. Use the download link below.</video>
+    <div class="simulation-toolbar"><button id="simulation-play" type="button">Play video</button><label for="simulation-speed">Speed</label><select id="simulation-speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select><a id="simulation-download" href="assets/videos/parallel_full.mp4" download>Download current MP4 ↓</a></div>
+    <div class="simulation-metrics"><div class="simulation-metric"><span>Serial → full task window</span><strong id="simulation-times">24 → 12 s</strong></div><div class="simulation-metric"><span>Success: full · serial</span><strong id="simulation-success">5/5 · 5/5</strong></div><div class="simulation-metric"><span>Max final error, full</span><strong id="simulation-error">See results</strong></div></div>
+    <div class="simulation-note"><p id="simulation-description">Both arms grasp and place separate objects in parallel.</p><p>Times are simulated seconds under fixed skill durations. Success requires observed task conditions, final position error &lt;30 mm, and the declared occupancy/contact checks. These constructed scenes test plan execution with the supplied controller; they do not establish hardware transfer or general collision avoidance.</p><div class="simulation-downloads"><a href="assets/downloads/ATG_MuJoCo_simulation_v1.zip" download>Simulation code, models &amp; all run logs ↓</a><a href="assets/data/simulation.json">Results &amp; video source hashes ↗</a><a href="#experiments">View planning-only animations ↓</a></div></div>
+  </div>
+</div></section>
 
 <section class="replay-section" id="experiments"><div class="container">
   <div class="replay-intro"><p class="eyebrow">Experiment replays</p><h2>Watch the accepted schedules unfold.</h2><p>Animated directly from frozen experimental records. Task states, shared occupancy, and completion times follow the stored schedules. Playback uses symbolic time, not robot footage.</p></div>
@@ -79,7 +94,7 @@
 <section class="section tinted" id="reproduce"><div class="container">
   <div class="section-heading"><div><p class="eyebrow">03 / Reproduce</p><h2>Run locally. Inspect every decision.</h2></div><p>Python 3.11+ · offline evaluation<br>No model API or robot connection required.</p></div>
   <div class="reproduce-grid"><div><h3>One command for the frozen evaluations</h3><p>Download and extract the supplementary archive. From its root, run:</p><div class="codebox"><pre><code id="run-command">python reproduce_all.py results/new_run</code></pre><button type="button" id="copy-command" aria-label="Copy reproduction command">Copy</button></div><p class="small" id="copy-status" aria-live="polite">Use a new output directory. Stable results are checked against the archive; machine timings are not expected to match.</p><p>The current suites use only the Python standard library. Historical MILP and timing scripts have separately pinned dependencies.</p></div><div class="resources"><a href="assets/downloads/ATG_reproduction_v7_70.zip" download><b>Code, inputs &amp; archived results</b><span>Frozen supplementary package · ZIP ↓</span></a><a href="assets/downloads/README.md"><b>Repository guide</b><span>Setup, code map, checks &amp; publication notes ↗</span></a><a href="assets/downloads/README.zh-CN.md"><b>中文复现说明</b><span>运行入口、证据映射与使用范围 ↗</span></a><a href="assets/downloads/external_discrete_protocol.md"><b>Public-specification protocol</b><span>Adaptation, exclusions &amp; source checks ↗</span></a></div></div>
-  <details class="checksum"><summary>Archive checksum and version</summary><p>ATG_reproduction_v7_70.zip · SHA-256</p><code>922881a57e08e3cc1a0f28e283e2837dabfb486d1c612fc282feb4575a8f0f4a</code><p>The package preserves the v7.70 experimental snapshot. The subsequent manuscript update adds the local homepage link without changing those experiments.</p></details>
+  <details class="checksum"><summary>Archive checksum and version</summary><p>ATG_reproduction_v7_70.zip · SHA-256</p><code>922881a57e08e3cc1a0f28e283e2837dabfb486d1c612fc282feb4575a8f0f4a</code><p>The package preserves the v7.70 experimental snapshot. Later manuscript updates add the local homepage link and a separate MuJoCo execution study; the v7.70 planning experiments in this archive remain unchanged.</p></details>
 </div></section>
 
 <section class="reading section boundaries"><p class="eyebrow">Scope of the guarantee</p><h2>Planning-layer verification.</h2><p>The accepted interface checks represented discrete states, capacity-one resources, and L/R occupancy. It does not establish unmodelled task semantics, collision-free motion, trajectory feasibility, or hardware safety. The repair procedure is heuristic and can reject feasible inputs.</p><p class="small">The manuscript is under preparation. No venue acceptance, DOI, public repository URL, or author affiliation is asserted by this local project page.</p></section>

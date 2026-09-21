@@ -1,0 +1,71 @@
+[
+  {
+    "case": "parallel",
+    "title": "Parallel sorting",
+    "full": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 12.0,
+      "max_goal_error_mm": 7.48318111203043,
+      "mean_task_max_error_mm": 7.325935204137208,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "serial": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 24.0,
+      "max_goal_error_mm": 13.090636265564967,
+      "mean_task_max_error_mm": 12.900143633640019,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "makespan_reduction_percent": 50.0
+  },
+  {
+    "case": "shared",
+    "title": "Shared inspection station",
+    "full": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 28.0,
+      "max_goal_error_mm": 16.80387113045287,
+      "mean_task_max_error_mm": 15.776130368364138,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "serial": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 40.0,
+      "max_goal_error_mm": 17.1759530804708,
+      "mean_task_max_error_mm": 16.319121531793755,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "makespan_reduction_percent": 30.0
+  },
+  {
+    "case": "cooperative",
+    "title": "Cooperative tray transfer",
+    "full": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 17.0,
+      "max_goal_error_mm": 1.0491089570669234,
+      "mean_task_max_error_mm": 1.0411783061146762,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "serial": {
+      "successes": 5,
+      "n": 5,
+      "makespan_s": 22.0,
+      "max_goal_error_mm": 1.0574322134059697,
+      "mean_task_max_error_mm": 1.0444323673292526,
+      "station_conflicts": 0,
+      "interarm_penetration_contacts": 0
+    },
+    "makespan_reduction_percent": 22.727272727272727
+  }
+]

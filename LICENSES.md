@@ -8,6 +8,10 @@
 | GNN4TaskPlan archived upstream materials | Preserved MIT notice: `reproduction/external/GNN4TaskPlan/LICENSE` |
 | AssemblyGrid upstream materials | Preserved MIT notice: `reproduction/sources/AssemblyGrid_v1/LICENSE` |
 | OR-Library instances | Preserved J. E. Beasley MIT notice: `reproduction/sources/OR-Library_license.html` |
+| Panda URDF / collision meshes from bundled `franka_description` 0.7.1 | Apache-2.0; metadata, source URDF, asset hashes and full license retained in `simulation/assets/` |
+| Original simulation adapter, constructed scenes, logs and recordings | MIT, root `LICENSE`; upstream model rights retained |
+
+The Panda import is from the local Isaac Sim URDF-importer asset distribution, not from MuJoCo Menagerie. The converted MJCF changes model packaging and adds the study's actuators and scene configuration. No third-party model license is replaced by the project license.
 
 Third-party authors retain their copyrights. The supplementary ZIP contains multiple components with these respective terms; do not relicense it as wholly original project material. Source versions and origins are recorded alongside the frozen files.
 

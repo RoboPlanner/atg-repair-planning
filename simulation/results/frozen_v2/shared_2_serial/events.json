@@ -1,0 +1,136 @@
+[
+  {
+    "event": "start",
+    "node": "pick_L",
+    "time": 0.0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_L",
+    "time": 6.0,
+    "passed": true,
+    "object_position": [
+      0.44547957299627283,
+      -0.48252546462732815,
+      0.686878672882712
+    ]
+  },
+  {
+    "event": "start",
+    "node": "pick_R",
+    "time": 6.0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_R",
+    "time": 12.0,
+    "passed": true,
+    "object_position": [
+      0.45649998574567846,
+      0.473245752890684,
+      0.686955223727211
+    ]
+  },
+  {
+    "event": "start",
+    "node": "inspect_L",
+    "time": 12.0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A",
+      "station"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "inspect_L",
+    "time": 20.0,
+    "passed": true,
+    "object_position": [
+      0.4453341161934588,
+      -0.4804596510285831,
+      0.6821698044232231
+    ]
+  },
+  {
+    "event": "start",
+    "node": "inspect_R",
+    "time": 20.0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B",
+      "station"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "inspect_R",
+    "time": 28.0,
+    "passed": true,
+    "object_position": [
+      0.45712869561319575,
+      0.47539762286246523,
+      0.6826506266513689
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_L",
+    "time": 28.0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_L",
+    "time": 34.0,
+    "passed": true,
+    "object_position": [
+      0.6455021609690516,
+      -0.33342344730160883,
+      0.46497337460475063
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_R",
+    "time": 34.0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_R",
+    "time": 40.0,
+    "passed": true,
+    "object_position": [
+      0.6452977043373586,
+      0.365455223949137,
+      0.46497337460475063
+    ]
+  }
+]

@@ -1,0 +1,127 @@
+{
+  "case": "parallel",
+  "seed": 2,
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_positions": {
+    "A": [
+      0.44523224268498635,
+      -0.48403017713171753,
+      0.47
+    ],
+    "B": [
+      0.45628451481188564,
+      0.47183831884270194,
+      0.47
+    ],
+    "tray": [
+      0.4020020105193131,
+      0.004571210536235892,
+      0.457
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.65,
+      -0.35,
+      0.465
+    ],
+    "B": [
+      0.65,
+      0.35,
+      0.465
+    ],
+    "tray": [
+      0.62,
+      0,
+      0.457
+    ]
+  }
+}

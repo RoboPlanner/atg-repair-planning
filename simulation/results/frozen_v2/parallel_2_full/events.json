@@ -1,0 +1,90 @@
+[
+  {
+    "event": "start",
+    "node": "pick_L",
+    "time": 0.0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "pick_R",
+    "time": 0.0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_L",
+    "time": 6.0,
+    "passed": true,
+    "object_position": [
+      0.44554108339541393,
+      -0.4826570983263996,
+      0.6869665469885364
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_R",
+    "time": 6.0,
+    "passed": true,
+    "object_position": [
+      0.4565106702459549,
+      0.47324014319289753,
+      0.6869641660051464
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_L",
+    "time": 6.0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_R",
+    "time": 6.0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_L",
+    "time": 12.0,
+    "passed": true,
+    "object_position": [
+      0.6503389145180338,
+      -0.3428829212334027,
+      0.46497337460475063
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_R",
+    "time": 12.0,
+    "passed": true,
+    "object_position": [
+      0.6506766965534122,
+      0.35744588239708003,
+      0.46497337460475063
+    ]
+  }
+]

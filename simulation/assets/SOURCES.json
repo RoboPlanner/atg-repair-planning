@@ -1,0 +1,49 @@
+{
+  "source_directory": "Isaac Sim 5.1 URDF importer bundled franka_description 0.7.1; see preserved package.xml",
+  "source_urdf_sha256": "5aece94c95106e722825bc0487ec9ba3b1162a202c00f38a936a7a18523e8c92",
+  "meshes": [
+    {
+      "name": "finger.stl",
+      "sha256": "eade0765d87446c8833d88511a4c46573baba2e8eacc15b975aecd123d740296"
+    },
+    {
+      "name": "hand.stl",
+      "sha256": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed"
+    },
+    {
+      "name": "link0.stl",
+      "sha256": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa"
+    },
+    {
+      "name": "link1.stl",
+      "sha256": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2"
+    },
+    {
+      "name": "link2.stl",
+      "sha256": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039"
+    },
+    {
+      "name": "link3.stl",
+      "sha256": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1"
+    },
+    {
+      "name": "link4.stl",
+      "sha256": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d"
+    },
+    {
+      "name": "link5.stl",
+      "sha256": "dd17e688c7870e722283525879643d53a74c0024d328b0e14b034b54c8b6c31a"
+    },
+    {
+      "name": "link6.stl",
+      "sha256": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77"
+    },
+    {
+      "name": "link7.stl",
+      "sha256": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c"
+    }
+  ],
+  "conversion": "MuJoCo URDF import; collision STL meshes retained; original kinematics/inertials retained",
+  "upstream": "https://github.com/frankaemika/franka_ros",
+  "license": "Apache-2.0 as declared by franka_description/package.xml"
+}

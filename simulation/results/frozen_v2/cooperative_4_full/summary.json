@@ -1,0 +1,41 @@
+{
+  "case": "cooperative",
+  "seed": 4,
+  "mode": "full",
+  "accepted": true,
+  "execution_success": true,
+  "planned_makespan_s": 17.0,
+  "simulation_end_s": 17.50200000000118,
+  "goal_errors_m": {
+    "tray": 0.0010348931434556406
+  },
+  "object_speeds_m_s": {
+    "tray": 1.1420420582115542e-14
+  },
+  "failure_reasons": [],
+  "states": [
+    "L_clear",
+    "L_ready",
+    "R_clear",
+    "R_ready",
+    "tray_available",
+    "tray_placed"
+  ],
+  "station_dwell_s": {
+    "A": 0.0,
+    "B": 0.0
+  },
+  "station_conflict_steps": 0,
+  "cooperative_carry_steps": 3050,
+  "both_grippers_contact_steps": 3050,
+  "both_grippers_contact_fraction": 1.0,
+  "cross_arm_penetration_contacts": 0,
+  "peak_cross_arm_penetration_m": 0.0,
+  "max_ik_residual": 9.84993124899868e-06,
+  "physics_warnings": 0,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14",
+  "physics_dt_s": 0.002,
+  "control_dt_s": 0.02,
+  "video_fps": null
+}
