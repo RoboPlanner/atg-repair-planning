@@ -50,13 +50,13 @@ This verifies every manifest-listed archive file and runs **58 implementation te
 python tools/serve.py
 ```
 
-Open **http://127.0.0.1:8765/**. Keep the process running; Ctrl+C stops it. The server binds only to the local loopback interface and serves `docs/`, not the Git metadata or private project workspace. If 8765 is occupied, `python tools/serve.py --port 8766` uses another port; the temporary manuscript link specifically uses 8765.
+Open **http://127.0.0.1:8780/**. Keep the process running; Ctrl+C stops it. The server binds only to the local loopback interface and serves `docs/`, not the Git metadata or private project workspace. If 8780 is occupied, `python tools/serve.py --port 8781` uses another port; the temporary manuscript link specifically uses 8780.
 
 The static page also opens directly as `docs/index.html`. It works without external fonts, analytics, a build system, or CDN scripts. Relative asset URLs are compatible with a GitHub Pages project subpath. The method figures can be switched and opened at full resolution. The downloadable ZIP retains the frozen supplementary bytes.
 
 ### New physics simulation videos
 
-Open **http://127.0.0.1:8765/#simulation** for six actual MuJoCo recordings of dual-Panda execution, with scene and full/serial switches. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
+Open **http://127.0.0.1:8780/#simulation** for six actual MuJoCo recordings of dual-Panda execution, with scene and full/serial switches. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
 
 ```sh
 python -m pip install -r simulation/requirements.txt
@@ -68,7 +68,7 @@ Use Python 3.11 and FFmpeg on PATH; add `--record-seed -999` to omit video. The 
 
 ### Experimental animations
 
-Open **http://127.0.0.1:8765/#experiments** for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
+Open **http://127.0.0.1:8780/#experiments** for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
 
 These are symbolic planning-layer replays, not robot footage or new experimental samples. The six-node controlled case is distinct from the five-node tea illustration. The ft06 comparison uses a common time axis and reports its instance-specific result; aggregate and negative results remain in the evidence section.
 
