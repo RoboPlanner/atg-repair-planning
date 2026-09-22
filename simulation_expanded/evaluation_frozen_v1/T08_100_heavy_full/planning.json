@@ -1,0 +1,922 @@
+{
+  "accepted": true,
+  "graph": {
+    "nodes": [
+      {
+        "id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "L_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "R_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "transfer1",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "L_ready",
+          "R_ready"
+        ],
+        "post_state": [
+          "tray_stage1"
+        ],
+        "duration": 12.0,
+        "resource": [
+          "tray",
+          "slot_L",
+          "slot_R"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "L_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "R_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "unload_pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "L_clear",
+          "R_clear"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A",
+          "slot_L"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "unload_place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "unload_pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "L_clear",
+          "R_clear"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B",
+          "slot_R"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "unload_place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "approach_L",
+        "target": "transfer1",
+        "type": "state_support",
+        "reason": "repaired explicit support for L_ready",
+        "state": "L_ready"
+      },
+      {
+        "source": "approach_R",
+        "target": "transfer1",
+        "type": "state_support",
+        "reason": "repaired explicit support for R_ready",
+        "state": "R_ready"
+      },
+      {
+        "source": "transfer1",
+        "target": "retreat_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for tray_stage1",
+        "state": "tray_stage1"
+      },
+      {
+        "source": "transfer1",
+        "target": "retreat_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for tray_stage1",
+        "state": "tray_stage1"
+      },
+      {
+        "source": "retreat_L",
+        "target": "unload_pick_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for L_clear",
+        "state": "L_clear"
+      },
+      {
+        "source": "retreat_R",
+        "target": "unload_pick_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for R_clear",
+        "state": "R_clear"
+      },
+      {
+        "source": "retreat_L",
+        "target": "unload_pick_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for L_clear",
+        "state": "L_clear"
+      },
+      {
+        "source": "retreat_R",
+        "target": "unload_pick_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for R_clear",
+        "state": "R_clear"
+      },
+      {
+        "source": "unload_pick_L",
+        "target": "unload_place_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_held",
+        "state": "A_held"
+      },
+      {
+        "source": "unload_pick_R",
+        "target": "unload_place_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_held",
+        "state": "B_held"
+      },
+      {
+        "source": "approach_L",
+        "target": "transfer1",
+        "type": "synchronization",
+        "reason": "cooperative action requires synchronized input states",
+        "state": "L_ready"
+      },
+      {
+        "source": "approach_R",
+        "target": "transfer1",
+        "type": "synchronization",
+        "reason": "cooperative action requires synchronized input states",
+        "state": "R_ready"
+      }
+    ]
+  },
+  "audit": {
+    "valid": true,
+    "before": {
+      "valid": false,
+      "acyclic": true,
+      "closure_rate": 0.117647,
+      "initial_states": [
+        "tray_available"
+      ],
+      "available_states": [
+        "L_ready",
+        "R_ready",
+        "tray_available"
+      ],
+      "executable_nodes": [
+        "approach_L",
+        "approach_R"
+      ],
+      "issues": [
+        {
+          "node_id": "transfer1",
+          "missing_states": [
+            "L_ready",
+            "R_ready"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "retreat_L",
+          "missing_states": [
+            "tray_stage1"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "retreat_R",
+          "missing_states": [
+            "tray_stage1"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "unload_pick_L",
+          "missing_states": [
+            "L_clear",
+            "R_clear"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "unload_pick_R",
+          "missing_states": [
+            "L_clear",
+            "R_clear"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "unload_place_L",
+          "missing_states": [
+            "A_held"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "unload_place_R",
+          "missing_states": [
+            "B_held"
+          ],
+          "unsupported_states": []
+        }
+      ],
+      "reachable_goals": [],
+      "unreachable_goals": [
+        "A_placed",
+        "B_placed",
+        "L_clear",
+        "R_clear",
+        "tray_stage1"
+      ],
+      "cycle_error": null
+    },
+    "after": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "tray_available"
+      ],
+      "available_states": [
+        "A_held",
+        "A_placed",
+        "B_held",
+        "B_placed",
+        "L_clear",
+        "L_ready",
+        "R_clear",
+        "R_ready",
+        "tray_available",
+        "tray_stage1"
+      ],
+      "executable_nodes": [
+        "approach_L",
+        "approach_R",
+        "transfer1",
+        "retreat_L",
+        "retreat_R",
+        "unload_pick_L",
+        "unload_pick_R",
+        "unload_place_L",
+        "unload_place_R"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "A_placed",
+        "B_placed",
+        "L_clear",
+        "R_clear",
+        "tray_stage1"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "resource_conflicts_before": [
+      [
+        "transfer1",
+        "unload_pick_L",
+        [
+          "slot_L"
+        ]
+      ],
+      [
+        "transfer1",
+        "unload_pick_R",
+        [
+          "slot_R"
+        ]
+      ],
+      [
+        "unload_pick_L",
+        "unload_place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "unload_pick_R",
+        "unload_place_R",
+        [
+          "B"
+        ]
+      ]
+    ],
+    "resource_conflicts_after": [],
+    "joint_before": {
+      "valid": false,
+      "checks": {
+        "schema_valid": true,
+        "closed": false,
+        "goal_reachable": false,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": false
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [
+        [
+          "transfer1",
+          "unload_pick_L",
+          [
+            "slot_L"
+          ]
+        ],
+        [
+          "transfer1",
+          "unload_pick_R",
+          [
+            "slot_R"
+          ]
+        ],
+        [
+          "unload_pick_L",
+          "unload_place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "unload_pick_R",
+          "unload_place_R",
+          [
+            "B"
+          ]
+        ]
+      ],
+      "state_audit": {
+        "valid": false,
+        "acyclic": true,
+        "closure_rate": 0.117647,
+        "initial_states": [
+          "tray_available"
+        ],
+        "available_states": [
+          "L_ready",
+          "R_ready",
+          "tray_available"
+        ],
+        "executable_nodes": [
+          "approach_L",
+          "approach_R"
+        ],
+        "issues": [
+          {
+            "node_id": "transfer1",
+            "missing_states": [
+              "L_ready",
+              "R_ready"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "retreat_L",
+            "missing_states": [
+              "tray_stage1"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "retreat_R",
+            "missing_states": [
+              "tray_stage1"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "unload_pick_L",
+            "missing_states": [
+              "L_clear",
+              "R_clear"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "unload_pick_R",
+            "missing_states": [
+              "L_clear",
+              "R_clear"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "unload_place_L",
+            "missing_states": [
+              "A_held"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "unload_place_R",
+            "missing_states": [
+              "B_held"
+            ],
+            "unsupported_states": []
+          }
+        ],
+        "reachable_goals": [],
+        "unreachable_goals": [
+          "A_placed",
+          "B_placed",
+          "L_clear",
+          "R_clear",
+          "tray_stage1"
+        ],
+        "cycle_error": null
+      },
+      "failure_reasons": [
+        "transfer1: missing=['L_ready', 'R_ready'], unsupported=[]",
+        "retreat_L: missing=['tray_stage1'], unsupported=[]",
+        "retreat_R: missing=['tray_stage1'], unsupported=[]",
+        "unload_pick_L: missing=['L_clear', 'R_clear'], unsupported=[]",
+        "unload_pick_R: missing=['L_clear', 'R_clear'], unsupported=[]",
+        "unload_place_L: missing=['A_held'], unsupported=[]",
+        "unload_place_R: missing=['B_held'], unsupported=[]",
+        "unreachable goals: ['A_placed', 'B_placed', 'L_clear', 'R_clear', 'tray_stage1']",
+        "unordered shared resources: [('transfer1', 'unload_pick_L', ('slot_L',)), ('transfer1', 'unload_pick_R', ('slot_R',)), ('unload_pick_L', 'unload_place_L', ('A',)), ('unload_pick_R', 'unload_place_R', ('B',))]"
+      ]
+    },
+    "joint_after": {
+      "valid": true,
+      "checks": {
+        "schema_valid": true,
+        "closed": true,
+        "goal_reachable": true,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": true
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [],
+      "state_audit": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "tray_available"
+        ],
+        "available_states": [
+          "A_held",
+          "A_placed",
+          "B_held",
+          "B_placed",
+          "L_clear",
+          "L_ready",
+          "R_clear",
+          "R_ready",
+          "tray_available",
+          "tray_stage1"
+        ],
+        "executable_nodes": [
+          "approach_L",
+          "approach_R",
+          "transfer1",
+          "retreat_L",
+          "retreat_R",
+          "unload_pick_L",
+          "unload_pick_R",
+          "unload_place_L",
+          "unload_place_R"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "A_placed",
+          "B_placed",
+          "L_clear",
+          "R_clear",
+          "tray_stage1"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "failure_reasons": []
+    },
+    "events": [
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "approach_L",
+        "target": "transfer1",
+        "edge_type": "state_support",
+        "state": "L_ready",
+        "resource": null,
+        "reason": "selected an acyclic producer for L_ready",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "approach_R",
+        "target": "transfer1",
+        "edge_type": "state_support",
+        "state": "R_ready",
+        "resource": null,
+        "reason": "selected an acyclic producer for R_ready",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "transfer1",
+        "target": "retreat_L",
+        "edge_type": "state_support",
+        "state": "tray_stage1",
+        "resource": null,
+        "reason": "selected an acyclic producer for tray_stage1",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "transfer1",
+        "target": "retreat_R",
+        "edge_type": "state_support",
+        "state": "tray_stage1",
+        "resource": null,
+        "reason": "selected an acyclic producer for tray_stage1",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "retreat_L",
+        "target": "unload_pick_L",
+        "edge_type": "state_support",
+        "state": "L_clear",
+        "resource": null,
+        "reason": "selected an acyclic producer for L_clear",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "retreat_R",
+        "target": "unload_pick_L",
+        "edge_type": "state_support",
+        "state": "R_clear",
+        "resource": null,
+        "reason": "selected an acyclic producer for R_clear",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "retreat_L",
+        "target": "unload_pick_R",
+        "edge_type": "state_support",
+        "state": "L_clear",
+        "resource": null,
+        "reason": "selected an acyclic producer for L_clear",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "retreat_R",
+        "target": "unload_pick_R",
+        "edge_type": "state_support",
+        "state": "R_clear",
+        "resource": null,
+        "reason": "selected an acyclic producer for R_clear",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "unload_pick_L",
+        "target": "unload_place_L",
+        "edge_type": "state_support",
+        "state": "A_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "unload_pick_R",
+        "target": "unload_place_R",
+        "edge_type": "state_support",
+        "state": "B_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "synchronization",
+        "action": "add_synchronization",
+        "accepted": true,
+        "source": "approach_L",
+        "target": "transfer1",
+        "edge_type": "synchronization",
+        "state": "L_ready",
+        "resource": null,
+        "reason": "cooperative input state L_ready",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "synchronization",
+        "action": "add_synchronization",
+        "accepted": true,
+        "source": "approach_R",
+        "target": "transfer1",
+        "edge_type": "synchronization",
+        "state": "R_ready",
+        "resource": null,
+        "reason": "cooperative input state R_ready",
+        "before_critical_path": null,
+        "after_critical_path": null
+      }
+    ],
+    "failure_reasons": []
+  },
+  "schedule": {
+    "estimated_makespan": 29.0,
+    "waiting_time": 0.0,
+    "executor_utilization": 1.0,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": []
+      },
+      {
+        "node_id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": []
+      },
+      {
+        "node_id": "transfer1",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "start": 3.0,
+        "finish": 15.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "tray",
+          "slot_L",
+          "slot_R"
+        ]
+      },
+      {
+        "node_id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "left"
+        ],
+        "resources": []
+      },
+      {
+        "node_id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": []
+      },
+      {
+        "node_id": "unload_pick_L",
+        "action": "pick",
+        "object": "A",
+        "start": 17.0,
+        "finish": 23.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A",
+          "slot_L"
+        ]
+      },
+      {
+        "node_id": "unload_pick_R",
+        "action": "pick",
+        "object": "B",
+        "start": 17.0,
+        "finish": 23.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B",
+          "slot_R"
+        ]
+      },
+      {
+        "node_id": "unload_place_L",
+        "action": "place",
+        "object": "A",
+        "start": 23.0,
+        "finish": 29.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A"
+        ]
+      },
+      {
+        "node_id": "unload_place_R",
+        "action": "place",
+        "object": "B",
+        "start": 23.0,
+        "finish": 29.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B"
+        ]
+      }
+    ]
+  },
+  "failure_reasons": [],
+  "independent_graph": {
+    "valid": true,
+    "issues": [],
+    "topological_order": [
+      "approach_L",
+      "approach_R",
+      "transfer1",
+      "retreat_L",
+      "retreat_R",
+      "unload_pick_L",
+      "unload_pick_R",
+      "unload_place_L",
+      "unload_place_R"
+    ]
+  },
+  "independent_schedule": {
+    "valid": true,
+    "issues": []
+  }
+}

@@ -1,0 +1,6 @@
+condition,success,n
+nominal,40,40
+heavy,30,40
+low_friction,0,40
+pose_bias,35,40
+fast,39,40

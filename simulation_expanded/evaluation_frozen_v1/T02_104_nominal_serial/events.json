@@ -1,0 +1,178 @@
+[
+  {
+    "event": "start",
+    "node": "pick_L",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_L",
+    "time": 6.0,
+    "snapshot": 150,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.45719825168215145,
+        -0.4746968263231361,
+        0.7368679247511013
+      ],
+      "speed": 0.0005517888594960216,
+      "height": 0.7368679247511013,
+      "grip_distance": 0.012944798737109525,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "pick_R",
+    "time": 6.0,
+    "snapshot": 150,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_R",
+    "time": 12.0,
+    "snapshot": 300,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4448155240022706,
+        0.47404005239769875,
+        0.7368797756263699
+      ],
+      "speed": 0.004871911072960411,
+      "height": 0.7368797756263699,
+      "grip_distance": 0.012950518671614576,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "service1_L",
+    "time": 12.0,
+    "snapshot": 300,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A",
+      "station"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "service1_L",
+    "time": 20.0,
+    "snapshot": 500,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4574356523588072,
+        -0.4734251656875817,
+        0.6842853509951623
+      ],
+      "speed": 0.0017436260648881188,
+      "dwell": 2.1259999999999875
+    }
+  },
+  {
+    "event": "start",
+    "node": "place_L",
+    "time": 20.0,
+    "snapshot": 500,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_L",
+    "time": 26.0,
+    "snapshot": 650,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6420667360556735,
+        -0.34034841767477736,
+        0.46497337460475063
+      ],
+      "speed": 1.1567360063727755e-14,
+      "target_error": 0.012493615453605585,
+      "open": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "service1_R",
+    "time": 26.0,
+    "snapshot": 650,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B",
+      "station"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "service1_R",
+    "time": 34.0,
+    "snapshot": 850,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.44337757469180045,
+        0.47673419276761414,
+        0.6805925341217762
+      ],
+      "speed": 0.0032980965790693514,
+      "dwell": 2.111999999999989
+    }
+  },
+  {
+    "event": "start",
+    "node": "place_R",
+    "time": 34.0,
+    "snapshot": 850,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_R",
+    "time": 40.0,
+    "snapshot": 1000,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6458685848135588,
+        0.37112653605936385,
+        0.46497337460475063
+      ],
+      "speed": 1.1818904097290366e-14,
+      "target_error": 0.02152672353661912,
+      "open": true
+    }
+  }
+]

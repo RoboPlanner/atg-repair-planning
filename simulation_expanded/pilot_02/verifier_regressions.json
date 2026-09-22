@@ -1,0 +1,96 @@
+{
+  "passed": 9,
+  "total": 9,
+  "tests": [
+    {
+      "test": "Nominal original record",
+      "passed": true,
+      "observed_execution_verdict": true,
+      "issues": []
+    },
+    {
+      "test": "Fake passed retreat with arm away from target",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "retreat_L:grip_target",
+        "goal_not_observed",
+        "retreat_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "Fake passed pick with object remaining low",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "pick_L:lift_height",
+        "pick_L:grip_separation",
+        "pick_L:bilateral_fingers",
+        "place_L:missing_observed_precondition",
+        "pick_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "Fake passed place off target",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "place_L:target_position",
+        "goal_not_observed",
+        "place_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "Fake service dwell",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "pick_L:grip_separation",
+        "pick_L:bilateral_fingers",
+        "service1_L:missing_observed_precondition",
+        "service1_L:service_dwell",
+        "place_L:missing_observed_precondition",
+        "pick_L:reported_pass_flag_disagrees",
+        "service1_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "Unsupported primitive is not accepted",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "retreat_L:unsupported_primitive",
+        "goal_not_observed",
+        "retreat_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "B allocated only one execution unit",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "invalid_planned_schedule",
+        "transfer1:dispatch_allocation"
+      ]
+    },
+    {
+      "test": "Forged event-state alignment",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "approach_L:grip_target",
+        "transfer1:missing_observed_precondition",
+        "approach_L:event_snapshot_time",
+        "approach_L:reported_pass_flag_disagrees"
+      ]
+    },
+    {
+      "test": "Moving object at final goal",
+      "passed": true,
+      "observed_execution_verdict": false,
+      "issues": [
+        "final_speed"
+      ]
+    }
+  ]
+}

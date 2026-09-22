@@ -134,3 +134,7 @@ The fixed archive is [ATG_reproduction_v7_70.zip](docs/assets/downloads/ATG_repr
 Original code/documentation: [MIT](LICENSE). Website text/layout/manuscript figures: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Third-party materials retain their notices; see [LICENSES.md](LICENSES.md). The author’s EndNote library, Word drafts, account email, credentials, and local machine configuration are outside this repository.
 
 For future publication, see [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). **No upload or deployment is performed by any local preparation command.** Add verified authors, affiliations, paper URL and citation metadata before the public release. Replace the manuscript’s local address only after the public page is live and checked.
+
+## Expanded physical simulation study
+
+See [simulation_expanded/README.md](simulation_expanded/README.md) for eight task templates, 240 frozen physics runs, 96 planning settings and 20 preselected videos. Normal-condition schedules complete 80/80 runs; stress conditions complete 104/160. All failures and independent reconstructions are retained. This replaces the exploratory simulation summary in the latest manuscript without altering the earlier archive. Figures 9–11 and Tables 17–19 use this new batch. No hardware or natural-error generalization is claimed.

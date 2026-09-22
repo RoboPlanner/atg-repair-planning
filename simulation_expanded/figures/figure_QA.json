@@ -1,0 +1,19 @@
+{
+  "font": "C:\\Windows\\Fonts\\times.ttf",
+  "error_bars": false,
+  "panel_labels": "Centered below each panel, as requested",
+  "figure_width_mm": 182.88,
+  "exports": [
+    "SVG with editable text",
+    "PDF TrueType embedding",
+    "600 dpi PNG",
+    "600 dpi LZW TIFF"
+  ],
+  "all_runs_included": true,
+  "simulation_checks": {
+    "total": 240,
+    "integrity_valid": 240,
+    "outcome_agreement": 240
+  },
+  "figure10_contract_refinement": "Use same-input planning controls in panel (b); all nominal completion counts are 5/5 and are retained in Table 17, avoiding a redundant panel."
+}

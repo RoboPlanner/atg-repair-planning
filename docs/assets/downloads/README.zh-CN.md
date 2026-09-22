@@ -76,3 +76,7 @@ L、R是两个抽象基础执行单元，B同时占用L+R。四阶段顺序为�
 页面结构参考 Nerfies 与 Academic Project Page Template，来源见[说明](documentation/TEMPLATE_SOURCES.md)。作者代码采用 MIT；网页正文、布局和论文图采用 CC BY-SA 4.0；第三方数据和源文件保留原许可，详见[许可清单](LICENSES.md)。
 
 本轮不创建远端、不上传、不启用GitHub Pages。后续发布步骤见[GitHub Pages说明](documentation/GITHUB_PAGES.md)。主库、Word内部稿和账户邮箱不进入此仓库；作者、机构、论文链接与引用条目应在核定后填写，不预置虚构信息。
+
+## 新增八类任务与物理压力实验
+
+新增目录 [simulation_expanded](simulation_expanded/README.md) 保存240次实际MuJoCo运行、96组同输入规划设置、20段预选录像及独立状态核验。正常条件两种调度合计80/80完成，压力条件104/160完成；56次失败全部保留。图9—11、表17—19采用新增批次，旧30次探索和v7.70包不变。这些是物理仿真，不是实机结果，完整修复与共享压缩简单规则在本批接受输入上持平。

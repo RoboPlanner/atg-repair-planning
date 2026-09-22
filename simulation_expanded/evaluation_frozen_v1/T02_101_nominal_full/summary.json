@@ -1,0 +1,53 @@
+{
+  "task": "T02",
+  "seed": 101,
+  "condition": "nominal",
+  "mode": "full",
+  "nodes": 6,
+  "cooperative_nodes": 0,
+  "graph_accepted": true,
+  "execution_success": true,
+  "scheduled_window_s": 28.0,
+  "completed_schedule_s": 28.0,
+  "simulation_end_s": 28.499999999995083,
+  "abort_s": null,
+  "failure_reasons": [],
+  "goal_errors_m": {
+    "A": 0.009348620930344049,
+    "B": 0.015149780066693761
+  },
+  "object_speeds_m_s": {
+    "A": 1.1231873140875756e-14,
+    "B": 1.1567588525960275e-14
+  },
+  "finished_tasks": [
+    "pick_L",
+    "pick_R",
+    "place_L",
+    "place_R",
+    "service1_L",
+    "service1_R"
+  ],
+  "states": [
+    "A_available",
+    "A_held",
+    "A_placed",
+    "A_service1",
+    "B_available",
+    "B_held",
+    "B_placed",
+    "B_service1"
+  ],
+  "service_dwell_s": {
+    "service1_L": 2.10199999999999,
+    "service1_R": 2.10199999999999
+  },
+  "carry_contacts": {},
+  "interarm_penetration_steps": 0,
+  "station_overlap_steps": 0,
+  "physics_warnings": 0,
+  "maximum_ik_residual": 9.724249942929228e-06,
+  "recorded": false,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14"
+}

@@ -1,0 +1,198 @@
+{
+  "task": "T03",
+  "title": "Synchronized kitting",
+  "case": "T03",
+  "seed": 102,
+  "condition": "nominal",
+  "parameters": {
+    "mass": 1.0,
+    "friction": 1.5,
+    "bias": 0.0,
+    "time_scale": 1.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_held",
+          "B_held"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "A_held",
+          "B_held"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed"
+  ],
+  "objects": [
+    "A",
+    "B"
+  ],
+  "initial_positions": {
+    "A": [
+      0.4431998229000861,
+      -0.4782811297031954,
+      0.465
+    ],
+    "B": [
+      0.4564767355436569,
+      0.4759452047352059,
+      0.465
+    ]
+  },
+  "controller_positions": {
+    "A": [
+      0.4431998229000861,
+      -0.4782811297031954,
+      0.465
+    ],
+    "B": [
+      0.4564767355436569,
+      0.4759452047352059,
+      0.465
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.65,
+      -0.35,
+      0.465
+    ],
+    "B": [
+      0.65,
+      0.35,
+      0.465
+    ]
+  },
+  "skills": {
+    "pick_L": {
+      "kind": "pick",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.4431998229000861,
+        -0.4782811297031954,
+        0.465
+      ]
+    },
+    "pick_R": {
+      "kind": "pick",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.4564767355436569,
+        0.4759452047352059,
+        0.465
+      ]
+    },
+    "place_L": {
+      "kind": "place",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.65,
+        -0.35,
+        0.465
+      ]
+    },
+    "place_R": {
+      "kind": "place",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.65,
+        0.35,
+        0.465
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "task": "T01",
+  "seed": 102,
+  "condition": "low_friction",
+  "mode": "full",
+  "nodes": 4,
+  "cooperative_nodes": 0,
+  "graph_accepted": true,
+  "execution_success": false,
+  "scheduled_window_s": 12.0,
+  "completed_schedule_s": null,
+  "simulation_end_s": 6.501999999999506,
+  "abort_s": 6.0,
+  "failure_reasons": [
+    "pick_L: physical postcondition",
+    "pick_R: physical postcondition",
+    "final position",
+    "incomplete execution",
+    "goal state not observed"
+  ],
+  "goal_errors_m": {
+    "A": 0.24481426646249027,
+    "B": 0.23194659408358162
+  },
+  "object_speeds_m_s": {
+    "A": 1.0819759208981733e-14,
+    "B": 1.0564951438265886e-14
+  },
+  "finished_tasks": [
+    "pick_L",
+    "pick_R"
+  ],
+  "states": [
+    "A_available",
+    "B_available"
+  ],
+  "service_dwell_s": {},
+  "carry_contacts": {},
+  "interarm_penetration_steps": 0,
+  "station_overlap_steps": 0,
+  "physics_warnings": 0,
+  "maximum_ik_residual": 9.620837010948313e-06,
+  "recorded": false,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14"
+}

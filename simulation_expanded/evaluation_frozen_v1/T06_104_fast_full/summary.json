@@ -1,0 +1,56 @@
+{
+  "task": "T06",
+  "seed": 104,
+  "condition": "fast",
+  "mode": "full",
+  "nodes": 6,
+  "cooperative_nodes": 2,
+  "graph_accepted": true,
+  "execution_success": true,
+  "scheduled_window_s": 14.5,
+  "completed_schedule_s": 14.5,
+  "simulation_end_s": 15.000000000001679,
+  "abort_s": null,
+  "failure_reasons": [],
+  "goal_errors_m": {
+    "tray": 0.001200212714141351
+  },
+  "object_speeds_m_s": {
+    "tray": 1.03161027896634e-14
+  },
+  "finished_tasks": [
+    "approach_L",
+    "approach_R",
+    "retreat_L",
+    "retreat_R",
+    "transfer1",
+    "transfer2"
+  ],
+  "states": [
+    "L_clear",
+    "L_ready",
+    "R_clear",
+    "R_ready",
+    "tray_available",
+    "tray_stage1",
+    "tray_stage2"
+  ],
+  "service_dwell_s": {},
+  "carry_contacts": {
+    "transfer1": {
+      "steps": 1140,
+      "bilateral_steps": 1140
+    },
+    "transfer2": {
+      "steps": 1140,
+      "bilateral_steps": 1140
+    }
+  },
+  "interarm_penetration_steps": 0,
+  "station_overlap_steps": 0,
+  "physics_warnings": 0,
+  "maximum_ik_residual": 9.992038146671452e-06,
+  "recorded": false,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14"
+}

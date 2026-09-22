@@ -1,0 +1,146 @@
+{
+  "id": "T05_fields_only",
+  "task": "T05",
+  "profile": "fields_only",
+  "graph": {
+    "nodes": [
+      {
+        "id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "L_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "R_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "transfer1",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "L_ready",
+          "R_ready"
+        ],
+        "post_state": [
+          "tray_stage1"
+        ],
+        "duration": 12.0,
+        "resource": [
+          "tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "L_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "R_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_states": [
+    "tray_available"
+  ],
+  "goal_states": [
+    "tray_stage1",
+    "L_clear",
+    "R_clear"
+  ],
+  "causal_reference": [
+    {
+      "source": "approach_L",
+      "target": "transfer1",
+      "type": "state_support",
+      "state": "L_ready"
+    },
+    {
+      "source": "approach_L",
+      "target": "transfer1",
+      "type": "synchronization",
+      "state": "L_ready"
+    },
+    {
+      "source": "approach_R",
+      "target": "transfer1",
+      "type": "state_support",
+      "state": "R_ready"
+    },
+    {
+      "source": "approach_R",
+      "target": "transfer1",
+      "type": "synchronization",
+      "state": "R_ready"
+    },
+    {
+      "source": "transfer1",
+      "target": "retreat_L",
+      "type": "state_support",
+      "state": "tray_stage1"
+    },
+    {
+      "source": "transfer1",
+      "target": "retreat_R",
+      "type": "state_support",
+      "state": "tray_stage1"
+    }
+  ],
+  "expected_discrete_goal_reachable": true,
+  "construction": "Author-defined state fields and primitive semantics; no external or natural-language reference claimed."
+}

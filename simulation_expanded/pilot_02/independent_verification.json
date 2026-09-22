@@ -1,0 +1,935 @@
+{
+  "total": 16,
+  "execution_successes": 16,
+  "integrity_valid": 16,
+  "outcome_agreement": 16,
+  "scope": "Exact event-state reconstruction of every primitive including retreat; 40ms sampled service/contact checks; online 2ms counters are additionally retained, not independently certified as continuous collision safety.",
+  "records": [
+    {
+      "trial": "T01_-11_nominal_full",
+      "task": "T01",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.006823862671738814,
+        "B": 0.007392281890018002
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T01_-11_nominal_serial",
+      "task": "T01",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012150988716182302,
+        "B": 0.006316855898900596
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T02_-11_nominal_full",
+      "task": "T02",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.010714694002146424,
+        "B": 0.016016203653034848
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.119999999999999
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.080000000000002
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T02_-11_nominal_serial",
+      "task": "T02",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.017783573152913824,
+        "B": 0.02265579070845334
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.120000000000001
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.120000000000001
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T03_-11_nominal_full",
+      "task": "T03",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.006823862671738814,
+        "B": 0.007392281890018002
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T03_-11_nominal_serial",
+      "task": "T03",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012150988716182302,
+        "B": 0.006316855898900596
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T04_-11_nominal_full",
+      "task": "T04",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.017650913849378662,
+        "B": 0.021023680762035278
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.119999999999999
+        },
+        {
+          "node": "service1_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.080000000000002
+        },
+        {
+          "node": "service2_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.120000000000001
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service2_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.0799999999999983
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T04_-11_nominal_serial",
+      "task": "T04",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.027893259407485584,
+        "B": 0.020709593430651235
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service1_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.120000000000001
+        },
+        {
+          "node": "service1_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.080000000000002
+        },
+        {
+          "node": "service2_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.120000000000001
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "service2_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_dwell_s": 2.0799999999999983
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T05_-11_nominal_full",
+      "task": "T05",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010375156419653265
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846168195468e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.355909451909791e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065787118372513
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065531540380338
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T05_-11_nominal_serial",
+      "task": "T05",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010350456585058237
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846167161816e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3559094519419365e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065788212025964
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016053693286158918
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T06_-11_nominal_full",
+      "task": "T06",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010767207600101867
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846168195468e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.355909451909791e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "transfer2",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016066300847742043
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016066201384665477
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T06_-11_nominal_serial",
+      "task": "T06",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "tray": 0.0010569023476801223
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846167161816e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3559094519419365e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "transfer2",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016066299821934438
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016054347887910346
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T07_-11_nominal_full",
+      "task": "T07",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.005761373192174152,
+        "B": 0.006672401082070445,
+        "tray": 0.0010907409381515749
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.644850972585039e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.56166969689894e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016063204228233166
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016062947367944265
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T07_-11_nominal_serial",
+      "task": "T07",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.012940277880041361,
+        "B": 0.006698847018921299,
+        "tray": 0.0011291797455682817
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.666956265785212e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.584576204349743e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016063129344803413
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016051186904468128
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T08_-11_nominal_full",
+      "task": "T08",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "full",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.006473870437324498,
+        "B": 0.006773908490841448,
+        "tray": 0.001086334752125973
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846168195468e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3559094519489986e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065810910548617
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065554949860543
+        },
+        {
+          "node": "unload_pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    },
+    {
+      "trial": "T08_-11_nominal_serial",
+      "task": "T08",
+      "seed": -11,
+      "condition": "nominal",
+      "mode": "serial",
+      "execution_success": true,
+      "online_success": true,
+      "outcome_agreement": true,
+      "integrity_valid": true,
+      "integrity_issues": [],
+      "physical_failure_reasons": [],
+      "reconstructed_goal_errors_m": {
+        "A": 0.010971601146522939,
+        "B": 0.012795622427416747,
+        "tray": 0.0010764450082058187
+      },
+      "sampled_interarm_contacts": 0,
+      "sampled_station_overlap": 0,
+      "actions": [
+        {
+          "node": "approach_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3978846168195468e-06
+        },
+        {
+          "node": "approach_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 2.3559094519419365e-06
+        },
+        {
+          "node": "transfer1",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "sampled_carry_frames": 114,
+          "sampled_bilateral_carry_fraction": 1.0
+        },
+        {
+          "node": "retreat_L",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016065811741245175
+        },
+        {
+          "node": "retreat_R",
+          "reconstructed_pass": true,
+          "reasons": [],
+          "grip_target_error_m": 0.0016053717069562977
+        },
+        {
+          "node": "unload_pick_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_pick_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_place_L",
+          "reconstructed_pass": true,
+          "reasons": []
+        },
+        {
+          "node": "unload_place_R",
+          "reconstructed_pass": true,
+          "reasons": []
+        }
+      ],
+      "maximum_pose_reconstruction_difference_m": 0.0
+    }
+  ]
+}

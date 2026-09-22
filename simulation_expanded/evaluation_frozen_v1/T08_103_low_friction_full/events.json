@@ -1,0 +1,92 @@
+[
+  {
+    "event": "start",
+    "node": "approach_L",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "left"
+    ],
+    "resources": []
+  },
+  {
+    "event": "start",
+    "node": "approach_R",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "right"
+    ],
+    "resources": []
+  },
+  {
+    "event": "finish",
+    "node": "approach_L",
+    "time": 3.0,
+    "snapshot": 75,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4071508497676074,
+        -0.007928751328390526,
+        0.45594679916126923
+      ],
+      "speed": 1.1784395056335936e-14,
+      "grip_error": 2.359919609547445e-06,
+      "open": true,
+      "object_clearance": 0.30092834502571386
+    }
+  },
+  {
+    "event": "finish",
+    "node": "approach_R",
+    "time": 3.0,
+    "snapshot": 75,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4071508497676074,
+        -0.007928751328390526,
+        0.45594679916126923
+      ],
+      "speed": 1.1784395056335936e-14,
+      "grip_error": 2.5289288951709096e-06,
+      "open": true,
+      "object_clearance": 0.30092866367770854
+    }
+  },
+  {
+    "event": "start",
+    "node": "transfer1",
+    "time": 3.0,
+    "snapshot": 75,
+    "units": [
+      "left",
+      "right"
+    ],
+    "resources": [
+      "tray",
+      "slot_L",
+      "slot_R"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "transfer1",
+    "time": 15.0,
+    "snapshot": 375,
+    "passed": false,
+    "physical_observation": {
+      "position": [
+        0.40701314071599287,
+        -0.00792766471582851,
+        0.4559467991612702
+      ],
+      "speed": 1.1173319787135509e-14,
+      "target_error": 0.2131369497002309,
+      "open": true,
+      "bilateral_carry_fraction": 0.0,
+      "carry_contact_failed": true
+    }
+  }
+]

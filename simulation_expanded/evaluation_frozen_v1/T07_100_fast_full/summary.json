@@ -1,0 +1,63 @@
+{
+  "task": "T07",
+  "seed": 100,
+  "condition": "fast",
+  "mode": "full",
+  "nodes": 9,
+  "cooperative_nodes": 1,
+  "graph_accepted": true,
+  "execution_success": true,
+  "scheduled_window_s": 14.5,
+  "completed_schedule_s": 14.5,
+  "simulation_end_s": 15.000000000001679,
+  "abort_s": null,
+  "failure_reasons": [],
+  "goal_errors_m": {
+    "A": 0.010690638450728169,
+    "B": 0.009675102166468792,
+    "tray": 0.002104202340959686
+  },
+  "object_speeds_m_s": {
+    "A": 1.8108763456541123e-10,
+    "B": 3.7757743854200465e-10,
+    "tray": 3.0748718593287906e-10
+  },
+  "finished_tasks": [
+    "approach_L",
+    "approach_R",
+    "pick_L",
+    "pick_R",
+    "place_L",
+    "place_R",
+    "retreat_L",
+    "retreat_R",
+    "transfer1"
+  ],
+  "states": [
+    "A_available",
+    "A_held",
+    "A_placed",
+    "B_available",
+    "B_held",
+    "B_placed",
+    "L_clear",
+    "L_ready",
+    "R_clear",
+    "R_ready",
+    "tray_stage1"
+  ],
+  "service_dwell_s": {},
+  "carry_contacts": {
+    "transfer1": {
+      "steps": 1140,
+      "bilateral_steps": 1140
+    }
+  },
+  "interarm_penetration_steps": 0,
+  "station_overlap_steps": 0,
+  "physics_warnings": 0,
+  "maximum_ik_residual": 9.936568209172914e-06,
+  "recorded": false,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14"
+}

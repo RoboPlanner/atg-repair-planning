@@ -1,0 +1,384 @@
+{
+  "task": "T07",
+  "title": "Tray loading and transfer",
+  "case": "T07",
+  "seed": 102,
+  "condition": "heavy",
+  "parameters": {
+    "mass": 5.0,
+    "friction": 1.5,
+    "bias": 0.0,
+    "time_scale": 1.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A",
+          "slot_L"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B",
+          "slot_R"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "A_placed",
+          "B_placed"
+        ],
+        "post_state": [
+          "L_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "A_placed",
+          "B_placed"
+        ],
+        "post_state": [
+          "R_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "transfer1",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "L_ready",
+          "R_ready"
+        ],
+        "post_state": [
+          "tray_stage1"
+        ],
+        "duration": 12.0,
+        "resource": [
+          "tray",
+          "slot_L",
+          "slot_R"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "L_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "R_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed",
+    "tray_stage1",
+    "L_clear",
+    "R_clear"
+  ],
+  "objects": [
+    "A",
+    "B",
+    "tray"
+  ],
+  "initial_positions": {
+    "A": [
+      0.4431998229000861,
+      -0.4782811297031954,
+      0.465
+    ],
+    "B": [
+      0.4564767355436569,
+      0.4759452047352059,
+      0.465
+    ],
+    "tray": [
+      0.4036979904309261,
+      -0.0007223167938803406,
+      0.457
+    ]
+  },
+  "controller_positions": {
+    "A": [
+      0.4431998229000861,
+      -0.4782811297031954,
+      0.465
+    ],
+    "B": [
+      0.4564767355436569,
+      0.4759452047352059,
+      0.465
+    ],
+    "tray": [
+      0.4036979904309261,
+      -0.0007223167938803406,
+      0.457
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.62,
+      -0.115,
+      0.498
+    ],
+    "B": [
+      0.62,
+      0.115,
+      0.498
+    ],
+    "tray": [
+      0.62,
+      0,
+      0.457
+    ]
+  },
+  "skills": {
+    "pick_L": {
+      "kind": "pick",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.4431998229000861,
+        -0.4782811297031954,
+        0.465
+      ]
+    },
+    "pick_R": {
+      "kind": "pick",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.4564767355436569,
+        0.4759452047352059,
+        0.465
+      ]
+    },
+    "place_L": {
+      "kind": "place",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.4036979904309261,
+        -0.11572231679388034,
+        0.498
+      ]
+    },
+    "place_R": {
+      "kind": "place",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.4036979904309261,
+        0.11427768320611967,
+        0.498
+      ]
+    },
+    "approach_L": {
+      "kind": "approach",
+      "object": "tray",
+      "arms": [
+        "L"
+      ],
+      "duration": 3.0,
+      "target": [
+        0.4036979904309261,
+        -0.23072231679388036,
+        0.65
+      ]
+    },
+    "approach_R": {
+      "kind": "approach",
+      "object": "tray",
+      "arms": [
+        "R"
+      ],
+      "duration": 3.0,
+      "target": [
+        0.4036979904309261,
+        0.22927768320611966,
+        0.65
+      ]
+    },
+    "transfer1": {
+      "kind": "cooperative_transfer",
+      "object": "tray",
+      "arms": [
+        "L",
+        "R"
+      ],
+      "duration": 12.0,
+      "pickup": [
+        0.4036979904309261,
+        -0.0007223167938803406,
+        0.457
+      ],
+      "target": [
+        0.62,
+        0,
+        0.457
+      ],
+      "payload": [
+        "A",
+        "B"
+      ]
+    },
+    "retreat_L": {
+      "kind": "retreat",
+      "object": "tray",
+      "arms": [
+        "L"
+      ],
+      "duration": 2.0,
+      "target": [
+        0.4,
+        -0.48,
+        0.85
+      ]
+    },
+    "retreat_R": {
+      "kind": "retreat",
+      "object": "tray",
+      "arms": [
+        "R"
+      ],
+      "duration": 2.0,
+      "target": [
+        0.4,
+        0.48,
+        0.85
+      ]
+    }
+  }
+}

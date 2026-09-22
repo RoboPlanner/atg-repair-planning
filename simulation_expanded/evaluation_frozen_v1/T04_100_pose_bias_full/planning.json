@@ -1,0 +1,983 @@
+{
+  "accepted": true,
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "service1_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "service2_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_service1"
+        ],
+        "post_state": [
+          "A_service2"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_service2"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "service1_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "service2_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_service1"
+        ],
+        "post_state": [
+          "B_service2"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_service2"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "pick_L",
+        "target": "service1_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_held",
+        "state": "A_held"
+      },
+      {
+        "source": "pick_R",
+        "target": "service1_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_held",
+        "state": "B_held"
+      },
+      {
+        "source": "service1_L",
+        "target": "service2_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_service1",
+        "state": "A_service1"
+      },
+      {
+        "source": "service1_R",
+        "target": "service2_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_service1",
+        "state": "B_service1"
+      },
+      {
+        "source": "service2_L",
+        "target": "place_L",
+        "type": "state_support",
+        "reason": "repaired explicit support for A_service2",
+        "state": "A_service2"
+      },
+      {
+        "source": "service2_R",
+        "target": "place_R",
+        "type": "state_support",
+        "reason": "repaired explicit support for B_service2",
+        "state": "B_service2"
+      },
+      {
+        "source": "service1_L",
+        "target": "service1_R",
+        "type": "resource_mutex",
+        "reason": "minimum-critical-path orientation for shared resource station",
+        "resource": "station"
+      },
+      {
+        "source": "service1_R",
+        "target": "service2_L",
+        "type": "resource_mutex",
+        "reason": "minimum-critical-path orientation for shared resource station",
+        "resource": "station"
+      },
+      {
+        "source": "service2_L",
+        "target": "service2_R",
+        "type": "resource_mutex",
+        "reason": "minimum-critical-path orientation for shared resource station",
+        "resource": "station"
+      }
+    ]
+  },
+  "audit": {
+    "valid": true,
+    "before": {
+      "valid": false,
+      "acyclic": true,
+      "closure_rate": 0.2,
+      "initial_states": [
+        "A_available",
+        "B_available"
+      ],
+      "available_states": [
+        "A_available",
+        "A_held",
+        "B_available",
+        "B_held"
+      ],
+      "executable_nodes": [
+        "pick_L",
+        "pick_R"
+      ],
+      "issues": [
+        {
+          "node_id": "service1_L",
+          "missing_states": [
+            "A_held"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "service1_R",
+          "missing_states": [
+            "B_held"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "service2_L",
+          "missing_states": [
+            "A_service1"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "service2_R",
+          "missing_states": [
+            "B_service1"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "place_L",
+          "missing_states": [
+            "A_service2"
+          ],
+          "unsupported_states": []
+        },
+        {
+          "node_id": "place_R",
+          "missing_states": [
+            "B_service2"
+          ],
+          "unsupported_states": []
+        }
+      ],
+      "reachable_goals": [],
+      "unreachable_goals": [
+        "A_placed",
+        "B_placed"
+      ],
+      "cycle_error": null
+    },
+    "after": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "A_available",
+        "B_available"
+      ],
+      "available_states": [
+        "A_available",
+        "A_held",
+        "A_placed",
+        "A_service1",
+        "A_service2",
+        "B_available",
+        "B_held",
+        "B_placed",
+        "B_service1",
+        "B_service2"
+      ],
+      "executable_nodes": [
+        "pick_L",
+        "service1_L",
+        "pick_R",
+        "service1_R",
+        "service2_L",
+        "service2_R",
+        "place_L",
+        "place_R"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "A_placed",
+        "B_placed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "resource_conflicts_before": [
+      [
+        "service1_L",
+        "service1_R",
+        [
+          "station"
+        ]
+      ],
+      [
+        "service1_L",
+        "service2_L",
+        [
+          "A",
+          "station"
+        ]
+      ],
+      [
+        "service1_L",
+        "service2_R",
+        [
+          "station"
+        ]
+      ],
+      [
+        "service1_L",
+        "pick_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "service1_L",
+        "place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "service1_R",
+        "service2_L",
+        [
+          "station"
+        ]
+      ],
+      [
+        "service1_R",
+        "service2_R",
+        [
+          "B",
+          "station"
+        ]
+      ],
+      [
+        "service1_R",
+        "pick_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "service1_R",
+        "place_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "service2_L",
+        "service2_R",
+        [
+          "station"
+        ]
+      ],
+      [
+        "service2_L",
+        "pick_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "service2_L",
+        "place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "service2_R",
+        "pick_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "service2_R",
+        "place_R",
+        [
+          "B"
+        ]
+      ],
+      [
+        "pick_L",
+        "place_L",
+        [
+          "A"
+        ]
+      ],
+      [
+        "pick_R",
+        "place_R",
+        [
+          "B"
+        ]
+      ]
+    ],
+    "resource_conflicts_after": [],
+    "joint_before": {
+      "valid": false,
+      "checks": {
+        "schema_valid": true,
+        "closed": false,
+        "goal_reachable": false,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": false
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [
+        [
+          "service1_L",
+          "service1_R",
+          [
+            "station"
+          ]
+        ],
+        [
+          "service1_L",
+          "service2_L",
+          [
+            "A",
+            "station"
+          ]
+        ],
+        [
+          "service1_L",
+          "service2_R",
+          [
+            "station"
+          ]
+        ],
+        [
+          "service1_L",
+          "pick_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "service1_L",
+          "place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "service1_R",
+          "service2_L",
+          [
+            "station"
+          ]
+        ],
+        [
+          "service1_R",
+          "service2_R",
+          [
+            "B",
+            "station"
+          ]
+        ],
+        [
+          "service1_R",
+          "pick_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "service1_R",
+          "place_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "service2_L",
+          "service2_R",
+          [
+            "station"
+          ]
+        ],
+        [
+          "service2_L",
+          "pick_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "service2_L",
+          "place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "service2_R",
+          "pick_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "service2_R",
+          "place_R",
+          [
+            "B"
+          ]
+        ],
+        [
+          "pick_L",
+          "place_L",
+          [
+            "A"
+          ]
+        ],
+        [
+          "pick_R",
+          "place_R",
+          [
+            "B"
+          ]
+        ]
+      ],
+      "state_audit": {
+        "valid": false,
+        "acyclic": true,
+        "closure_rate": 0.2,
+        "initial_states": [
+          "A_available",
+          "B_available"
+        ],
+        "available_states": [
+          "A_available",
+          "A_held",
+          "B_available",
+          "B_held"
+        ],
+        "executable_nodes": [
+          "pick_L",
+          "pick_R"
+        ],
+        "issues": [
+          {
+            "node_id": "service1_L",
+            "missing_states": [
+              "A_held"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "service1_R",
+            "missing_states": [
+              "B_held"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "service2_L",
+            "missing_states": [
+              "A_service1"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "service2_R",
+            "missing_states": [
+              "B_service1"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "place_L",
+            "missing_states": [
+              "A_service2"
+            ],
+            "unsupported_states": []
+          },
+          {
+            "node_id": "place_R",
+            "missing_states": [
+              "B_service2"
+            ],
+            "unsupported_states": []
+          }
+        ],
+        "reachable_goals": [],
+        "unreachable_goals": [
+          "A_placed",
+          "B_placed"
+        ],
+        "cycle_error": null
+      },
+      "failure_reasons": [
+        "service1_L: missing=['A_held'], unsupported=[]",
+        "service1_R: missing=['B_held'], unsupported=[]",
+        "service2_L: missing=['A_service1'], unsupported=[]",
+        "service2_R: missing=['B_service1'], unsupported=[]",
+        "place_L: missing=['A_service2'], unsupported=[]",
+        "place_R: missing=['B_service2'], unsupported=[]",
+        "unreachable goals: ['A_placed', 'B_placed']",
+        "unordered shared resources: [('service1_L', 'service1_R', ('station',)), ('service1_L', 'service2_L', ('A', 'station')), ('service1_L', 'service2_R', ('station',)), ('service1_L', 'pick_L', ('A',)), ('service1_L', 'place_L', ('A',)), ('service1_R', 'service2_L', ('station',)), ('service1_R', 'service2_R', ('B', 'station')), ('service1_R', 'pick_R', ('B',)), ('service1_R', 'place_R', ('B',)), ('service2_L', 'service2_R', ('station',)), ('service2_L', 'pick_L', ('A',)), ('service2_L', 'place_L', ('A',)), ('service2_R', 'pick_R', ('B',)), ('service2_R', 'place_R', ('B',)), ('pick_L', 'place_L', ('A',)), ('pick_R', 'place_R', ('B',))]"
+      ]
+    },
+    "joint_after": {
+      "valid": true,
+      "checks": {
+        "schema_valid": true,
+        "closed": true,
+        "goal_reachable": true,
+        "acyclic": true,
+        "synchronization_complete": true,
+        "resource_ordered": true
+      },
+      "schema_issues": [],
+      "synchronization_issues": [],
+      "resource_conflicts": [],
+      "state_audit": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "A_available",
+          "B_available"
+        ],
+        "available_states": [
+          "A_available",
+          "A_held",
+          "A_placed",
+          "A_service1",
+          "A_service2",
+          "B_available",
+          "B_held",
+          "B_placed",
+          "B_service1",
+          "B_service2"
+        ],
+        "executable_nodes": [
+          "pick_L",
+          "service1_L",
+          "pick_R",
+          "service1_R",
+          "service2_L",
+          "service2_R",
+          "place_L",
+          "place_R"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "A_placed",
+          "B_placed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "failure_reasons": []
+    },
+    "events": [
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "pick_L",
+        "target": "service1_L",
+        "edge_type": "state_support",
+        "state": "A_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "pick_R",
+        "target": "service1_R",
+        "edge_type": "state_support",
+        "state": "B_held",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_held",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "service1_L",
+        "target": "service2_L",
+        "edge_type": "state_support",
+        "state": "A_service1",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_service1",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "service1_R",
+        "target": "service2_R",
+        "edge_type": "state_support",
+        "state": "B_service1",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_service1",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "service2_L",
+        "target": "place_L",
+        "edge_type": "state_support",
+        "state": "A_service2",
+        "resource": null,
+        "reason": "selected an acyclic producer for A_service2",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "state_closure",
+        "action": "add_state_support",
+        "accepted": true,
+        "source": "service2_R",
+        "target": "place_R",
+        "edge_type": "state_support",
+        "state": "B_service2",
+        "resource": null,
+        "reason": "selected an acyclic producer for B_service2",
+        "before_critical_path": null,
+        "after_critical_path": null
+      },
+      {
+        "stage": "resource_mutex",
+        "action": "add_resource_mutex",
+        "accepted": true,
+        "source": "service1_L",
+        "target": "service1_R",
+        "edge_type": "resource_mutex",
+        "state": null,
+        "resource": "station",
+        "reason": "selected lower critical-path orientation for station",
+        "before_critical_path": null,
+        "after_critical_path": 36.0
+      },
+      {
+        "stage": "resource_mutex",
+        "action": "add_resource_mutex",
+        "accepted": true,
+        "source": "service1_R",
+        "target": "service2_L",
+        "edge_type": "resource_mutex",
+        "state": null,
+        "resource": "station",
+        "reason": "selected lower critical-path orientation for station",
+        "before_critical_path": null,
+        "after_critical_path": 36.0
+      },
+      {
+        "stage": "resource_mutex",
+        "action": "add_resource_mutex",
+        "accepted": true,
+        "source": "service2_L",
+        "target": "service2_R",
+        "edge_type": "resource_mutex",
+        "state": null,
+        "resource": "station",
+        "reason": "selected lower critical-path orientation for station",
+        "before_critical_path": null,
+        "after_critical_path": 44.0
+      }
+    ],
+    "failure_reasons": []
+  },
+  "schedule": {
+    "estimated_makespan": 44.0,
+    "waiting_time": 24.0,
+    "executor_utilization": 0.6364,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "start": 0.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A"
+        ]
+      },
+      {
+        "node_id": "service1_L",
+        "action": "inspect",
+        "object": "A",
+        "start": 6.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A",
+          "station"
+        ]
+      },
+      {
+        "node_id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "start": 0.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B"
+        ]
+      },
+      {
+        "node_id": "service1_R",
+        "action": "inspect",
+        "object": "B",
+        "start": 14.0,
+        "finish": 22.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B",
+          "station"
+        ]
+      },
+      {
+        "node_id": "service2_L",
+        "action": "inspect",
+        "object": "A",
+        "start": 22.0,
+        "finish": 30.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A",
+          "station"
+        ]
+      },
+      {
+        "node_id": "service2_R",
+        "action": "inspect",
+        "object": "B",
+        "start": 30.0,
+        "finish": 38.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B",
+          "station"
+        ]
+      },
+      {
+        "node_id": "place_L",
+        "action": "place",
+        "object": "A",
+        "start": 30.0,
+        "finish": 36.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "A"
+        ]
+      },
+      {
+        "node_id": "place_R",
+        "action": "place",
+        "object": "B",
+        "start": 38.0,
+        "finish": 44.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "B"
+        ]
+      }
+    ]
+  },
+  "failure_reasons": [],
+  "independent_graph": {
+    "valid": true,
+    "issues": [],
+    "topological_order": [
+      "pick_L",
+      "pick_R",
+      "service1_L",
+      "service1_R",
+      "service2_L",
+      "place_L",
+      "service2_R",
+      "place_R"
+    ]
+  },
+  "independent_schedule": {
+    "valid": true,
+    "issues": []
+  }
+}

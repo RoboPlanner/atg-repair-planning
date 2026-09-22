@@ -1,0 +1,1753 @@
+{
+  "created_utc": "2026-09-22T08:53:25Z",
+  "development": false,
+  "tasks": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08"
+  ],
+  "seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "conditions": [
+    "nominal",
+    "heavy",
+    "low_friction",
+    "pose_bias",
+    "fast"
+  ],
+  "runs": 240,
+  "video_selection": "All nominal methods at seed 100, plus all four T08 stress conditions at seed 100; fixed before evaluation.",
+  "parameters": {
+    "nominal": {
+      "mass": 1.0,
+      "friction": 1.5,
+      "bias": 0.0,
+      "time_scale": 1.0
+    },
+    "heavy": {
+      "mass": 5.0,
+      "friction": 1.5,
+      "bias": 0.0,
+      "time_scale": 1.0
+    },
+    "low_friction": {
+      "mass": 1.0,
+      "friction": 0.15,
+      "bias": 0.0,
+      "time_scale": 1.0
+    },
+    "pose_bias": {
+      "mass": 1.0,
+      "friction": 1.5,
+      "bias": 0.02,
+      "time_scale": 1.0
+    },
+    "fast": {
+      "mass": 1.0,
+      "friction": 1.5,
+      "bias": 0.0,
+      "time_scale": 0.5
+    }
+  },
+  "sampling": "40 ms plus every exact action start/finish; online contact/collision counts at 2 ms",
+  "source_sha256": {
+    "run_expanded.py": "8e4a7b0af8f6101e318da6b75219a9ab89ea3c46d8b8526d25cca66cd7a6c765",
+    "expanded_tasks.py": "01460dc8466e482e4e30ee0456fa2b1e45969f6790dc5e502c6a271b177ba1d6",
+    "verify_expanded.py": "fd9a27b4c6bdda2c80406f8b0497d7f152a97c1c2e9ef8319d1e3699da4dff83",
+    "test_verifier.py": "8db65a97e54f9aaab6a821c3e5a176b05d8858257ec76a5aa81b12f669da7226",
+    "sim_core.py": "85fa5b533660c8fd0123ef0fbe78f83e5642eec4c44eb24bd501592608229040",
+    "run_experiments.py": "ca2fc1cf01e60c06232aaba87c7d21a73b7174fd421b6b9c3f7eccae718ea90b"
+  },
+  "jobs": [
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T01",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T02",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T03",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T04",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T05",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T06",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T07",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "full",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "full",
+      "condition": "heavy",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 100,
+      "mode": "full",
+      "condition": "fast",
+      "record": true
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 101,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 102,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 103,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "full",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "serial",
+      "condition": "nominal",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "full",
+      "condition": "heavy",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "full",
+      "condition": "low_friction",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "full",
+      "condition": "pose_bias",
+      "record": false
+    },
+    {
+      "task": "T08",
+      "seed": 104,
+      "mode": "full",
+      "condition": "fast",
+      "record": false
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Expanded simulation study and figure contract
+
+The new study tests whether accepted schedules execute across eight constructed task structures and where fixed skills fail under controlled disturbances. This is planning-layer evidence with a supplied controller, not hardware or a new motion-planning method.
+
+Eight templates: independent sorting, shared inspection, synchronized kitting, two-stage shared service, cooperative transfer, two-leg cooperative transfer, loading and transporting a tray, transporting and unloading a tray. Physics evaluation: nominal full/serial schedules for five seeds each (80 runs), plus four one-factor stress conditions under full scheduling (160 runs). Seeds 100–104 are fixed before the evaluation; development uses different seeds and is retained separately. All outcomes, including failed executions, are reported. No inferential significance claim is planned.
+
+Stress conditions: 5x object mass, sliding friction 0.15, controller position bias up to 20 mm, and 0.5x skill windows. Physical parameters and the nominal controller are frozen before all main runs; no tuning after seeing main outcomes. Counterpart serial schedules preserve the same accepted graph, assignment, skill program and durations.
+
+First fix the validation contract: explicit predicates for pick, place, inspect, approach, transfer and retreat; unknown actions rejected; exact event-state snapshots; finger-specific contact; offline reconstruction does not trust the event's passed flag. Deliberately corrupted trajectories and fake passed flags must be rejected by regression checks. Forty-ms sampled checks and per-step online counters remain distinguishable; no continuous-time collision guarantee.
+
+Additional planning evaluation uses the eight task templates and four declared input profiles, with audit-only, simple matching + shared compression, and the full method on identical inputs. These 96 setting records are not 96 independent semantic tasks. The specifications and faults are author constructed, not natural LLM errors.
+
+Figure contract (Python workflow; English Times New Roman; user-requested panel names below panels; no error bars): Figure 9 is an image plate of task structures and actual simulation states. Figure 10 is a quantitative comparison of nominal task-window length and observed completion counts. Figure 11 shows completion counts under one-factor stresses and the observed failure categories. Each plot will link to CSV source data, export editable SVG/PDF and 600 dpi TIFF/PNG, and state sample sizes. Tables separately describe task definitions, planning setting outcomes, and simulation summary; charts will not disguise tables as figures.
+
+Manuscript: Chinese algorithmic research paper for Computers & Industrial Engineering; revise the existing physical-simulation section and add bounded results, leaving prior experiments and EndNote fields intact. Canonical terms: ATG, relation repair, joint audit, strict list scheduling, L/R, B occupying L+R, physical simulation, scheduled skill window, observed task completion. New results will only be written after execution and verification.

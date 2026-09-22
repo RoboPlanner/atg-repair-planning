@@ -1,0 +1,120 @@
+[
+  {
+    "event": "start",
+    "node": "pick_L",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "pick_R",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_L",
+    "time": 6.0,
+    "snapshot": 150,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4592974373350334,
+        -0.4814584806982728,
+        0.7369373549468998
+      ],
+      "speed": 0.005363797442434054,
+      "height": 0.7369373549468998,
+      "grip_distance": 0.012862099091306287,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "pick_R",
+    "time": 6.0,
+    "snapshot": 150,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4560914545766461,
+        0.48314782191770855,
+        0.7369582076317174
+      ],
+      "speed": 0.0017356450881364164,
+      "height": 0.7369582076317174,
+      "grip_distance": 0.012839352198881824,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "place_L",
+    "time": 6.0,
+    "snapshot": 150,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_R",
+    "time": 6.0,
+    "snapshot": 150,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_L",
+    "time": 12.0,
+    "snapshot": 300,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6505700833776505,
+        -0.343778598987137,
+        0.46497337460475063
+      ],
+      "speed": 1.1155614658036089e-14,
+      "target_error": 0.006247522271428764,
+      "open": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "place_R",
+    "time": 12.0,
+    "snapshot": 300,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6506409824979734,
+        0.3565929812157111,
+        0.46497337460475063
+      ],
+      "speed": 1.064739790319055e-14,
+      "target_error": 0.006624120227252823,
+      "open": true
+    }
+  }
+]

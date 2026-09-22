@@ -1,0 +1,251 @@
+{
+  "id": "T04_wrong_labels",
+  "task": "T04",
+  "profile": "wrong_labels",
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service1_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service2_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_service1"
+        ],
+        "post_state": [
+          "A_service2"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_service2"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service1_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service2_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_service1"
+        ],
+        "post_state": [
+          "B_service2"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_service2"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "pick_L",
+        "target": "service1_L",
+        "type": "state_support",
+        "state": "incorrect_A_held"
+      },
+      {
+        "source": "service1_L",
+        "target": "service2_L",
+        "type": "state_support",
+        "state": "incorrect_A_service1"
+      },
+      {
+        "source": "service2_L",
+        "target": "place_L",
+        "type": "state_support",
+        "state": "incorrect_A_service2"
+      },
+      {
+        "source": "pick_R",
+        "target": "service1_R",
+        "type": "state_support",
+        "state": "incorrect_B_held"
+      },
+      {
+        "source": "service1_R",
+        "target": "service2_R",
+        "type": "state_support",
+        "state": "incorrect_B_service1"
+      },
+      {
+        "source": "service2_R",
+        "target": "place_R",
+        "type": "state_support",
+        "state": "incorrect_B_service2"
+      }
+    ]
+  },
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed"
+  ],
+  "causal_reference": [
+    {
+      "source": "pick_L",
+      "target": "service1_L",
+      "type": "state_support",
+      "state": "A_held"
+    },
+    {
+      "source": "service1_L",
+      "target": "service2_L",
+      "type": "state_support",
+      "state": "A_service1"
+    },
+    {
+      "source": "service2_L",
+      "target": "place_L",
+      "type": "state_support",
+      "state": "A_service2"
+    },
+    {
+      "source": "pick_R",
+      "target": "service1_R",
+      "type": "state_support",
+      "state": "B_held"
+    },
+    {
+      "source": "service1_R",
+      "target": "service2_R",
+      "type": "state_support",
+      "state": "B_service1"
+    },
+    {
+      "source": "service2_R",
+      "target": "place_R",
+      "type": "state_support",
+      "state": "B_service2"
+    }
+  ],
+  "expected_discrete_goal_reachable": true,
+  "construction": "Author-defined state fields and primitive semantics; no external or natural-language reference claimed."
+}

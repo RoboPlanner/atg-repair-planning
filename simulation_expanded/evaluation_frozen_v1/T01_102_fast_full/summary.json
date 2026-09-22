@@ -1,0 +1,46 @@
+{
+  "task": "T01",
+  "seed": 102,
+  "condition": "fast",
+  "mode": "full",
+  "nodes": 4,
+  "cooperative_nodes": 0,
+  "graph_accepted": true,
+  "execution_success": true,
+  "scheduled_window_s": 6.0,
+  "completed_schedule_s": 6.0,
+  "simulation_end_s": 6.499999999999506,
+  "abort_s": null,
+  "failure_reasons": [],
+  "goal_errors_m": {
+    "A": 0.008496835097412335,
+    "B": 0.00937718130972851
+  },
+  "object_speeds_m_s": {
+    "A": 1.105698760619822e-14,
+    "B": 1.1565027944289686e-14
+  },
+  "finished_tasks": [
+    "pick_L",
+    "pick_R",
+    "place_L",
+    "place_R"
+  ],
+  "states": [
+    "A_available",
+    "A_held",
+    "A_placed",
+    "B_available",
+    "B_held",
+    "B_placed"
+  ],
+  "service_dwell_s": {},
+  "carry_contacts": {},
+  "interarm_penetration_steps": 0,
+  "station_overlap_steps": 0,
+  "physics_warnings": 0,
+  "maximum_ik_residual": 9.961471129297799e-06,
+  "recorded": false,
+  "mujoco_version": "3.3.3",
+  "python_version": "3.11.14"
+}

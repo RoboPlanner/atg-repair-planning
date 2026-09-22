@@ -1,0 +1,212 @@
+[
+  {
+    "event": "start",
+    "node": "pick_L",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "pick_R",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "pick_L",
+    "time": 6.0,
+    "snapshot": 150,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4588844767293607,
+        -0.48122995532298085,
+        0.7352176726946056
+      ],
+      "speed": 0.0027229647090114416,
+      "height": 0.7352176726946056,
+      "grip_distance": 0.013479813054513233,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "pick_R",
+    "time": 6.0,
+    "snapshot": 150,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.4557242239675863,
+        0.4833346060798654,
+        0.7353357026233777
+      ],
+      "speed": 0.004056714616147801,
+      "height": 0.7353357026233777,
+      "grip_distance": 0.013365941445069243,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "place_L",
+    "time": 6.0,
+    "snapshot": 150,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A",
+      "slot_L"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "place_R",
+    "time": 6.0,
+    "snapshot": 150,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B",
+      "slot_R"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "place_L",
+    "time": 12.0,
+    "snapshot": 300,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.39742186569987903,
+        -0.09754582066519453,
+        0.49690726896001153
+      ],
+      "speed": 1.9150397232039978e-11,
+      "target_error": 0.009194844820858908,
+      "open": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "place_R",
+    "time": 12.0,
+    "snapshot": 300,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.3973016798882266,
+        0.13520725441436734,
+        0.49690639046486906
+      ],
+      "speed": 4.759647256819001e-11,
+      "target_error": 0.011888037179336806,
+      "open": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "approach_L",
+    "time": 12.0,
+    "snapshot": 300,
+    "units": [
+      "left"
+    ],
+    "resources": []
+  },
+  {
+    "event": "start",
+    "node": "approach_R",
+    "time": 12.0,
+    "snapshot": 300,
+    "units": [
+      "right"
+    ],
+    "resources": []
+  },
+  {
+    "event": "finish",
+    "node": "approach_L",
+    "time": 15.0,
+    "snapshot": 375,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.395897443488163,
+        0.008453080166937996,
+        0.45594679924906323
+      ],
+      "speed": 4.046563612353239e-11,
+      "grip_error": 2.5297707055476066e-06,
+      "open": true,
+      "object_clearance": 0.3009252879550154
+    }
+  },
+  {
+    "event": "finish",
+    "node": "approach_R",
+    "time": 15.0,
+    "snapshot": 375,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.395897443488163,
+        0.008453080166937996,
+        0.45594679924906323
+      ],
+      "speed": 4.046563612353239e-11,
+      "grip_error": 2.326477692470432e-06,
+      "open": true,
+      "object_clearance": 0.3009275520355504
+    }
+  },
+  {
+    "event": "start",
+    "node": "transfer1",
+    "time": 15.0,
+    "snapshot": 375,
+    "units": [
+      "left",
+      "right"
+    ],
+    "resources": [
+      "tray",
+      "slot_L",
+      "slot_R"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "transfer1",
+    "time": 27.0,
+    "snapshot": 675,
+    "passed": false,
+    "physical_observation": {
+      "position": [
+        0.3953769386609538,
+        0.008473970934029915,
+        0.4559467992490057
+      ],
+      "speed": 4.043262460860275e-11,
+      "target_error": 0.224785313355961,
+      "open": true,
+      "bilateral_carry_fraction": 0.0,
+      "carry_contact_failed": true
+    }
+  }
+]

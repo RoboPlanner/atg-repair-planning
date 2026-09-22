@@ -1,0 +1,248 @@
+{
+  "nominal": [
+    {
+      "task": "T01",
+      "title": "Parallel sorting",
+      "title_zh": "并行分拣",
+      "nodes": 4,
+      "B_nodes": 0,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 12.0,
+      "serial_window_s": 24.0,
+      "window_reduction_percent": 50.0,
+      "full_max_final_error_mm": 7.34075604335859
+    },
+    {
+      "task": "T02",
+      "title": "Shared inspection",
+      "title_zh": "共享检测工位",
+      "nodes": 6,
+      "B_nodes": 0,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 28.0,
+      "serial_window_s": 40.0,
+      "window_reduction_percent": 30.000000000000004,
+      "full_max_final_error_mm": 16.59327488450498
+    },
+    {
+      "task": "T03",
+      "title": "Synchronized kitting",
+      "title_zh": "同步配套",
+      "nodes": 4,
+      "B_nodes": 0,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 12.0,
+      "serial_window_s": 24.0,
+      "window_reduction_percent": 50.0,
+      "full_max_final_error_mm": 7.34075604335859
+    },
+    {
+      "task": "T04",
+      "title": "Two-stage shared service",
+      "title_zh": "两阶段共享服务",
+      "nodes": 8,
+      "B_nodes": 0,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 44.0,
+      "serial_window_s": 56.0,
+      "window_reduction_percent": 21.42857142857143,
+      "full_max_final_error_mm": 26.097920637668743
+    },
+    {
+      "task": "T05",
+      "title": "Cooperative transfer",
+      "title_zh": "协作搬运",
+      "nodes": 5,
+      "B_nodes": 1,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 17.0,
+      "serial_window_s": 22.0,
+      "window_reduction_percent": 22.72727272727273,
+      "full_max_final_error_mm": 1.0453982927505687
+    },
+    {
+      "task": "T06",
+      "title": "Two-leg transfer",
+      "title_zh": "两段协作搬运",
+      "nodes": 6,
+      "B_nodes": 2,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 29.0,
+      "serial_window_s": 34.0,
+      "window_reduction_percent": 14.70588235294118,
+      "full_max_final_error_mm": 1.0793855617269965
+    },
+    {
+      "task": "T07",
+      "title": "Loading and transfer",
+      "title_zh": "装盘后搬运",
+      "nodes": 9,
+      "B_nodes": 1,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 29.0,
+      "serial_window_s": 46.0,
+      "window_reduction_percent": 36.95652173913043,
+      "full_max_final_error_mm": 7.022332703871782
+    },
+    {
+      "task": "T08",
+      "title": "Transfer and unloading",
+      "title_zh": "搬运后卸载",
+      "nodes": 9,
+      "B_nodes": 1,
+      "full_success": 5,
+      "serial_success": 5,
+      "n_each": 5,
+      "full_window_s": 29.0,
+      "serial_window_s": 46.0,
+      "window_reduction_percent": 36.95652173913043,
+      "full_max_final_error_mm": 7.109035599689468
+    }
+  ],
+  "condition_totals": [
+    {
+      "condition": "nominal",
+      "success": 40,
+      "n": 40
+    },
+    {
+      "condition": "heavy",
+      "success": 30,
+      "n": 40
+    },
+    {
+      "condition": "low_friction",
+      "success": 0,
+      "n": 40
+    },
+    {
+      "condition": "pose_bias",
+      "success": 35,
+      "n": 40
+    },
+    {
+      "condition": "fast",
+      "success": 39,
+      "n": 40
+    }
+  ],
+  "planning": [
+    {
+      "profile": "fields_only",
+      "method": "audit_only",
+      "accepted": 0,
+      "n": 8
+    },
+    {
+      "profile": "fields_only",
+      "method": "field_match_compressed",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "fields_only",
+      "method": "full",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "wrong_labels",
+      "method": "audit_only",
+      "accepted": 0,
+      "n": 8
+    },
+    {
+      "profile": "wrong_labels",
+      "method": "field_match_compressed",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "wrong_labels",
+      "method": "full",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "conservative_order",
+      "method": "audit_only",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "conservative_order",
+      "method": "field_match_compressed",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "conservative_order",
+      "method": "full",
+      "accepted": 8,
+      "n": 8
+    },
+    {
+      "profile": "missing_producer",
+      "method": "audit_only",
+      "accepted": 0,
+      "n": 8
+    },
+    {
+      "profile": "missing_producer",
+      "method": "field_match_compressed",
+      "accepted": 0,
+      "n": 8
+    },
+    {
+      "profile": "missing_producer",
+      "method": "full",
+      "accepted": 0,
+      "n": 8
+    }
+  ],
+  "first_failure_categories": [
+    {
+      "first_failed_check": "Pick check",
+      "count": 25
+    },
+    {
+      "first_failed_check": "Transfer check",
+      "count": 25
+    },
+    {
+      "first_failed_check": "Place check",
+      "count": 5
+    },
+    {
+      "first_failed_check": "Final-state check",
+      "count": 1
+    }
+  ],
+  "records": 240,
+  "execution_successes": 184,
+  "physical_failures": 56,
+  "integrity_valid": 240,
+  "online_offline_agreement": 240,
+  "planning_settings": 96,
+  "planned_window_mean_reduction_percent": 32.84684624838078,
+  "limitations": [
+    "Eight author-constructed templates; five perturbations are repeats within each template.",
+    "Fixed skill windows, not measured hardware speed.",
+    "No natural LLM-error claim; same-compression comparator ties on accepted inputs.",
+    "Physical stress changes are absent from the discrete audit contract."
+  ]
+}

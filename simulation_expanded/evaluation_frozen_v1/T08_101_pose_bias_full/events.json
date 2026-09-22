@@ -1,0 +1,267 @@
+[
+  {
+    "event": "start",
+    "node": "approach_L",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "left"
+    ],
+    "resources": []
+  },
+  {
+    "event": "start",
+    "node": "approach_R",
+    "time": 0.0,
+    "snapshot": 0,
+    "units": [
+      "right"
+    ],
+    "resources": []
+  },
+  {
+    "event": "finish",
+    "node": "approach_L",
+    "time": 3.0,
+    "snapshot": 75,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.3958865712239386,
+        0.008454513728458285,
+        0.45594679916126923
+      ],
+      "speed": 1.1787931973947095e-14,
+      "grip_error": 3.612423774817403e-06,
+      "open": true,
+      "object_clearance": 0.2956885824881914
+    }
+  },
+  {
+    "event": "finish",
+    "node": "approach_R",
+    "time": 3.0,
+    "snapshot": 75,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.3958865712239386,
+        0.008454513728458285,
+        0.45594679916126923
+      ],
+      "speed": 1.1787931973947095e-14,
+      "grip_error": 2.3128854986817366e-06,
+      "open": true,
+      "object_clearance": 0.30673761376294356
+    }
+  },
+  {
+    "event": "start",
+    "node": "transfer1",
+    "time": 3.0,
+    "snapshot": 75,
+    "units": [
+      "left",
+      "right"
+    ],
+    "resources": [
+      "tray",
+      "slot_L",
+      "slot_R"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "transfer1",
+    "time": 15.0,
+    "snapshot": 375,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6134125906721388,
+        -8.41371480034888e-05,
+        0.45594679916127334
+      ],
+      "speed": 6.277450605447493e-13,
+      "target_error": 0.0066716019604860346,
+      "open": true,
+      "bilateral_carry_fraction": 1.0
+    }
+  },
+  {
+    "event": "start",
+    "node": "retreat_L",
+    "time": 15.0,
+    "snapshot": 375,
+    "units": [
+      "left"
+    ],
+    "resources": []
+  },
+  {
+    "event": "start",
+    "node": "retreat_R",
+    "time": 15.0,
+    "snapshot": 375,
+    "units": [
+      "right"
+    ],
+    "resources": []
+  },
+  {
+    "event": "finish",
+    "node": "retreat_L",
+    "time": 17.0,
+    "snapshot": 425,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6134125906709176,
+        -8.413714806200803e-05,
+        0.45594679916127334
+      ],
+      "speed": 6.277386088713599e-13,
+      "grip_error": 0.001606617256408533,
+      "open": true,
+      "object_clearance": 0.6555259168530372
+    }
+  },
+  {
+    "event": "finish",
+    "node": "retreat_R",
+    "time": 17.0,
+    "snapshot": 425,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6134125906709176,
+        -8.413714806200803e-05,
+        0.45594679916127334
+      ],
+      "speed": 6.277386088713599e-13,
+      "grip_error": 0.0016064545665266277,
+      "open": true,
+      "object_clearance": 0.6556503792389348
+    }
+  },
+  {
+    "event": "start",
+    "node": "unload_pick_L",
+    "time": 17.0,
+    "snapshot": 425,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A",
+      "slot_L"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "unload_pick_R",
+    "time": 17.0,
+    "snapshot": 425,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B",
+      "slot_R"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "unload_pick_L",
+    "time": 23.0,
+    "snapshot": 575,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6201347583116829,
+        -0.11661175313612727,
+        0.7337669041113098
+      ],
+      "speed": 0.030109274424744918,
+      "height": 0.7337669041113098,
+      "grip_distance": 0.015825857012228155,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "unload_pick_R",
+    "time": 23.0,
+    "snapshot": 575,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.623237146700582,
+        0.1163914945805793,
+        0.7345523663054218
+      ],
+      "speed": 0.010336187434004659,
+      "height": 0.7345523663054218,
+      "grip_distance": 0.015384788158684716,
+      "bilateral_fingers": true
+    }
+  },
+  {
+    "event": "start",
+    "node": "unload_place_L",
+    "time": 23.0,
+    "snapshot": 575,
+    "units": [
+      "left"
+    ],
+    "resources": [
+      "A"
+    ]
+  },
+  {
+    "event": "start",
+    "node": "unload_place_R",
+    "time": 23.0,
+    "snapshot": 575,
+    "units": [
+      "right"
+    ],
+    "resources": [
+      "B"
+    ]
+  },
+  {
+    "event": "finish",
+    "node": "unload_place_L",
+    "time": 29.0,
+    "snapshot": 725,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6645454356078806,
+        -0.36054796546803464,
+        0.46497337460475063
+      ],
+      "speed": 1.1057219630183334e-14,
+      "target_error": 0.01796747009040293,
+      "open": true
+    }
+  },
+  {
+    "event": "finish",
+    "node": "unload_place_R",
+    "time": 29.0,
+    "snapshot": 725,
+    "passed": true,
+    "physical_observation": {
+      "position": [
+        0.6721333132173725,
+        0.3564685651627075,
+        0.46497337460475063
+      ],
+      "speed": 1.1394050881846913e-14,
+      "target_error": 0.023059197691033807,
+      "open": true
+    }
+  }
+]

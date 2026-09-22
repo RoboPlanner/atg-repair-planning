@@ -1,0 +1,13 @@
+profile,method,accepted,n
+fields_only,audit_only,0,8
+fields_only,field_match_compressed,8,8
+fields_only,full,8,8
+wrong_labels,audit_only,0,8
+wrong_labels,field_match_compressed,8,8
+wrong_labels,full,8,8
+conservative_order,audit_only,8,8
+conservative_order,field_match_compressed,8,8
+conservative_order,full,8,8
+missing_producer,audit_only,0,8
+missing_producer,field_match_compressed,0,8
+missing_producer,full,0,8

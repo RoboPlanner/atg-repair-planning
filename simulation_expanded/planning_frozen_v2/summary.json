@@ -1,0 +1,20 @@
+{
+  "audit_only": {
+    "accepted": 8,
+    "total": 32,
+    "feasible_accepted": 8,
+    "infeasible_accepted": 0
+  },
+  "field_match_compressed": {
+    "accepted": 24,
+    "total": 32,
+    "feasible_accepted": 24,
+    "infeasible_accepted": 0
+  },
+  "full": {
+    "accepted": 24,
+    "total": 32,
+    "feasible_accepted": 24,
+    "infeasible_accepted": 0
+  }
+}

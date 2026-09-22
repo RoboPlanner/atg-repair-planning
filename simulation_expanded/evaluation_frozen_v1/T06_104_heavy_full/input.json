@@ -1,0 +1,251 @@
+{
+  "task": "T06",
+  "title": "Two-leg cooperative transfer",
+  "case": "T06",
+  "seed": 104,
+  "condition": "heavy",
+  "parameters": {
+    "mass": 5.0,
+    "friction": 1.5,
+    "bias": 0.0,
+    "time_scale": 1.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "approach_L",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "L_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "approach_R",
+        "action": "approach",
+        "object": "tray",
+        "pre_state": [
+          "tray_available"
+        ],
+        "post_state": [
+          "R_ready"
+        ],
+        "duration": 3.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "transfer1",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "L_ready",
+          "R_ready"
+        ],
+        "post_state": [
+          "tray_stage1"
+        ],
+        "duration": 12.0,
+        "resource": [
+          "tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "transfer2",
+        "action": "cooperative_transfer",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage1"
+        ],
+        "post_state": [
+          "tray_stage2"
+        ],
+        "duration": 12.0,
+        "resource": [
+          "tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "retreat_L",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage2"
+        ],
+        "post_state": [
+          "L_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "retreat_R",
+        "action": "retreat",
+        "object": "tray",
+        "pre_state": [
+          "tray_stage2"
+        ],
+        "post_state": [
+          "R_clear"
+        ],
+        "duration": 2.0,
+        "resource": [],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_states": [
+    "tray_available"
+  ],
+  "goal_states": [
+    "tray_stage2",
+    "L_clear",
+    "R_clear"
+  ],
+  "objects": [
+    "tray"
+  ],
+  "initial_positions": {
+    "tray": [
+      0.39750138578310934,
+      0.005077770362511778,
+      0.457
+    ]
+  },
+  "controller_positions": {
+    "tray": [
+      0.39750138578310934,
+      0.005077770362511778,
+      0.457
+    ]
+  },
+  "target_positions": {
+    "tray": [
+      0.62,
+      0,
+      0.457
+    ]
+  },
+  "skills": {
+    "approach_L": {
+      "kind": "approach",
+      "object": "tray",
+      "arms": [
+        "L"
+      ],
+      "duration": 3.0,
+      "target": [
+        0.39750138578310934,
+        -0.22492222963748823,
+        0.65
+      ]
+    },
+    "approach_R": {
+      "kind": "approach",
+      "object": "tray",
+      "arms": [
+        "R"
+      ],
+      "duration": 3.0,
+      "target": [
+        0.39750138578310934,
+        0.2350777703625118,
+        0.65
+      ]
+    },
+    "transfer1": {
+      "kind": "cooperative_transfer",
+      "object": "tray",
+      "arms": [
+        "L",
+        "R"
+      ],
+      "duration": 12.0,
+      "pickup": [
+        0.39750138578310934,
+        0.005077770362511778,
+        0.457
+      ],
+      "target": [
+        0.51,
+        0,
+        0.457
+      ],
+      "payload": []
+    },
+    "transfer2": {
+      "kind": "cooperative_transfer",
+      "object": "tray",
+      "arms": [
+        "L",
+        "R"
+      ],
+      "duration": 12.0,
+      "pickup": [
+        0.51,
+        0,
+        0.457
+      ],
+      "target": [
+        0.62,
+        0,
+        0.457
+      ],
+      "payload": []
+    },
+    "retreat_L": {
+      "kind": "retreat",
+      "object": "tray",
+      "arms": [
+        "L"
+      ],
+      "duration": 2.0,
+      "target": [
+        0.4,
+        -0.48,
+        0.85
+      ]
+    },
+    "retreat_R": {
+      "kind": "retreat",
+      "object": "tray",
+      "arms": [
+        "R"
+      ],
+      "duration": 2.0,
+      "target": [
+        0.4,
+        0.48,
+        0.85
+      ]
+    }
+  }
+}

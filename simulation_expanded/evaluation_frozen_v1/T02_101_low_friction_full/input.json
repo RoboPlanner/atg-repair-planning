@@ -1,0 +1,272 @@
+{
+  "task": "T02",
+  "title": "Shared inspection",
+  "case": "T02",
+  "seed": 101,
+  "condition": "low_friction",
+  "parameters": {
+    "mass": 1.0,
+    "friction": 0.15,
+    "bias": 0.0,
+    "time_scale": 1.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "pick_L",
+        "action": "pick",
+        "object": "A",
+        "pre_state": [
+          "A_available"
+        ],
+        "post_state": [
+          "A_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "pick_R",
+        "action": "pick",
+        "object": "B",
+        "pre_state": [
+          "B_available"
+        ],
+        "post_state": [
+          "B_held"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service1_L",
+        "action": "inspect",
+        "object": "A",
+        "pre_state": [
+          "A_held"
+        ],
+        "post_state": [
+          "A_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "A",
+          "station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_L",
+        "action": "place",
+        "object": "A",
+        "pre_state": [
+          "A_service1"
+        ],
+        "post_state": [
+          "A_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "A"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "service1_R",
+        "action": "inspect",
+        "object": "B",
+        "pre_state": [
+          "B_held"
+        ],
+        "post_state": [
+          "B_service1"
+        ],
+        "duration": 8.0,
+        "resource": [
+          "B",
+          "station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "place_R",
+        "action": "place",
+        "object": "B",
+        "pre_state": [
+          "B_service1"
+        ],
+        "post_state": [
+          "B_placed"
+        ],
+        "duration": 6.0,
+        "resource": [
+          "B"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": []
+  },
+  "initial_states": [
+    "A_available",
+    "B_available"
+  ],
+  "goal_states": [
+    "A_placed",
+    "B_placed"
+  ],
+  "objects": [
+    "A",
+    "B"
+  ],
+  "initial_positions": {
+    "A": [
+      0.45887065011221106,
+      -0.48281157933316854,
+      0.465
+    ],
+    "B": [
+      0.45569610823939954,
+      0.48182556370458823,
+      0.465
+    ]
+  },
+  "controller_positions": {
+    "A": [
+      0.45887065011221106,
+      -0.48281157933316854,
+      0.465
+    ],
+    "B": [
+      0.45569610823939954,
+      0.48182556370458823,
+      0.465
+    ]
+  },
+  "target_positions": {
+    "A": [
+      0.65,
+      -0.35,
+      0.465
+    ],
+    "B": [
+      0.65,
+      0.35,
+      0.465
+    ]
+  },
+  "skills": {
+    "pick_L": {
+      "kind": "pick",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.45887065011221106,
+        -0.48281157933316854,
+        0.465
+      ]
+    },
+    "pick_R": {
+      "kind": "pick",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "pickup": [
+        0.45569610823939954,
+        0.48182556370458823,
+        0.465
+      ]
+    },
+    "service1_L": {
+      "kind": "inspect",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 8.0,
+      "zone": [
+        0.52,
+        0,
+        0.63
+      ],
+      "return_point": [
+        0.45887065011221106,
+        -0.48281157933316854,
+        0.7
+      ]
+    },
+    "place_L": {
+      "kind": "place",
+      "object": "A",
+      "arms": [
+        "L"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.65,
+        -0.35,
+        0.465
+      ]
+    },
+    "service1_R": {
+      "kind": "inspect",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 8.0,
+      "zone": [
+        0.52,
+        0,
+        0.63
+      ],
+      "return_point": [
+        0.45569610823939954,
+        0.48182556370458823,
+        0.7
+      ]
+    },
+    "place_R": {
+      "kind": "place",
+      "object": "B",
+      "arms": [
+        "R"
+      ],
+      "duration": 6.0,
+      "target": [
+        0.65,
+        0.35,
+        0.465
+      ]
+    }
+  }
+}

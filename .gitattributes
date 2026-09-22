@@ -3,3 +3,7 @@ reproduction/** -text
 /.gitignore text eol=lf
 /.gitattributes text eol=lf
 simulation/** -text whitespace=cr-at-eol
+simulation_expanded/** -text whitespace=cr-at-eol
+# Preserve generated SVG bytes, including Matplotlib path-coordinate whitespace.
+simulation_expanded/figures/*.svg -text whitespace=-blank-at-eol,cr-at-eol
+docs/assets/images/figure[0-9]*.svg -text whitespace=-blank-at-eol,cr-at-eol
