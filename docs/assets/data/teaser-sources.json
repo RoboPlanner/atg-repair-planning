@@ -1,0 +1,70 @@
+[
+  {
+    "task": "T01",
+    "source": "assets/videos/expanded/T01_100_nominal_full.mp4",
+    "source_sha256": "e8d62f06fdb27b1a27e6cb02e858273edb351f7c2b9435147d37506e80f65d37",
+    "start_s": 2,
+    "duration_s": 8,
+    "crop_xywh": [
+      0,
+      82,
+      1000,
+      558
+    ],
+    "speed": 1,
+    "purpose": "Website teaser only; original complete recordings and experiment data are unchanged.",
+    "derived": "assets/videos/teasers/T01.mp4",
+    "derived_sha256": "f09c7731904804e6904bfb809c612a382a5240638fa2bde877ddb698afe729e0"
+  },
+  {
+    "task": "T02",
+    "source": "assets/videos/expanded/T02_100_nominal_full.mp4",
+    "source_sha256": "f237cf89e1c4d334ac89c1616f75d637d1935b8170c3b65117382fbc83ce6287",
+    "start_s": 6,
+    "duration_s": 8,
+    "crop_xywh": [
+      0,
+      82,
+      1000,
+      558
+    ],
+    "speed": 1,
+    "purpose": "Website teaser only; original complete recordings and experiment data are unchanged.",
+    "derived": "assets/videos/teasers/T02.mp4",
+    "derived_sha256": "b677e5d05d19ac942960b2c280f1275697ea2bf9c8ee042b1a7b4670fe275fcd"
+  },
+  {
+    "task": "T06",
+    "source": "assets/videos/expanded/T06_100_nominal_full.mp4",
+    "source_sha256": "2e86d732ba91f4f2371aa94f61e1eb515e04c3893444a9b9f34da6b7ea9e735e",
+    "start_s": 14,
+    "duration_s": 8,
+    "crop_xywh": [
+      0,
+      82,
+      1000,
+      558
+    ],
+    "speed": 1,
+    "purpose": "Website teaser only; original complete recordings and experiment data are unchanged.",
+    "derived": "assets/videos/teasers/T06.mp4",
+    "derived_sha256": "bac391ae5b86a34516985fe3c580b3ffe08309f29e4a5e4fa924784363c63dcf"
+  },
+  {
+    "task": "T08",
+    "source": "assets/videos/expanded/T08_100_nominal_full.mp4",
+    "source_sha256": "04fe89b108a830e93f1d37b247bb8fbb81182c2e864e55b4d84cdb383c530dc6",
+    "start_s": 18,
+    "duration_s": 8,
+    "crop_xywh": [
+      0,
+      82,
+      1000,
+      558
+    ],
+    "speed": 1,
+    "purpose": "Website teaser only; original complete recordings and experiment data are unchanged.",
+    "derived": "assets/videos/teasers/T08.mp4",
+    "derived_sha256": "79288e990dfdc8b73b47c369af0176e15192e29b5f6667dcc1b8589739635c02"
+  }
+]
