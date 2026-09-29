@@ -1,12 +1,16 @@
-# Future GitHub Pages publication
+# GitHub repository and project-page deployment
 
-Current state: local preparation only. The repository has no configured remote. These are later release instructions, not executed upload steps.
+- Repository: [https://github.com/RoboPlanner/atg-repair-planning](https://github.com/RoboPlanner/atg-repair-planning)
+- Project page: [https://roboplanner.github.io/atg-repair-planning/](https://roboplanner.github.io/atg-repair-planning/)
+- Deployment source: `main` branch, `/docs` directory.
+- The static page includes symbolic schedule animations, actual MuJoCo simulation recordings, and frozen code/data downloads. It does not report hardware execution.
 
-1. Confirm the final GitHub repository owned by the intended account. Confirm authors, affiliations, paper status and reusable figure rights; add the verified author line and paper link to `docs/index.html`. Do not invent a DOI, arXiv ID or accepted-venue label.
-2. Run `python tools/check.py` and the complete frozen reproduction command. Inspect `git status` and ensure no local outputs, credentials, Word drafts or EndNote data are included.
-3. Once upload is separately requested, configure the actual remote and push the reviewed local commits. No authentication or upload helper is included in this repository.
-4. In that repository's Pages settings, select deployment from the `main` branch and `/docs` folder. This static site has `.nojekyll`, no build dependency, and relative asset paths suitable for a project subpath.
-5. Verify the URL actually assigned by GitHub Pages. Check all figure switches, downloads, resource links and small-screen layout. Add canonical/Open Graph absolute URLs only after that URL is confirmed. The local-only notice hides automatically on non-local hosts.
-6. Replace the temporary `http://127.0.0.1:8780/` address in a **new** manuscript version. Preserve Word/EndNote fields and inspect the rendered page. Record the released Git commit and archive SHA-256. The supplementary archive version remains v7.70 unless its contents actually change.
+## Updating the page
 
-No `.github` upload workflow, remote, CNAME, public repository link or fabricated citation is preconfigured. The local homepage can be run any time with `python tools/serve.py`.
+Edit the static files under `docs/`, verify local links and assets, then commit and push to `main`. GitHub Pages builds the `/docs` directory. Check the Pages deployment status before describing an update as live. The site has `.nojekyll`, relative asset links, and no external build dependency.
+
+Before publishing code or data changes, run `python tools/check.py`. Keep frozen archive bytes and their SHA-256 manifests unchanged. New experimental runs must use new output directories and be identified separately from archived results. Local checks and reproduction commands do not upload data.
+
+Author names, affiliations, a paper URL and formal citation metadata remain to be confirmed. Code availability does not imply journal acceptance. When updating the manuscript's temporary local link, save a new version and check the current Word/EndNote fields before and after editing.
+
+Local preview remains available through `python tools/serve.py` at `http://127.0.0.1:8780/`.

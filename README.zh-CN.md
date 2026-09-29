@@ -1,5 +1,7 @@
 # ATG Repair 代码与项目主页
 
+[GitHub 仓库](https://github.com/RoboPlanner/atg-repair-planning) · [项目主页](https://roboplanner.github.io/atg-repair-planning/)
+
 本仓库对应《面向双执行单元协同任务的可验证原子任务图关系修复与规划层并行规划》。当前论文稿为 v7.86（2026-09-29）；原规划归档仍标识为 v7.70，扩展 MuJoCo 实验归档仍标识为 v2。论文排版更新不改变实验归档版本。本仓库提供研究代码和数据，不宣称论文已被录用。
 
 ## 快速使用

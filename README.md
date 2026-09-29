@@ -1,5 +1,7 @@
 # ATG Repair — Verifiable Dual-Unit Planning
 
+[GitHub repository](https://github.com/RoboPlanner/atg-repair-planning) · [Project page](https://roboplanner.github.io/atg-repair-planning/)
+
 **Deterministic relation repair, joint auditing, and strict list scheduling for atomic task graphs.**
 
 [中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
