@@ -4,7 +4,7 @@
 
 [中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
 
-Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Layer Parallel Planning for Dual Execution Units* (Chinese manuscript experimental snapshot v7.70). The v7.71 manuscript adds a local project-page link; v7.74 adds a separate MuJoCo execution study. The original v7.70 planning archive remains unchanged. This is a local Git release preparation; no public repository, DOI, or venue acceptance is asserted.
+Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.86 (2026-09-29). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.
 
 `L` and `R` are two abstract base execution units. Cooperative mode `B` occupies **both units simultaneously**. Candidates may originate from a language model, rules, or a user. A fixed deterministic pipeline performs state closure → sync pairing → resource orientation → conservative order compression. Six joint graph checks and actual schedule validation gate accepted outputs. Failed checks return diagnostics; rejection does not establish infeasibility.
 
@@ -54,7 +54,7 @@ Open **http://127.0.0.1:8780/**. Keep the process running; Ctrl+C stops it. The 
 
 The static page also opens directly as `docs/index.html`. It works without external fonts, analytics, a build system, or CDN scripts. Relative asset URLs are compatible with a GitHub Pages project subpath. The method figures can be switched and opened at full resolution. The downloadable ZIP retains the frozen supplementary bytes.
 
-### New physics simulation videos
+### Earlier 30-run simulation study
 
 Open **http://127.0.0.1:8780/#simulation** for six actual MuJoCo recordings of dual-Panda execution, with scene and full/serial switches. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
 
@@ -133,8 +133,8 @@ The fixed archive is [ATG_reproduction_v7_70.zip](docs/assets/downloads/ATG_repr
 
 Original code/documentation: [MIT](LICENSE). Website text/layout/manuscript figures: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Third-party materials retain their notices; see [LICENSES.md](LICENSES.md). The author’s EndNote library, Word drafts, account email, credentials, and local machine configuration are outside this repository.
 
-For future publication, see [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). **No upload or deployment is performed by any local preparation command.** Add verified authors, affiliations, paper URL and citation metadata before the public release. Replace the manuscript’s local address only after the public page is live and checked.
+Deployment instructions are in [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). Local verification and reproduction commands do not upload data. Author names, affiliations, the paper URL and formal citation metadata will be added after they are confirmed. The repository can be used independently of the unpublished manuscript.
 
 ## Expanded physical simulation study
 
-See [simulation_expanded/README.md](simulation_expanded/README.md) for eight task templates, 240 frozen physics runs, 96 planning settings and 20 preselected videos. Normal-condition schedules complete 80/80 runs; stress conditions complete 104/160. All failures and independent reconstructions are retained. This replaces the exploratory simulation summary in the latest manuscript without altering the earlier archive. Figures 9–11 and Tables 17–19 use this new batch. No hardware or natural-error generalization is claimed.
+See [simulation_expanded/README.md](simulation_expanded/README.md) for eight task templates, 240 frozen physics runs, 96 planning settings and 20 preselected videos. Normal-condition schedules complete 80/80 runs; stress conditions complete 104/160. All failures and independent reconstructions are retained. This replaces the exploratory simulation summary in the latest manuscript without altering the earlier archive. In manuscript v7.86, Figures 9–11 and Tables 12–14 report this batch; earlier manuscript drafts used different table numbering. No hardware or natural-error generalization is claimed.

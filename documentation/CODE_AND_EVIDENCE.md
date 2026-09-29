@@ -2,6 +2,10 @@
 
 All paths below are relative to this repository. The immutable `reproduction/` tree is the v7.70 snapshot. The manuscript is not bundled; numbers below refer to that snapshot.
 
+## Current manuscript numbering
+
+The historical table numbers in the map below refer to the frozen v7.70 manuscript. In manuscript v7.86, Tables 8–9 report the same-input and archived-tool comparisons, Tables 10–11 report public task projections, and Tables 12–14 with Figures 9–11 report the expanded 240-run MuJoCo study in `simulation_expanded/`. Renumbering does not change the frozen data or results.
+
 ## Current implementation
 
 | Responsibility | File under `reproduction/implementation_v7_70/atomic_task/` |
