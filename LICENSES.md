@@ -16,3 +16,5 @@ The Panda import is from the local Isaac Sim URDF-importer asset distribution, n
 Third-party authors retain their copyrights. The supplementary ZIP contains multiple components with these respective terms; do not relicense it as wholly original project material. Source versions and origins are recorded alongside the frozen files.
 
 Website organization references Nerfies and Academic Project Page Template (both CC BY-SA 4.0 websites). The current HTML/CSS/JS is original; upstream media, author lists and analytics were not copied. Keep footer attribution when reusing the page. No new third-party photos, font files or CDN libraries were added.
+
+Third-party website reference: Academic Project Page Template by Eliahu Horwitz, https://github.com/eliahuhorwitz/Academic-project-page-template (CC BY-SA 4.0). This is upstream attribution and is not a manuscript author identity.

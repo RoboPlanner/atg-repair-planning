@@ -4,6 +4,8 @@
 
 **Deterministic relation repair, joint auditing, and strict list scheduling for atomic task graphs.**
 
+Anonymous review materials. Manuscript author identities, affiliations and contact details are omitted. Third-party citations and license attribution identify upstream sources, not the manuscript authors.
+
 [中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
 
 Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.86 (2026-09-29). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.

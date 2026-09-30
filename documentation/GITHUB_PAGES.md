@@ -11,6 +11,6 @@ Edit the static files under `docs/`, verify local links and assets, then commit 
 
 Before publishing code or data changes, run `python tools/check.py`. Keep frozen archive bytes and their SHA-256 manifests unchanged. New experimental runs must use new output directories and be identified separately from archived results. Local checks and reproduction commands do not upload data.
 
-Author names, affiliations, a paper URL and formal citation metadata remain to be confirmed. Code availability does not imply journal acceptance. When updating the manuscript's temporary local link, save a new version and check the current Word/EndNote fields before and after editing.
+Keep manuscript author names, affiliations, personal email addresses and identity-bearing paper links out of this repository during anonymous review. Use repository-local anonymous Git author and committer settings for every subsequent commit. Code availability does not imply journal acceptance. When updating the manuscript's temporary local link, save a new version and check the current Word/EndNote fields before and after editing.
 
 Local preview remains available through `python tools/serve.py` at `http://127.0.0.1:8780/`.
