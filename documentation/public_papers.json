@@ -1,0 +1,31 @@
+{
+  "version": "v7.87",
+  "date": "2026-09-30",
+  "papers": {
+    "Manuscript": {
+      "file": "ATG_Repair_Manuscript_v7_87.pdf",
+      "pages": 46,
+      "sha256": "abe6f8cd582f391b95010e4fa3222694b195b2bc026a28a025c06b1931c652d7",
+      "metadata": {
+        "/Title": "Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks"
+      },
+      "research_text_and_citations_preserved": true,
+      "editorial_omissions": [
+        "author placeholder",
+        "unconfirmed author-specific declaration placeholders"
+      ]
+    },
+    "Supplement": {
+      "file": "ATG_Repair_Supplement_v7_87.pdf",
+      "pages": 15,
+      "sha256": "410110cc3084c0cf37a0241ac0fe89ef424315a863d9ad2527e68b03e811d18c",
+      "metadata": {
+        "/Title": "Supplementary material — Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks"
+      },
+      "research_text_and_citations_preserved": true,
+      "editorial_omissions": [
+        "author placeholder"
+      ]
+    }
+  }
+}

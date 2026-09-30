@@ -1,0 +1,226 @@
+{
+  "manuscript_version": "v7.87",
+  "date": "2026-09-30",
+  "planning_archive": "v7.70",
+  "simulation_archive": "v2",
+  "tables": [
+    {
+      "id": "1",
+      "section": "4.2",
+      "title": "Atomic task graph quality",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table1_atomic_graph_quality.csv"
+    },
+    {
+      "id": "2",
+      "section": "4.3",
+      "title": "Dependencies, static parallel sets and acceptance",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table2_dependency_parallel_safety.csv"
+    },
+    {
+      "id": "3",
+      "section": "4.3",
+      "title": "Planning efficiency and accepted schedules",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table3_plan_efficiency.csv"
+    },
+    {
+      "id": "4",
+      "section": "4.3",
+      "title": "Component ablation; graph and strict plan passes",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table4_ablation.csv"
+    },
+    {
+      "id": "5(a–b)",
+      "section": "4.4",
+      "title": "Field sensitivity and reference agreement",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table7_robustness.csv"
+    },
+    {
+      "id": "6",
+      "section": "4.5",
+      "title": "24 directly generated conversation candidates",
+      "source": "reproduction/analysis_outputs/gpt6_current_session_planning_20260917_v1/results_v1/summary.json"
+    },
+    {
+      "id": "7",
+      "section": "4.7",
+      "title": "List scheduling versus same-graph MILP",
+      "source": "reproduction/analysis_outputs/experiment_expansion_v7_63_20260917/results/milp_metrics.csv"
+    },
+    {
+      "id": "8",
+      "section": "4.8",
+      "title": "Same-input repair with shared compression",
+      "source": "reproduction/results/fair_comparison/comparison_metrics.csv"
+    },
+    {
+      "id": "9",
+      "section": "4.8",
+      "title": "Archived tool candidates and external agreement",
+      "source": "reproduction/results/fair_comparison/external_metrics.csv"
+    },
+    {
+      "id": "10",
+      "section": "4.9",
+      "title": "Public source specifications and acceptance",
+      "source": "reproduction/results/external_discrete_run01/summary.json"
+    },
+    {
+      "id": "11",
+      "section": "4.9",
+      "title": "Resource orientation on six job-shop projections",
+      "source": "reproduction/results/external_discrete_run01/metrics.csv"
+    },
+    {
+      "id": "12",
+      "section": "4.10",
+      "title": "Eight simulation templates and nominal windows",
+      "source": "simulation_expanded/aggregate_results.json"
+    },
+    {
+      "id": "13",
+      "section": "4.10",
+      "title": "96 same-input planning settings",
+      "source": "simulation_expanded/planning_frozen_v2/records.csv"
+    },
+    {
+      "id": "14",
+      "section": "4.10",
+      "title": "Planning acceptance and physical completion",
+      "source": "simulation_expanded/figures/simulation_condition_totals.csv"
+    },
+    {
+      "id": "A1",
+      "section": "A.3",
+      "title": "Small-graph size and measured local runtime",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table6_complexity.csv"
+    },
+    {
+      "id": "A2",
+      "section": "A.3",
+      "title": "Detailed field-perturbation reference agreement",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table7_robustness.csv"
+    },
+    {
+      "id": "A3",
+      "section": "A.3",
+      "title": "Auxiliary audit and timeline metrics",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/"
+    },
+    {
+      "id": "A4",
+      "section": "A.3",
+      "title": "Nonstrict diagnostic ablation speedup",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table4_ablation.csv"
+    },
+    {
+      "id": "B1",
+      "section": "B",
+      "title": "Failure diagnostics and distinct counting units",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/analysis/failure_summary.csv"
+    },
+    {
+      "id": "C1",
+      "section": "C.1",
+      "title": "Nine single-fault regression classes",
+      "source": "reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table5_joint_audit_challenge.csv"
+    },
+    {
+      "id": "C2",
+      "section": "C.2",
+      "title": "Acceptance contract and guarantee scope",
+      "source": "reproduction/implementation_v7_70/atomic_task/pipeline.py"
+    },
+    {
+      "id": "C3",
+      "section": "C.3",
+      "title": "Component comparison on 24 shared inputs",
+      "source": "reproduction/analysis_outputs/experiment_expansion_v7_63_20260917/results/information_metrics.csv"
+    },
+    {
+      "id": "C4(a–b)",
+      "section": "C.4",
+      "title": "Controlled relation deletion and duration sensitivity",
+      "source": "reproduction/analysis_outputs/experiment_expansion_v7_63_20260917/results/"
+    },
+    {
+      "id": "C5",
+      "section": "C.5",
+      "title": "Measured post-processing time by configuration",
+      "source": "reproduction/analysis_outputs/experiment_expansion_v7_63_20260917/results/shape_metrics.csv"
+    }
+  ],
+  "figures": [
+    {
+      "id": "1",
+      "section": "3.1–3.3",
+      "title": "Method overview",
+      "asset": "assets/images/figure1.png"
+    },
+    {
+      "id": "2",
+      "section": "3.1",
+      "title": "Typed atomic task graph",
+      "asset": "assets/images/figure2.png"
+    },
+    {
+      "id": "3",
+      "section": "3.2",
+      "title": "Relation repair and scheduling",
+      "asset": "assets/images/figure3.png"
+    },
+    {
+      "id": "4",
+      "section": "3.3",
+      "title": "Audit, replay and output contract",
+      "asset": "assets/images/figure4.png"
+    },
+    {
+      "id": "5",
+      "section": "4.2",
+      "title": "Controlled reference agreement and audit",
+      "asset": "assets/images/figure5.png"
+    },
+    {
+      "id": "6",
+      "section": "4.3",
+      "title": "Planning efficiency and joint acceptance",
+      "asset": "assets/images/figure6.png"
+    },
+    {
+      "id": "7",
+      "section": "4.6",
+      "title": "Measured post-processing runtime",
+      "asset": "assets/images/figure7.png"
+    },
+    {
+      "id": "8",
+      "section": "4.7",
+      "title": "Paired efficiency and same-graph MILP gap",
+      "asset": "assets/images/figure8.png"
+    },
+    {
+      "id": "9",
+      "section": "4.10",
+      "title": "Eight simulated task scenes",
+      "asset": "assets/images/figure9.png"
+    },
+    {
+      "id": "10",
+      "section": "4.10",
+      "title": "Fixed-skill windows and same-input repair",
+      "asset": "assets/images/figure10.png"
+    },
+    {
+      "id": "11",
+      "section": "4.10",
+      "title": "Stress completions and failures",
+      "asset": "assets/images/figure11.png"
+    },
+    {
+      "id": "A1",
+      "section": "A.3",
+      "title": "Small-graph size trends",
+      "asset": "assets/images/figureA1.png"
+    }
+  ]
+}

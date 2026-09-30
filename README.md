@@ -1,14 +1,16 @@
 # ATG Repair — Verifiable Dual-Unit Planning
 
+[Main manuscript PDF](docs/assets/papers/ATG_Repair_Manuscript_v7_87.pdf) · [Supplement PDF](docs/assets/papers/ATG_Repair_Supplement_v7_87.pdf) · [Current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Complete evidence index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
+
 [GitHub repository](https://github.com/RoboPlanner/atg-repair-planning) · [Project page](https://roboplanner.github.io/atg-repair-planning/)
 
 **Deterministic relation repair, joint auditing, and strict list scheduling for atomic task graphs.**
 
-Anonymous review materials. Manuscript author identities, affiliations and contact details are omitted. Third-party citations and license attribution identify upstream sources, not the manuscript authors.
+Manuscript author identities, affiliations and contact details are omitted. Third-party citations and license attribution identify upstream sources, not the manuscript authors.
 
 [中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
 
-Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.86 (2026-09-29). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.
+Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.87 (2026-09-30). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.
 
 `L` and `R` are two abstract base execution units. Cooperative mode `B` occupies **both units simultaneously**. Candidates may originate from a language model, rules, or a user. A fixed deterministic pipeline performs state closure → sync pairing → resource orientation → conservative order compression. Six joint graph checks and actual schedule validation gate accepted outputs. Failed checks return diagnostics; rejection does not establish infeasibility.
 
@@ -54,13 +56,13 @@ This verifies every manifest-listed archive file and runs **58 implementation te
 python tools/serve.py
 ```
 
-Open **http://127.0.0.1:8780/**. Keep the process running; Ctrl+C stops it. The server binds only to the local loopback interface and serves `docs/`, not the Git metadata or private project workspace. If 8780 is occupied, `python tools/serve.py --port 8781` uses another port; the temporary manuscript link specifically uses 8780.
+Open **http://127.0.0.1:8780/**. Keep the process running; Ctrl+C stops it. The server binds only to the local loopback interface and serves `docs/`, not the Git metadata or private project workspace. If 8780 is occupied, `python tools/serve.py --port 8781` uses another port; 8780 is only a local preview address; the manuscript cites the public project page.
 
 The static page also opens directly as `docs/index.html`. It works without external fonts, analytics, a build system, or CDN scripts. Relative asset URLs are compatible with a GitHub Pages project subpath. The method figures can be switched and opened at full resolution. The downloadable ZIP retains the frozen supplementary bytes.
 
 ### Earlier 30-run simulation study
 
-Open **http://127.0.0.1:8780/#simulation** for six actual MuJoCo recordings of dual-Panda execution, with scene and full/serial switches. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
+The separate [exploratory ZIP](docs/assets/downloads/ATG_MuJoCo_simulation_v1.zip) retains six dual-Panda recordings; [the current simulation player](https://roboplanner.github.io/atg-repair-planning/#simulation) instead shows the eight-template, 240-run study. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
 
 ```sh
 python -m pip install -r simulation/requirements.txt
@@ -137,8 +139,8 @@ The fixed archive is [ATG_reproduction_v7_70.zip](docs/assets/downloads/ATG_repr
 
 Original code/documentation: [MIT](LICENSE). Website text/layout/manuscript figures: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Third-party materials retain their notices; see [LICENSES.md](LICENSES.md). The author’s EndNote library, Word drafts, account email, credentials, and local machine configuration are outside this repository.
 
-Deployment instructions are in [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). Local verification and reproduction commands do not upload data. Author names, affiliations, the paper URL and formal citation metadata will be added after they are confirmed. The repository can be used independently of the unpublished manuscript.
+Deployment instructions are in [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). Local verification and reproduction commands do not upload data. Manuscript reading PDFs are available below; author details and formal publication metadata remain unassigned. The repository can be used independently of the unpublished manuscript.
 
 ## Expanded physical simulation study
 
-See [simulation_expanded/README.md](simulation_expanded/README.md) for eight task templates, 240 frozen physics runs, 96 planning settings and 20 preselected videos. Normal-condition schedules complete 80/80 runs; stress conditions complete 104/160. All failures and independent reconstructions are retained. This replaces the exploratory simulation summary in the latest manuscript without altering the earlier archive. In manuscript v7.86, Figures 9–11 and Tables 12–14 report this batch; earlier manuscript drafts used different table numbering. No hardware or natural-error generalization is claimed.
+See [simulation_expanded/README.md](simulation_expanded/README.md) for eight task templates, 240 frozen physics runs, 96 planning settings and 20 preselected videos. Normal-condition schedules complete 80/80 runs; stress conditions complete 104/160. All failures and independent reconstructions are retained. This replaces the exploratory simulation summary in the latest manuscript without altering the earlier archive. In manuscript v7.87, Figures 9–11 and Tables 12–14 report this batch; earlier manuscript drafts used different table numbering. No hardware or natural-error generalization is claimed.
