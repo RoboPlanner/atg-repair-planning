@@ -420,9 +420,6 @@ details p {
   color:var(--muted);
   margin:18px 0 0
 }
-.chinese {
-  margin-top:28px
-}
 .result-figure {
   max-width:970px;
   margin:40px auto 0

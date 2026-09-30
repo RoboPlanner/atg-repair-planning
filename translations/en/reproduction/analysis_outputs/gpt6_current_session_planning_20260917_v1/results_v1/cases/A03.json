@@ -1,0 +1,4129 @@
+{
+  "task_id": "A03",
+  "spec": {
+    "task_id": "A03",
+    "domain": "assembly",
+    "title": "Sealed enclosure assembly",
+    "instruction": "Clean the lower shell and inspect the cover separately. Install the seal, close the enclosure using both units, tighten the two cover positions in sequence and perform a leak check. Then transfer the enclosure to the completed-items tray using both units.",
+    "S0": [
+      "lower_shell_available",
+      "cover_available",
+      "gasket_available",
+      "tray_ready"
+    ],
+    "Sg": [
+      "housing_on_finished_tray"
+    ],
+    "resources": [
+      "lower_shell",
+      "cover",
+      "gasket",
+      "driver",
+      "leak_tester",
+      "finished_tray"
+    ]
+  },
+  "raw_source": "raw_candidates_assembly.json",
+  "raw_candidate": {
+    "task_id": "A03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "clean lower shell",
+        "object": "lower shell",
+        "Pre": [
+          "lower_shell_available"
+        ],
+        "Post": [
+          "lower_shell_clean"
+        ],
+        "d": 3,
+        "Res": [
+          "lower_shell"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "inspect cover",
+        "object": "cover",
+        "Pre": [
+          "cover_available"
+        ],
+        "Post": [
+          "cover_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "cover"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare gasket",
+        "object": "gasket",
+        "Pre": [
+          "gasket_available"
+        ],
+        "Post": [
+          "gasket_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "gasket"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "seat gasket",
+        "object": "lower shell",
+        "Pre": [
+          "lower_shell_clean",
+          "gasket_prepared"
+        ],
+        "Post": [
+          "gasket_seated"
+        ],
+        "d": 2,
+        "Res": [
+          "lower_shell",
+          "gasket"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "close housing",
+        "object": "housing",
+        "Pre": [
+          "gasket_seated",
+          "cover_checked"
+        ],
+        "Post": [
+          "housing_closed"
+        ],
+        "d": 3,
+        "Res": [
+          "lower_shell",
+          "cover"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "tighten first cover position",
+        "object": "cover",
+        "Pre": [
+          "housing_closed"
+        ],
+        "Post": [
+          "cover_position_one_tight"
+        ],
+        "d": 2,
+        "Res": [
+          "cover",
+          "driver"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "tighten second cover position",
+        "object": "cover",
+        "Pre": [
+          "housing_closed"
+        ],
+        "Post": [
+          "cover_position_two_tight"
+        ],
+        "d": 2,
+        "Res": [
+          "cover",
+          "driver"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "check housing seal",
+        "object": "housing",
+        "Pre": [
+          "cover_position_one_tight",
+          "cover_position_two_tight"
+        ],
+        "Post": [
+          "housing_leak_checked"
+        ],
+        "d": 4,
+        "Res": [
+          "lower_shell",
+          "cover",
+          "leak_tester"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "transfer housing to finished tray",
+        "object": "housing",
+        "Pre": [
+          "housing_leak_checked",
+          "tray_ready"
+        ],
+        "Post": [
+          "housing_on_finished_tray"
+        ],
+        "d": 3,
+        "Res": [
+          "lower_shell",
+          "cover",
+          "finished_tray"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "lower_shell_clean"
+        ],
+        [
+          "t3",
+          "t4",
+          "gasket_prepared"
+        ],
+        [
+          "t4",
+          "t5",
+          "gasket_seated"
+        ],
+        [
+          "t2",
+          "t5",
+          "cover_checked"
+        ],
+        [
+          "t5",
+          "t6",
+          "housing_closed"
+        ],
+        [
+          "t5",
+          "t7",
+          "housing_closed"
+        ],
+        [
+          "t6",
+          "t8",
+          "cover_position_one_tight"
+        ],
+        [
+          "t7",
+          "t8",
+          "cover_position_two_tight"
+        ],
+        [
+          "t8",
+          "t9",
+          "housing_leak_checked"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t4",
+          "t5",
+          "gasket_seated"
+        ],
+        [
+          "t2",
+          "t5",
+          "cover_checked"
+        ],
+        [
+          "t8",
+          "t9",
+          "housing_leak_checked"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t6",
+          "t7",
+          "driver"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "clean lower shell",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_available"
+        ],
+        "post_state": [
+          "lower_shell_clean"
+        ],
+        "duration": 3,
+        "resource": [
+          "lower_shell"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "inspect cover",
+        "object": "cover",
+        "pre_state": [
+          "cover_available"
+        ],
+        "post_state": [
+          "cover_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "cover"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare gasket",
+        "object": "gasket",
+        "pre_state": [
+          "gasket_available"
+        ],
+        "post_state": [
+          "gasket_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "gasket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "seat gasket",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_clean",
+          "gasket_prepared"
+        ],
+        "post_state": [
+          "gasket_seated"
+        ],
+        "duration": 2,
+        "resource": [
+          "lower_shell",
+          "gasket"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "close housing",
+        "object": "housing",
+        "pre_state": [
+          "gasket_seated",
+          "cover_checked"
+        ],
+        "post_state": [
+          "housing_closed"
+        ],
+        "duration": 3,
+        "resource": [
+          "lower_shell",
+          "cover"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "tighten first cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_one_tight"
+        ],
+        "duration": 2,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "tighten second cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_two_tight"
+        ],
+        "duration": 2,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "check housing seal",
+        "object": "housing",
+        "pre_state": [
+          "cover_position_one_tight",
+          "cover_position_two_tight"
+        ],
+        "post_state": [
+          "housing_leak_checked"
+        ],
+        "duration": 4,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "leak_tester"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "transfer housing to finished tray",
+        "object": "housing",
+        "pre_state": [
+          "housing_leak_checked",
+          "tray_ready"
+        ],
+        "post_state": [
+          "housing_on_finished_tray"
+        ],
+        "duration": 3,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "finished_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "lower_shell_clean"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "state": "gasket_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "cover_position_one_tight"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "cover_position_two_tight"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "housing_leak_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "state": "housing_leak_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "resource": "driver"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "cover_available",
+        "gasket_available",
+        "lower_shell_available",
+        "tray_ready"
+      ],
+      "available_states": [
+        "cover_available",
+        "cover_checked",
+        "cover_position_one_tight",
+        "cover_position_two_tight",
+        "gasket_available",
+        "gasket_prepared",
+        "gasket_seated",
+        "housing_closed",
+        "housing_leak_checked",
+        "housing_on_finished_tray",
+        "lower_shell_available",
+        "lower_shell_clean",
+        "tray_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "housing_on_finished_tray"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 19.0,
+    "waiting_time": 10.0,
+    "executor_utilization": 0.7368,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "clean lower shell",
+        "object": "lower shell",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "lower_shell"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "inspect cover",
+        "object": "cover",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "cover"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare gasket",
+        "object": "gasket",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "gasket"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "seat gasket",
+        "object": "lower shell",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "lower_shell",
+          "gasket"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "close housing",
+        "object": "housing",
+        "start": 5.0,
+        "finish": 8.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "lower_shell",
+          "cover"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "tighten first cover position",
+        "object": "cover",
+        "start": 8.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "cover",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "tighten second cover position",
+        "object": "cover",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "cover",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "check housing seal",
+        "object": "housing",
+        "start": 12.0,
+        "finish": 16.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "lower_shell",
+          "cover",
+          "leak_tester"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "transfer housing to finished tray",
+        "object": "housing",
+        "start": 16.0,
+        "finish": 19.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "lower_shell",
+          "cover",
+          "finished_tray"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.7368421052631579
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "housing_leak_checked"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "cover_available",
+          "gasket_available",
+          "lower_shell_available",
+          "tray_ready"
+        ],
+        "available_states": [
+          "cover_available",
+          "cover_checked",
+          "cover_position_one_tight",
+          "cover_position_two_tight",
+          "gasket_available",
+          "gasket_prepared",
+          "gasket_seated",
+          "housing_closed",
+          "housing_leak_checked",
+          "housing_on_finished_tray",
+          "lower_shell_available",
+          "lower_shell_clean",
+          "tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "housing_on_finished_tray"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "cover_available",
+          "gasket_available",
+          "lower_shell_available",
+          "tray_ready"
+        ],
+        "available_states": [
+          "cover_available",
+          "cover_checked",
+          "cover_position_one_tight",
+          "cover_position_two_tight",
+          "gasket_available",
+          "gasket_prepared",
+          "gasket_seated",
+          "housing_closed",
+          "housing_leak_checked",
+          "housing_on_finished_tray",
+          "lower_shell_available",
+          "lower_shell_clean",
+          "tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "housing_on_finished_tray"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "cover_available",
+            "gasket_available",
+            "lower_shell_available",
+            "tray_ready"
+          ],
+          "available_states": [
+            "cover_available",
+            "cover_checked",
+            "cover_position_one_tight",
+            "cover_position_two_tight",
+            "gasket_available",
+            "gasket_prepared",
+            "gasket_seated",
+            "housing_closed",
+            "housing_leak_checked",
+            "housing_on_finished_tray",
+            "lower_shell_available",
+            "lower_shell_clean",
+            "tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "housing_on_finished_tray"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "cover_available",
+            "gasket_available",
+            "lower_shell_available",
+            "tray_ready"
+          ],
+          "available_states": [
+            "cover_available",
+            "cover_checked",
+            "cover_position_one_tight",
+            "cover_position_two_tight",
+            "gasket_available",
+            "gasket_prepared",
+            "gasket_seated",
+            "housing_closed",
+            "housing_leak_checked",
+            "housing_on_finished_tray",
+            "lower_shell_available",
+            "lower_shell_clean",
+            "tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "housing_on_finished_tray"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "gasket_seated",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for gasket_seated",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "cover_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for cover_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "housing_leak_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for housing_leak_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "cover_checked",
+          "resource": null,
+          "reason": "cooperative input state cover_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "gasket_seated",
+          "resource": null,
+          "reason": "cooperative input state gasket_seated",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "housing_leak_checked",
+          "resource": null,
+          "reason": "cooperative input state housing_leak_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 10.0,
+      "executor_utilization": 0.7368,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cover"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "gasket"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell",
+            "gasket"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "cover",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cover",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "start": 12.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "start": 16.0,
+          "finish": 19.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "housing_leak_checked"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "cover_available",
+          "gasket_available",
+          "lower_shell_available",
+          "tray_ready"
+        ],
+        "available_states": [
+          "cover_available",
+          "cover_checked",
+          "cover_position_one_tight",
+          "cover_position_two_tight",
+          "gasket_available",
+          "gasket_prepared",
+          "gasket_seated",
+          "housing_closed",
+          "housing_leak_checked",
+          "housing_on_finished_tray",
+          "lower_shell_available",
+          "lower_shell_clean",
+          "tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "housing_on_finished_tray"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "cover_available",
+          "gasket_available",
+          "lower_shell_available",
+          "tray_ready"
+        ],
+        "available_states": [
+          "cover_available",
+          "cover_checked",
+          "cover_position_one_tight",
+          "cover_position_two_tight",
+          "gasket_available",
+          "gasket_prepared",
+          "gasket_seated",
+          "housing_closed",
+          "housing_leak_checked",
+          "housing_on_finished_tray",
+          "lower_shell_available",
+          "lower_shell_clean",
+          "tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "housing_on_finished_tray"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "cover_available",
+            "gasket_available",
+            "lower_shell_available",
+            "tray_ready"
+          ],
+          "available_states": [
+            "cover_available",
+            "cover_checked",
+            "cover_position_one_tight",
+            "cover_position_two_tight",
+            "gasket_available",
+            "gasket_prepared",
+            "gasket_seated",
+            "housing_closed",
+            "housing_leak_checked",
+            "housing_on_finished_tray",
+            "lower_shell_available",
+            "lower_shell_clean",
+            "tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "housing_on_finished_tray"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "cover_available",
+            "gasket_available",
+            "lower_shell_available",
+            "tray_ready"
+          ],
+          "available_states": [
+            "cover_available",
+            "cover_checked",
+            "cover_position_one_tight",
+            "cover_position_two_tight",
+            "gasket_available",
+            "gasket_prepared",
+            "gasket_seated",
+            "housing_closed",
+            "housing_leak_checked",
+            "housing_on_finished_tray",
+            "lower_shell_available",
+            "lower_shell_clean",
+            "tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "housing_on_finished_tray"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "gasket_seated",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for gasket_seated",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "cover_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for cover_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "housing_leak_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for housing_leak_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "cover_checked",
+          "resource": null,
+          "reason": "cooperative input state cover_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "gasket_seated",
+          "resource": null,
+          "reason": "cooperative input state gasket_seated",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t8",
+          "target": "t9",
+          "edge_type": "synchronization",
+          "state": "housing_leak_checked",
+          "resource": null,
+          "reason": "cooperative input state housing_leak_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 10.0,
+      "executor_utilization": 0.7368,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cover"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "gasket"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell",
+            "gasket"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "cover",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cover",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "start": 12.0,
+          "finish": 16.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "start": 16.0,
+          "finish": 19.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "clean lower shell",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_available"
+        ],
+        "post_state": [
+          "lower_shell_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "inspect cover",
+        "object": "cover",
+        "pre_state": [
+          "cover_available"
+        ],
+        "post_state": [
+          "cover_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare gasket",
+        "object": "gasket",
+        "pre_state": [
+          "gasket_available"
+        ],
+        "post_state": [
+          "gasket_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "gasket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "seat gasket",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_clean",
+          "gasket_prepared"
+        ],
+        "post_state": [
+          "gasket_seated"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "lower_shell",
+          "gasket"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "close housing",
+        "object": "housing",
+        "pre_state": [
+          "gasket_seated",
+          "cover_checked"
+        ],
+        "post_state": [
+          "housing_closed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell",
+          "cover"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "tighten first cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_one_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "tighten second cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_two_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "check housing seal",
+        "object": "housing",
+        "pre_state": [
+          "cover_position_one_tight",
+          "cover_position_two_tight"
+        ],
+        "post_state": [
+          "housing_leak_checked"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "leak_tester"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "transfer housing to finished tray",
+        "object": "housing",
+        "pre_state": [
+          "housing_leak_checked",
+          "tray_ready"
+        ],
+        "post_state": [
+          "housing_on_finished_tray"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "finished_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "lower_shell_clean"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "gasket_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_position_one_tight"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_position_two_tight"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_leak_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "housing_leak_checked"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.7368421052631579
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "clean lower shell",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_available"
+        ],
+        "post_state": [
+          "lower_shell_clean"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "inspect cover",
+        "object": "cover",
+        "pre_state": [
+          "cover_available"
+        ],
+        "post_state": [
+          "cover_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare gasket",
+        "object": "gasket",
+        "pre_state": [
+          "gasket_available"
+        ],
+        "post_state": [
+          "gasket_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "gasket"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "seat gasket",
+        "object": "lower shell",
+        "pre_state": [
+          "lower_shell_clean",
+          "gasket_prepared"
+        ],
+        "post_state": [
+          "gasket_seated"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "lower_shell",
+          "gasket"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "close housing",
+        "object": "housing",
+        "pre_state": [
+          "gasket_seated",
+          "cover_checked"
+        ],
+        "post_state": [
+          "housing_closed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell",
+          "cover"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "tighten first cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_one_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "tighten second cover position",
+        "object": "cover",
+        "pre_state": [
+          "housing_closed"
+        ],
+        "post_state": [
+          "cover_position_two_tight"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "cover",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "check housing seal",
+        "object": "housing",
+        "pre_state": [
+          "cover_position_one_tight",
+          "cover_position_two_tight"
+        ],
+        "post_state": [
+          "housing_leak_checked"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "leak_tester"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "transfer housing to finished tray",
+        "object": "housing",
+        "pre_state": [
+          "housing_leak_checked",
+          "tray_ready"
+        ],
+        "post_state": [
+          "housing_on_finished_tray"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "lower_shell",
+          "cover",
+          "finished_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "lower_shell_clean"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "gasket_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_closed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_position_one_tight"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "cover_position_two_tight"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "housing_leak_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "cover_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "gasket_seated"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "synchronization",
+        "reason": "",
+        "state": "housing_leak_checked"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.7368421052631579
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "cover_available",
+        "gasket_available",
+        "lower_shell_available",
+        "tray_ready"
+      ],
+      "available_states": [
+        "cover_available",
+        "cover_checked",
+        "cover_position_one_tight",
+        "cover_position_two_tight",
+        "gasket_available",
+        "gasket_prepared",
+        "gasket_seated",
+        "housing_closed",
+        "housing_leak_checked",
+        "housing_on_finished_tray",
+        "lower_shell_available",
+        "lower_shell_clean",
+        "tray_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "housing_on_finished_tray"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "housing_leak_checked"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "housing_leak_checked"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "clean lower shell",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_available"
+          ],
+          "post_state": [
+            "lower_shell_clean"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "inspect cover",
+          "object": "cover",
+          "pre_state": [
+            "cover_available"
+          ],
+          "post_state": [
+            "cover_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare gasket",
+          "object": "gasket",
+          "pre_state": [
+            "gasket_available"
+          ],
+          "post_state": [
+            "gasket_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "gasket"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "seat gasket",
+          "object": "lower shell",
+          "pre_state": [
+            "lower_shell_clean",
+            "gasket_prepared"
+          ],
+          "post_state": [
+            "gasket_seated"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "lower_shell",
+            "gasket"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "close housing",
+          "object": "housing",
+          "pre_state": [
+            "gasket_seated",
+            "cover_checked"
+          ],
+          "post_state": [
+            "housing_closed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "tighten first cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_one_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "tighten second cover position",
+          "object": "cover",
+          "pre_state": [
+            "housing_closed"
+          ],
+          "post_state": [
+            "cover_position_two_tight"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "cover",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "check housing seal",
+          "object": "housing",
+          "pre_state": [
+            "cover_position_one_tight",
+            "cover_position_two_tight"
+          ],
+          "post_state": [
+            "housing_leak_checked"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "leak_tester"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "transfer housing to finished tray",
+          "object": "housing",
+          "pre_state": [
+            "housing_leak_checked",
+            "tray_ready"
+          ],
+          "post_state": [
+            "housing_on_finished_tray"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "lower_shell",
+            "cover",
+            "finished_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "lower_shell_clean"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_closed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_one_tight"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "cover_position_two_tight"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "housing_leak_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "cover_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "gasket_seated"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "synchronization",
+          "reason": "",
+          "state": "housing_leak_checked"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "A03",
+    "domain": "assembly",
+    "title": "Sealed enclosure assembly",
+    "nodes": 9,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 9,
+    "raw_E_sync": 3,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 3,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 22.0,
+    "cooperative_duration": 6.0,
+    "before_makespan": 19.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 19.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 19.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 3,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 6,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 6,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.1578947368421053,
+    "relative_duration_reduction_vs_serial": 0.13636363636363635,
+    "executor_utilization": 0.7368421052631579,
+    "left_busy_time": 17.0,
+    "right_busy_time": 11.0,
+    "scheduled_overlap_pairs": 2,
+    "critical_path_duration": 19.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

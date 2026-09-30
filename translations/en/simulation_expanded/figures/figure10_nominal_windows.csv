@@ -1,0 +1,9 @@
+task,title,title_zh,nodes,B_nodes,full_success,serial_success,n_each,full_window_s,serial_window_s,window_reduction_percent,full_max_final_error_mm
+T01,Parallel sorting,Parallel sorting,4,0,5,5,5,12.0,24.0,50.0,7.34075604335859
+T02,Shared inspection,Shared inspection station,6,0,5,5,5,28.0,40.0,30.000000000000004,16.59327488450498
+T03,Synchronized kitting,Synchronized kitting,4,0,5,5,5,12.0,24.0,50.0,7.34075604335859
+T04,Two-stage shared service,Two-stage shared service,8,0,5,5,5,44.0,56.0,21.42857142857143,26.097920637668743
+T05,Cooperative transfer,Cooperative transfer,5,1,5,5,5,17.0,22.0,22.72727272727273,1.0453982927505687
+T06,Two-leg transfer,Two-stage cooperative transfer,6,2,5,5,5,29.0,34.0,14.70588235294118,1.0793855617269965
+T07,Loading and transfer,Load then transfer,9,1,5,5,5,29.0,46.0,36.95652173913043,7.022332703871782
+T08,Transfer and unloading,Transfer then unload,9,1,5,5,5,29.0,46.0,36.95652173913043,7.109035599689468

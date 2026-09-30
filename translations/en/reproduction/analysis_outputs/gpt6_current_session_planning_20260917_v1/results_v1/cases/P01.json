@@ -1,0 +1,3531 @@
+{
+  "task_id": "P01",
+  "spec": {
+    "task_id": "P01",
+    "domain": "packaging",
+    "title": "Fragile instrument packing",
+    "instruction": "Prepare the carton, cushioning and instrument. Arrange the cushioning, then place the instrument in the carton using both units. Insert the manual, seal the carton and apply the shipping label.",
+    "S0": [
+      "carton_flat",
+      "cushion_available",
+      "instrument_available",
+      "manual_available",
+      "shipping_data_ready"
+    ],
+    "Sg": [
+      "instrument_package_labeled"
+    ],
+    "resources": [
+      "carton",
+      "cushion",
+      "instrument",
+      "tape_dispenser",
+      "label_printer"
+    ]
+  },
+  "raw_source": "raw_candidates_packaging.json",
+  "raw_candidate": {
+    "task_id": "P01",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form carton",
+        "object": "carton",
+        "Pre": [
+          "carton_flat"
+        ],
+        "Post": [
+          "carton_formed"
+        ],
+        "d": 2,
+        "Res": [
+          "carton"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare cushion",
+        "object": "cushion",
+        "Pre": [
+          "cushion_available"
+        ],
+        "Post": [
+          "cushion_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "cushion"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare instrument",
+        "object": "instrument",
+        "Pre": [
+          "instrument_available"
+        ],
+        "Post": [
+          "instrument_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "instrument"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "line carton",
+        "object": "carton",
+        "Pre": [
+          "carton_formed",
+          "cushion_prepared"
+        ],
+        "Post": [
+          "carton_cushioned"
+        ],
+        "d": 2,
+        "Res": [
+          "carton",
+          "cushion"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place instrument in carton",
+        "object": "instrument",
+        "Pre": [
+          "carton_cushioned",
+          "instrument_prepared"
+        ],
+        "Post": [
+          "instrument_packed"
+        ],
+        "d": 3,
+        "Res": [
+          "instrument",
+          "carton"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "insert manual",
+        "object": "manual",
+        "Pre": [
+          "instrument_packed",
+          "manual_available"
+        ],
+        "Post": [
+          "manual_inserted"
+        ],
+        "d": 1,
+        "Res": [
+          "carton"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "seal carton",
+        "object": "carton",
+        "Pre": [
+          "manual_inserted"
+        ],
+        "Post": [
+          "instrument_carton_sealed"
+        ],
+        "d": 2,
+        "Res": [
+          "carton",
+          "tape_dispenser"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print and apply shipping label",
+        "object": "carton",
+        "Pre": [
+          "instrument_carton_sealed",
+          "shipping_data_ready"
+        ],
+        "Post": [
+          "instrument_package_labeled"
+        ],
+        "d": 2,
+        "Res": [
+          "carton",
+          "label_printer"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "carton_formed"
+        ],
+        [
+          "t2",
+          "t4",
+          "cushion_prepared"
+        ],
+        [
+          "t4",
+          "t5",
+          "carton_cushioned"
+        ],
+        [
+          "t3",
+          "t5",
+          "instrument_prepared"
+        ],
+        [
+          "t5",
+          "t6",
+          "instrument_packed"
+        ],
+        [
+          "t6",
+          "t7",
+          "manual_inserted"
+        ],
+        [
+          "t7",
+          "t8",
+          "instrument_carton_sealed"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t4",
+          "t5",
+          "carton_cushioned"
+        ],
+        [
+          "t3",
+          "t5",
+          "instrument_prepared"
+        ]
+      ],
+      "E_mutex": [],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_flat"
+        ],
+        "post_state": [
+          "carton_formed"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare cushion",
+        "object": "cushion",
+        "pre_state": [
+          "cushion_available"
+        ],
+        "post_state": [
+          "cushion_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "cushion"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare instrument",
+        "object": "instrument",
+        "pre_state": [
+          "instrument_available"
+        ],
+        "post_state": [
+          "instrument_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "instrument"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "line carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_formed",
+          "cushion_prepared"
+        ],
+        "post_state": [
+          "carton_cushioned"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton",
+          "cushion"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place instrument in carton",
+        "object": "instrument",
+        "pre_state": [
+          "carton_cushioned",
+          "instrument_prepared"
+        ],
+        "post_state": [
+          "instrument_packed"
+        ],
+        "duration": 3,
+        "resource": [
+          "instrument",
+          "carton"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "insert manual",
+        "object": "manual",
+        "pre_state": [
+          "instrument_packed",
+          "manual_available"
+        ],
+        "post_state": [
+          "manual_inserted"
+        ],
+        "duration": 1,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "seal carton",
+        "object": "carton",
+        "pre_state": [
+          "manual_inserted"
+        ],
+        "post_state": [
+          "instrument_carton_sealed"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print and apply shipping label",
+        "object": "carton",
+        "pre_state": [
+          "instrument_carton_sealed",
+          "shipping_data_ready"
+        ],
+        "post_state": [
+          "instrument_package_labeled"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "carton_formed"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "cushion_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "instrument_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "instrument_packed"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "manual_inserted"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "instrument_carton_sealed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "instrument_prepared"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "carton_flat",
+        "cushion_available",
+        "instrument_available",
+        "manual_available",
+        "shipping_data_ready"
+      ],
+      "available_states": [
+        "carton_cushioned",
+        "carton_flat",
+        "carton_formed",
+        "cushion_available",
+        "cushion_prepared",
+        "instrument_available",
+        "instrument_carton_sealed",
+        "instrument_package_labeled",
+        "instrument_packed",
+        "instrument_prepared",
+        "manual_available",
+        "manual_inserted",
+        "shipping_data_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "instrument_package_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 12.0,
+    "waiting_time": 4.0,
+    "executor_utilization": 0.75,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "form carton",
+        "object": "carton",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "carton"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare cushion",
+        "object": "cushion",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "cushion"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare instrument",
+        "object": "instrument",
+        "start": 1.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "instrument"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "line carton",
+        "object": "carton",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "carton",
+          "cushion"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "place instrument in carton",
+        "object": "instrument",
+        "start": 4.0,
+        "finish": 7.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "instrument",
+          "carton"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "insert manual",
+        "object": "manual",
+        "start": 7.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "carton"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "seal carton",
+        "object": "carton",
+        "start": 8.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "carton",
+          "tape_dispenser"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "print and apply shipping label",
+        "object": "carton",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "carton",
+          "label_printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "instrument_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "carton_flat",
+          "cushion_available",
+          "instrument_available",
+          "manual_available",
+          "shipping_data_ready"
+        ],
+        "available_states": [
+          "carton_cushioned",
+          "carton_flat",
+          "carton_formed",
+          "cushion_available",
+          "cushion_prepared",
+          "instrument_available",
+          "instrument_carton_sealed",
+          "instrument_package_labeled",
+          "instrument_packed",
+          "instrument_prepared",
+          "manual_available",
+          "manual_inserted",
+          "shipping_data_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "instrument_package_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "carton_flat",
+          "cushion_available",
+          "instrument_available",
+          "manual_available",
+          "shipping_data_ready"
+        ],
+        "available_states": [
+          "carton_cushioned",
+          "carton_flat",
+          "carton_formed",
+          "cushion_available",
+          "cushion_prepared",
+          "instrument_available",
+          "instrument_carton_sealed",
+          "instrument_package_labeled",
+          "instrument_packed",
+          "instrument_prepared",
+          "manual_available",
+          "manual_inserted",
+          "shipping_data_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "instrument_package_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "carton_flat",
+            "cushion_available",
+            "instrument_available",
+            "manual_available",
+            "shipping_data_ready"
+          ],
+          "available_states": [
+            "carton_cushioned",
+            "carton_flat",
+            "carton_formed",
+            "cushion_available",
+            "cushion_prepared",
+            "instrument_available",
+            "instrument_carton_sealed",
+            "instrument_package_labeled",
+            "instrument_packed",
+            "instrument_prepared",
+            "manual_available",
+            "manual_inserted",
+            "shipping_data_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "instrument_package_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "carton_flat",
+            "cushion_available",
+            "instrument_available",
+            "manual_available",
+            "shipping_data_ready"
+          ],
+          "available_states": [
+            "carton_cushioned",
+            "carton_flat",
+            "carton_formed",
+            "cushion_available",
+            "cushion_prepared",
+            "instrument_available",
+            "instrument_carton_sealed",
+            "instrument_package_labeled",
+            "instrument_packed",
+            "instrument_prepared",
+            "manual_available",
+            "manual_inserted",
+            "shipping_data_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "instrument_package_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "carton_cushioned",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for carton_cushioned",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "instrument_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for instrument_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "carton_cushioned",
+          "resource": null,
+          "reason": "cooperative input state carton_cushioned",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "instrument_prepared",
+          "resource": null,
+          "reason": "cooperative input state instrument_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cushion"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "instrument"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton",
+            "cushion"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "instrument",
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "start": 7.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "carton",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton",
+            "label_printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "instrument_prepared"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "carton_flat",
+          "cushion_available",
+          "instrument_available",
+          "manual_available",
+          "shipping_data_ready"
+        ],
+        "available_states": [
+          "carton_cushioned",
+          "carton_flat",
+          "carton_formed",
+          "cushion_available",
+          "cushion_prepared",
+          "instrument_available",
+          "instrument_carton_sealed",
+          "instrument_package_labeled",
+          "instrument_packed",
+          "instrument_prepared",
+          "manual_available",
+          "manual_inserted",
+          "shipping_data_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "instrument_package_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "carton_flat",
+          "cushion_available",
+          "instrument_available",
+          "manual_available",
+          "shipping_data_ready"
+        ],
+        "available_states": [
+          "carton_cushioned",
+          "carton_flat",
+          "carton_formed",
+          "cushion_available",
+          "cushion_prepared",
+          "instrument_available",
+          "instrument_carton_sealed",
+          "instrument_package_labeled",
+          "instrument_packed",
+          "instrument_prepared",
+          "manual_available",
+          "manual_inserted",
+          "shipping_data_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "instrument_package_labeled"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "carton_flat",
+            "cushion_available",
+            "instrument_available",
+            "manual_available",
+            "shipping_data_ready"
+          ],
+          "available_states": [
+            "carton_cushioned",
+            "carton_flat",
+            "carton_formed",
+            "cushion_available",
+            "cushion_prepared",
+            "instrument_available",
+            "instrument_carton_sealed",
+            "instrument_package_labeled",
+            "instrument_packed",
+            "instrument_prepared",
+            "manual_available",
+            "manual_inserted",
+            "shipping_data_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "instrument_package_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "carton_flat",
+            "cushion_available",
+            "instrument_available",
+            "manual_available",
+            "shipping_data_ready"
+          ],
+          "available_states": [
+            "carton_cushioned",
+            "carton_flat",
+            "carton_formed",
+            "cushion_available",
+            "cushion_prepared",
+            "instrument_available",
+            "instrument_carton_sealed",
+            "instrument_package_labeled",
+            "instrument_packed",
+            "instrument_prepared",
+            "manual_available",
+            "manual_inserted",
+            "shipping_data_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "instrument_package_labeled"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "carton_cushioned",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for carton_cushioned",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "instrument_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for instrument_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "carton_cushioned",
+          "resource": null,
+          "reason": "cooperative input state carton_cushioned",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "instrument_prepared",
+          "resource": null,
+          "reason": "cooperative input state instrument_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 12.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.75,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "cushion"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "instrument"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton",
+            "cushion"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "start": 4.0,
+          "finish": 7.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "instrument",
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "start": 7.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "carton",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton",
+            "label_printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_flat"
+        ],
+        "post_state": [
+          "carton_formed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare cushion",
+        "object": "cushion",
+        "pre_state": [
+          "cushion_available"
+        ],
+        "post_state": [
+          "cushion_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "cushion"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare instrument",
+        "object": "instrument",
+        "pre_state": [
+          "instrument_available"
+        ],
+        "post_state": [
+          "instrument_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "instrument"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "line carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_formed",
+          "cushion_prepared"
+        ],
+        "post_state": [
+          "carton_cushioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "cushion"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place instrument in carton",
+        "object": "instrument",
+        "pre_state": [
+          "carton_cushioned",
+          "instrument_prepared"
+        ],
+        "post_state": [
+          "instrument_packed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "instrument",
+          "carton"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "insert manual",
+        "object": "manual",
+        "pre_state": [
+          "instrument_packed",
+          "manual_available"
+        ],
+        "post_state": [
+          "manual_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "seal carton",
+        "object": "carton",
+        "pre_state": [
+          "manual_inserted"
+        ],
+        "post_state": [
+          "instrument_carton_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print and apply shipping label",
+        "object": "carton",
+        "pre_state": [
+          "instrument_carton_sealed",
+          "shipping_data_ready"
+        ],
+        "post_state": [
+          "instrument_package_labeled"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_formed"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "cushion_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_packed"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "manual_inserted"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_carton_sealed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "instrument_prepared"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_flat"
+        ],
+        "post_state": [
+          "carton_formed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare cushion",
+        "object": "cushion",
+        "pre_state": [
+          "cushion_available"
+        ],
+        "post_state": [
+          "cushion_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "cushion"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare instrument",
+        "object": "instrument",
+        "pre_state": [
+          "instrument_available"
+        ],
+        "post_state": [
+          "instrument_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "instrument"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "line carton",
+        "object": "carton",
+        "pre_state": [
+          "carton_formed",
+          "cushion_prepared"
+        ],
+        "post_state": [
+          "carton_cushioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "cushion"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place instrument in carton",
+        "object": "instrument",
+        "pre_state": [
+          "carton_cushioned",
+          "instrument_prepared"
+        ],
+        "post_state": [
+          "instrument_packed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "instrument",
+          "carton"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "insert manual",
+        "object": "manual",
+        "pre_state": [
+          "instrument_packed",
+          "manual_available"
+        ],
+        "post_state": [
+          "manual_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "carton"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "seal carton",
+        "object": "carton",
+        "pre_state": [
+          "manual_inserted"
+        ],
+        "post_state": [
+          "instrument_carton_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print and apply shipping label",
+        "object": "carton",
+        "pre_state": [
+          "instrument_carton_sealed",
+          "shipping_data_ready"
+        ],
+        "post_state": [
+          "instrument_package_labeled"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton",
+          "label_printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_formed"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "cushion_prepared"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_packed"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "manual_inserted"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "instrument_carton_sealed"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "carton_cushioned"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "instrument_prepared"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 10.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.75
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "carton_flat",
+        "cushion_available",
+        "instrument_available",
+        "manual_available",
+        "shipping_data_ready"
+      ],
+      "available_states": [
+        "carton_cushioned",
+        "carton_flat",
+        "carton_formed",
+        "cushion_available",
+        "cushion_prepared",
+        "instrument_available",
+        "instrument_carton_sealed",
+        "instrument_package_labeled",
+        "instrument_packed",
+        "instrument_prepared",
+        "manual_available",
+        "manual_inserted",
+        "shipping_data_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "instrument_package_labeled"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "instrument_prepared"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "instrument_prepared"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "instrument_prepared"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_flat"
+          ],
+          "post_state": [
+            "carton_formed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare cushion",
+          "object": "cushion",
+          "pre_state": [
+            "cushion_available"
+          ],
+          "post_state": [
+            "cushion_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "cushion"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare instrument",
+          "object": "instrument",
+          "pre_state": [
+            "instrument_available"
+          ],
+          "post_state": [
+            "instrument_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "instrument"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "line carton",
+          "object": "carton",
+          "pre_state": [
+            "carton_formed",
+            "cushion_prepared"
+          ],
+          "post_state": [
+            "carton_cushioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "cushion"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place instrument in carton",
+          "object": "instrument",
+          "pre_state": [
+            "carton_cushioned",
+            "instrument_prepared"
+          ],
+          "post_state": [
+            "instrument_packed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "instrument",
+            "carton"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "insert manual",
+          "object": "manual",
+          "pre_state": [
+            "instrument_packed",
+            "manual_available"
+          ],
+          "post_state": [
+            "manual_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "carton"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "seal carton",
+          "object": "carton",
+          "pre_state": [
+            "manual_inserted"
+          ],
+          "post_state": [
+            "instrument_carton_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print and apply shipping label",
+          "object": "carton",
+          "pre_state": [
+            "instrument_carton_sealed",
+            "shipping_data_ready"
+          ],
+          "post_state": [
+            "instrument_package_labeled"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton",
+            "label_printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_formed"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "cushion_prepared"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_packed"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "manual_inserted"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "instrument_carton_sealed"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "carton_cushioned"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "instrument_prepared"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "P01",
+    "domain": "packaging",
+    "title": "Fragile instrument packing",
+    "nodes": 8,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 7,
+    "raw_E_sync": 2,
+    "raw_E_mutex": 0,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 3,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 15.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 12.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 12.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 12.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 3,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 4,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 4,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.25,
+    "relative_duration_reduction_vs_serial": 0.19999999999999996,
+    "executor_utilization": 0.75,
+    "left_busy_time": 10.0,
+    "right_busy_time": 8.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 12.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

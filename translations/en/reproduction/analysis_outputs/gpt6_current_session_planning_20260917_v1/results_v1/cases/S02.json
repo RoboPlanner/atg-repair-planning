@@ -1,0 +1,3979 @@
+{
+  "task_id": "S02",
+  "spec": {
+    "task_id": "S02",
+    "domain": "sorting",
+    "title": "Routing accepted and rework parts",
+    "instruction": "Prepare two parts awaiting classification and two routing trays. At the same inspection station, confirm in sequence that part A is accepted and part B requires rework. Print their labels, place them in the corresponding trays and register both transfer records.",
+    "S0": [
+      "item_a_available",
+      "item_b_available",
+      "pass_tray_ready",
+      "rework_tray_ready",
+      "inspection_rules_ready"
+    ],
+    "Sg": [
+      "routing_complete"
+    ],
+    "resources": [
+      "item_a",
+      "item_b",
+      "inspection_station",
+      "printer",
+      "pass_tray",
+      "rework_tray",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_sorting.json",
+  "raw_candidate": {
+    "task_id": "S02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm item A pass classification",
+        "object": "item A",
+        "Pre": [
+          "item_a_available",
+          "inspection_rules_ready"
+        ],
+        "Post": [
+          "item_a_pass_decision"
+        ],
+        "d": 3,
+        "Res": [
+          "item_a",
+          "inspection_station"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "confirm item B rework classification",
+        "object": "item B",
+        "Pre": [
+          "item_b_available",
+          "inspection_rules_ready"
+        ],
+        "Post": [
+          "item_b_rework_decision"
+        ],
+        "d": 3,
+        "Res": [
+          "item_b",
+          "inspection_station"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "print pass label",
+        "object": "pass label",
+        "Pre": [
+          "item_a_pass_decision"
+        ],
+        "Post": [
+          "pass_label_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "print rework label",
+        "object": "rework label",
+        "Pre": [
+          "item_b_rework_decision"
+        ],
+        "Post": [
+          "rework_label_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "label and route item A",
+        "object": "item A",
+        "Pre": [
+          "item_a_pass_decision",
+          "pass_label_printed",
+          "pass_tray_ready"
+        ],
+        "Post": [
+          "item_a_routed"
+        ],
+        "d": 2,
+        "Res": [
+          "item_a",
+          "pass_tray"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "label and route item B",
+        "object": "item B",
+        "Pre": [
+          "item_b_rework_decision",
+          "rework_label_printed",
+          "rework_tray_ready"
+        ],
+        "Post": [
+          "item_b_routed"
+        ],
+        "d": 2,
+        "Res": [
+          "item_b",
+          "rework_tray"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record pass routing",
+        "object": "pass routing record",
+        "Pre": [
+          "item_a_routed"
+        ],
+        "Post": [
+          "pass_routing_recorded"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "record rework routing",
+        "object": "rework routing record",
+        "Pre": [
+          "item_b_routed"
+        ],
+        "Post": [
+          "rework_routing_recorded"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "close routing batch",
+        "object": "routing batch",
+        "Pre": [
+          "pass_routing_recorded",
+          "rework_routing_recorded"
+        ],
+        "Post": [
+          "routing_complete"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t3",
+          "item_a_pass_decision"
+        ],
+        [
+          "t2",
+          "t4",
+          "item_b_rework_decision"
+        ],
+        [
+          "t1",
+          "t5",
+          "item_a_pass_decision"
+        ],
+        [
+          "t3",
+          "t5",
+          "pass_label_printed"
+        ],
+        [
+          "t2",
+          "t6",
+          "item_b_rework_decision"
+        ],
+        [
+          "t4",
+          "t6",
+          "rework_label_printed"
+        ],
+        [
+          "t5",
+          "t7",
+          "item_a_routed"
+        ],
+        [
+          "t6",
+          "t8",
+          "item_b_routed"
+        ],
+        [
+          "t7",
+          "t9",
+          "pass_routing_recorded"
+        ],
+        [
+          "t8",
+          "t9",
+          "rework_routing_recorded"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "inspection_station"
+        ],
+        [
+          "t3",
+          "t4",
+          "printer"
+        ],
+        [
+          "t7",
+          "t8",
+          "terminal"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm item A pass classification",
+        "object": "item A",
+        "pre_state": [
+          "item_a_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_a_pass_decision"
+        ],
+        "duration": 3,
+        "resource": [
+          "item_a",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "confirm item B rework classification",
+        "object": "item B",
+        "pre_state": [
+          "item_b_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_b_rework_decision"
+        ],
+        "duration": 3,
+        "resource": [
+          "item_b",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "print pass label",
+        "object": "pass label",
+        "pre_state": [
+          "item_a_pass_decision"
+        ],
+        "post_state": [
+          "pass_label_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "print rework label",
+        "object": "rework label",
+        "pre_state": [
+          "item_b_rework_decision"
+        ],
+        "post_state": [
+          "rework_label_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "label and route item A",
+        "object": "item A",
+        "pre_state": [
+          "item_a_pass_decision",
+          "pass_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "item_a_routed"
+        ],
+        "duration": 2,
+        "resource": [
+          "item_a",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "label and route item B",
+        "object": "item B",
+        "pre_state": [
+          "item_b_rework_decision",
+          "rework_label_printed",
+          "rework_tray_ready"
+        ],
+        "post_state": [
+          "item_b_routed"
+        ],
+        "duration": 2,
+        "resource": [
+          "item_b",
+          "rework_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record pass routing",
+        "object": "pass routing record",
+        "pre_state": [
+          "item_a_routed"
+        ],
+        "post_state": [
+          "pass_routing_recorded"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "record rework routing",
+        "object": "rework routing record",
+        "pre_state": [
+          "item_b_routed"
+        ],
+        "post_state": [
+          "rework_routing_recorded"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "close routing batch",
+        "object": "routing batch",
+        "pre_state": [
+          "pass_routing_recorded",
+          "rework_routing_recorded"
+        ],
+        "post_state": [
+          "routing_complete"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "pass_label_printed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "rework_label_printed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "item_a_routed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "item_b_routed"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "pass_routing_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "rework_routing_recorded"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "inspection_station"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "resource": "printer"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "inspection_rules_ready",
+        "item_a_available",
+        "item_b_available",
+        "pass_tray_ready",
+        "rework_tray_ready"
+      ],
+      "available_states": [
+        "inspection_rules_ready",
+        "item_a_available",
+        "item_a_pass_decision",
+        "item_a_routed",
+        "item_b_available",
+        "item_b_rework_decision",
+        "item_b_routed",
+        "pass_label_printed",
+        "pass_routing_recorded",
+        "pass_tray_ready",
+        "rework_label_printed",
+        "rework_routing_recorded",
+        "rework_tray_ready",
+        "routing_complete"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "routing_complete"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 11.0,
+    "waiting_time": 6.0,
+    "executor_utilization": 0.6818,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "confirm item A pass classification",
+        "object": "item A",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "item_a",
+          "inspection_station"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "confirm item B rework classification",
+        "object": "item B",
+        "start": 3.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "item_b",
+          "inspection_station"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "print pass label",
+        "object": "pass label",
+        "start": 3.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "print rework label",
+        "object": "rework label",
+        "start": 6.0,
+        "finish": 7.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "label and route item A",
+        "object": "item A",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "item_a",
+          "pass_tray"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "label and route item B",
+        "object": "item B",
+        "start": 7.0,
+        "finish": 9.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "item_b",
+          "rework_tray"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "record pass routing",
+        "object": "pass routing record",
+        "start": 6.0,
+        "finish": 7.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "record rework routing",
+        "object": "rework routing record",
+        "start": 9.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "close routing batch",
+        "object": "routing batch",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t2",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.6818181818181818
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_b_available",
+          "pass_tray_ready",
+          "rework_tray_ready"
+        ],
+        "available_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_a_pass_decision",
+          "item_a_routed",
+          "item_b_available",
+          "item_b_rework_decision",
+          "item_b_routed",
+          "pass_label_printed",
+          "pass_routing_recorded",
+          "pass_tray_ready",
+          "rework_label_printed",
+          "rework_routing_recorded",
+          "rework_tray_ready",
+          "routing_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "routing_complete"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_b_available",
+          "pass_tray_ready",
+          "rework_tray_ready"
+        ],
+        "available_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_a_pass_decision",
+          "item_a_routed",
+          "item_b_available",
+          "item_b_rework_decision",
+          "item_b_routed",
+          "pass_label_printed",
+          "pass_routing_recorded",
+          "pass_tray_ready",
+          "rework_label_printed",
+          "rework_routing_recorded",
+          "rework_tray_ready",
+          "routing_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "routing_complete"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_b_available",
+            "pass_tray_ready",
+            "rework_tray_ready"
+          ],
+          "available_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_a_pass_decision",
+            "item_a_routed",
+            "item_b_available",
+            "item_b_rework_decision",
+            "item_b_routed",
+            "pass_label_printed",
+            "pass_routing_recorded",
+            "pass_tray_ready",
+            "rework_label_printed",
+            "rework_routing_recorded",
+            "rework_tray_ready",
+            "routing_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "routing_complete"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_b_available",
+            "pass_tray_ready",
+            "rework_tray_ready"
+          ],
+          "available_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_a_pass_decision",
+            "item_a_routed",
+            "item_b_available",
+            "item_b_rework_decision",
+            "item_b_routed",
+            "pass_label_printed",
+            "pass_routing_recorded",
+            "pass_tray_ready",
+            "rework_label_printed",
+            "rework_routing_recorded",
+            "rework_tray_ready",
+            "routing_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "routing_complete"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 11.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.6818,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "item_a",
+            "inspection_station"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "item_b",
+            "inspection_station"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "item_a",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "item_b",
+            "rework_tray"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_b_available",
+          "pass_tray_ready",
+          "rework_tray_ready"
+        ],
+        "available_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_a_pass_decision",
+          "item_a_routed",
+          "item_b_available",
+          "item_b_rework_decision",
+          "item_b_routed",
+          "pass_label_printed",
+          "pass_routing_recorded",
+          "pass_tray_ready",
+          "rework_label_printed",
+          "rework_routing_recorded",
+          "rework_tray_ready",
+          "routing_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "routing_complete"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_b_available",
+          "pass_tray_ready",
+          "rework_tray_ready"
+        ],
+        "available_states": [
+          "inspection_rules_ready",
+          "item_a_available",
+          "item_a_pass_decision",
+          "item_a_routed",
+          "item_b_available",
+          "item_b_rework_decision",
+          "item_b_routed",
+          "pass_label_printed",
+          "pass_routing_recorded",
+          "pass_tray_ready",
+          "rework_label_printed",
+          "rework_routing_recorded",
+          "rework_tray_ready",
+          "routing_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "routing_complete"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_b_available",
+            "pass_tray_ready",
+            "rework_tray_ready"
+          ],
+          "available_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_a_pass_decision",
+            "item_a_routed",
+            "item_b_available",
+            "item_b_rework_decision",
+            "item_b_routed",
+            "pass_label_printed",
+            "pass_routing_recorded",
+            "pass_tray_ready",
+            "rework_label_printed",
+            "rework_routing_recorded",
+            "rework_tray_ready",
+            "routing_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "routing_complete"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_b_available",
+            "pass_tray_ready",
+            "rework_tray_ready"
+          ],
+          "available_states": [
+            "inspection_rules_ready",
+            "item_a_available",
+            "item_a_pass_decision",
+            "item_a_routed",
+            "item_b_available",
+            "item_b_rework_decision",
+            "item_b_routed",
+            "pass_label_printed",
+            "pass_routing_recorded",
+            "pass_tray_ready",
+            "rework_label_printed",
+            "rework_routing_recorded",
+            "rework_tray_ready",
+            "routing_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "routing_complete"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 11.0,
+      "waiting_time": 6.0,
+      "executor_utilization": 0.6818,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "item_a",
+            "inspection_station"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "item_b",
+            "inspection_station"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "item_a",
+            "pass_tray"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "start": 7.0,
+          "finish": 9.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "item_b",
+            "rework_tray"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm item A pass classification",
+        "object": "item A",
+        "pre_state": [
+          "item_a_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_a_pass_decision"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "item_a",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "confirm item B rework classification",
+        "object": "item B",
+        "pre_state": [
+          "item_b_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_b_rework_decision"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "item_b",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "print pass label",
+        "object": "pass label",
+        "pre_state": [
+          "item_a_pass_decision"
+        ],
+        "post_state": [
+          "pass_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "print rework label",
+        "object": "rework label",
+        "pre_state": [
+          "item_b_rework_decision"
+        ],
+        "post_state": [
+          "rework_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "label and route item A",
+        "object": "item A",
+        "pre_state": [
+          "item_a_pass_decision",
+          "pass_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "item_a_routed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "item_a",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "label and route item B",
+        "object": "item B",
+        "pre_state": [
+          "item_b_rework_decision",
+          "rework_label_printed",
+          "rework_tray_ready"
+        ],
+        "post_state": [
+          "item_b_routed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "item_b",
+          "rework_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record pass routing",
+        "object": "pass routing record",
+        "pre_state": [
+          "item_a_routed"
+        ],
+        "post_state": [
+          "pass_routing_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "record rework routing",
+        "object": "rework routing record",
+        "pre_state": [
+          "item_b_routed"
+        ],
+        "post_state": [
+          "rework_routing_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "close routing batch",
+        "object": "routing batch",
+        "pre_state": [
+          "pass_routing_recorded",
+          "rework_routing_recorded"
+        ],
+        "post_state": [
+          "routing_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "pass_label_printed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "rework_label_printed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_routed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_routed"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "pass_routing_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "rework_routing_recorded"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "inspection_station"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t2",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.6818181818181818
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "confirm item A pass classification",
+        "object": "item A",
+        "pre_state": [
+          "item_a_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_a_pass_decision"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "item_a",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "confirm item B rework classification",
+        "object": "item B",
+        "pre_state": [
+          "item_b_available",
+          "inspection_rules_ready"
+        ],
+        "post_state": [
+          "item_b_rework_decision"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "item_b",
+          "inspection_station"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "print pass label",
+        "object": "pass label",
+        "pre_state": [
+          "item_a_pass_decision"
+        ],
+        "post_state": [
+          "pass_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "print rework label",
+        "object": "rework label",
+        "pre_state": [
+          "item_b_rework_decision"
+        ],
+        "post_state": [
+          "rework_label_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "label and route item A",
+        "object": "item A",
+        "pre_state": [
+          "item_a_pass_decision",
+          "pass_label_printed",
+          "pass_tray_ready"
+        ],
+        "post_state": [
+          "item_a_routed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "item_a",
+          "pass_tray"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "label and route item B",
+        "object": "item B",
+        "pre_state": [
+          "item_b_rework_decision",
+          "rework_label_printed",
+          "rework_tray_ready"
+        ],
+        "post_state": [
+          "item_b_routed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "item_b",
+          "rework_tray"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record pass routing",
+        "object": "pass routing record",
+        "pre_state": [
+          "item_a_routed"
+        ],
+        "post_state": [
+          "pass_routing_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "record rework routing",
+        "object": "rework routing record",
+        "pre_state": [
+          "item_b_routed"
+        ],
+        "post_state": [
+          "rework_routing_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "close routing batch",
+        "object": "routing batch",
+        "pre_state": [
+          "pass_routing_recorded",
+          "rework_routing_recorded"
+        ],
+        "post_state": [
+          "routing_complete"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t3",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_pass_decision"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "pass_label_printed"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_rework_decision"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "rework_label_printed"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_a_routed"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "item_b_routed"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "pass_routing_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "rework_routing_recorded"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "inspection_station"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t2",
+        "t5",
+        2.0
+      ],
+      [
+        "t4",
+        "t7",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 8.0,
+      "right": 7.0
+    },
+    "utilization_unrounded": 0.6818181818181818
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "inspection_rules_ready",
+        "item_a_available",
+        "item_b_available",
+        "pass_tray_ready",
+        "rework_tray_ready"
+      ],
+      "available_states": [
+        "inspection_rules_ready",
+        "item_a_available",
+        "item_a_pass_decision",
+        "item_a_routed",
+        "item_b_available",
+        "item_b_rework_decision",
+        "item_b_routed",
+        "pass_label_printed",
+        "pass_routing_recorded",
+        "pass_tray_ready",
+        "rework_label_printed",
+        "rework_routing_recorded",
+        "rework_tray_ready",
+        "routing_complete"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "routing_complete"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "confirm item A pass classification",
+          "object": "item A",
+          "pre_state": [
+            "item_a_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_a_pass_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_a",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "confirm item B rework classification",
+          "object": "item B",
+          "pre_state": [
+            "item_b_available",
+            "inspection_rules_ready"
+          ],
+          "post_state": [
+            "item_b_rework_decision"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "item_b",
+            "inspection_station"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "print pass label",
+          "object": "pass label",
+          "pre_state": [
+            "item_a_pass_decision"
+          ],
+          "post_state": [
+            "pass_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "print rework label",
+          "object": "rework label",
+          "pre_state": [
+            "item_b_rework_decision"
+          ],
+          "post_state": [
+            "rework_label_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "label and route item A",
+          "object": "item A",
+          "pre_state": [
+            "item_a_pass_decision",
+            "pass_label_printed",
+            "pass_tray_ready"
+          ],
+          "post_state": [
+            "item_a_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_a",
+            "pass_tray"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "label and route item B",
+          "object": "item B",
+          "pre_state": [
+            "item_b_rework_decision",
+            "rework_label_printed",
+            "rework_tray_ready"
+          ],
+          "post_state": [
+            "item_b_routed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "item_b",
+            "rework_tray"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record pass routing",
+          "object": "pass routing record",
+          "pre_state": [
+            "item_a_routed"
+          ],
+          "post_state": [
+            "pass_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record rework routing",
+          "object": "rework routing record",
+          "pre_state": [
+            "item_b_routed"
+          ],
+          "post_state": [
+            "rework_routing_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close routing batch",
+          "object": "routing batch",
+          "pre_state": [
+            "pass_routing_recorded",
+            "rework_routing_recorded"
+          ],
+          "post_state": [
+            "routing_complete"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t3",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_pass_decision"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_label_printed"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_rework_decision"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_label_printed"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_a_routed"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "item_b_routed"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "pass_routing_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "rework_routing_recorded"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "inspection_station"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "S02",
+    "domain": "sorting",
+    "title": "Routing accepted and rework parts",
+    "nodes": 9,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 10,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 7,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 15.0,
+    "cooperative_duration": 0,
+    "before_makespan": 11.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 11.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 11.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 7,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.3636363636363635,
+    "relative_duration_reduction_vs_serial": 0.2666666666666667,
+    "executor_utilization": 0.6818181818181818,
+    "left_busy_time": 8.0,
+    "right_busy_time": 7.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 11.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

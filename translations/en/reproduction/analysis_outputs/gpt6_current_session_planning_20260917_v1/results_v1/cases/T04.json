@@ -1,0 +1,6507 @@
+{
+  "task_id": "T04",
+  "spec": {
+    "task_id": "T04",
+    "domain": "workcell_preparation",
+    "title": "Two-stage tooling handover",
+    "instruction": "Verify the identity of the new tooling, prepare the receiving table and confirm the transport pallet. Position the support blocks, then transfer the tooling from the pallet to the table using both units. Prepare two accessory groups independently and install them using a shared tool. Inspect both groups, move the complete tooling to the handover position using both units, combine the inspection records and print the handover sheet.",
+    "S0": [
+      "new_tooling_available",
+      "receiving_table_available",
+      "transport_tray_ready",
+      "support_blocks_available",
+      "accessory_a_available",
+      "accessory_b_available",
+      "handover_position_ready",
+      "handover_order_ready"
+    ],
+    "Sg": [
+      "tooling_handover_documented"
+    ],
+    "resources": [
+      "tooling",
+      "receiving_table",
+      "transport_tray",
+      "support_blocks",
+      "accessory_a",
+      "accessory_b",
+      "driver",
+      "tester",
+      "handover_position",
+      "terminal",
+      "printer"
+    ]
+  },
+  "raw_source": "raw_candidates_workcell.json",
+  "raw_candidate": {
+    "task_id": "T04",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "verify new tooling identity",
+        "object": "tooling",
+        "Pre": [
+          "new_tooling_available"
+        ],
+        "Post": [
+          "tooling_identity_verified"
+        ],
+        "d": 2,
+        "Res": [
+          "tooling"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare receiving table",
+        "object": "receiving table",
+        "Pre": [
+          "receiving_table_available"
+        ],
+        "Post": [
+          "receiving_table_prepared"
+        ],
+        "d": 3,
+        "Res": [
+          "receiving_table"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "confirm transport tray readiness",
+        "object": "transport tray",
+        "Pre": [
+          "transport_tray_ready"
+        ],
+        "Post": [
+          "transport_tray_confirmed"
+        ],
+        "d": 1,
+        "Res": [
+          "transport_tray"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place support blocks on table",
+        "object": "support blocks",
+        "Pre": [
+          "receiving_table_prepared",
+          "support_blocks_available"
+        ],
+        "Post": [
+          "table_supports_ready"
+        ],
+        "d": 2,
+        "Res": [
+          "receiving_table",
+          "support_blocks"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "transfer tooling onto receiving table together",
+        "object": "tooling",
+        "Pre": [
+          "tooling_identity_verified",
+          "table_supports_ready",
+          "transport_tray_confirmed"
+        ],
+        "Post": [
+          "tooling_on_receiving_table"
+        ],
+        "d": 4,
+        "Res": [
+          "tooling",
+          "receiving_table",
+          "transport_tray",
+          "support_blocks"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "prepare accessory group A",
+        "object": "accessory A",
+        "Pre": [
+          "accessory_a_available"
+        ],
+        "Post": [
+          "accessory_a_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "accessory_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "prepare accessory group B",
+        "object": "accessory B",
+        "Pre": [
+          "accessory_b_available"
+        ],
+        "Post": [
+          "accessory_b_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "accessory_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "install accessory group A",
+        "object": "accessory A",
+        "Pre": [
+          "tooling_on_receiving_table",
+          "accessory_a_prepared"
+        ],
+        "Post": [
+          "accessory_a_installed"
+        ],
+        "d": 3,
+        "Res": [
+          "tooling",
+          "accessory_a",
+          "driver"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "install accessory group B",
+        "object": "accessory B",
+        "Pre": [
+          "tooling_on_receiving_table",
+          "accessory_b_prepared"
+        ],
+        "Post": [
+          "accessory_b_installed"
+        ],
+        "d": 3,
+        "Res": [
+          "tooling",
+          "accessory_b",
+          "driver"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "test accessory group A",
+        "object": "accessory A",
+        "Pre": [
+          "accessory_a_installed"
+        ],
+        "Post": [
+          "accessory_a_tested"
+        ],
+        "d": 3,
+        "Res": [
+          "tooling",
+          "accessory_a",
+          "tester"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "test accessory group B",
+        "object": "accessory B",
+        "Pre": [
+          "accessory_b_installed"
+        ],
+        "Post": [
+          "accessory_b_tested"
+        ],
+        "d": 3,
+        "Res": [
+          "tooling",
+          "accessory_b",
+          "tester"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "move completed tooling to handover position together",
+        "object": "tooling",
+        "Pre": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "handover_position_ready"
+        ],
+        "Post": [
+          "tooling_at_handover"
+        ],
+        "d": 4,
+        "Res": [
+          "tooling",
+          "receiving_table",
+          "handover_position"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t13",
+        "action": "merge tooling test and transfer records",
+        "object": "handover record",
+        "Pre": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "tooling_at_handover",
+          "handover_order_ready"
+        ],
+        "Post": [
+          "handover_record_complete"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t14",
+        "action": "print tooling handover document",
+        "object": "handover document",
+        "Pre": [
+          "handover_record_complete"
+        ],
+        "Post": [
+          "tooling_handover_documented"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t2",
+          "t4",
+          "receiving_table_prepared"
+        ],
+        [
+          "t1",
+          "t5",
+          "tooling_identity_verified"
+        ],
+        [
+          "t4",
+          "t5",
+          "table_supports_ready"
+        ],
+        [
+          "t3",
+          "t5",
+          "transport_tray_confirmed"
+        ],
+        [
+          "t5",
+          "t8",
+          "tooling_on_receiving_table"
+        ],
+        [
+          "t6",
+          "t8",
+          "accessory_a_prepared"
+        ],
+        [
+          "t5",
+          "t9",
+          "tooling_on_receiving_table"
+        ],
+        [
+          "t7",
+          "t9",
+          "accessory_b_prepared"
+        ],
+        [
+          "t8",
+          "t10",
+          "accessory_a_installed"
+        ],
+        [
+          "t9",
+          "t11",
+          "accessory_b_installed"
+        ],
+        [
+          "t10",
+          "t12",
+          "accessory_a_tested"
+        ],
+        [
+          "t11",
+          "t12",
+          "accessory_b_tested"
+        ],
+        [
+          "t10",
+          "t13",
+          "accessory_a_tested"
+        ],
+        [
+          "t11",
+          "t13",
+          "accessory_b_tested"
+        ],
+        [
+          "t12",
+          "t13",
+          "tooling_at_handover"
+        ],
+        [
+          "t13",
+          "t14",
+          "handover_record_complete"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t5",
+          "tooling_identity_verified"
+        ],
+        [
+          "t4",
+          "t5",
+          "table_supports_ready"
+        ],
+        [
+          "t3",
+          "t5",
+          "transport_tray_confirmed"
+        ],
+        [
+          "t10",
+          "t12",
+          "accessory_a_tested"
+        ],
+        [
+          "t11",
+          "t12",
+          "accessory_b_tested"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t8",
+          "t9",
+          "driver"
+        ],
+        [
+          "t9",
+          "t10",
+          "tooling"
+        ],
+        [
+          "t10",
+          "t11",
+          "tester"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "verify new tooling identity",
+        "object": "tooling",
+        "pre_state": [
+          "new_tooling_available"
+        ],
+        "post_state": [
+          "tooling_identity_verified"
+        ],
+        "duration": 2,
+        "resource": [
+          "tooling"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare receiving table",
+        "object": "receiving table",
+        "pre_state": [
+          "receiving_table_available"
+        ],
+        "post_state": [
+          "receiving_table_prepared"
+        ],
+        "duration": 3,
+        "resource": [
+          "receiving_table"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "confirm transport tray readiness",
+        "object": "transport tray",
+        "pre_state": [
+          "transport_tray_ready"
+        ],
+        "post_state": [
+          "transport_tray_confirmed"
+        ],
+        "duration": 1,
+        "resource": [
+          "transport_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "place support blocks on table",
+        "object": "support blocks",
+        "pre_state": [
+          "receiving_table_prepared",
+          "support_blocks_available"
+        ],
+        "post_state": [
+          "table_supports_ready"
+        ],
+        "duration": 2,
+        "resource": [
+          "receiving_table",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "transfer tooling onto receiving table together",
+        "object": "tooling",
+        "pre_state": [
+          "tooling_identity_verified",
+          "table_supports_ready",
+          "transport_tray_confirmed"
+        ],
+        "post_state": [
+          "tooling_on_receiving_table"
+        ],
+        "duration": 4,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "transport_tray",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "prepare accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_available"
+        ],
+        "post_state": [
+          "accessory_a_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "accessory_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "prepare accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_available"
+        ],
+        "post_state": [
+          "accessory_b_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "accessory_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "install accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_a_prepared"
+        ],
+        "post_state": [
+          "accessory_a_installed"
+        ],
+        "duration": 3,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "install accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_b_prepared"
+        ],
+        "post_state": [
+          "accessory_b_installed"
+        ],
+        "duration": 3,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "test accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_installed"
+        ],
+        "post_state": [
+          "accessory_a_tested"
+        ],
+        "duration": 3,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "tester"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "test accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_installed"
+        ],
+        "post_state": [
+          "accessory_b_tested"
+        ],
+        "duration": 3,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "move completed tooling to handover position together",
+        "object": "tooling",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "handover_position_ready"
+        ],
+        "post_state": [
+          "tooling_at_handover"
+        ],
+        "duration": 4,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "handover_position"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t13",
+        "action": "merge tooling test and transfer records",
+        "object": "handover record",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "tooling_at_handover",
+          "handover_order_ready"
+        ],
+        "post_state": [
+          "handover_record_complete"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t14",
+        "action": "print tooling handover document",
+        "object": "handover document",
+        "pre_state": [
+          "handover_record_complete"
+        ],
+        "post_state": [
+          "tooling_handover_documented"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "receiving_table_prepared"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "accessory_a_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "accessory_b_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "accessory_a_installed"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "accessory_b_installed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t10",
+        "target": "t13",
+        "type": "state_support",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "state": "tooling_at_handover"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "state": "handover_record_complete"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "synchronization",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "resource": "driver"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "resource": "tooling"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "resource": "tester"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "accessory_a_available",
+        "accessory_b_available",
+        "handover_order_ready",
+        "handover_position_ready",
+        "new_tooling_available",
+        "receiving_table_available",
+        "support_blocks_available",
+        "transport_tray_ready"
+      ],
+      "available_states": [
+        "accessory_a_available",
+        "accessory_a_installed",
+        "accessory_a_prepared",
+        "accessory_a_tested",
+        "accessory_b_available",
+        "accessory_b_installed",
+        "accessory_b_prepared",
+        "accessory_b_tested",
+        "handover_order_ready",
+        "handover_position_ready",
+        "handover_record_complete",
+        "new_tooling_available",
+        "receiving_table_available",
+        "receiving_table_prepared",
+        "support_blocks_available",
+        "table_supports_ready",
+        "tooling_at_handover",
+        "tooling_handover_documented",
+        "tooling_identity_verified",
+        "tooling_on_receiving_table",
+        "transport_tray_confirmed",
+        "transport_tray_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "tooling_handover_documented"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 30.0,
+    "waiting_time": 16.0,
+    "executor_utilization": 0.7167,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "verify new tooling identity",
+        "object": "tooling",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tooling"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare receiving table",
+        "object": "receiving table",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "receiving_table"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "confirm transport tray readiness",
+        "object": "transport tray",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "transport_tray"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "place support blocks on table",
+        "object": "support blocks",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "receiving_table",
+          "support_blocks"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "transfer tooling onto receiving table together",
+        "object": "tooling",
+        "start": 5.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "tooling",
+          "receiving_table",
+          "transport_tray",
+          "support_blocks"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "prepare accessory group A",
+        "object": "accessory A",
+        "start": 9.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "accessory_a"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "prepare accessory group B",
+        "object": "accessory B",
+        "start": 9.0,
+        "finish": 11.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "accessory_b"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "install accessory group A",
+        "object": "accessory A",
+        "start": 11.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tooling",
+          "accessory_a",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "install accessory group B",
+        "object": "accessory B",
+        "start": 14.0,
+        "finish": 17.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tooling",
+          "accessory_b",
+          "driver"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "test accessory group A",
+        "object": "accessory A",
+        "start": 17.0,
+        "finish": 20.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tooling",
+          "accessory_a",
+          "tester"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "test accessory group B",
+        "object": "accessory B",
+        "start": 20.0,
+        "finish": 23.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tooling",
+          "accessory_b",
+          "tester"
+        ]
+      },
+      {
+        "node_id": "t12",
+        "action": "move completed tooling to handover position together",
+        "object": "tooling",
+        "start": 23.0,
+        "finish": 27.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "tooling",
+          "receiving_table",
+          "handover_position"
+        ]
+      },
+      {
+        "node_id": "t13",
+        "action": "merge tooling test and transfer records",
+        "object": "handover record",
+        "start": 27.0,
+        "finish": 29.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t14",
+        "action": "print tooling handover document",
+        "object": "handover document",
+        "start": 29.0,
+        "finish": 30.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 22.0
+    },
+    "utilization_unrounded": 0.7166666666666667
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "accessory_b_tested"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "accessory_a_available",
+          "accessory_b_available",
+          "handover_order_ready",
+          "handover_position_ready",
+          "new_tooling_available",
+          "receiving_table_available",
+          "support_blocks_available",
+          "transport_tray_ready"
+        ],
+        "available_states": [
+          "accessory_a_available",
+          "accessory_a_installed",
+          "accessory_a_prepared",
+          "accessory_a_tested",
+          "accessory_b_available",
+          "accessory_b_installed",
+          "accessory_b_prepared",
+          "accessory_b_tested",
+          "handover_order_ready",
+          "handover_position_ready",
+          "handover_record_complete",
+          "new_tooling_available",
+          "receiving_table_available",
+          "receiving_table_prepared",
+          "support_blocks_available",
+          "table_supports_ready",
+          "tooling_at_handover",
+          "tooling_handover_documented",
+          "tooling_identity_verified",
+          "tooling_on_receiving_table",
+          "transport_tray_confirmed",
+          "transport_tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "tooling_handover_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "accessory_a_available",
+          "accessory_b_available",
+          "handover_order_ready",
+          "handover_position_ready",
+          "new_tooling_available",
+          "receiving_table_available",
+          "support_blocks_available",
+          "transport_tray_ready"
+        ],
+        "available_states": [
+          "accessory_a_available",
+          "accessory_a_installed",
+          "accessory_a_prepared",
+          "accessory_a_tested",
+          "accessory_b_available",
+          "accessory_b_installed",
+          "accessory_b_prepared",
+          "accessory_b_tested",
+          "handover_order_ready",
+          "handover_position_ready",
+          "handover_record_complete",
+          "new_tooling_available",
+          "receiving_table_available",
+          "receiving_table_prepared",
+          "support_blocks_available",
+          "table_supports_ready",
+          "tooling_at_handover",
+          "tooling_handover_documented",
+          "tooling_identity_verified",
+          "tooling_on_receiving_table",
+          "transport_tray_confirmed",
+          "transport_tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "tooling_handover_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "accessory_a_available",
+            "accessory_b_available",
+            "handover_order_ready",
+            "handover_position_ready",
+            "new_tooling_available",
+            "receiving_table_available",
+            "support_blocks_available",
+            "transport_tray_ready"
+          ],
+          "available_states": [
+            "accessory_a_available",
+            "accessory_a_installed",
+            "accessory_a_prepared",
+            "accessory_a_tested",
+            "accessory_b_available",
+            "accessory_b_installed",
+            "accessory_b_prepared",
+            "accessory_b_tested",
+            "handover_order_ready",
+            "handover_position_ready",
+            "handover_record_complete",
+            "new_tooling_available",
+            "receiving_table_available",
+            "receiving_table_prepared",
+            "support_blocks_available",
+            "table_supports_ready",
+            "tooling_at_handover",
+            "tooling_handover_documented",
+            "tooling_identity_verified",
+            "tooling_on_receiving_table",
+            "transport_tray_confirmed",
+            "transport_tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "tooling_handover_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "accessory_a_available",
+            "accessory_b_available",
+            "handover_order_ready",
+            "handover_position_ready",
+            "new_tooling_available",
+            "receiving_table_available",
+            "support_blocks_available",
+            "transport_tray_ready"
+          ],
+          "available_states": [
+            "accessory_a_available",
+            "accessory_a_installed",
+            "accessory_a_prepared",
+            "accessory_a_tested",
+            "accessory_b_available",
+            "accessory_b_installed",
+            "accessory_b_prepared",
+            "accessory_b_tested",
+            "handover_order_ready",
+            "handover_position_ready",
+            "handover_record_complete",
+            "new_tooling_available",
+            "receiving_table_available",
+            "receiving_table_prepared",
+            "support_blocks_available",
+            "table_supports_ready",
+            "tooling_at_handover",
+            "tooling_handover_documented",
+            "tooling_identity_verified",
+            "tooling_on_receiving_table",
+            "transport_tray_confirmed",
+            "transport_tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "tooling_handover_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "tooling_identity_verified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tooling_identity_verified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "table_supports_ready",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for table_supports_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "transport_tray_confirmed",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for transport_tray_confirmed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t10",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_a_tested",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for accessory_a_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_b_tested",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for accessory_b_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "table_supports_ready",
+          "resource": null,
+          "reason": "cooperative input state table_supports_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "tooling_identity_verified",
+          "resource": null,
+          "reason": "cooperative input state tooling_identity_verified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "transport_tray_confirmed",
+          "resource": null,
+          "reason": "cooperative input state transport_tray_confirmed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t10",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_a_tested",
+          "resource": null,
+          "reason": "cooperative input state accessory_a_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_b_tested",
+          "resource": null,
+          "reason": "cooperative input state accessory_b_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 30.0,
+      "waiting_time": 16.0,
+      "executor_utilization": 0.7167,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "receiving_table"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "transport_tray"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "receiving_table",
+            "support_blocks"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "start": 5.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "accessory_a"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "accessory_b"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "start": 11.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "start": 14.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "start": 17.0,
+          "finish": 20.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "start": 20.0,
+          "finish": 23.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "start": 23.0,
+          "finish": 27.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "start": 27.0,
+          "finish": 29.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "start": 29.0,
+          "finish": 30.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "accessory_b_tested"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "accessory_a_available",
+          "accessory_b_available",
+          "handover_order_ready",
+          "handover_position_ready",
+          "new_tooling_available",
+          "receiving_table_available",
+          "support_blocks_available",
+          "transport_tray_ready"
+        ],
+        "available_states": [
+          "accessory_a_available",
+          "accessory_a_installed",
+          "accessory_a_prepared",
+          "accessory_a_tested",
+          "accessory_b_available",
+          "accessory_b_installed",
+          "accessory_b_prepared",
+          "accessory_b_tested",
+          "handover_order_ready",
+          "handover_position_ready",
+          "handover_record_complete",
+          "new_tooling_available",
+          "receiving_table_available",
+          "receiving_table_prepared",
+          "support_blocks_available",
+          "table_supports_ready",
+          "tooling_at_handover",
+          "tooling_handover_documented",
+          "tooling_identity_verified",
+          "tooling_on_receiving_table",
+          "transport_tray_confirmed",
+          "transport_tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "tooling_handover_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "accessory_a_available",
+          "accessory_b_available",
+          "handover_order_ready",
+          "handover_position_ready",
+          "new_tooling_available",
+          "receiving_table_available",
+          "support_blocks_available",
+          "transport_tray_ready"
+        ],
+        "available_states": [
+          "accessory_a_available",
+          "accessory_a_installed",
+          "accessory_a_prepared",
+          "accessory_a_tested",
+          "accessory_b_available",
+          "accessory_b_installed",
+          "accessory_b_prepared",
+          "accessory_b_tested",
+          "handover_order_ready",
+          "handover_position_ready",
+          "handover_record_complete",
+          "new_tooling_available",
+          "receiving_table_available",
+          "receiving_table_prepared",
+          "support_blocks_available",
+          "table_supports_ready",
+          "tooling_at_handover",
+          "tooling_handover_documented",
+          "tooling_identity_verified",
+          "tooling_on_receiving_table",
+          "transport_tray_confirmed",
+          "transport_tray_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "tooling_handover_documented"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "accessory_a_available",
+            "accessory_b_available",
+            "handover_order_ready",
+            "handover_position_ready",
+            "new_tooling_available",
+            "receiving_table_available",
+            "support_blocks_available",
+            "transport_tray_ready"
+          ],
+          "available_states": [
+            "accessory_a_available",
+            "accessory_a_installed",
+            "accessory_a_prepared",
+            "accessory_a_tested",
+            "accessory_b_available",
+            "accessory_b_installed",
+            "accessory_b_prepared",
+            "accessory_b_tested",
+            "handover_order_ready",
+            "handover_position_ready",
+            "handover_record_complete",
+            "new_tooling_available",
+            "receiving_table_available",
+            "receiving_table_prepared",
+            "support_blocks_available",
+            "table_supports_ready",
+            "tooling_at_handover",
+            "tooling_handover_documented",
+            "tooling_identity_verified",
+            "tooling_on_receiving_table",
+            "transport_tray_confirmed",
+            "transport_tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "tooling_handover_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "accessory_a_available",
+            "accessory_b_available",
+            "handover_order_ready",
+            "handover_position_ready",
+            "new_tooling_available",
+            "receiving_table_available",
+            "support_blocks_available",
+            "transport_tray_ready"
+          ],
+          "available_states": [
+            "accessory_a_available",
+            "accessory_a_installed",
+            "accessory_a_prepared",
+            "accessory_a_tested",
+            "accessory_b_available",
+            "accessory_b_installed",
+            "accessory_b_prepared",
+            "accessory_b_tested",
+            "handover_order_ready",
+            "handover_position_ready",
+            "handover_record_complete",
+            "new_tooling_available",
+            "receiving_table_available",
+            "receiving_table_prepared",
+            "support_blocks_available",
+            "table_supports_ready",
+            "tooling_at_handover",
+            "tooling_handover_documented",
+            "tooling_identity_verified",
+            "tooling_on_receiving_table",
+            "transport_tray_confirmed",
+            "transport_tray_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "tooling_handover_documented"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "tooling_identity_verified",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tooling_identity_verified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "table_supports_ready",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for table_supports_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "transport_tray_confirmed",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for transport_tray_confirmed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t10",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_a_tested",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for accessory_a_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_b_tested",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for accessory_b_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "table_supports_ready",
+          "resource": null,
+          "reason": "cooperative input state table_supports_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "tooling_identity_verified",
+          "resource": null,
+          "reason": "cooperative input state tooling_identity_verified",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t3",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "transport_tray_confirmed",
+          "resource": null,
+          "reason": "cooperative input state transport_tray_confirmed",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t10",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_a_tested",
+          "resource": null,
+          "reason": "cooperative input state accessory_a_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "accessory_b_tested",
+          "resource": null,
+          "reason": "cooperative input state accessory_b_tested",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 30.0,
+      "waiting_time": 16.0,
+      "executor_utilization": 0.7167,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "receiving_table"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "transport_tray"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "receiving_table",
+            "support_blocks"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "start": 5.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "accessory_a"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "accessory_b"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "start": 11.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "start": 14.0,
+          "finish": 17.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "start": 17.0,
+          "finish": 20.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "start": 20.0,
+          "finish": 23.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "start": 23.0,
+          "finish": 27.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "start": 27.0,
+          "finish": 29.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "start": 29.0,
+          "finish": 30.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "verify new tooling identity",
+        "object": "tooling",
+        "pre_state": [
+          "new_tooling_available"
+        ],
+        "post_state": [
+          "tooling_identity_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tooling"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare receiving table",
+        "object": "receiving table",
+        "pre_state": [
+          "receiving_table_available"
+        ],
+        "post_state": [
+          "receiving_table_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "receiving_table"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "confirm transport tray readiness",
+        "object": "transport tray",
+        "pre_state": [
+          "transport_tray_ready"
+        ],
+        "post_state": [
+          "transport_tray_confirmed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "transport_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place support blocks on table",
+        "object": "support blocks",
+        "pre_state": [
+          "receiving_table_prepared",
+          "support_blocks_available"
+        ],
+        "post_state": [
+          "table_supports_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "receiving_table",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "transfer tooling onto receiving table together",
+        "object": "tooling",
+        "pre_state": [
+          "tooling_identity_verified",
+          "table_supports_ready",
+          "transport_tray_confirmed"
+        ],
+        "post_state": [
+          "tooling_on_receiving_table"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "transport_tray",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "prepare accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_available"
+        ],
+        "post_state": [
+          "accessory_a_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "accessory_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "prepare accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_available"
+        ],
+        "post_state": [
+          "accessory_b_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "accessory_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "install accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_a_prepared"
+        ],
+        "post_state": [
+          "accessory_a_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "install accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_b_prepared"
+        ],
+        "post_state": [
+          "accessory_b_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "test accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_installed"
+        ],
+        "post_state": [
+          "accessory_a_tested"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "tester"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "test accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_installed"
+        ],
+        "post_state": [
+          "accessory_b_tested"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "move completed tooling to handover position together",
+        "object": "tooling",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "handover_position_ready"
+        ],
+        "post_state": [
+          "tooling_at_handover"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "handover_position"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "merge tooling test and transfer records",
+        "object": "handover record",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "tooling_at_handover",
+          "handover_order_ready"
+        ],
+        "post_state": [
+          "handover_record_complete"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t14",
+        "action": "print tooling handover document",
+        "object": "handover document",
+        "pre_state": [
+          "handover_record_complete"
+        ],
+        "post_state": [
+          "tooling_handover_documented"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "receiving_table_prepared"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_installed"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_installed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t10",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_at_handover"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "reason": "",
+        "state": "handover_record_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tooling"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tester"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "accessory_b_tested"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 22.0
+    },
+    "utilization_unrounded": 0.7166666666666667
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "verify new tooling identity",
+        "object": "tooling",
+        "pre_state": [
+          "new_tooling_available"
+        ],
+        "post_state": [
+          "tooling_identity_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tooling"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare receiving table",
+        "object": "receiving table",
+        "pre_state": [
+          "receiving_table_available"
+        ],
+        "post_state": [
+          "receiving_table_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "receiving_table"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "confirm transport tray readiness",
+        "object": "transport tray",
+        "pre_state": [
+          "transport_tray_ready"
+        ],
+        "post_state": [
+          "transport_tray_confirmed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "transport_tray"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "place support blocks on table",
+        "object": "support blocks",
+        "pre_state": [
+          "receiving_table_prepared",
+          "support_blocks_available"
+        ],
+        "post_state": [
+          "table_supports_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "receiving_table",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "transfer tooling onto receiving table together",
+        "object": "tooling",
+        "pre_state": [
+          "tooling_identity_verified",
+          "table_supports_ready",
+          "transport_tray_confirmed"
+        ],
+        "post_state": [
+          "tooling_on_receiving_table"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "transport_tray",
+          "support_blocks"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "prepare accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_available"
+        ],
+        "post_state": [
+          "accessory_a_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "accessory_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "prepare accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_available"
+        ],
+        "post_state": [
+          "accessory_b_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "accessory_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "install accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_a_prepared"
+        ],
+        "post_state": [
+          "accessory_a_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "driver"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "install accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "tooling_on_receiving_table",
+          "accessory_b_prepared"
+        ],
+        "post_state": [
+          "accessory_b_installed"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "driver"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "test accessory group A",
+        "object": "accessory A",
+        "pre_state": [
+          "accessory_a_installed"
+        ],
+        "post_state": [
+          "accessory_a_tested"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_a",
+          "tester"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "test accessory group B",
+        "object": "accessory B",
+        "pre_state": [
+          "accessory_b_installed"
+        ],
+        "post_state": [
+          "accessory_b_tested"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "tooling",
+          "accessory_b",
+          "tester"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "move completed tooling to handover position together",
+        "object": "tooling",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "handover_position_ready"
+        ],
+        "post_state": [
+          "tooling_at_handover"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tooling",
+          "receiving_table",
+          "handover_position"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "merge tooling test and transfer records",
+        "object": "handover record",
+        "pre_state": [
+          "accessory_a_tested",
+          "accessory_b_tested",
+          "tooling_at_handover",
+          "handover_order_ready"
+        ],
+        "post_state": [
+          "handover_record_complete"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t14",
+        "action": "print tooling handover document",
+        "object": "handover document",
+        "pre_state": [
+          "handover_record_complete"
+        ],
+        "post_state": [
+          "tooling_handover_documented"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "receiving_table_prepared"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t5",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_on_receiving_table"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_installed"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_installed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t10",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "accessory_b_tested"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "tooling_at_handover"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "reason": "",
+        "state": "handover_record_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "driver"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tooling"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tester"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "table_supports_ready"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tooling_identity_verified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "transport_tray_confirmed"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "accessory_a_tested"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "accessory_b_tested"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 21.0,
+      "right": 22.0
+    },
+    "utilization_unrounded": 0.7166666666666667
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "accessory_a_available",
+        "accessory_b_available",
+        "handover_order_ready",
+        "handover_position_ready",
+        "new_tooling_available",
+        "receiving_table_available",
+        "support_blocks_available",
+        "transport_tray_ready"
+      ],
+      "available_states": [
+        "accessory_a_available",
+        "accessory_a_installed",
+        "accessory_a_prepared",
+        "accessory_a_tested",
+        "accessory_b_available",
+        "accessory_b_installed",
+        "accessory_b_prepared",
+        "accessory_b_tested",
+        "handover_order_ready",
+        "handover_position_ready",
+        "handover_record_complete",
+        "new_tooling_available",
+        "receiving_table_available",
+        "receiving_table_prepared",
+        "support_blocks_available",
+        "table_supports_ready",
+        "tooling_at_handover",
+        "tooling_handover_documented",
+        "tooling_identity_verified",
+        "tooling_on_receiving_table",
+        "transport_tray_confirmed",
+        "transport_tray_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "tooling_handover_documented"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_b_tested"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_b_tested"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "verify new tooling identity",
+          "object": "tooling",
+          "pre_state": [
+            "new_tooling_available"
+          ],
+          "post_state": [
+            "tooling_identity_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tooling"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare receiving table",
+          "object": "receiving table",
+          "pre_state": [
+            "receiving_table_available"
+          ],
+          "post_state": [
+            "receiving_table_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "receiving_table"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "confirm transport tray readiness",
+          "object": "transport tray",
+          "pre_state": [
+            "transport_tray_ready"
+          ],
+          "post_state": [
+            "transport_tray_confirmed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "transport_tray"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "place support blocks on table",
+          "object": "support blocks",
+          "pre_state": [
+            "receiving_table_prepared",
+            "support_blocks_available"
+          ],
+          "post_state": [
+            "table_supports_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "receiving_table",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "transfer tooling onto receiving table together",
+          "object": "tooling",
+          "pre_state": [
+            "tooling_identity_verified",
+            "table_supports_ready",
+            "transport_tray_confirmed"
+          ],
+          "post_state": [
+            "tooling_on_receiving_table"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "transport_tray",
+            "support_blocks"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "prepare accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_available"
+          ],
+          "post_state": [
+            "accessory_a_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_available"
+          ],
+          "post_state": [
+            "accessory_b_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "accessory_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "install accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_a_prepared"
+          ],
+          "post_state": [
+            "accessory_a_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "driver"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "install accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "tooling_on_receiving_table",
+            "accessory_b_prepared"
+          ],
+          "post_state": [
+            "accessory_b_installed"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "driver"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "test accessory group A",
+          "object": "accessory A",
+          "pre_state": [
+            "accessory_a_installed"
+          ],
+          "post_state": [
+            "accessory_a_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_a",
+            "tester"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "test accessory group B",
+          "object": "accessory B",
+          "pre_state": [
+            "accessory_b_installed"
+          ],
+          "post_state": [
+            "accessory_b_tested"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "tooling",
+            "accessory_b",
+            "tester"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "move completed tooling to handover position together",
+          "object": "tooling",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "handover_position_ready"
+          ],
+          "post_state": [
+            "tooling_at_handover"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tooling",
+            "receiving_table",
+            "handover_position"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "merge tooling test and transfer records",
+          "object": "handover record",
+          "pre_state": [
+            "accessory_a_tested",
+            "accessory_b_tested",
+            "tooling_at_handover",
+            "handover_order_ready"
+          ],
+          "post_state": [
+            "handover_record_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "print tooling handover document",
+          "object": "handover document",
+          "pre_state": [
+            "handover_record_complete"
+          ],
+          "post_state": [
+            "tooling_handover_documented"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "receiving_table_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t5",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_on_receiving_table"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_installed"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_installed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t10",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "accessory_b_tested"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "tooling_at_handover"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "handover_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "driver"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tooling"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tester"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "table_supports_ready"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tooling_identity_verified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "transport_tray_confirmed"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_a_tested"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "accessory_b_tested"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "T04",
+    "domain": "workcell_preparation",
+    "title": "Two-stage tooling handover",
+    "nodes": 14,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 16,
+    "raw_E_sync": 5,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 12,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 35.0,
+    "cooperative_duration": 8.0,
+    "before_makespan": 30.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 30.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 30.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 12,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 10,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 10,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.1666666666666667,
+    "relative_duration_reduction_vs_serial": 0.1428571428571429,
+    "executor_utilization": 0.7166666666666667,
+    "left_busy_time": 21.0,
+    "right_busy_time": 22.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 28.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

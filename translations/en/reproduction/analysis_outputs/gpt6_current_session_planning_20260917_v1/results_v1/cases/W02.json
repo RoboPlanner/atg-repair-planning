@@ -1,0 +1,3782 @@
+{
+  "task_id": "W02",
+  "spec": {
+    "task_id": "W02",
+    "domain": "warehouse",
+    "title": "Replenishing two storage locations",
+    "instruction": "Confirm available space at both storage locations, then scan the two replenishment batches. Deliver each batch of boxes to its corresponding location and check the quantity. Close the work order after both location records are complete. The scanner and registration terminal are shared.",
+    "S0": [
+      "bin_a_available",
+      "bin_b_available",
+      "carton_a_available",
+      "carton_b_available",
+      "replenishment_order_ready"
+    ],
+    "Sg": [
+      "replenishment_order_closed"
+    ],
+    "resources": [
+      "bin_a",
+      "bin_b",
+      "carton_a",
+      "carton_b",
+      "scanner",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_warehouse.json",
+  "raw_candidate": {
+    "task_id": "W02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check bin A capacity",
+        "object": "bin A",
+        "Pre": [
+          "bin_a_available"
+        ],
+        "Post": [
+          "bin_a_checked"
+        ],
+        "d": 1,
+        "Res": [
+          "bin_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "check bin B capacity",
+        "object": "bin B",
+        "Pre": [
+          "bin_b_available"
+        ],
+        "Post": [
+          "bin_b_checked"
+        ],
+        "d": 1,
+        "Res": [
+          "bin_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan replenishment carton A",
+        "object": "carton A",
+        "Pre": [
+          "carton_a_available",
+          "replenishment_order_ready"
+        ],
+        "Post": [
+          "carton_a_scanned"
+        ],
+        "d": 2,
+        "Res": [
+          "carton_a",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "scan replenishment carton B",
+        "object": "carton B",
+        "Pre": [
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "Post": [
+          "carton_b_scanned"
+        ],
+        "d": 2,
+        "Res": [
+          "carton_b",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place carton A in bin A",
+        "object": "carton A",
+        "Pre": [
+          "bin_a_checked",
+          "carton_a_scanned"
+        ],
+        "Post": [
+          "bin_a_replenished"
+        ],
+        "d": 3,
+        "Res": [
+          "bin_a",
+          "carton_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place carton B in bin B",
+        "object": "carton B",
+        "Pre": [
+          "bin_b_checked",
+          "carton_b_scanned"
+        ],
+        "Post": [
+          "bin_b_replenished"
+        ],
+        "d": 3,
+        "Res": [
+          "bin_b",
+          "carton_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record bin A quantity",
+        "object": "bin A record",
+        "Pre": [
+          "bin_a_replenished"
+        ],
+        "Post": [
+          "bin_a_recorded"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "record bin B quantity",
+        "object": "bin B record",
+        "Pre": [
+          "bin_b_replenished"
+        ],
+        "Post": [
+          "bin_b_recorded"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "close replenishment order",
+        "object": "replenishment order",
+        "Pre": [
+          "bin_a_recorded",
+          "bin_b_recorded",
+          "replenishment_order_ready"
+        ],
+        "Post": [
+          "replenishment_order_closed"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t5",
+          "bin_a_checked"
+        ],
+        [
+          "t3",
+          "t5",
+          "carton_a_scanned"
+        ],
+        [
+          "t2",
+          "t6",
+          "bin_b_checked"
+        ],
+        [
+          "t4",
+          "t6",
+          "carton_b_scanned"
+        ],
+        [
+          "t5",
+          "t7",
+          "bin_a_replenished"
+        ],
+        [
+          "t6",
+          "t8",
+          "bin_b_replenished"
+        ],
+        [
+          "t7",
+          "t9",
+          "bin_a_recorded"
+        ],
+        [
+          "t8",
+          "t9",
+          "bin_b_recorded"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t3",
+          "t4",
+          "scanner"
+        ],
+        [
+          "t7",
+          "t8",
+          "terminal"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check bin A capacity",
+        "object": "bin A",
+        "pre_state": [
+          "bin_a_available"
+        ],
+        "post_state": [
+          "bin_a_checked"
+        ],
+        "duration": 1,
+        "resource": [
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "check bin B capacity",
+        "object": "bin B",
+        "pre_state": [
+          "bin_b_available"
+        ],
+        "post_state": [
+          "bin_b_checked"
+        ],
+        "duration": 1,
+        "resource": [
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "scan replenishment carton A",
+        "object": "carton A",
+        "pre_state": [
+          "carton_a_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_a_scanned"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "scan replenishment carton B",
+        "object": "carton B",
+        "pre_state": [
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_b_scanned"
+        ],
+        "duration": 2,
+        "resource": [
+          "carton_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "place carton A in bin A",
+        "object": "carton A",
+        "pre_state": [
+          "bin_a_checked",
+          "carton_a_scanned"
+        ],
+        "post_state": [
+          "bin_a_replenished"
+        ],
+        "duration": 3,
+        "resource": [
+          "bin_a",
+          "carton_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place carton B in bin B",
+        "object": "carton B",
+        "pre_state": [
+          "bin_b_checked",
+          "carton_b_scanned"
+        ],
+        "post_state": [
+          "bin_b_replenished"
+        ],
+        "duration": 3,
+        "resource": [
+          "bin_b",
+          "carton_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "record bin A quantity",
+        "object": "bin A record",
+        "pre_state": [
+          "bin_a_replenished"
+        ],
+        "post_state": [
+          "bin_a_recorded"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "record bin B quantity",
+        "object": "bin B record",
+        "pre_state": [
+          "bin_b_replenished"
+        ],
+        "post_state": [
+          "bin_b_recorded"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "close replenishment order",
+        "object": "replenishment order",
+        "pre_state": [
+          "bin_a_recorded",
+          "bin_b_recorded",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "replenishment_order_closed"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "bin_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "carton_a_scanned"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "state": "bin_b_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "carton_b_scanned"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "bin_a_replenished"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "bin_b_replenished"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "bin_a_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "bin_b_recorded"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bin_a_available",
+        "bin_b_available",
+        "carton_a_available",
+        "carton_b_available",
+        "replenishment_order_ready"
+      ],
+      "available_states": [
+        "bin_a_available",
+        "bin_a_checked",
+        "bin_a_recorded",
+        "bin_a_replenished",
+        "bin_b_available",
+        "bin_b_checked",
+        "bin_b_recorded",
+        "bin_b_replenished",
+        "carton_a_available",
+        "carton_a_scanned",
+        "carton_b_available",
+        "carton_b_scanned",
+        "replenishment_order_closed",
+        "replenishment_order_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "replenishment_order_closed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 11.0,
+    "waiting_time": 4.0,
+    "executor_utilization": 0.7727,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "check bin A capacity",
+        "object": "bin A",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "bin_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "check bin B capacity",
+        "object": "bin B",
+        "start": 0.0,
+        "finish": 1.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "bin_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "scan replenishment carton A",
+        "object": "carton A",
+        "start": 1.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "carton_a",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "scan replenishment carton B",
+        "object": "carton B",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "carton_b",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "place carton A in bin A",
+        "object": "carton A",
+        "start": 3.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "bin_a",
+          "carton_a"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "place carton B in bin B",
+        "object": "carton B",
+        "start": 5.0,
+        "finish": 8.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "bin_b",
+          "carton_b"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "record bin A quantity",
+        "object": "bin A record",
+        "start": 6.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "record bin B quantity",
+        "object": "bin B record",
+        "start": 8.0,
+        "finish": 10.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "close replenishment order",
+        "object": "replenishment order",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 9.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.7727272727272727
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bin_a_available",
+          "bin_b_available",
+          "carton_a_available",
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "available_states": [
+          "bin_a_available",
+          "bin_a_checked",
+          "bin_a_recorded",
+          "bin_a_replenished",
+          "bin_b_available",
+          "bin_b_checked",
+          "bin_b_recorded",
+          "bin_b_replenished",
+          "carton_a_available",
+          "carton_a_scanned",
+          "carton_b_available",
+          "carton_b_scanned",
+          "replenishment_order_closed",
+          "replenishment_order_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "replenishment_order_closed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bin_a_available",
+          "bin_b_available",
+          "carton_a_available",
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "available_states": [
+          "bin_a_available",
+          "bin_a_checked",
+          "bin_a_recorded",
+          "bin_a_replenished",
+          "bin_b_available",
+          "bin_b_checked",
+          "bin_b_recorded",
+          "bin_b_replenished",
+          "carton_a_available",
+          "carton_a_scanned",
+          "carton_b_available",
+          "carton_b_scanned",
+          "replenishment_order_closed",
+          "replenishment_order_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "replenishment_order_closed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bin_a_available",
+            "bin_b_available",
+            "carton_a_available",
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "available_states": [
+            "bin_a_available",
+            "bin_a_checked",
+            "bin_a_recorded",
+            "bin_a_replenished",
+            "bin_b_available",
+            "bin_b_checked",
+            "bin_b_recorded",
+            "bin_b_replenished",
+            "carton_a_available",
+            "carton_a_scanned",
+            "carton_b_available",
+            "carton_b_scanned",
+            "replenishment_order_closed",
+            "replenishment_order_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "replenishment_order_closed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bin_a_available",
+            "bin_b_available",
+            "carton_a_available",
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "available_states": [
+            "bin_a_available",
+            "bin_a_checked",
+            "bin_a_recorded",
+            "bin_a_replenished",
+            "bin_b_available",
+            "bin_b_checked",
+            "bin_b_recorded",
+            "bin_b_replenished",
+            "carton_a_available",
+            "carton_a_scanned",
+            "carton_b_available",
+            "carton_b_scanned",
+            "replenishment_order_closed",
+            "replenishment_order_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "replenishment_order_closed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 11.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7727,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bin_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bin_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "carton_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bin_a",
+            "carton_a"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bin_b",
+            "carton_b"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bin_a_available",
+          "bin_b_available",
+          "carton_a_available",
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "available_states": [
+          "bin_a_available",
+          "bin_a_checked",
+          "bin_a_recorded",
+          "bin_a_replenished",
+          "bin_b_available",
+          "bin_b_checked",
+          "bin_b_recorded",
+          "bin_b_replenished",
+          "carton_a_available",
+          "carton_a_scanned",
+          "carton_b_available",
+          "carton_b_scanned",
+          "replenishment_order_closed",
+          "replenishment_order_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "replenishment_order_closed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "bin_a_available",
+          "bin_b_available",
+          "carton_a_available",
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "available_states": [
+          "bin_a_available",
+          "bin_a_checked",
+          "bin_a_recorded",
+          "bin_a_replenished",
+          "bin_b_available",
+          "bin_b_checked",
+          "bin_b_recorded",
+          "bin_b_replenished",
+          "carton_a_available",
+          "carton_a_scanned",
+          "carton_b_available",
+          "carton_b_scanned",
+          "replenishment_order_closed",
+          "replenishment_order_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "replenishment_order_closed"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bin_a_available",
+            "bin_b_available",
+            "carton_a_available",
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "available_states": [
+            "bin_a_available",
+            "bin_a_checked",
+            "bin_a_recorded",
+            "bin_a_replenished",
+            "bin_b_available",
+            "bin_b_checked",
+            "bin_b_recorded",
+            "bin_b_replenished",
+            "carton_a_available",
+            "carton_a_scanned",
+            "carton_b_available",
+            "carton_b_scanned",
+            "replenishment_order_closed",
+            "replenishment_order_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "replenishment_order_closed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "bin_a_available",
+            "bin_b_available",
+            "carton_a_available",
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "available_states": [
+            "bin_a_available",
+            "bin_a_checked",
+            "bin_a_recorded",
+            "bin_a_replenished",
+            "bin_b_available",
+            "bin_b_checked",
+            "bin_b_recorded",
+            "bin_b_replenished",
+            "carton_a_available",
+            "carton_a_scanned",
+            "carton_b_available",
+            "carton_b_scanned",
+            "replenishment_order_closed",
+            "replenishment_order_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "replenishment_order_closed"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 11.0,
+      "waiting_time": 4.0,
+      "executor_utilization": 0.7727,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bin_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "start": 0.0,
+          "finish": 1.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bin_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "start": 1.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "carton_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "carton_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "start": 3.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "bin_a",
+            "carton_a"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "start": 5.0,
+          "finish": 8.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "bin_b",
+            "carton_b"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "start": 6.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check bin A capacity",
+        "object": "bin A",
+        "pre_state": [
+          "bin_a_available"
+        ],
+        "post_state": [
+          "bin_a_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "check bin B capacity",
+        "object": "bin B",
+        "pre_state": [
+          "bin_b_available"
+        ],
+        "post_state": [
+          "bin_b_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan replenishment carton A",
+        "object": "carton A",
+        "pre_state": [
+          "carton_a_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_a_scanned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "scan replenishment carton B",
+        "object": "carton B",
+        "pre_state": [
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_b_scanned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place carton A in bin A",
+        "object": "carton A",
+        "pre_state": [
+          "bin_a_checked",
+          "carton_a_scanned"
+        ],
+        "post_state": [
+          "bin_a_replenished"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "bin_a",
+          "carton_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place carton B in bin B",
+        "object": "carton B",
+        "pre_state": [
+          "bin_b_checked",
+          "carton_b_scanned"
+        ],
+        "post_state": [
+          "bin_b_replenished"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "bin_b",
+          "carton_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record bin A quantity",
+        "object": "bin A record",
+        "pre_state": [
+          "bin_a_replenished"
+        ],
+        "post_state": [
+          "bin_a_recorded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "record bin B quantity",
+        "object": "bin B record",
+        "pre_state": [
+          "bin_b_replenished"
+        ],
+        "post_state": [
+          "bin_b_recorded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "close replenishment order",
+        "object": "replenishment order",
+        "pre_state": [
+          "bin_a_recorded",
+          "bin_b_recorded",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "replenishment_order_closed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_a_scanned"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_b_scanned"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_replenished"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_replenished"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_recorded"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 9.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.7727272727272727
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "check bin A capacity",
+        "object": "bin A",
+        "pre_state": [
+          "bin_a_available"
+        ],
+        "post_state": [
+          "bin_a_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "bin_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "check bin B capacity",
+        "object": "bin B",
+        "pre_state": [
+          "bin_b_available"
+        ],
+        "post_state": [
+          "bin_b_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "bin_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "scan replenishment carton A",
+        "object": "carton A",
+        "pre_state": [
+          "carton_a_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_a_scanned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "scan replenishment carton B",
+        "object": "carton B",
+        "pre_state": [
+          "carton_b_available",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "carton_b_scanned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "carton_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "place carton A in bin A",
+        "object": "carton A",
+        "pre_state": [
+          "bin_a_checked",
+          "carton_a_scanned"
+        ],
+        "post_state": [
+          "bin_a_replenished"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "bin_a",
+          "carton_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place carton B in bin B",
+        "object": "carton B",
+        "pre_state": [
+          "bin_b_checked",
+          "carton_b_scanned"
+        ],
+        "post_state": [
+          "bin_b_replenished"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "bin_b",
+          "carton_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "record bin A quantity",
+        "object": "bin A record",
+        "pre_state": [
+          "bin_a_replenished"
+        ],
+        "post_state": [
+          "bin_a_recorded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "record bin B quantity",
+        "object": "bin B record",
+        "pre_state": [
+          "bin_b_replenished"
+        ],
+        "post_state": [
+          "bin_b_recorded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "close replenishment order",
+        "object": "replenishment order",
+        "pre_state": [
+          "bin_a_recorded",
+          "bin_b_recorded",
+          "replenishment_order_ready"
+        ],
+        "post_state": [
+          "replenishment_order_closed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_a_scanned"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "carton_b_scanned"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_replenished"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_replenished"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_a_recorded"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "bin_b_recorded"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "terminal"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t6",
+        "t7",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 9.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.7727272727272727
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "bin_a_available",
+        "bin_b_available",
+        "carton_a_available",
+        "carton_b_available",
+        "replenishment_order_ready"
+      ],
+      "available_states": [
+        "bin_a_available",
+        "bin_a_checked",
+        "bin_a_recorded",
+        "bin_a_replenished",
+        "bin_b_available",
+        "bin_b_checked",
+        "bin_b_recorded",
+        "bin_b_replenished",
+        "carton_a_available",
+        "carton_a_scanned",
+        "carton_b_available",
+        "carton_b_scanned",
+        "replenishment_order_closed",
+        "replenishment_order_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "replenishment_order_closed"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "check bin A capacity",
+          "object": "bin A",
+          "pre_state": [
+            "bin_a_available"
+          ],
+          "post_state": [
+            "bin_a_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check bin B capacity",
+          "object": "bin B",
+          "pre_state": [
+            "bin_b_available"
+          ],
+          "post_state": [
+            "bin_b_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "bin_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "scan replenishment carton A",
+          "object": "carton A",
+          "pre_state": [
+            "carton_a_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_a_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "scan replenishment carton B",
+          "object": "carton B",
+          "pre_state": [
+            "carton_b_available",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "carton_b_scanned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "carton_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "place carton A in bin A",
+          "object": "carton A",
+          "pre_state": [
+            "bin_a_checked",
+            "carton_a_scanned"
+          ],
+          "post_state": [
+            "bin_a_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_a",
+            "carton_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place carton B in bin B",
+          "object": "carton B",
+          "pre_state": [
+            "bin_b_checked",
+            "carton_b_scanned"
+          ],
+          "post_state": [
+            "bin_b_replenished"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "bin_b",
+            "carton_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "record bin A quantity",
+          "object": "bin A record",
+          "pre_state": [
+            "bin_a_replenished"
+          ],
+          "post_state": [
+            "bin_a_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "record bin B quantity",
+          "object": "bin B record",
+          "pre_state": [
+            "bin_b_replenished"
+          ],
+          "post_state": [
+            "bin_b_recorded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "close replenishment order",
+          "object": "replenishment order",
+          "pre_state": [
+            "bin_a_recorded",
+            "bin_b_recorded",
+            "replenishment_order_ready"
+          ],
+          "post_state": [
+            "replenishment_order_closed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_a_scanned"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "carton_b_scanned"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_replenished"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_replenished"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_a_recorded"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "bin_b_recorded"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "terminal"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "W02",
+    "domain": "warehouse",
+    "title": "Replenishing two storage locations",
+    "nodes": 9,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 8,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 2,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 10,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 17.0,
+    "cooperative_duration": 0,
+    "before_makespan": 11.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 11.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 11.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 10,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.5454545454545454,
+    "relative_duration_reduction_vs_serial": 0.3529411764705882,
+    "executor_utilization": 0.7727272727272727,
+    "left_busy_time": 9.0,
+    "right_busy_time": 8.0,
+    "scheduled_overlap_pairs": 4,
+    "critical_path_duration": 10.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

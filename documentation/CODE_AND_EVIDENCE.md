@@ -4,6 +4,8 @@
 
 This index follows the current manuscript and supplement. The immutable planning tree remains v7.70 and the expanded simulation archive remains v2. Historical CSV filenames retain their original numbers; the mapping below supplies current paper numbers.
 
+For translated task descriptions, complete plans and historical reports, use the [English reading copies](../translations/en/README.md). Source paths below identify canonical evidence; translations do not replace frozen reproduction inputs.
+
 ## Current implementation
 
 | Responsibility | File under `reproduction/implementation_v7_70/atomic_task/` |
@@ -40,7 +42,7 @@ Durations must be finite and positive. Float schedules must retain strictly posi
 | 9 | 4.8 | Archived tool candidates and external agreement | [reproduction/results/fair_comparison/external_metrics.csv](https://github.com/RoboPlanner/atg-repair-planning/blob/main/reproduction/results/fair_comparison/external_metrics.csv) |
 | 10 | 4.9 | Public source specifications and acceptance | [reproduction/results/external_discrete_run01/summary.json](https://github.com/RoboPlanner/atg-repair-planning/blob/main/reproduction/results/external_discrete_run01/summary.json) |
 | 11 | 4.9 | Resource orientation on six job-shop projections | [reproduction/results/external_discrete_run01/metrics.csv](https://github.com/RoboPlanner/atg-repair-planning/blob/main/reproduction/results/external_discrete_run01/metrics.csv) |
-| 12 | 4.10 | Eight simulation templates and nominal windows | [simulation_expanded/aggregate_results.json](https://github.com/RoboPlanner/atg-repair-planning/blob/main/simulation_expanded/aggregate_results.json) |
+| 12 | 4.10 | Eight simulation templates and nominal windows | [English aggregate (original in archive)](https://github.com/RoboPlanner/atg-repair-planning/blob/main/translations/en/simulation_expanded/aggregate_results.json) |
 | 13 | 4.10 | 96 same-input planning settings | [simulation_expanded/planning_frozen_v2/records.csv](https://github.com/RoboPlanner/atg-repair-planning/blob/main/simulation_expanded/planning_frozen_v2/records.csv) |
 | 14 | 4.10 | Planning acceptance and physical completion | [simulation_expanded/figures/simulation_condition_totals.csv](https://github.com/RoboPlanner/atg-repair-planning/blob/main/simulation_expanded/figures/simulation_condition_totals.csv) |
 | A1 | A.3 | Small-graph size and measured local runtime | [reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table6_complexity.csv](https://github.com/RoboPlanner/atg-repair-planning/blob/main/reproduction/dual_arm_task_experiments/full_experiment_outputs_v7_40_internal_validity_20260907/tables/table6_complexity.csv) |

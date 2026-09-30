@@ -1,0 +1,7 @@
+Task domain,Task count,Total nodes,Strictly accepted before repair,Strictly accepted after repair,Mean symbolic makespan,Mean speedup over the same-node serial baseline,Mean two-unit utilization
+Assembly,4,38,4,4,17.25,1.2390350877192984,0.7099780701754386
+Packing,4,43,4,4,14.75,1.303373015873016,0.7763888888888889
+Inspection,4,41,4,4,18.0,1.1063131313131314,0.6476641414141414
+Warehousing,4,44,4,4,16.75,1.2240148295640287,0.7070548158934886
+Sorting,4,43,4,4,13.25,1.3545937314319667,0.7007343657159834
+Workstation preparation,4,45,4,4,23.5,1.2193361040068202,0.6957640664961637

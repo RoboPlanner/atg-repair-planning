@@ -97,7 +97,7 @@ def check():
         if any('/papers/' in h for h in page.links):
             issue(name, '', 'paper navigation is temporarily disabled')
 
-    markdown = list(ROOT.glob('*.md')) + list((ROOT / 'documentation').glob('*.md')) + list((ROOT / 'docs/assets/downloads').glob('*.md'))
+    markdown = list(ROOT.glob('*.md')) + list((ROOT / 'documentation').glob('*.md')) + list((ROOT / 'docs/assets/downloads').glob('*.md')) + list((ROOT / 'translations/en').rglob('*.md'))
     for p in markdown:
         name = p.relative_to(ROOT).as_posix()
         text = p.read_text('utf-8')

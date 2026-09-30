@@ -1,0 +1,4432 @@
+{
+  "task_id": "I04",
+  "spec": {
+    "task_id": "I04",
+    "domain": "inspection",
+    "title": "Assembly traceability review",
+    "instruction": "Check the main assembly serial number and auxiliary module number using a shared scanner. Confirm the fastening and electrical-test records separately. Turn the assembly over using both units to inspect the rear label, combine the identity and inspection records, print a release label and transfer it to the completed-items area.",
+    "S0": [
+      "assembly_available",
+      "submodule_available",
+      "torque_record_available",
+      "electrical_record_available",
+      "release_tray_ready"
+    ],
+    "Sg": [
+      "assembly_released"
+    ],
+    "resources": [
+      "assembly",
+      "submodule",
+      "scanner",
+      "review_terminal",
+      "printer",
+      "release_tray"
+    ]
+  },
+  "raw_source": "raw_candidates_inspection.json",
+  "raw_candidate": {
+    "task_id": "I04",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan assembly serial",
+        "object": "assembly",
+        "Pre": [
+          "assembly_available"
+        ],
+        "Post": [
+          "assembly_serial_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "assembly",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan submodule serial",
+        "object": "submodule",
+        "Pre": [
+          "submodule_available"
+        ],
+        "Post": [
+          "submodule_serial_checked"
+        ],
+        "d": 1,
+        "Res": [
+          "submodule",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "review torque record",
+        "object": "torque record",
+        "Pre": [
+          "torque_record_available"
+        ],
+        "Post": [
+          "torque_record_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "review_terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "review electrical record",
+        "object": "electrical record",
+        "Pre": [
+          "electrical_record_available"
+        ],
+        "Post": [
+          "electrical_record_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "review_terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "turn assembly for back label",
+        "object": "assembly",
+        "Pre": [
+          "assembly_serial_checked"
+        ],
+        "Post": [
+          "assembly_back_accessible"
+        ],
+        "d": 3,
+        "Res": [
+          "assembly"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "scan back label",
+        "object": "assembly",
+        "Pre": [
+          "assembly_back_accessible"
+        ],
+        "Post": [
+          "back_label_checked"
+        ],
+        "d": 1,
+        "Res": [
+          "assembly",
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "merge traceability records",
+        "object": "release record",
+        "Pre": [
+          "assembly_serial_checked",
+          "submodule_serial_checked",
+          "torque_record_checked",
+          "electrical_record_checked",
+          "back_label_checked"
+        ],
+        "Post": [
+          "traceability_record_complete"
+        ],
+        "d": 3,
+        "Res": [
+          "review_terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print release tag",
+        "object": "release tag",
+        "Pre": [
+          "traceability_record_complete"
+        ],
+        "Post": [
+          "release_tag_printed"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "apply release tag",
+        "object": "assembly",
+        "Pre": [
+          "release_tag_printed"
+        ],
+        "Post": [
+          "assembly_tagged"
+        ],
+        "d": 1,
+        "Res": [
+          "assembly"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "transfer released assembly",
+        "object": "assembly",
+        "Pre": [
+          "assembly_tagged",
+          "release_tray_ready"
+        ],
+        "Post": [
+          "assembly_released"
+        ],
+        "d": 3,
+        "Res": [
+          "assembly",
+          "release_tray"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t5",
+          "assembly_serial_checked"
+        ],
+        [
+          "t5",
+          "t6",
+          "assembly_back_accessible"
+        ],
+        [
+          "t1",
+          "t7",
+          "assembly_serial_checked"
+        ],
+        [
+          "t2",
+          "t7",
+          "submodule_serial_checked"
+        ],
+        [
+          "t3",
+          "t7",
+          "torque_record_checked"
+        ],
+        [
+          "t4",
+          "t7",
+          "electrical_record_checked"
+        ],
+        [
+          "t6",
+          "t7",
+          "back_label_checked"
+        ],
+        [
+          "t7",
+          "t8",
+          "traceability_record_complete"
+        ],
+        [
+          "t8",
+          "t9",
+          "release_tag_printed"
+        ],
+        [
+          "t9",
+          "t10",
+          "assembly_tagged"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t5",
+          "assembly_serial_checked"
+        ],
+        [
+          "t9",
+          "t10",
+          "assembly_tagged"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t1",
+          "t2",
+          "scanner"
+        ],
+        [
+          "t2",
+          "t6",
+          "scanner"
+        ],
+        [
+          "t3",
+          "t4",
+          "review_terminal"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan assembly serial",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_available"
+        ],
+        "post_state": [
+          "assembly_serial_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "scan submodule serial",
+        "object": "submodule",
+        "pre_state": [
+          "submodule_available"
+        ],
+        "post_state": [
+          "submodule_serial_checked"
+        ],
+        "duration": 1,
+        "resource": [
+          "submodule",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "review torque record",
+        "object": "torque record",
+        "pre_state": [
+          "torque_record_available"
+        ],
+        "post_state": [
+          "torque_record_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "review electrical record",
+        "object": "electrical record",
+        "pre_state": [
+          "electrical_record_available"
+        ],
+        "post_state": [
+          "electrical_record_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "turn assembly for back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_serial_checked"
+        ],
+        "post_state": [
+          "assembly_back_accessible"
+        ],
+        "duration": 3,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t6",
+        "action": "scan back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_back_accessible"
+        ],
+        "post_state": [
+          "back_label_checked"
+        ],
+        "duration": 1,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "merge traceability records",
+        "object": "release record",
+        "pre_state": [
+          "assembly_serial_checked",
+          "submodule_serial_checked",
+          "torque_record_checked",
+          "electrical_record_checked",
+          "back_label_checked"
+        ],
+        "post_state": [
+          "traceability_record_complete"
+        ],
+        "duration": 3,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "print release tag",
+        "object": "release tag",
+        "pre_state": [
+          "traceability_record_complete"
+        ],
+        "post_state": [
+          "release_tag_printed"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "apply release tag",
+        "object": "assembly",
+        "pre_state": [
+          "release_tag_printed"
+        ],
+        "post_state": [
+          "assembly_tagged"
+        ],
+        "duration": 1,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "transfer released assembly",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_tagged",
+          "release_tray_ready"
+        ],
+        "post_state": [
+          "assembly_released"
+        ],
+        "duration": 3,
+        "resource": [
+          "assembly",
+          "release_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "state": "assembly_back_accessible"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t7",
+        "type": "state_support",
+        "state": "submodule_serial_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "state": "torque_record_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "electrical_record_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "back_label_checked"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "traceability_record_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "release_tag_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "assembly_tagged"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "state": "assembly_tagged"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "resource": "review_terminal"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "assembly_available",
+        "electrical_record_available",
+        "release_tray_ready",
+        "submodule_available",
+        "torque_record_available"
+      ],
+      "available_states": [
+        "assembly_available",
+        "assembly_back_accessible",
+        "assembly_released",
+        "assembly_serial_checked",
+        "assembly_tagged",
+        "back_label_checked",
+        "electrical_record_available",
+        "electrical_record_checked",
+        "release_tag_printed",
+        "release_tray_ready",
+        "submodule_available",
+        "submodule_serial_checked",
+        "torque_record_available",
+        "torque_record_checked",
+        "traceability_record_complete"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "assembly_released"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 18.0,
+    "waiting_time": 11.0,
+    "executor_utilization": 0.6944,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "scan assembly serial",
+        "object": "assembly",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "assembly",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "scan submodule serial",
+        "object": "submodule",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "submodule",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "review torque record",
+        "object": "torque record",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "review_terminal"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "review electrical record",
+        "object": "electrical record",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "review_terminal"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "turn assembly for back label",
+        "object": "assembly",
+        "start": 6.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "assembly"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "scan back label",
+        "object": "assembly",
+        "start": 9.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "assembly",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "merge traceability records",
+        "object": "release record",
+        "start": 10.0,
+        "finish": 13.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "review_terminal"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "print release tag",
+        "object": "release tag",
+        "start": 13.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "apply release tag",
+        "object": "assembly",
+        "start": 14.0,
+        "finish": 15.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "assembly"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "transfer released assembly",
+        "object": "assembly",
+        "start": 15.0,
+        "finish": 18.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "assembly",
+          "release_tray"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 12.0
+    },
+    "utilization_unrounded": 0.6944444444444444
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "assembly_tagged"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "assembly_available",
+          "electrical_record_available",
+          "release_tray_ready",
+          "submodule_available",
+          "torque_record_available"
+        ],
+        "available_states": [
+          "assembly_available",
+          "assembly_back_accessible",
+          "assembly_released",
+          "assembly_serial_checked",
+          "assembly_tagged",
+          "back_label_checked",
+          "electrical_record_available",
+          "electrical_record_checked",
+          "release_tag_printed",
+          "release_tray_ready",
+          "submodule_available",
+          "submodule_serial_checked",
+          "torque_record_available",
+          "torque_record_checked",
+          "traceability_record_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "assembly_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "assembly_available",
+          "electrical_record_available",
+          "release_tray_ready",
+          "submodule_available",
+          "torque_record_available"
+        ],
+        "available_states": [
+          "assembly_available",
+          "assembly_back_accessible",
+          "assembly_released",
+          "assembly_serial_checked",
+          "assembly_tagged",
+          "back_label_checked",
+          "electrical_record_available",
+          "electrical_record_checked",
+          "release_tag_printed",
+          "release_tray_ready",
+          "submodule_available",
+          "submodule_serial_checked",
+          "torque_record_available",
+          "torque_record_checked",
+          "traceability_record_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "assembly_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "assembly_available",
+            "electrical_record_available",
+            "release_tray_ready",
+            "submodule_available",
+            "torque_record_available"
+          ],
+          "available_states": [
+            "assembly_available",
+            "assembly_back_accessible",
+            "assembly_released",
+            "assembly_serial_checked",
+            "assembly_tagged",
+            "back_label_checked",
+            "electrical_record_available",
+            "electrical_record_checked",
+            "release_tag_printed",
+            "release_tray_ready",
+            "submodule_available",
+            "submodule_serial_checked",
+            "torque_record_available",
+            "torque_record_checked",
+            "traceability_record_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "assembly_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "assembly_available",
+            "electrical_record_available",
+            "release_tray_ready",
+            "submodule_available",
+            "torque_record_available"
+          ],
+          "available_states": [
+            "assembly_available",
+            "assembly_back_accessible",
+            "assembly_released",
+            "assembly_serial_checked",
+            "assembly_tagged",
+            "back_label_checked",
+            "electrical_record_available",
+            "electrical_record_checked",
+            "release_tag_printed",
+            "release_tray_ready",
+            "submodule_available",
+            "submodule_serial_checked",
+            "torque_record_available",
+            "torque_record_checked",
+            "traceability_record_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "assembly_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "assembly_serial_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for assembly_serial_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "assembly_tagged",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for assembly_tagged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "assembly_serial_checked",
+          "resource": null,
+          "reason": "cooperative input state assembly_serial_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "assembly_tagged",
+          "resource": null,
+          "reason": "cooperative input state assembly_tagged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 18.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.6944,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "submodule",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "assembly"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "start": 10.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "assembly",
+            "release_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "assembly_tagged"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "assembly_available",
+          "electrical_record_available",
+          "release_tray_ready",
+          "submodule_available",
+          "torque_record_available"
+        ],
+        "available_states": [
+          "assembly_available",
+          "assembly_back_accessible",
+          "assembly_released",
+          "assembly_serial_checked",
+          "assembly_tagged",
+          "back_label_checked",
+          "electrical_record_available",
+          "electrical_record_checked",
+          "release_tag_printed",
+          "release_tray_ready",
+          "submodule_available",
+          "submodule_serial_checked",
+          "torque_record_available",
+          "torque_record_checked",
+          "traceability_record_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "assembly_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "assembly_available",
+          "electrical_record_available",
+          "release_tray_ready",
+          "submodule_available",
+          "torque_record_available"
+        ],
+        "available_states": [
+          "assembly_available",
+          "assembly_back_accessible",
+          "assembly_released",
+          "assembly_serial_checked",
+          "assembly_tagged",
+          "back_label_checked",
+          "electrical_record_available",
+          "electrical_record_checked",
+          "release_tag_printed",
+          "release_tray_ready",
+          "submodule_available",
+          "submodule_serial_checked",
+          "torque_record_available",
+          "torque_record_checked",
+          "traceability_record_complete"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "assembly_released"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "assembly_available",
+            "electrical_record_available",
+            "release_tray_ready",
+            "submodule_available",
+            "torque_record_available"
+          ],
+          "available_states": [
+            "assembly_available",
+            "assembly_back_accessible",
+            "assembly_released",
+            "assembly_serial_checked",
+            "assembly_tagged",
+            "back_label_checked",
+            "electrical_record_available",
+            "electrical_record_checked",
+            "release_tag_printed",
+            "release_tray_ready",
+            "submodule_available",
+            "submodule_serial_checked",
+            "torque_record_available",
+            "torque_record_checked",
+            "traceability_record_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "assembly_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "assembly_available",
+            "electrical_record_available",
+            "release_tray_ready",
+            "submodule_available",
+            "torque_record_available"
+          ],
+          "available_states": [
+            "assembly_available",
+            "assembly_back_accessible",
+            "assembly_released",
+            "assembly_serial_checked",
+            "assembly_tagged",
+            "back_label_checked",
+            "electrical_record_available",
+            "electrical_record_checked",
+            "release_tag_printed",
+            "release_tray_ready",
+            "submodule_available",
+            "submodule_serial_checked",
+            "torque_record_available",
+            "torque_record_checked",
+            "traceability_record_complete"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "assembly_released"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "assembly_serial_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for assembly_serial_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "assembly_tagged",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for assembly_tagged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t5",
+          "edge_type": "synchronization",
+          "state": "assembly_serial_checked",
+          "resource": null,
+          "reason": "cooperative input state assembly_serial_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t9",
+          "target": "t10",
+          "edge_type": "synchronization",
+          "state": "assembly_tagged",
+          "resource": null,
+          "reason": "cooperative input state assembly_tagged",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 18.0,
+      "waiting_time": 11.0,
+      "executor_utilization": 0.6944,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "submodule",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "assembly"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "start": 10.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "review_terminal"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "start": 13.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "assembly"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "assembly",
+            "release_tray"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan assembly serial",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_available"
+        ],
+        "post_state": [
+          "assembly_serial_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan submodule serial",
+        "object": "submodule",
+        "pre_state": [
+          "submodule_available"
+        ],
+        "post_state": [
+          "submodule_serial_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "submodule",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "review torque record",
+        "object": "torque record",
+        "pre_state": [
+          "torque_record_available"
+        ],
+        "post_state": [
+          "torque_record_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "review electrical record",
+        "object": "electrical record",
+        "pre_state": [
+          "electrical_record_available"
+        ],
+        "post_state": [
+          "electrical_record_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "turn assembly for back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_serial_checked"
+        ],
+        "post_state": [
+          "assembly_back_accessible"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "scan back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_back_accessible"
+        ],
+        "post_state": [
+          "back_label_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "merge traceability records",
+        "object": "release record",
+        "pre_state": [
+          "assembly_serial_checked",
+          "submodule_serial_checked",
+          "torque_record_checked",
+          "electrical_record_checked",
+          "back_label_checked"
+        ],
+        "post_state": [
+          "traceability_record_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print release tag",
+        "object": "release tag",
+        "pre_state": [
+          "traceability_record_complete"
+        ],
+        "post_state": [
+          "release_tag_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "apply release tag",
+        "object": "assembly",
+        "pre_state": [
+          "release_tag_printed"
+        ],
+        "post_state": [
+          "assembly_tagged"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "transfer released assembly",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_tagged",
+          "release_tray_ready"
+        ],
+        "post_state": [
+          "assembly_released"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "assembly",
+          "release_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_back_accessible"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "submodule_serial_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "torque_record_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_record_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "back_label_checked"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "traceability_record_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "release_tag_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_tagged"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "review_terminal"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "reason": "",
+        "state": "assembly_tagged"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 12.0
+    },
+    "utilization_unrounded": 0.6944444444444444
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "scan assembly serial",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_available"
+        ],
+        "post_state": [
+          "assembly_serial_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "scan submodule serial",
+        "object": "submodule",
+        "pre_state": [
+          "submodule_available"
+        ],
+        "post_state": [
+          "submodule_serial_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "submodule",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "review torque record",
+        "object": "torque record",
+        "pre_state": [
+          "torque_record_available"
+        ],
+        "post_state": [
+          "torque_record_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "review electrical record",
+        "object": "electrical record",
+        "pre_state": [
+          "electrical_record_available"
+        ],
+        "post_state": [
+          "electrical_record_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "turn assembly for back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_serial_checked"
+        ],
+        "post_state": [
+          "assembly_back_accessible"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "scan back label",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_back_accessible"
+        ],
+        "post_state": [
+          "back_label_checked"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "assembly",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "merge traceability records",
+        "object": "release record",
+        "pre_state": [
+          "assembly_serial_checked",
+          "submodule_serial_checked",
+          "torque_record_checked",
+          "electrical_record_checked",
+          "back_label_checked"
+        ],
+        "post_state": [
+          "traceability_record_complete"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "review_terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "print release tag",
+        "object": "release tag",
+        "pre_state": [
+          "traceability_record_complete"
+        ],
+        "post_state": [
+          "release_tag_printed"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "apply release tag",
+        "object": "assembly",
+        "pre_state": [
+          "release_tag_printed"
+        ],
+        "post_state": [
+          "assembly_tagged"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "assembly"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "transfer released assembly",
+        "object": "assembly",
+        "pre_state": [
+          "assembly_tagged",
+          "release_tray_ready"
+        ],
+        "post_state": [
+          "assembly_released"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "assembly",
+          "release_tray"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_back_accessible"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "submodule_serial_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "torque_record_checked"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "electrical_record_checked"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "back_label_checked"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "traceability_record_complete"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "release_tag_printed"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "assembly_tagged"
+      },
+      {
+        "source": "t1",
+        "target": "t2",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "review_terminal"
+      },
+      {
+        "source": "t1",
+        "target": "t5",
+        "type": "synchronization",
+        "reason": "",
+        "state": "assembly_serial_checked"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "synchronization",
+        "reason": "",
+        "state": "assembly_tagged"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t2",
+        "t3",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 12.0
+    },
+    "utilization_unrounded": 0.6944444444444444
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "assembly_available",
+        "electrical_record_available",
+        "release_tray_ready",
+        "submodule_available",
+        "torque_record_available"
+      ],
+      "available_states": [
+        "assembly_available",
+        "assembly_back_accessible",
+        "assembly_released",
+        "assembly_serial_checked",
+        "assembly_tagged",
+        "back_label_checked",
+        "electrical_record_available",
+        "electrical_record_checked",
+        "release_tag_printed",
+        "release_tray_ready",
+        "submodule_available",
+        "submodule_serial_checked",
+        "torque_record_available",
+        "torque_record_checked",
+        "traceability_record_complete"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "assembly_released"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_tagged"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_tagged"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "scan assembly serial",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_available"
+          ],
+          "post_state": [
+            "assembly_serial_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "scan submodule serial",
+          "object": "submodule",
+          "pre_state": [
+            "submodule_available"
+          ],
+          "post_state": [
+            "submodule_serial_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "submodule",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "review torque record",
+          "object": "torque record",
+          "pre_state": [
+            "torque_record_available"
+          ],
+          "post_state": [
+            "torque_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "review electrical record",
+          "object": "electrical record",
+          "pre_state": [
+            "electrical_record_available"
+          ],
+          "post_state": [
+            "electrical_record_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "turn assembly for back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_serial_checked"
+          ],
+          "post_state": [
+            "assembly_back_accessible"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "scan back label",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_back_accessible"
+          ],
+          "post_state": [
+            "back_label_checked"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "merge traceability records",
+          "object": "release record",
+          "pre_state": [
+            "assembly_serial_checked",
+            "submodule_serial_checked",
+            "torque_record_checked",
+            "electrical_record_checked",
+            "back_label_checked"
+          ],
+          "post_state": [
+            "traceability_record_complete"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "review_terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "print release tag",
+          "object": "release tag",
+          "pre_state": [
+            "traceability_record_complete"
+          ],
+          "post_state": [
+            "release_tag_printed"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "apply release tag",
+          "object": "assembly",
+          "pre_state": [
+            "release_tag_printed"
+          ],
+          "post_state": [
+            "assembly_tagged"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "assembly"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "transfer released assembly",
+          "object": "assembly",
+          "pre_state": [
+            "assembly_tagged",
+            "release_tray_ready"
+          ],
+          "post_state": [
+            "assembly_released"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "assembly",
+            "release_tray"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_back_accessible"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "submodule_serial_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "torque_record_checked"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "electrical_record_checked"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "back_label_checked"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "traceability_record_complete"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "release_tag_printed"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "assembly_tagged"
+        },
+        {
+          "source": "t1",
+          "target": "t2",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "review_terminal"
+        },
+        {
+          "source": "t1",
+          "target": "t5",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_serial_checked"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "synchronization",
+          "reason": "",
+          "state": "assembly_tagged"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "I04",
+    "domain": "inspection",
+    "title": "Assembly traceability review",
+    "nodes": 10,
+    "cooperative_nodes": 2,
+    "flexible_single_nodes": 1,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 10,
+    "raw_E_sync": 2,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 5,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 19.0,
+    "cooperative_duration": 6.0,
+    "before_makespan": 18.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 18.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 18.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 5,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 4,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 4,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.0555555555555556,
+    "relative_duration_reduction_vs_serial": 0.052631578947368474,
+    "executor_utilization": 0.6944444444444444,
+    "left_busy_time": 13.0,
+    "right_busy_time": 12.0,
+    "scheduled_overlap_pairs": 1,
+    "critical_path_duration": 14.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

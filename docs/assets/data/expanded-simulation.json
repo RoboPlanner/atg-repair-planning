@@ -4,7 +4,6 @@
     {
       "task": "T01",
       "title": "Parallel sorting",
-      "title_zh": "\u5e76\u884c\u5206\u62e3",
       "nodes": 4,
       "B_nodes": 0,
       "full_success": 5,
@@ -18,7 +17,6 @@
     {
       "task": "T02",
       "title": "Shared inspection",
-      "title_zh": "\u5171\u4eab\u68c0\u6d4b\u5de5\u4f4d",
       "nodes": 6,
       "B_nodes": 0,
       "full_success": 5,
@@ -32,7 +30,6 @@
     {
       "task": "T03",
       "title": "Synchronized kitting",
-      "title_zh": "\u540c\u6b65\u914d\u5957",
       "nodes": 4,
       "B_nodes": 0,
       "full_success": 5,
@@ -46,7 +43,6 @@
     {
       "task": "T04",
       "title": "Two-stage shared service",
-      "title_zh": "\u4e24\u9636\u6bb5\u5171\u4eab\u670d\u52a1",
       "nodes": 8,
       "B_nodes": 0,
       "full_success": 5,
@@ -60,7 +56,6 @@
     {
       "task": "T05",
       "title": "Cooperative transfer",
-      "title_zh": "\u534f\u4f5c\u642c\u8fd0",
       "nodes": 5,
       "B_nodes": 1,
       "full_success": 5,
@@ -74,7 +69,6 @@
     {
       "task": "T06",
       "title": "Two-leg transfer",
-      "title_zh": "\u4e24\u6bb5\u534f\u4f5c\u642c\u8fd0",
       "nodes": 6,
       "B_nodes": 2,
       "full_success": 5,
@@ -88,7 +82,6 @@
     {
       "task": "T07",
       "title": "Loading and transfer",
-      "title_zh": "\u88c5\u76d8\u540e\u642c\u8fd0",
       "nodes": 9,
       "B_nodes": 1,
       "full_success": 5,
@@ -102,7 +95,6 @@
     {
       "task": "T08",
       "title": "Transfer and unloading",
-      "title_zh": "\u642c\u8fd0\u540e\u5378\u8f7d",
       "nodes": 9,
       "B_nodes": 1,
       "full_success": 5,

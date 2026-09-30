@@ -1,0 +1,5455 @@
+{
+  "task_id": "W04",
+  "spec": {
+    "task_id": "W04",
+    "domain": "warehouse",
+    "title": "Order kitting from three sources",
+    "instruction": "Retrieve components A, B and C from three separate sources and verify them using a shared scanner. Prepare the order tote and place the three components in their assigned compartments. Check kit completeness, transfer the tote using both units and register completion.",
+    "S0": [
+      "stock_a_ready",
+      "stock_b_ready",
+      "stock_c_ready",
+      "order_tote_empty",
+      "pick_order_ready",
+      "dispatch_area_ready"
+    ],
+    "Sg": [
+      "kit_dispatch_recorded"
+    ],
+    "resources": [
+      "stock_a",
+      "stock_b",
+      "stock_c",
+      "scanner",
+      "order_tote",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_warehouse.json",
+  "raw_candidate": {
+    "task_id": "W04",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "pick component A",
+        "object": "component A",
+        "Pre": [
+          "stock_a_ready",
+          "pick_order_ready"
+        ],
+        "Post": [
+          "component_a_picked"
+        ],
+        "d": 2,
+        "Res": [
+          "stock_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "pick component B",
+        "object": "component B",
+        "Pre": [
+          "stock_b_ready",
+          "pick_order_ready"
+        ],
+        "Post": [
+          "component_b_picked"
+        ],
+        "d": 2,
+        "Res": [
+          "stock_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "pick component C",
+        "object": "component C",
+        "Pre": [
+          "stock_c_ready",
+          "pick_order_ready"
+        ],
+        "Post": [
+          "component_c_picked"
+        ],
+        "d": 3,
+        "Res": [
+          "stock_c"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "verify component A code",
+        "object": "component A",
+        "Pre": [
+          "component_a_picked"
+        ],
+        "Post": [
+          "component_a_verified"
+        ],
+        "d": 1,
+        "Res": [
+          "scanner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "verify component B code",
+        "object": "component B",
+        "Pre": [
+          "component_b_picked"
+        ],
+        "Post": [
+          "component_b_verified"
+        ],
+        "d": 1,
+        "Res": [
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "verify component C code",
+        "object": "component C",
+        "Pre": [
+          "component_c_picked"
+        ],
+        "Post": [
+          "component_c_verified"
+        ],
+        "d": 1,
+        "Res": [
+          "scanner"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "prepare order tote",
+        "object": "order tote",
+        "Pre": [
+          "order_tote_empty"
+        ],
+        "Post": [
+          "order_tote_prepared"
+        ],
+        "d": 2,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "load component A",
+        "object": "order tote",
+        "Pre": [
+          "component_a_verified",
+          "order_tote_prepared"
+        ],
+        "Post": [
+          "component_a_loaded"
+        ],
+        "d": 1,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "load component B",
+        "object": "order tote",
+        "Pre": [
+          "component_b_verified",
+          "order_tote_prepared"
+        ],
+        "Post": [
+          "component_b_loaded"
+        ],
+        "d": 1,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "load component C",
+        "object": "order tote",
+        "Pre": [
+          "component_c_verified",
+          "order_tote_prepared"
+        ],
+        "Post": [
+          "component_c_loaded"
+        ],
+        "d": 1,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "verify complete kit",
+        "object": "order tote",
+        "Pre": [
+          "component_a_loaded",
+          "component_b_loaded",
+          "component_c_loaded"
+        ],
+        "Post": [
+          "order_kit_complete"
+        ],
+        "d": 2,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "transfer complete tote",
+        "object": "order tote",
+        "Pre": [
+          "order_kit_complete",
+          "dispatch_area_ready"
+        ],
+        "Post": [
+          "kit_at_dispatch"
+        ],
+        "d": 3,
+        "Res": [
+          "order_tote"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t13",
+        "action": "record kit dispatch",
+        "object": "dispatch record",
+        "Pre": [
+          "kit_at_dispatch",
+          "pick_order_ready"
+        ],
+        "Post": [
+          "kit_dispatch_recorded"
+        ],
+        "d": 1,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "component_a_picked"
+        ],
+        [
+          "t2",
+          "t5",
+          "component_b_picked"
+        ],
+        [
+          "t3",
+          "t6",
+          "component_c_picked"
+        ],
+        [
+          "t4",
+          "t8",
+          "component_a_verified"
+        ],
+        [
+          "t7",
+          "t8",
+          "order_tote_prepared"
+        ],
+        [
+          "t5",
+          "t9",
+          "component_b_verified"
+        ],
+        [
+          "t7",
+          "t9",
+          "order_tote_prepared"
+        ],
+        [
+          "t6",
+          "t10",
+          "component_c_verified"
+        ],
+        [
+          "t7",
+          "t10",
+          "order_tote_prepared"
+        ],
+        [
+          "t8",
+          "t11",
+          "component_a_loaded"
+        ],
+        [
+          "t9",
+          "t11",
+          "component_b_loaded"
+        ],
+        [
+          "t10",
+          "t11",
+          "component_c_loaded"
+        ],
+        [
+          "t11",
+          "t12",
+          "order_kit_complete"
+        ],
+        [
+          "t12",
+          "t13",
+          "kit_at_dispatch"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t11",
+          "t12",
+          "order_kit_complete"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t4",
+          "t5",
+          "scanner"
+        ],
+        [
+          "t5",
+          "t6",
+          "scanner"
+        ],
+        [
+          "t8",
+          "t9",
+          "order_tote"
+        ],
+        [
+          "t9",
+          "t10",
+          "order_tote"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "pick component A",
+        "object": "component A",
+        "pre_state": [
+          "stock_a_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_a_picked"
+        ],
+        "duration": 2,
+        "resource": [
+          "stock_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "pick component B",
+        "object": "component B",
+        "pre_state": [
+          "stock_b_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_b_picked"
+        ],
+        "duration": 2,
+        "resource": [
+          "stock_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "pick component C",
+        "object": "component C",
+        "pre_state": [
+          "stock_c_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_c_picked"
+        ],
+        "duration": 3,
+        "resource": [
+          "stock_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "verify component A code",
+        "object": "component A",
+        "pre_state": [
+          "component_a_picked"
+        ],
+        "post_state": [
+          "component_a_verified"
+        ],
+        "duration": 1,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "verify component B code",
+        "object": "component B",
+        "pre_state": [
+          "component_b_picked"
+        ],
+        "post_state": [
+          "component_b_verified"
+        ],
+        "duration": 1,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "verify component C code",
+        "object": "component C",
+        "pre_state": [
+          "component_c_picked"
+        ],
+        "post_state": [
+          "component_c_verified"
+        ],
+        "duration": 1,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "prepare order tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_tote_empty"
+        ],
+        "post_state": [
+          "order_tote_prepared"
+        ],
+        "duration": 2,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "load component A",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_a_loaded"
+        ],
+        "duration": 1,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "load component B",
+        "object": "order tote",
+        "pre_state": [
+          "component_b_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_b_loaded"
+        ],
+        "duration": 1,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "load component C",
+        "object": "order tote",
+        "pre_state": [
+          "component_c_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_c_loaded"
+        ],
+        "duration": 1,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "verify complete kit",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_loaded",
+          "component_b_loaded",
+          "component_c_loaded"
+        ],
+        "post_state": [
+          "order_kit_complete"
+        ],
+        "duration": 2,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "transfer complete tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_kit_complete",
+          "dispatch_area_ready"
+        ],
+        "post_state": [
+          "kit_at_dispatch"
+        ],
+        "duration": 3,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t13",
+        "action": "record kit dispatch",
+        "object": "dispatch record",
+        "pre_state": [
+          "kit_at_dispatch",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "kit_dispatch_recorded"
+        ],
+        "duration": 1,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "component_a_picked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "component_b_picked"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "state": "component_c_picked"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "state": "component_a_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "state": "component_b_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t10",
+        "type": "state_support",
+        "state": "component_c_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "state": "component_a_loaded"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "component_b_loaded"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "component_c_loaded"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "state": "order_kit_complete"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "state": "kit_at_dispatch"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "state": "order_kit_complete"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "resource": "order_tote"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "resource": "order_tote"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "dispatch_area_ready",
+        "order_tote_empty",
+        "pick_order_ready",
+        "stock_a_ready",
+        "stock_b_ready",
+        "stock_c_ready"
+      ],
+      "available_states": [
+        "component_a_loaded",
+        "component_a_picked",
+        "component_a_verified",
+        "component_b_loaded",
+        "component_b_picked",
+        "component_b_verified",
+        "component_c_loaded",
+        "component_c_picked",
+        "component_c_verified",
+        "dispatch_area_ready",
+        "kit_at_dispatch",
+        "kit_dispatch_recorded",
+        "order_kit_complete",
+        "order_tote_empty",
+        "order_tote_prepared",
+        "pick_order_ready",
+        "stock_a_ready",
+        "stock_b_ready",
+        "stock_c_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "kit_dispatch_recorded"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 19.0,
+    "waiting_time": 13.0,
+    "executor_utilization": 0.6316,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "pick component A",
+        "object": "component A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "stock_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "pick component B",
+        "object": "component B",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "stock_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "pick component C",
+        "object": "component C",
+        "start": 2.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "stock_c"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "verify component A code",
+        "object": "component A",
+        "start": 5.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "verify component B code",
+        "object": "component B",
+        "start": 6.0,
+        "finish": 7.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "verify component C code",
+        "object": "component C",
+        "start": 7.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "prepare order tote",
+        "object": "order tote",
+        "start": 8.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "load component A",
+        "object": "order tote",
+        "start": 10.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "load component B",
+        "object": "order tote",
+        "start": 11.0,
+        "finish": 12.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "load component C",
+        "object": "order tote",
+        "start": 12.0,
+        "finish": 13.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "verify complete kit",
+        "object": "order tote",
+        "start": 13.0,
+        "finish": 15.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t12",
+        "action": "transfer complete tote",
+        "object": "order tote",
+        "start": 15.0,
+        "finish": 18.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "order_tote"
+        ]
+      },
+      {
+        "node_id": "t13",
+        "action": "record kit dispatch",
+        "object": "dispatch record",
+        "start": 18.0,
+        "finish": 19.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.631578947368421
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "order_kit_complete"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "dispatch_area_ready",
+          "order_tote_empty",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "available_states": [
+          "component_a_loaded",
+          "component_a_picked",
+          "component_a_verified",
+          "component_b_loaded",
+          "component_b_picked",
+          "component_b_verified",
+          "component_c_loaded",
+          "component_c_picked",
+          "component_c_verified",
+          "dispatch_area_ready",
+          "kit_at_dispatch",
+          "kit_dispatch_recorded",
+          "order_kit_complete",
+          "order_tote_empty",
+          "order_tote_prepared",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "kit_dispatch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "dispatch_area_ready",
+          "order_tote_empty",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "available_states": [
+          "component_a_loaded",
+          "component_a_picked",
+          "component_a_verified",
+          "component_b_loaded",
+          "component_b_picked",
+          "component_b_verified",
+          "component_c_loaded",
+          "component_c_picked",
+          "component_c_verified",
+          "dispatch_area_ready",
+          "kit_at_dispatch",
+          "kit_dispatch_recorded",
+          "order_kit_complete",
+          "order_tote_empty",
+          "order_tote_prepared",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "kit_dispatch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "dispatch_area_ready",
+            "order_tote_empty",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "available_states": [
+            "component_a_loaded",
+            "component_a_picked",
+            "component_a_verified",
+            "component_b_loaded",
+            "component_b_picked",
+            "component_b_verified",
+            "component_c_loaded",
+            "component_c_picked",
+            "component_c_verified",
+            "dispatch_area_ready",
+            "kit_at_dispatch",
+            "kit_dispatch_recorded",
+            "order_kit_complete",
+            "order_tote_empty",
+            "order_tote_prepared",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "kit_dispatch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "dispatch_area_ready",
+            "order_tote_empty",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "available_states": [
+            "component_a_loaded",
+            "component_a_picked",
+            "component_a_verified",
+            "component_b_loaded",
+            "component_b_picked",
+            "component_b_verified",
+            "component_c_loaded",
+            "component_c_picked",
+            "component_c_verified",
+            "dispatch_area_ready",
+            "kit_at_dispatch",
+            "kit_dispatch_recorded",
+            "order_kit_complete",
+            "order_tote_empty",
+            "order_tote_prepared",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "kit_dispatch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "order_kit_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for order_kit_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "order_kit_complete",
+          "resource": null,
+          "reason": "cooperative input state order_kit_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.6316,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "stock_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "stock_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "stock_c"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "start": 7.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "start": 18.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "order_kit_complete"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "dispatch_area_ready",
+          "order_tote_empty",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "available_states": [
+          "component_a_loaded",
+          "component_a_picked",
+          "component_a_verified",
+          "component_b_loaded",
+          "component_b_picked",
+          "component_b_verified",
+          "component_c_loaded",
+          "component_c_picked",
+          "component_c_verified",
+          "dispatch_area_ready",
+          "kit_at_dispatch",
+          "kit_dispatch_recorded",
+          "order_kit_complete",
+          "order_tote_empty",
+          "order_tote_prepared",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "kit_dispatch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "dispatch_area_ready",
+          "order_tote_empty",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "available_states": [
+          "component_a_loaded",
+          "component_a_picked",
+          "component_a_verified",
+          "component_b_loaded",
+          "component_b_picked",
+          "component_b_verified",
+          "component_c_loaded",
+          "component_c_picked",
+          "component_c_verified",
+          "dispatch_area_ready",
+          "kit_at_dispatch",
+          "kit_dispatch_recorded",
+          "order_kit_complete",
+          "order_tote_empty",
+          "order_tote_prepared",
+          "pick_order_ready",
+          "stock_a_ready",
+          "stock_b_ready",
+          "stock_c_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "kit_dispatch_recorded"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "dispatch_area_ready",
+            "order_tote_empty",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "available_states": [
+            "component_a_loaded",
+            "component_a_picked",
+            "component_a_verified",
+            "component_b_loaded",
+            "component_b_picked",
+            "component_b_verified",
+            "component_c_loaded",
+            "component_c_picked",
+            "component_c_verified",
+            "dispatch_area_ready",
+            "kit_at_dispatch",
+            "kit_dispatch_recorded",
+            "order_kit_complete",
+            "order_tote_empty",
+            "order_tote_prepared",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "kit_dispatch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "dispatch_area_ready",
+            "order_tote_empty",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "available_states": [
+            "component_a_loaded",
+            "component_a_picked",
+            "component_a_verified",
+            "component_b_loaded",
+            "component_b_picked",
+            "component_b_verified",
+            "component_c_loaded",
+            "component_c_picked",
+            "component_c_verified",
+            "dispatch_area_ready",
+            "kit_at_dispatch",
+            "kit_dispatch_recorded",
+            "order_kit_complete",
+            "order_tote_empty",
+            "order_tote_prepared",
+            "pick_order_ready",
+            "stock_a_ready",
+            "stock_b_ready",
+            "stock_c_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "kit_dispatch_recorded"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "order_kit_complete",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for order_kit_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t11",
+          "target": "t12",
+          "edge_type": "synchronization",
+          "state": "order_kit_complete",
+          "resource": null,
+          "reason": "cooperative input state order_kit_complete",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 19.0,
+      "waiting_time": 13.0,
+      "executor_utilization": 0.6316,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "stock_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "stock_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "start": 2.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "stock_c"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "start": 6.0,
+          "finish": 7.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "start": 7.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "start": 10.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "start": 11.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "start": 15.0,
+          "finish": 18.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "order_tote"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "start": 18.0,
+          "finish": 19.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "pick component A",
+        "object": "component A",
+        "pre_state": [
+          "stock_a_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_a_picked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "stock_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "pick component B",
+        "object": "component B",
+        "pre_state": [
+          "stock_b_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_b_picked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "stock_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "pick component C",
+        "object": "component C",
+        "pre_state": [
+          "stock_c_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_c_picked"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "stock_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "verify component A code",
+        "object": "component A",
+        "pre_state": [
+          "component_a_picked"
+        ],
+        "post_state": [
+          "component_a_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "verify component B code",
+        "object": "component B",
+        "pre_state": [
+          "component_b_picked"
+        ],
+        "post_state": [
+          "component_b_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "verify component C code",
+        "object": "component C",
+        "pre_state": [
+          "component_c_picked"
+        ],
+        "post_state": [
+          "component_c_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "prepare order tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_tote_empty"
+        ],
+        "post_state": [
+          "order_tote_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "load component A",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_a_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "load component B",
+        "object": "order tote",
+        "pre_state": [
+          "component_b_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_b_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "load component C",
+        "object": "order tote",
+        "pre_state": [
+          "component_c_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_c_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "verify complete kit",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_loaded",
+          "component_b_loaded",
+          "component_c_loaded"
+        ],
+        "post_state": [
+          "order_kit_complete"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "transfer complete tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_kit_complete",
+          "dispatch_area_ready"
+        ],
+        "post_state": [
+          "kit_at_dispatch"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "record kit dispatch",
+        "object": "dispatch record",
+        "pre_state": [
+          "kit_at_dispatch",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "kit_dispatch_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_picked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_picked"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_picked"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_loaded"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_loaded"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_loaded"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_kit_complete"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "kit_at_dispatch"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "order_tote"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "order_tote"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "order_kit_complete"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.631578947368421
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "pick component A",
+        "object": "component A",
+        "pre_state": [
+          "stock_a_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_a_picked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "stock_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "pick component B",
+        "object": "component B",
+        "pre_state": [
+          "stock_b_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_b_picked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "stock_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "pick component C",
+        "object": "component C",
+        "pre_state": [
+          "stock_c_ready",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "component_c_picked"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "stock_c"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "verify component A code",
+        "object": "component A",
+        "pre_state": [
+          "component_a_picked"
+        ],
+        "post_state": [
+          "component_a_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "verify component B code",
+        "object": "component B",
+        "pre_state": [
+          "component_b_picked"
+        ],
+        "post_state": [
+          "component_b_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "verify component C code",
+        "object": "component C",
+        "pre_state": [
+          "component_c_picked"
+        ],
+        "post_state": [
+          "component_c_verified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "prepare order tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_tote_empty"
+        ],
+        "post_state": [
+          "order_tote_prepared"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "load component A",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_a_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "load component B",
+        "object": "order tote",
+        "pre_state": [
+          "component_b_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_b_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "load component C",
+        "object": "order tote",
+        "pre_state": [
+          "component_c_verified",
+          "order_tote_prepared"
+        ],
+        "post_state": [
+          "component_c_loaded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "verify complete kit",
+        "object": "order tote",
+        "pre_state": [
+          "component_a_loaded",
+          "component_b_loaded",
+          "component_c_loaded"
+        ],
+        "post_state": [
+          "order_kit_complete"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "transfer complete tote",
+        "object": "order tote",
+        "pre_state": [
+          "order_kit_complete",
+          "dispatch_area_ready"
+        ],
+        "post_state": [
+          "kit_at_dispatch"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "order_tote"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "record kit dispatch",
+        "object": "dispatch record",
+        "pre_state": [
+          "kit_at_dispatch",
+          "pick_order_ready"
+        ],
+        "post_state": [
+          "kit_dispatch_recorded"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_picked"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_picked"
+      },
+      {
+        "source": "t3",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_picked"
+      },
+      {
+        "source": "t4",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t5",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_tote_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_a_loaded"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_b_loaded"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "component_c_loaded"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "order_kit_complete"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "kit_at_dispatch"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t5",
+        "target": "t6",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "order_tote"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "order_tote"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "synchronization",
+        "reason": "",
+        "state": "order_kit_complete"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 16.0,
+      "right": 8.0
+    },
+    "utilization_unrounded": 0.631578947368421
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "dispatch_area_ready",
+        "order_tote_empty",
+        "pick_order_ready",
+        "stock_a_ready",
+        "stock_b_ready",
+        "stock_c_ready"
+      ],
+      "available_states": [
+        "component_a_loaded",
+        "component_a_picked",
+        "component_a_verified",
+        "component_b_loaded",
+        "component_b_picked",
+        "component_b_verified",
+        "component_c_loaded",
+        "component_c_picked",
+        "component_c_verified",
+        "dispatch_area_ready",
+        "kit_at_dispatch",
+        "kit_dispatch_recorded",
+        "order_kit_complete",
+        "order_tote_empty",
+        "order_tote_prepared",
+        "pick_order_ready",
+        "stock_a_ready",
+        "stock_b_ready",
+        "stock_c_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "kit_dispatch_recorded"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "order_kit_complete"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "order_kit_complete"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "pick component A",
+          "object": "component A",
+          "pre_state": [
+            "stock_a_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_a_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "pick component B",
+          "object": "component B",
+          "pre_state": [
+            "stock_b_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_b_picked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "stock_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "pick component C",
+          "object": "component C",
+          "pre_state": [
+            "stock_c_ready",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "component_c_picked"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "stock_c"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "verify component A code",
+          "object": "component A",
+          "pre_state": [
+            "component_a_picked"
+          ],
+          "post_state": [
+            "component_a_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "verify component B code",
+          "object": "component B",
+          "pre_state": [
+            "component_b_picked"
+          ],
+          "post_state": [
+            "component_b_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "verify component C code",
+          "object": "component C",
+          "pre_state": [
+            "component_c_picked"
+          ],
+          "post_state": [
+            "component_c_verified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "prepare order tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_tote_empty"
+          ],
+          "post_state": [
+            "order_tote_prepared"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "load component A",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_a_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "load component B",
+          "object": "order tote",
+          "pre_state": [
+            "component_b_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_b_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "load component C",
+          "object": "order tote",
+          "pre_state": [
+            "component_c_verified",
+            "order_tote_prepared"
+          ],
+          "post_state": [
+            "component_c_loaded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "verify complete kit",
+          "object": "order tote",
+          "pre_state": [
+            "component_a_loaded",
+            "component_b_loaded",
+            "component_c_loaded"
+          ],
+          "post_state": [
+            "order_kit_complete"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "transfer complete tote",
+          "object": "order tote",
+          "pre_state": [
+            "order_kit_complete",
+            "dispatch_area_ready"
+          ],
+          "post_state": [
+            "kit_at_dispatch"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "order_tote"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "record kit dispatch",
+          "object": "dispatch record",
+          "pre_state": [
+            "kit_at_dispatch",
+            "pick_order_ready"
+          ],
+          "post_state": [
+            "kit_dispatch_recorded"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_picked"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_picked"
+        },
+        {
+          "source": "t3",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_picked"
+        },
+        {
+          "source": "t4",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t5",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_tote_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_a_loaded"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_b_loaded"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "component_c_loaded"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "order_kit_complete"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "kit_at_dispatch"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t5",
+          "target": "t6",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "order_tote"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "synchronization",
+          "reason": "",
+          "state": "order_kit_complete"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "W04",
+    "domain": "warehouse",
+    "title": "Order kitting from three sources",
+    "nodes": 13,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 3,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 14,
+    "raw_E_sync": 1,
+    "raw_E_mutex": 4,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 16,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 21.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 19.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 19.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 19.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 16,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 2,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 2,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.105263157894737,
+    "relative_duration_reduction_vs_serial": 0.09523809523809523,
+    "executor_utilization": 0.631578947368421,
+    "left_busy_time": 16.0,
+    "right_busy_time": 8.0,
+    "scheduled_overlap_pairs": 1,
+    "critical_path_duration": 12.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

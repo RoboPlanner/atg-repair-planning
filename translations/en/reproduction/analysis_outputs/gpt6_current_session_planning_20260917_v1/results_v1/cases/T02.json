@@ -1,0 +1,4753 @@
+{
+  "task_id": "T02",
+  "spec": {
+    "task_id": "T02",
+    "domain": "workcell_preparation",
+    "title": "Calibration preparation for two tools",
+    "instruction": "Identify the two tools separately and prepare their calibration records. Calibrate them in sequence using a shared reference standard. Apply calibration labels, organize the tool locations and finally verify that both tools and their records are ready.",
+    "S0": [
+      "tool_a_available",
+      "tool_b_available",
+      "standard_ready",
+      "record_template_ready",
+      "tool_rack_available"
+    ],
+    "Sg": [
+      "calibrated_tools_ready"
+    ],
+    "resources": [
+      "tool_a",
+      "tool_b",
+      "standard",
+      "printer",
+      "tool_rack",
+      "terminal"
+    ]
+  },
+  "raw_source": "raw_candidates_workcell.json",
+  "raw_candidate": {
+    "task_id": "T02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "identify tool A",
+        "object": "tool A",
+        "Pre": [
+          "tool_a_available"
+        ],
+        "Post": [
+          "tool_a_identified"
+        ],
+        "d": 2,
+        "Res": [
+          "tool_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "identify tool B",
+        "object": "tool B",
+        "Pre": [
+          "tool_b_available"
+        ],
+        "Post": [
+          "tool_b_identified"
+        ],
+        "d": 2,
+        "Res": [
+          "tool_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare calibration record",
+        "object": "calibration record",
+        "Pre": [
+          "record_template_ready"
+        ],
+        "Post": [
+          "calibration_record_open"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "calibrate tool A",
+        "object": "tool A",
+        "Pre": [
+          "tool_a_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "Post": [
+          "tool_a_calibrated"
+        ],
+        "d": 4,
+        "Res": [
+          "tool_a",
+          "standard"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "calibrate tool B",
+        "object": "tool B",
+        "Pre": [
+          "tool_b_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "Post": [
+          "tool_b_calibrated"
+        ],
+        "d": 4,
+        "Res": [
+          "tool_b",
+          "standard"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print calibration label A",
+        "object": "label A",
+        "Pre": [
+          "tool_a_calibrated"
+        ],
+        "Post": [
+          "calibration_label_a_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "print calibration label B",
+        "object": "label B",
+        "Pre": [
+          "tool_b_calibrated"
+        ],
+        "Post": [
+          "calibration_label_b_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "prepare tool rack",
+        "object": "tool rack",
+        "Pre": [
+          "tool_rack_available"
+        ],
+        "Post": [
+          "tool_rack_ready"
+        ],
+        "d": 2,
+        "Res": [
+          "tool_rack"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "label and stow tool A",
+        "object": "tool A",
+        "Pre": [
+          "calibration_label_a_ready",
+          "tool_rack_ready"
+        ],
+        "Post": [
+          "tool_a_ready_in_rack"
+        ],
+        "d": 2,
+        "Res": [
+          "tool_a",
+          "tool_rack"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "label and stow tool B",
+        "object": "tool B",
+        "Pre": [
+          "calibration_label_b_ready",
+          "tool_rack_ready"
+        ],
+        "Post": [
+          "tool_b_ready_in_rack"
+        ],
+        "d": 2,
+        "Res": [
+          "tool_b",
+          "tool_rack"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "confirm calibrated tools and record",
+        "object": "calibration record",
+        "Pre": [
+          "tool_a_ready_in_rack",
+          "tool_b_ready_in_rack",
+          "calibration_record_open"
+        ],
+        "Post": [
+          "calibrated_tools_ready"
+        ],
+        "d": 2,
+        "Res": [
+          "terminal"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t4",
+          "tool_a_identified"
+        ],
+        [
+          "t3",
+          "t4",
+          "calibration_record_open"
+        ],
+        [
+          "t2",
+          "t5",
+          "tool_b_identified"
+        ],
+        [
+          "t3",
+          "t5",
+          "calibration_record_open"
+        ],
+        [
+          "t4",
+          "t6",
+          "tool_a_calibrated"
+        ],
+        [
+          "t5",
+          "t7",
+          "tool_b_calibrated"
+        ],
+        [
+          "t6",
+          "t9",
+          "calibration_label_a_ready"
+        ],
+        [
+          "t8",
+          "t9",
+          "tool_rack_ready"
+        ],
+        [
+          "t7",
+          "t10",
+          "calibration_label_b_ready"
+        ],
+        [
+          "t8",
+          "t10",
+          "tool_rack_ready"
+        ],
+        [
+          "t9",
+          "t11",
+          "tool_a_ready_in_rack"
+        ],
+        [
+          "t10",
+          "t11",
+          "tool_b_ready_in_rack"
+        ],
+        [
+          "t3",
+          "t11",
+          "calibration_record_open"
+        ]
+      ],
+      "E_sync": [],
+      "E_mutex": [
+        [
+          "t4",
+          "t5",
+          "standard"
+        ],
+        [
+          "t6",
+          "t7",
+          "printer"
+        ],
+        [
+          "t9",
+          "t10",
+          "tool_rack"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "identify tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_available"
+        ],
+        "post_state": [
+          "tool_a_identified"
+        ],
+        "duration": 2,
+        "resource": [
+          "tool_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "identify tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_available"
+        ],
+        "post_state": [
+          "tool_b_identified"
+        ],
+        "duration": 2,
+        "resource": [
+          "tool_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare calibration record",
+        "object": "calibration record",
+        "pre_state": [
+          "record_template_ready"
+        ],
+        "post_state": [
+          "calibration_record_open"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "calibrate tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_a_calibrated"
+        ],
+        "duration": 4,
+        "resource": [
+          "tool_a",
+          "standard"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "calibrate tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_b_calibrated"
+        ],
+        "duration": 4,
+        "resource": [
+          "tool_b",
+          "standard"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print calibration label A",
+        "object": "label A",
+        "pre_state": [
+          "tool_a_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_a_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "print calibration label B",
+        "object": "label B",
+        "pre_state": [
+          "tool_b_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_b_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "prepare tool rack",
+        "object": "tool rack",
+        "pre_state": [
+          "tool_rack_available"
+        ],
+        "post_state": [
+          "tool_rack_ready"
+        ],
+        "duration": 2,
+        "resource": [
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "label and stow tool A",
+        "object": "tool A",
+        "pre_state": [
+          "calibration_label_a_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_a_ready_in_rack"
+        ],
+        "duration": 2,
+        "resource": [
+          "tool_a",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "label and stow tool B",
+        "object": "tool B",
+        "pre_state": [
+          "calibration_label_b_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_b_ready_in_rack"
+        ],
+        "duration": 2,
+        "resource": [
+          "tool_b",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "confirm calibrated tools and record",
+        "object": "calibration record",
+        "pre_state": [
+          "tool_a_ready_in_rack",
+          "tool_b_ready_in_rack",
+          "calibration_record_open"
+        ],
+        "post_state": [
+          "calibrated_tools_ready"
+        ],
+        "duration": 2,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "state": "tool_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "state": "tool_b_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "state": "tool_a_calibrated"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "tool_b_calibrated"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "state": "calibration_label_a_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "state": "calibration_label_b_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "tool_a_ready_in_rack"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "tool_b_ready_in_rack"
+      },
+      {
+        "source": "t3",
+        "target": "t11",
+        "type": "state_support",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "resource": "standard"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "resource": "printer"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "resource": "tool_rack"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "record_template_ready",
+        "standard_ready",
+        "tool_a_available",
+        "tool_b_available",
+        "tool_rack_available"
+      ],
+      "available_states": [
+        "calibrated_tools_ready",
+        "calibration_label_a_ready",
+        "calibration_label_b_ready",
+        "calibration_record_open",
+        "record_template_ready",
+        "standard_ready",
+        "tool_a_available",
+        "tool_a_calibrated",
+        "tool_a_identified",
+        "tool_a_ready_in_rack",
+        "tool_b_available",
+        "tool_b_calibrated",
+        "tool_b_identified",
+        "tool_b_ready_in_rack",
+        "tool_rack_available",
+        "tool_rack_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "calibrated_tools_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 17.0,
+    "waiting_time": 8.0,
+    "executor_utilization": 0.7059,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "identify tool A",
+        "object": "tool A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tool_a"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "identify tool B",
+        "object": "tool B",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tool_b"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare calibration record",
+        "object": "calibration record",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "calibrate tool A",
+        "object": "tool A",
+        "start": 4.0,
+        "finish": 8.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tool_a",
+          "standard"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "calibrate tool B",
+        "object": "tool B",
+        "start": 8.0,
+        "finish": 12.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tool_b",
+          "standard"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "print calibration label A",
+        "object": "label A",
+        "start": 8.0,
+        "finish": 9.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "print calibration label B",
+        "object": "label B",
+        "start": 12.0,
+        "finish": 13.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "prepare tool rack",
+        "object": "tool rack",
+        "start": 9.0,
+        "finish": 11.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tool_rack"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "label and stow tool A",
+        "object": "tool A",
+        "start": 11.0,
+        "finish": 13.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "tool_a",
+          "tool_rack"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "label and stow tool B",
+        "object": "tool B",
+        "start": 13.0,
+        "finish": 15.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "tool_b",
+          "tool_rack"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "confirm calibrated tools and record",
+        "object": "calibration record",
+        "start": 15.0,
+        "finish": 17.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "terminal"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t5",
+        "t8",
+        2.0
+      ],
+      [
+        "t5",
+        "t9",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 15.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.7058823529411765
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_b_available",
+          "tool_rack_available"
+        ],
+        "available_states": [
+          "calibrated_tools_ready",
+          "calibration_label_a_ready",
+          "calibration_label_b_ready",
+          "calibration_record_open",
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_a_calibrated",
+          "tool_a_identified",
+          "tool_a_ready_in_rack",
+          "tool_b_available",
+          "tool_b_calibrated",
+          "tool_b_identified",
+          "tool_b_ready_in_rack",
+          "tool_rack_available",
+          "tool_rack_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "calibrated_tools_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_b_available",
+          "tool_rack_available"
+        ],
+        "available_states": [
+          "calibrated_tools_ready",
+          "calibration_label_a_ready",
+          "calibration_label_b_ready",
+          "calibration_record_open",
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_a_calibrated",
+          "tool_a_identified",
+          "tool_a_ready_in_rack",
+          "tool_b_available",
+          "tool_b_calibrated",
+          "tool_b_identified",
+          "tool_b_ready_in_rack",
+          "tool_rack_available",
+          "tool_rack_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "calibrated_tools_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_b_available",
+            "tool_rack_available"
+          ],
+          "available_states": [
+            "calibrated_tools_ready",
+            "calibration_label_a_ready",
+            "calibration_label_b_ready",
+            "calibration_record_open",
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_a_calibrated",
+            "tool_a_identified",
+            "tool_a_ready_in_rack",
+            "tool_b_available",
+            "tool_b_calibrated",
+            "tool_b_identified",
+            "tool_b_ready_in_rack",
+            "tool_rack_available",
+            "tool_rack_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "calibrated_tools_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_b_available",
+            "tool_rack_available"
+          ],
+          "available_states": [
+            "calibrated_tools_ready",
+            "calibration_label_a_ready",
+            "calibration_label_b_ready",
+            "calibration_record_open",
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_a_calibrated",
+            "tool_a_identified",
+            "tool_a_ready_in_rack",
+            "tool_b_available",
+            "tool_b_calibrated",
+            "tool_b_identified",
+            "tool_b_ready_in_rack",
+            "tool_rack_available",
+            "tool_rack_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "calibrated_tools_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 17.0,
+      "waiting_time": 8.0,
+      "executor_utilization": 0.7059,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a",
+            "standard"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "start": 8.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b",
+            "standard"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "start": 8.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a",
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b",
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_b_available",
+          "tool_rack_available"
+        ],
+        "available_states": [
+          "calibrated_tools_ready",
+          "calibration_label_a_ready",
+          "calibration_label_b_ready",
+          "calibration_record_open",
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_a_calibrated",
+          "tool_a_identified",
+          "tool_a_ready_in_rack",
+          "tool_b_available",
+          "tool_b_calibrated",
+          "tool_b_identified",
+          "tool_b_ready_in_rack",
+          "tool_rack_available",
+          "tool_rack_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "calibrated_tools_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_b_available",
+          "tool_rack_available"
+        ],
+        "available_states": [
+          "calibrated_tools_ready",
+          "calibration_label_a_ready",
+          "calibration_label_b_ready",
+          "calibration_record_open",
+          "record_template_ready",
+          "standard_ready",
+          "tool_a_available",
+          "tool_a_calibrated",
+          "tool_a_identified",
+          "tool_a_ready_in_rack",
+          "tool_b_available",
+          "tool_b_calibrated",
+          "tool_b_identified",
+          "tool_b_ready_in_rack",
+          "tool_rack_available",
+          "tool_rack_ready"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "calibrated_tools_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_b_available",
+            "tool_rack_available"
+          ],
+          "available_states": [
+            "calibrated_tools_ready",
+            "calibration_label_a_ready",
+            "calibration_label_b_ready",
+            "calibration_record_open",
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_a_calibrated",
+            "tool_a_identified",
+            "tool_a_ready_in_rack",
+            "tool_b_available",
+            "tool_b_calibrated",
+            "tool_b_identified",
+            "tool_b_ready_in_rack",
+            "tool_rack_available",
+            "tool_rack_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "calibrated_tools_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_b_available",
+            "tool_rack_available"
+          ],
+          "available_states": [
+            "calibrated_tools_ready",
+            "calibration_label_a_ready",
+            "calibration_label_b_ready",
+            "calibration_record_open",
+            "record_template_ready",
+            "standard_ready",
+            "tool_a_available",
+            "tool_a_calibrated",
+            "tool_a_identified",
+            "tool_a_ready_in_rack",
+            "tool_b_available",
+            "tool_b_calibrated",
+            "tool_b_identified",
+            "tool_b_ready_in_rack",
+            "tool_rack_available",
+            "tool_rack_ready"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "calibrated_tools_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 17.0,
+      "waiting_time": 8.0,
+      "executor_utilization": 0.7059,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a",
+            "standard"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "start": 8.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b",
+            "standard"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "start": 8.0,
+          "finish": 9.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "start": 12.0,
+          "finish": 13.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "start": 9.0,
+          "finish": 11.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "start": 11.0,
+          "finish": 13.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "tool_a",
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "start": 13.0,
+          "finish": 15.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "tool_b",
+            "tool_rack"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "start": 15.0,
+          "finish": 17.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "terminal"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "identify tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_available"
+        ],
+        "post_state": [
+          "tool_a_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "identify tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_available"
+        ],
+        "post_state": [
+          "tool_b_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare calibration record",
+        "object": "calibration record",
+        "pre_state": [
+          "record_template_ready"
+        ],
+        "post_state": [
+          "calibration_record_open"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "calibrate tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_a_calibrated"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tool_a",
+          "standard"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "calibrate tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_b_calibrated"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tool_b",
+          "standard"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print calibration label A",
+        "object": "label A",
+        "pre_state": [
+          "tool_a_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_a_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "print calibration label B",
+        "object": "label B",
+        "pre_state": [
+          "tool_b_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_b_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "prepare tool rack",
+        "object": "tool rack",
+        "pre_state": [
+          "tool_rack_available"
+        ],
+        "post_state": [
+          "tool_rack_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "label and stow tool A",
+        "object": "tool A",
+        "pre_state": [
+          "calibration_label_a_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_a_ready_in_rack"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_a",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "label and stow tool B",
+        "object": "tool B",
+        "pre_state": [
+          "calibration_label_b_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_b_ready_in_rack"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_b",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "confirm calibrated tools and record",
+        "object": "calibration record",
+        "pre_state": [
+          "tool_a_ready_in_rack",
+          "tool_b_ready_in_rack",
+          "calibration_record_open"
+        ],
+        "post_state": [
+          "calibrated_tools_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_calibrated"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_calibrated"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_label_a_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_label_b_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_ready_in_rack"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_ready_in_rack"
+      },
+      {
+        "source": "t3",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "standard"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tool_rack"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t5",
+        "t8",
+        2.0
+      ],
+      [
+        "t5",
+        "t9",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 15.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.7058823529411765
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "identify tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_available"
+        ],
+        "post_state": [
+          "tool_a_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "identify tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_available"
+        ],
+        "post_state": [
+          "tool_b_identified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare calibration record",
+        "object": "calibration record",
+        "pre_state": [
+          "record_template_ready"
+        ],
+        "post_state": [
+          "calibration_record_open"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "calibrate tool A",
+        "object": "tool A",
+        "pre_state": [
+          "tool_a_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_a_calibrated"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tool_a",
+          "standard"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "calibrate tool B",
+        "object": "tool B",
+        "pre_state": [
+          "tool_b_identified",
+          "calibration_record_open",
+          "standard_ready"
+        ],
+        "post_state": [
+          "tool_b_calibrated"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "tool_b",
+          "standard"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print calibration label A",
+        "object": "label A",
+        "pre_state": [
+          "tool_a_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_a_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "print calibration label B",
+        "object": "label B",
+        "pre_state": [
+          "tool_b_calibrated"
+        ],
+        "post_state": [
+          "calibration_label_b_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "prepare tool rack",
+        "object": "tool rack",
+        "pre_state": [
+          "tool_rack_available"
+        ],
+        "post_state": [
+          "tool_rack_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "label and stow tool A",
+        "object": "tool A",
+        "pre_state": [
+          "calibration_label_a_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_a_ready_in_rack"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_a",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "label and stow tool B",
+        "object": "tool B",
+        "pre_state": [
+          "calibration_label_b_ready",
+          "tool_rack_ready"
+        ],
+        "post_state": [
+          "tool_b_ready_in_rack"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "tool_b",
+          "tool_rack"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "confirm calibrated tools and record",
+        "object": "calibration record",
+        "pre_state": [
+          "tool_a_ready_in_rack",
+          "tool_b_ready_in_rack",
+          "calibration_record_open"
+        ],
+        "post_state": [
+          "calibrated_tools_ready"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "terminal"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t2",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_identified"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_calibrated"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_calibrated"
+      },
+      {
+        "source": "t6",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_label_a_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t7",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_label_b_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_rack_ready"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_a_ready_in_rack"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "tool_b_ready_in_rack"
+      },
+      {
+        "source": "t3",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "calibration_record_open"
+      },
+      {
+        "source": "t4",
+        "target": "t5",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "standard"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "printer"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tool_rack"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ],
+      [
+        "t5",
+        "t8",
+        2.0
+      ],
+      [
+        "t5",
+        "t9",
+        1.0
+      ],
+      [
+        "t7",
+        "t9",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 15.0,
+      "right": 9.0
+    },
+    "utilization_unrounded": 0.7058823529411765
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "record_template_ready",
+        "standard_ready",
+        "tool_a_available",
+        "tool_b_available",
+        "tool_rack_available"
+      ],
+      "available_states": [
+        "calibrated_tools_ready",
+        "calibration_label_a_ready",
+        "calibration_label_b_ready",
+        "calibration_record_open",
+        "record_template_ready",
+        "standard_ready",
+        "tool_a_available",
+        "tool_a_calibrated",
+        "tool_a_identified",
+        "tool_a_ready_in_rack",
+        "tool_b_available",
+        "tool_b_calibrated",
+        "tool_b_identified",
+        "tool_b_ready_in_rack",
+        "tool_rack_available",
+        "tool_rack_ready"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "calibrated_tools_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "identify tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_available"
+          ],
+          "post_state": [
+            "tool_a_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "identify tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_available"
+          ],
+          "post_state": [
+            "tool_b_identified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare calibration record",
+          "object": "calibration record",
+          "pre_state": [
+            "record_template_ready"
+          ],
+          "post_state": [
+            "calibration_record_open"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "calibrate tool A",
+          "object": "tool A",
+          "pre_state": [
+            "tool_a_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_a_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_a",
+            "standard"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "calibrate tool B",
+          "object": "tool B",
+          "pre_state": [
+            "tool_b_identified",
+            "calibration_record_open",
+            "standard_ready"
+          ],
+          "post_state": [
+            "tool_b_calibrated"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "tool_b",
+            "standard"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print calibration label A",
+          "object": "label A",
+          "pre_state": [
+            "tool_a_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_a_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "print calibration label B",
+          "object": "label B",
+          "pre_state": [
+            "tool_b_calibrated"
+          ],
+          "post_state": [
+            "calibration_label_b_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "prepare tool rack",
+          "object": "tool rack",
+          "pre_state": [
+            "tool_rack_available"
+          ],
+          "post_state": [
+            "tool_rack_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "label and stow tool A",
+          "object": "tool A",
+          "pre_state": [
+            "calibration_label_a_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_a_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_a",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "label and stow tool B",
+          "object": "tool B",
+          "pre_state": [
+            "calibration_label_b_ready",
+            "tool_rack_ready"
+          ],
+          "post_state": [
+            "tool_b_ready_in_rack"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "tool_b",
+            "tool_rack"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "confirm calibrated tools and record",
+          "object": "calibration record",
+          "pre_state": [
+            "tool_a_ready_in_rack",
+            "tool_b_ready_in_rack",
+            "calibration_record_open"
+          ],
+          "post_state": [
+            "calibrated_tools_ready"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "terminal"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t2",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_identified"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_calibrated"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_calibrated"
+        },
+        {
+          "source": "t6",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_a_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t7",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_label_b_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_rack_ready"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_a_ready_in_rack"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "tool_b_ready_in_rack"
+        },
+        {
+          "source": "t3",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "calibration_record_open"
+        },
+        {
+          "source": "t4",
+          "target": "t5",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "standard"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "printer"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tool_rack"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "T02",
+    "domain": "workcell_preparation",
+    "title": "Calibration preparation for two tools",
+    "nodes": 11,
+    "cooperative_nodes": 0,
+    "flexible_single_nodes": 3,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 13,
+    "raw_E_sync": 0,
+    "raw_E_mutex": 3,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 16,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 24.0,
+    "cooperative_duration": 0,
+    "before_makespan": 17.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 17.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 17.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 16,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 0,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 0,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.411764705882353,
+    "relative_duration_reduction_vs_serial": 0.29166666666666663,
+    "executor_utilization": 0.7058823529411765,
+    "left_busy_time": 15.0,
+    "right_busy_time": 9.0,
+    "scheduled_overlap_pairs": 5,
+    "critical_path_duration": 15.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

@@ -1,0 +1,602 @@
+[
+  {
+    "task_id": "A01",
+    "domain": "assembly",
+    "title": "Bracket and base assembly",
+    "instruction": "Prepare the base and bracket separately, then align them using both units. Tighten the two fastening points, inspect the assembly and apply a completion label. Both fastening operations use the same torque tool.",
+    "S0": [
+      "base_available",
+      "bracket_available",
+      "bolts_available",
+      "label_available"
+    ],
+    "Sg": [
+      "bracket_assembly_labeled"
+    ],
+    "resources": [
+      "base",
+      "bracket",
+      "torque_tool",
+      "label_printer"
+    ]
+  },
+  {
+    "task_id": "A02",
+    "domain": "assembly",
+    "title": "Sensor module installation",
+    "instruction": "Baseplate positioning, sensor preinspection and harness preparation can proceed separately. Install the sensor support, secure the module and connect the harness. The support and module share a fastening tool. Finish with an electrical test and sealing label.",
+    "S0": [
+      "plate_available",
+      "sensor_available",
+      "harness_available",
+      "seal_available"
+    ],
+    "Sg": [
+      "sensor_module_sealed"
+    ],
+    "resources": [
+      "plate",
+      "sensor",
+      "harness",
+      "driver",
+      "tester",
+      "label_printer"
+    ]
+  },
+  {
+    "task_id": "A03",
+    "domain": "assembly",
+    "title": "Sealed enclosure assembly",
+    "instruction": "Clean the lower shell and inspect the cover separately. Install the seal, close the enclosure using both units, tighten the two cover positions in sequence and perform a leak check. Then transfer the enclosure to the completed-items tray using both units.",
+    "S0": [
+      "lower_shell_available",
+      "cover_available",
+      "gasket_available",
+      "tray_ready"
+    ],
+    "Sg": [
+      "housing_on_finished_tray"
+    ],
+    "resources": [
+      "lower_shell",
+      "cover",
+      "gasket",
+      "driver",
+      "leak_tester",
+      "finished_tray"
+    ]
+  },
+  {
+    "task_id": "A04",
+    "domain": "assembly",
+    "title": "Two-branch harness panel assembly",
+    "instruction": "Position the panel and separately prepare the left harness, right harness and label. Route both harnesses and terminate them using a shared crimping tool. Test each harness, then install the protective cover using both units. Secure the cover and apply the traceability label.",
+    "S0": [
+      "panel_available",
+      "left_cable_available",
+      "right_cable_available",
+      "cover_available",
+      "label_stock"
+    ],
+    "Sg": [
+      "panel_traceable"
+    ],
+    "resources": [
+      "panel",
+      "left_cable",
+      "right_cable",
+      "crimper",
+      "tester",
+      "cover",
+      "driver",
+      "label_printer"
+    ]
+  },
+  {
+    "task_id": "P01",
+    "domain": "packaging",
+    "title": "Fragile instrument packing",
+    "instruction": "Prepare the carton, cushioning and instrument. Arrange the cushioning, then place the instrument in the carton using both units. Insert the manual, seal the carton and apply the shipping label.",
+    "S0": [
+      "carton_flat",
+      "cushion_available",
+      "instrument_available",
+      "manual_available",
+      "shipping_data_ready"
+    ],
+    "Sg": [
+      "instrument_package_labeled"
+    ],
+    "resources": [
+      "carton",
+      "cushion",
+      "instrument",
+      "tape_dispenser",
+      "label_printer"
+    ]
+  },
+  {
+    "task_id": "P02",
+    "domain": "packaging",
+    "title": "Two-compartment spare-parts kit",
+    "instruction": "Assemble the two-compartment box, check the two types of spare parts separately and place them in their respective inserts. Prepare the inventory list and load both inserts into the outer box using both units. Insert the list, seal and weigh the package, and apply a label.",
+    "S0": [
+      "outer_box_flat",
+      "part_a_available",
+      "part_b_available",
+      "tray_a_available",
+      "tray_b_available",
+      "order_ready"
+    ],
+    "Sg": [
+      "spare_kit_ready"
+    ],
+    "resources": [
+      "outer_box",
+      "part_a",
+      "part_b",
+      "tray_a",
+      "tray_b",
+      "scanner",
+      "printer",
+      "scale",
+      "tape_dispenser"
+    ]
+  },
+  {
+    "task_id": "P03",
+    "domain": "packaging",
+    "title": "Returned equipment and accessories packing",
+    "instruction": "Check the main unit, power supply and cable separately using a shared scanner. Put the main unit in a protective bag and organize the accessories in an accessory bag. Load the main unit using both execution units, add the accessories and return form, then seal and label the carton.",
+    "S0": [
+      "return_box_ready",
+      "unit_available",
+      "adapter_available",
+      "cable_available",
+      "return_order_ready"
+    ],
+    "Sg": [
+      "return_package_identified"
+    ],
+    "resources": [
+      "scanner",
+      "unit",
+      "adapter",
+      "cable",
+      "accessory_bag",
+      "return_box",
+      "printer",
+      "tape_dispenser"
+    ]
+  },
+  {
+    "task_id": "P04",
+    "domain": "packaging",
+    "title": "Insulated shipping box with two containers",
+    "instruction": "Prepare the outer shipping box, two insulating liners and two sealed samples. Assemble each liner with its sample and add absorbent pads. Load the first container and then the second using both units. Add the record card, seal and weigh the box, and apply identification. The samples are already sealed; this task does not handle their contents.",
+    "S0": [
+      "shipper_ready",
+      "liner_a_available",
+      "liner_b_available",
+      "sealed_sample_a",
+      "sealed_sample_b",
+      "pads_available",
+      "record_data_ready"
+    ],
+    "Sg": [
+      "insulated_shipper_ready"
+    ],
+    "resources": [
+      "shipper",
+      "liner_a",
+      "liner_b",
+      "sample_a",
+      "sample_b",
+      "pads",
+      "printer",
+      "scale",
+      "sealer"
+    ]
+  },
+  {
+    "task_id": "I01",
+    "domain": "inspection",
+    "title": "Dimensional inspection of two parts",
+    "instruction": "Prepare two parts and calibrated measuring equipment. Use the shared caliper to measure each part and record its dimensions. Print a combined inspection sheet and place both inspected parts in the completed-inspection tray.",
+    "S0": [
+      "part_a_available",
+      "part_b_available",
+      "caliper_calibrated",
+      "inspection_tray_ready"
+    ],
+    "Sg": [
+      "inspection_lot_documented"
+    ],
+    "resources": [
+      "part_a",
+      "part_b",
+      "caliper",
+      "printer",
+      "inspection_tray"
+    ]
+  },
+  {
+    "task_id": "I02",
+    "domain": "inspection",
+    "title": "Electrical module bench inspection",
+    "instruction": "Confirm that the bench is ready and prepare the module and test leads. Place the module on the bench using both units, connect the leads, perform continuity and insulation tests, archive the results and move the module to the accepted-items area. The tester is a shared capacity-one resource.",
+    "S0": [
+      "bench_available",
+      "module_available",
+      "leads_available",
+      "test_program_available"
+    ],
+    "Sg": [
+      "module_in_pass_area"
+    ],
+    "resources": [
+      "bench",
+      "module",
+      "leads",
+      "tester",
+      "record_terminal",
+      "pass_tray"
+    ]
+  },
+  {
+    "task_id": "I03",
+    "domain": "inspection",
+    "title": "Visual surface inspection of two workpieces",
+    "instruction": "Prepare the left and right workpieces and the imaging settings. Use a shared camera to photograph their upper surfaces separately. Turn over the larger left workpiece using both units and photograph its back. Review both results, print labels and place the workpieces in their respective accepted-items trays.",
+    "S0": [
+      "large_part_available",
+      "small_part_available",
+      "camera_profile_ready",
+      "pass_tray_ready"
+    ],
+    "Sg": [
+      "both_parts_released"
+    ],
+    "resources": [
+      "large_part",
+      "small_part",
+      "camera",
+      "review_terminal",
+      "printer",
+      "pass_tray"
+    ]
+  },
+  {
+    "task_id": "I04",
+    "domain": "inspection",
+    "title": "Assembly traceability review",
+    "instruction": "Check the main assembly serial number and auxiliary module number using a shared scanner. Confirm the fastening and electrical-test records separately. Turn the assembly over using both units to inspect the rear label, combine the identity and inspection records, print a release label and transfer it to the completed-items area.",
+    "S0": [
+      "assembly_available",
+      "submodule_available",
+      "torque_record_available",
+      "electrical_record_available",
+      "release_tray_ready"
+    ],
+    "Sg": [
+      "assembly_released"
+    ],
+    "resources": [
+      "assembly",
+      "submodule",
+      "scanner",
+      "review_terminal",
+      "printer",
+      "release_tray"
+    ]
+  },
+  {
+    "task_id": "W01",
+    "domain": "warehouse",
+    "title": "Consolidating two totes",
+    "instruction": "Scan the two source totes and prepare the left and right areas of the destination tote separately. Transfer the left tote contents into the destination tote using both units, then transfer the right tote contents. Finally, check the consolidated quantity and apply identification.",
+    "S0": [
+      "source_a_ready",
+      "source_b_ready",
+      "target_tote_empty",
+      "manifest_ready"
+    ],
+    "Sg": [
+      "consolidated_tote_labeled"
+    ],
+    "resources": [
+      "source_a",
+      "source_b",
+      "target_tote",
+      "scanner",
+      "printer"
+    ]
+  },
+  {
+    "task_id": "W02",
+    "domain": "warehouse",
+    "title": "Replenishing two storage locations",
+    "instruction": "Confirm available space at both storage locations, then scan the two replenishment batches. Deliver each batch of boxes to its corresponding location and check the quantity. Close the work order after both location records are complete. The scanner and registration terminal are shared.",
+    "S0": [
+      "bin_a_available",
+      "bin_b_available",
+      "carton_a_available",
+      "carton_b_available",
+      "replenishment_order_ready"
+    ],
+    "Sg": [
+      "replenishment_order_closed"
+    ],
+    "resources": [
+      "bin_a",
+      "bin_b",
+      "carton_a",
+      "carton_b",
+      "scanner",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "W03",
+    "domain": "warehouse",
+    "title": "Securing a large item on a pallet",
+    "instruction": "Inspect the pallet and prepare the large item and corner protectors. Place the large item using both units and install both sets of corner protectors. Thread the left and right straps separately, secure them using a shared tensioning tool, inspect the result and apply the pallet identification label.",
+    "S0": [
+      "pallet_available",
+      "load_available",
+      "corners_available",
+      "strap_left_available",
+      "strap_right_available",
+      "shipping_record_ready"
+    ],
+    "Sg": [
+      "pallet_identified"
+    ],
+    "resources": [
+      "pallet",
+      "load",
+      "corners",
+      "strap_left",
+      "strap_right",
+      "tensioner",
+      "printer"
+    ]
+  },
+  {
+    "task_id": "W04",
+    "domain": "warehouse",
+    "title": "Order kitting from three sources",
+    "instruction": "Retrieve components A, B and C from three separate sources and verify them using a shared scanner. Prepare the order tote and place the three components in their assigned compartments. Check kit completeness, transfer the tote using both units and register completion.",
+    "S0": [
+      "stock_a_ready",
+      "stock_b_ready",
+      "stock_c_ready",
+      "order_tote_empty",
+      "pick_order_ready",
+      "dispatch_area_ready"
+    ],
+    "Sg": [
+      "kit_dispatch_recorded"
+    ],
+    "resources": [
+      "stock_a",
+      "stock_b",
+      "stock_c",
+      "scanner",
+      "order_tote",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "S01",
+    "domain": "sorting",
+    "title": "Three-category parcel sorting",
+    "instruction": "Scan parcels A, B and C separately with the same scanner and read their destination categories. Place each parcel in its target compartment. Record batch completion after all three sorting results are complete.",
+    "S0": [
+      "parcel_a_ready",
+      "parcel_b_ready",
+      "parcel_c_ready",
+      "bins_ready",
+      "sort_manifest_ready"
+    ],
+    "Sg": [
+      "sorting_batch_recorded"
+    ],
+    "resources": [
+      "parcel_a",
+      "parcel_b",
+      "parcel_c",
+      "scanner",
+      "bin_a",
+      "bin_b",
+      "bin_c",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "S02",
+    "domain": "sorting",
+    "title": "Routing accepted and rework parts",
+    "instruction": "Prepare two parts awaiting classification and two routing trays. At the same inspection station, confirm in sequence that part A is accepted and part B requires rework. Print their labels, place them in the corresponding trays and register both transfer records.",
+    "S0": [
+      "item_a_available",
+      "item_b_available",
+      "pass_tray_ready",
+      "rework_tray_ready",
+      "inspection_rules_ready"
+    ],
+    "Sg": [
+      "routing_complete"
+    ],
+    "resources": [
+      "item_a",
+      "item_b",
+      "inspection_station",
+      "printer",
+      "pass_tray",
+      "rework_tray",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "S03",
+    "domain": "sorting",
+    "title": "Matching three sets of fasteners",
+    "instruction": "Select a bolt and nut from each of three fastener sets and verify matching specifications using the same gauge. Put each matched set in a separate bag, print a combined inventory list and load the three completed bags into a tote.",
+    "S0": [
+      "fastener_group_a",
+      "fastener_group_b",
+      "fastener_group_c",
+      "bags_available",
+      "tote_ready",
+      "gauge_ready"
+    ],
+    "Sg": [
+      "matched_fasteners_collected"
+    ],
+    "resources": [
+      "group_a",
+      "group_b",
+      "group_c",
+      "gauge",
+      "bag_a",
+      "bag_b",
+      "bag_c",
+      "printer",
+      "tote"
+    ]
+  },
+  {
+    "task_id": "S04",
+    "domain": "sorting",
+    "title": "Fragile-part placement and traceability",
+    "instruction": "Prepare one large part and two small parts, and identify all three using a shared scanner. Arrange the two small-part inserts separately and place the large part on the central tray using both units. Print three traceability labels with a shared printer. Label and place each part in its assigned area, then combine the batch records.",
+    "S0": [
+      "large_item_available",
+      "small_a_available",
+      "small_b_available",
+      "center_tray_ready",
+      "side_trays_ready",
+      "batch_record_ready"
+    ],
+    "Sg": [
+      "fragile_batch_traceable"
+    ],
+    "resources": [
+      "large_item",
+      "small_a",
+      "small_b",
+      "scanner",
+      "center_tray",
+      "tray_a",
+      "tray_b",
+      "printer",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "T01",
+    "domain": "workcell_preparation",
+    "title": "Locating fixture replacement",
+    "instruction": "Confirm that the workbench is safe and ready, and prepare the new fixture and fasteners. Detach the old fixture and remove it using both units. Install the new fixture using both units, then use a shared tool to lock both fastening points and check the positioning.",
+    "S0": [
+      "workcell_safe",
+      "old_fixture_installed",
+      "new_fixture_available",
+      "fasteners_available"
+    ],
+    "Sg": [
+      "new_fixture_verified"
+    ],
+    "resources": [
+      "workbench",
+      "old_fixture",
+      "new_fixture",
+      "driver",
+      "gauge"
+    ]
+  },
+  {
+    "task_id": "T02",
+    "domain": "workcell_preparation",
+    "title": "Calibration preparation for two tools",
+    "instruction": "Identify the two tools separately and prepare their calibration records. Calibrate them in sequence using a shared reference standard. Apply calibration labels, organize the tool locations and finally verify that both tools and their records are ready.",
+    "S0": [
+      "tool_a_available",
+      "tool_b_available",
+      "standard_ready",
+      "record_template_ready",
+      "tool_rack_available"
+    ],
+    "Sg": [
+      "calibrated_tools_ready"
+    ],
+    "resources": [
+      "tool_a",
+      "tool_b",
+      "standard",
+      "printer",
+      "tool_rack",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "T03",
+    "domain": "workcell_preparation",
+    "title": "Workstation clearance and material preparation",
+    "instruction": "Collect leftover material from the left and right areas, remove the full transfer tray using both units and clean both work areas. Check two sets of new material, place them in their corresponding areas, update the workstation board and check readiness to start work.",
+    "S0": [
+      "left_area_idle",
+      "right_area_idle",
+      "waste_tray_available",
+      "new_material_a",
+      "new_material_b",
+      "job_data_ready"
+    ],
+    "Sg": [
+      "workcell_ready_for_job"
+    ],
+    "resources": [
+      "left_area",
+      "right_area",
+      "waste_tray",
+      "cleaning_kit",
+      "material_a",
+      "material_b",
+      "scanner",
+      "terminal"
+    ]
+  },
+  {
+    "task_id": "T04",
+    "domain": "workcell_preparation",
+    "title": "Two-stage tooling handover",
+    "instruction": "Verify the identity of the new tooling, prepare the receiving table and confirm the transport pallet. Position the support blocks, then transfer the tooling from the pallet to the table using both units. Prepare two accessory groups independently and install them using a shared tool. Inspect both groups, move the complete tooling to the handover position using both units, combine the inspection records and print the handover sheet.",
+    "S0": [
+      "new_tooling_available",
+      "receiving_table_available",
+      "transport_tray_ready",
+      "support_blocks_available",
+      "accessory_a_available",
+      "accessory_b_available",
+      "handover_position_ready",
+      "handover_order_ready"
+    ],
+    "Sg": [
+      "tooling_handover_documented"
+    ],
+    "resources": [
+      "tooling",
+      "receiving_table",
+      "transport_tray",
+      "support_blocks",
+      "accessory_a",
+      "accessory_b",
+      "driver",
+      "tester",
+      "handover_position",
+      "terminal",
+      "printer"
+    ]
+  }
+]

@@ -1,0 +1,6125 @@
+{
+  "task_id": "W03",
+  "spec": {
+    "task_id": "W03",
+    "domain": "warehouse",
+    "title": "Securing a large item on a pallet",
+    "instruction": "Inspect the pallet and prepare the large item and corner protectors. Place the large item using both units and install both sets of corner protectors. Thread the left and right straps separately, secure them using a shared tensioning tool, inspect the result and apply the pallet identification label.",
+    "S0": [
+      "pallet_available",
+      "load_available",
+      "corners_available",
+      "strap_left_available",
+      "strap_right_available",
+      "shipping_record_ready"
+    ],
+    "Sg": [
+      "pallet_identified"
+    ],
+    "resources": [
+      "pallet",
+      "load",
+      "corners",
+      "strap_left",
+      "strap_right",
+      "tensioner",
+      "printer"
+    ]
+  },
+  "raw_source": "raw_candidates_warehouse.json",
+  "raw_candidate": {
+    "task_id": "W03",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "inspect pallet",
+        "object": "pallet",
+        "Pre": [
+          "pallet_available"
+        ],
+        "Post": [
+          "pallet_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare large load",
+        "object": "load",
+        "Pre": [
+          "load_available"
+        ],
+        "Post": [
+          "load_prepared"
+        ],
+        "d": 3,
+        "Res": [
+          "load"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare corner protectors",
+        "object": "corners",
+        "Pre": [
+          "corners_available"
+        ],
+        "Post": [
+          "corners_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "corners"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "prepare left strap",
+        "object": "left strap",
+        "Pre": [
+          "strap_left_available"
+        ],
+        "Post": [
+          "left_strap_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "strap_left"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "prepare right strap",
+        "object": "right strap",
+        "Pre": [
+          "strap_right_available"
+        ],
+        "Post": [
+          "right_strap_prepared"
+        ],
+        "d": 1,
+        "Res": [
+          "strap_right"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place load on pallet",
+        "object": "load",
+        "Pre": [
+          "pallet_checked",
+          "load_prepared"
+        ],
+        "Post": [
+          "load_on_pallet"
+        ],
+        "d": 4,
+        "Res": [
+          "pallet",
+          "load"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "fit left corner protectors",
+        "object": "load left corners",
+        "Pre": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "Post": [
+          "left_corners_fitted"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "fit right corner protectors",
+        "object": "load right corners",
+        "Pre": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "Post": [
+          "right_corners_fitted"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "thread left strap",
+        "object": "left strap",
+        "Pre": [
+          "left_corners_fitted",
+          "left_strap_prepared"
+        ],
+        "Post": [
+          "left_strap_threaded"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "strap_left"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "thread right strap",
+        "object": "right strap",
+        "Pre": [
+          "right_corners_fitted",
+          "right_strap_prepared"
+        ],
+        "Post": [
+          "right_strap_threaded"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "strap_right"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "tension left strap",
+        "object": "left strap",
+        "Pre": [
+          "left_strap_threaded"
+        ],
+        "Post": [
+          "left_strap_tensioned"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "strap_left",
+          "tensioner"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "tension right strap",
+        "object": "right strap",
+        "Pre": [
+          "right_strap_threaded"
+        ],
+        "Post": [
+          "right_strap_tensioned"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "strap_right",
+          "tensioner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "verify pallet restraint",
+        "object": "pallet load",
+        "Pre": [
+          "left_strap_tensioned",
+          "right_strap_tensioned"
+        ],
+        "Post": [
+          "pallet_restraint_verified"
+        ],
+        "d": 2,
+        "Res": [
+          "pallet",
+          "load"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t14",
+        "action": "apply pallet identity",
+        "object": "pallet",
+        "Pre": [
+          "pallet_restraint_verified",
+          "shipping_record_ready"
+        ],
+        "Post": [
+          "pallet_identified"
+        ],
+        "d": 1,
+        "Res": [
+          "pallet",
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t1",
+          "t6",
+          "pallet_checked"
+        ],
+        [
+          "t2",
+          "t6",
+          "load_prepared"
+        ],
+        [
+          "t6",
+          "t7",
+          "load_on_pallet"
+        ],
+        [
+          "t3",
+          "t7",
+          "corners_prepared"
+        ],
+        [
+          "t6",
+          "t8",
+          "load_on_pallet"
+        ],
+        [
+          "t3",
+          "t8",
+          "corners_prepared"
+        ],
+        [
+          "t7",
+          "t9",
+          "left_corners_fitted"
+        ],
+        [
+          "t4",
+          "t9",
+          "left_strap_prepared"
+        ],
+        [
+          "t8",
+          "t10",
+          "right_corners_fitted"
+        ],
+        [
+          "t5",
+          "t10",
+          "right_strap_prepared"
+        ],
+        [
+          "t9",
+          "t11",
+          "left_strap_threaded"
+        ],
+        [
+          "t10",
+          "t12",
+          "right_strap_threaded"
+        ],
+        [
+          "t11",
+          "t13",
+          "left_strap_tensioned"
+        ],
+        [
+          "t12",
+          "t13",
+          "right_strap_tensioned"
+        ],
+        [
+          "t13",
+          "t14",
+          "pallet_restraint_verified"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t6",
+          "pallet_checked"
+        ],
+        [
+          "t2",
+          "t6",
+          "load_prepared"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t7",
+          "t8",
+          "pallet"
+        ],
+        [
+          "t8",
+          "t9",
+          "pallet"
+        ],
+        [
+          "t9",
+          "t10",
+          "pallet"
+        ],
+        [
+          "t10",
+          "t11",
+          "pallet"
+        ],
+        [
+          "t11",
+          "t12",
+          "tensioner"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "inspect pallet",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_available"
+        ],
+        "post_state": [
+          "pallet_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "prepare large load",
+        "object": "load",
+        "pre_state": [
+          "load_available"
+        ],
+        "post_state": [
+          "load_prepared"
+        ],
+        "duration": 3,
+        "resource": [
+          "load"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "prepare corner protectors",
+        "object": "corners",
+        "pre_state": [
+          "corners_available"
+        ],
+        "post_state": [
+          "corners_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "corners"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "prepare left strap",
+        "object": "left strap",
+        "pre_state": [
+          "strap_left_available"
+        ],
+        "post_state": [
+          "left_strap_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "prepare right strap",
+        "object": "right strap",
+        "pre_state": [
+          "strap_right_available"
+        ],
+        "post_state": [
+          "right_strap_prepared"
+        ],
+        "duration": 1,
+        "resource": [
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "place load on pallet",
+        "object": "load",
+        "pre_state": [
+          "pallet_checked",
+          "load_prepared"
+        ],
+        "post_state": [
+          "load_on_pallet"
+        ],
+        "duration": 4,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t7",
+        "action": "fit left corner protectors",
+        "object": "load left corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "left_corners_fitted"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t8",
+        "action": "fit right corner protectors",
+        "object": "load right corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "right_corners_fitted"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "thread left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_corners_fitted",
+          "left_strap_prepared"
+        ],
+        "post_state": [
+          "left_strap_threaded"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "thread right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_corners_fitted",
+          "right_strap_prepared"
+        ],
+        "post_state": [
+          "right_strap_threaded"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "tension left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_strap_threaded"
+        ],
+        "post_state": [
+          "left_strap_tensioned"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "strap_left",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t12",
+        "action": "tension right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_strap_threaded"
+        ],
+        "post_state": [
+          "right_strap_tensioned"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "strap_right",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t13",
+        "action": "verify pallet restraint",
+        "object": "pallet load",
+        "pre_state": [
+          "left_strap_tensioned",
+          "right_strap_tensioned"
+        ],
+        "post_state": [
+          "pallet_restraint_verified"
+        ],
+        "duration": 2,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t14",
+        "action": "apply pallet identity",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_restraint_verified",
+          "shipping_record_ready"
+        ],
+        "post_state": [
+          "pallet_identified"
+        ],
+        "duration": 1,
+        "resource": [
+          "pallet",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "state_support",
+        "state": "pallet_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "state": "left_corners_fitted"
+      },
+      {
+        "source": "t4",
+        "target": "t9",
+        "type": "state_support",
+        "state": "left_strap_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "state": "right_corners_fitted"
+      },
+      {
+        "source": "t5",
+        "target": "t10",
+        "type": "state_support",
+        "state": "right_strap_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "state": "left_strap_threaded"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "state": "right_strap_threaded"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "state": "left_strap_tensioned"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "state": "right_strap_tensioned"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "state": "pallet_restraint_verified"
+      },
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "pallet_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "resource": "pallet"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "resource": "pallet"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "resource": "pallet"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "resource": "pallet"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "resource": "tensioner"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "corners_available",
+        "load_available",
+        "pallet_available",
+        "shipping_record_ready",
+        "strap_left_available",
+        "strap_right_available"
+      ],
+      "available_states": [
+        "corners_available",
+        "corners_prepared",
+        "left_corners_fitted",
+        "left_strap_prepared",
+        "left_strap_tensioned",
+        "left_strap_threaded",
+        "load_available",
+        "load_on_pallet",
+        "load_prepared",
+        "pallet_available",
+        "pallet_checked",
+        "pallet_identified",
+        "pallet_restraint_verified",
+        "right_corners_fitted",
+        "right_strap_prepared",
+        "right_strap_tensioned",
+        "right_strap_threaded",
+        "shipping_record_ready",
+        "strap_left_available",
+        "strap_right_available"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "pallet_identified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 23.0,
+    "waiting_time": 12.0,
+    "executor_utilization": 0.6739,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "inspect pallet",
+        "object": "pallet",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "prepare large load",
+        "object": "load",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "load"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "prepare corner protectors",
+        "object": "corners",
+        "start": 2.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "corners"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "prepare left strap",
+        "object": "left strap",
+        "start": 3.0,
+        "finish": 4.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "strap_left"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "prepare right strap",
+        "object": "right strap",
+        "start": 3.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "strap_right"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "place load on pallet",
+        "object": "load",
+        "start": 4.0,
+        "finish": 8.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "pallet",
+          "load"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "fit left corner protectors",
+        "object": "load left corners",
+        "start": 8.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet",
+          "load",
+          "corners"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "fit right corner protectors",
+        "object": "load right corners",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "pallet",
+          "load",
+          "corners"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "thread left strap",
+        "object": "left strap",
+        "start": 12.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet",
+          "strap_left"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "thread right strap",
+        "object": "right strap",
+        "start": 14.0,
+        "finish": 16.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "pallet",
+          "strap_right"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "tension left strap",
+        "object": "left strap",
+        "start": 16.0,
+        "finish": 18.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet",
+          "strap_left",
+          "tensioner"
+        ]
+      },
+      {
+        "node_id": "t12",
+        "action": "tension right strap",
+        "object": "right strap",
+        "start": 18.0,
+        "finish": 20.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "pallet",
+          "strap_right",
+          "tensioner"
+        ]
+      },
+      {
+        "node_id": "t13",
+        "action": "verify pallet restraint",
+        "object": "pallet load",
+        "start": 20.0,
+        "finish": 22.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet",
+          "load"
+        ]
+      },
+      {
+        "node_id": "t14",
+        "action": "apply pallet identity",
+        "object": "pallet",
+        "start": 22.0,
+        "finish": 23.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "pallet",
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 14.0
+    },
+    "utilization_unrounded": 0.6739130434782609
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "pallet_checked"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "corners_available",
+          "load_available",
+          "pallet_available",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "available_states": [
+          "corners_available",
+          "corners_prepared",
+          "left_corners_fitted",
+          "left_strap_prepared",
+          "left_strap_tensioned",
+          "left_strap_threaded",
+          "load_available",
+          "load_on_pallet",
+          "load_prepared",
+          "pallet_available",
+          "pallet_checked",
+          "pallet_identified",
+          "pallet_restraint_verified",
+          "right_corners_fitted",
+          "right_strap_prepared",
+          "right_strap_tensioned",
+          "right_strap_threaded",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "pallet_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "corners_available",
+          "load_available",
+          "pallet_available",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "available_states": [
+          "corners_available",
+          "corners_prepared",
+          "left_corners_fitted",
+          "left_strap_prepared",
+          "left_strap_tensioned",
+          "left_strap_threaded",
+          "load_available",
+          "load_on_pallet",
+          "load_prepared",
+          "pallet_available",
+          "pallet_checked",
+          "pallet_identified",
+          "pallet_restraint_verified",
+          "right_corners_fitted",
+          "right_strap_prepared",
+          "right_strap_tensioned",
+          "right_strap_threaded",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "pallet_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "corners_available",
+            "load_available",
+            "pallet_available",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "available_states": [
+            "corners_available",
+            "corners_prepared",
+            "left_corners_fitted",
+            "left_strap_prepared",
+            "left_strap_tensioned",
+            "left_strap_threaded",
+            "load_available",
+            "load_on_pallet",
+            "load_prepared",
+            "pallet_available",
+            "pallet_checked",
+            "pallet_identified",
+            "pallet_restraint_verified",
+            "right_corners_fitted",
+            "right_strap_prepared",
+            "right_strap_tensioned",
+            "right_strap_threaded",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "pallet_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "corners_available",
+            "load_available",
+            "pallet_available",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "available_states": [
+            "corners_available",
+            "corners_prepared",
+            "left_corners_fitted",
+            "left_strap_prepared",
+            "left_strap_tensioned",
+            "left_strap_threaded",
+            "load_available",
+            "load_on_pallet",
+            "load_prepared",
+            "pallet_available",
+            "pallet_checked",
+            "pallet_identified",
+            "pallet_restraint_verified",
+            "right_corners_fitted",
+            "right_strap_prepared",
+            "right_strap_tensioned",
+            "right_strap_threaded",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "pallet_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "pallet_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for pallet_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "load_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for load_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "load_prepared",
+          "resource": null,
+          "reason": "cooperative input state load_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "pallet_checked",
+          "resource": null,
+          "reason": "cooperative input state pallet_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 23.0,
+      "waiting_time": 12.0,
+      "executor_utilization": 0.6739,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "load"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "strap_left"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "strap_right"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "load"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "load",
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "load",
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "strap_left"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "start": 14.0,
+          "finish": 16.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "strap_right"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "start": 16.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "start": 18.0,
+          "finish": 20.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "start": 20.0,
+          "finish": 22.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "load"
+          ]
+        },
+        {
+          "node_id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "start": 22.0,
+          "finish": 23.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "pallet_checked"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "corners_available",
+          "load_available",
+          "pallet_available",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "available_states": [
+          "corners_available",
+          "corners_prepared",
+          "left_corners_fitted",
+          "left_strap_prepared",
+          "left_strap_tensioned",
+          "left_strap_threaded",
+          "load_available",
+          "load_on_pallet",
+          "load_prepared",
+          "pallet_available",
+          "pallet_checked",
+          "pallet_identified",
+          "pallet_restraint_verified",
+          "right_corners_fitted",
+          "right_strap_prepared",
+          "right_strap_tensioned",
+          "right_strap_threaded",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "pallet_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "corners_available",
+          "load_available",
+          "pallet_available",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "available_states": [
+          "corners_available",
+          "corners_prepared",
+          "left_corners_fitted",
+          "left_strap_prepared",
+          "left_strap_tensioned",
+          "left_strap_threaded",
+          "load_available",
+          "load_on_pallet",
+          "load_prepared",
+          "pallet_available",
+          "pallet_checked",
+          "pallet_identified",
+          "pallet_restraint_verified",
+          "right_corners_fitted",
+          "right_strap_prepared",
+          "right_strap_tensioned",
+          "right_strap_threaded",
+          "shipping_record_ready",
+          "strap_left_available",
+          "strap_right_available"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11",
+          "t12",
+          "t13",
+          "t14"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "pallet_identified"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "corners_available",
+            "load_available",
+            "pallet_available",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "available_states": [
+            "corners_available",
+            "corners_prepared",
+            "left_corners_fitted",
+            "left_strap_prepared",
+            "left_strap_tensioned",
+            "left_strap_threaded",
+            "load_available",
+            "load_on_pallet",
+            "load_prepared",
+            "pallet_available",
+            "pallet_checked",
+            "pallet_identified",
+            "pallet_restraint_verified",
+            "right_corners_fitted",
+            "right_strap_prepared",
+            "right_strap_tensioned",
+            "right_strap_threaded",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "pallet_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "corners_available",
+            "load_available",
+            "pallet_available",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "available_states": [
+            "corners_available",
+            "corners_prepared",
+            "left_corners_fitted",
+            "left_strap_prepared",
+            "left_strap_tensioned",
+            "left_strap_threaded",
+            "load_available",
+            "load_on_pallet",
+            "load_prepared",
+            "pallet_available",
+            "pallet_checked",
+            "pallet_identified",
+            "pallet_restraint_verified",
+            "right_corners_fitted",
+            "right_strap_prepared",
+            "right_strap_tensioned",
+            "right_strap_threaded",
+            "shipping_record_ready",
+            "strap_left_available",
+            "strap_right_available"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11",
+            "t12",
+            "t13",
+            "t14"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "pallet_identified"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "pallet_checked",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for pallet_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "load_prepared",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for load_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t2",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "load_prepared",
+          "resource": null,
+          "reason": "cooperative input state load_prepared",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t6",
+          "edge_type": "synchronization",
+          "state": "pallet_checked",
+          "resource": null,
+          "reason": "cooperative input state pallet_checked",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 23.0,
+      "waiting_time": 12.0,
+      "executor_utilization": 0.6739,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "load"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "start": 2.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "strap_left"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "start": 3.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "strap_right"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "start": 4.0,
+          "finish": 8.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "load"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "start": 8.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "load",
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "load",
+            "corners"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "strap_left"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "start": 14.0,
+          "finish": 16.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "strap_right"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "start": 16.0,
+          "finish": 18.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ]
+        },
+        {
+          "node_id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "start": 18.0,
+          "finish": 20.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ]
+        },
+        {
+          "node_id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "start": 20.0,
+          "finish": 22.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "load"
+          ]
+        },
+        {
+          "node_id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "start": 22.0,
+          "finish": 23.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "pallet",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "inspect pallet",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_available"
+        ],
+        "post_state": [
+          "pallet_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare large load",
+        "object": "load",
+        "pre_state": [
+          "load_available"
+        ],
+        "post_state": [
+          "load_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "load"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare corner protectors",
+        "object": "corners",
+        "pre_state": [
+          "corners_available"
+        ],
+        "post_state": [
+          "corners_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "corners"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "prepare left strap",
+        "object": "left strap",
+        "pre_state": [
+          "strap_left_available"
+        ],
+        "post_state": [
+          "left_strap_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "prepare right strap",
+        "object": "right strap",
+        "pre_state": [
+          "strap_right_available"
+        ],
+        "post_state": [
+          "right_strap_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place load on pallet",
+        "object": "load",
+        "pre_state": [
+          "pallet_checked",
+          "load_prepared"
+        ],
+        "post_state": [
+          "load_on_pallet"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "fit left corner protectors",
+        "object": "load left corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "left_corners_fitted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "fit right corner protectors",
+        "object": "load right corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "right_corners_fitted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "thread left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_corners_fitted",
+          "left_strap_prepared"
+        ],
+        "post_state": [
+          "left_strap_threaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "thread right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_corners_fitted",
+          "right_strap_prepared"
+        ],
+        "post_state": [
+          "right_strap_threaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "tension left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_strap_threaded"
+        ],
+        "post_state": [
+          "left_strap_tensioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_left",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "tension right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_strap_threaded"
+        ],
+        "post_state": [
+          "right_strap_tensioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_right",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "verify pallet restraint",
+        "object": "pallet load",
+        "pre_state": [
+          "left_strap_tensioned",
+          "right_strap_tensioned"
+        ],
+        "post_state": [
+          "pallet_restraint_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t14",
+        "action": "apply pallet identity",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_restraint_verified",
+          "shipping_record_ready"
+        ],
+        "post_state": [
+          "pallet_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "pallet",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "pallet_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_corners_fitted"
+      },
+      {
+        "source": "t4",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_corners_fitted"
+      },
+      {
+        "source": "t5",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_threaded"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_threaded"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_tensioned"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_tensioned"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "reason": "",
+        "state": "pallet_restraint_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tensioner"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "pallet_checked"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 14.0
+    },
+    "utilization_unrounded": 0.6739130434782609
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "inspect pallet",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_available"
+        ],
+        "post_state": [
+          "pallet_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "prepare large load",
+        "object": "load",
+        "pre_state": [
+          "load_available"
+        ],
+        "post_state": [
+          "load_prepared"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "load"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "prepare corner protectors",
+        "object": "corners",
+        "pre_state": [
+          "corners_available"
+        ],
+        "post_state": [
+          "corners_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "corners"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "prepare left strap",
+        "object": "left strap",
+        "pre_state": [
+          "strap_left_available"
+        ],
+        "post_state": [
+          "left_strap_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "prepare right strap",
+        "object": "right strap",
+        "pre_state": [
+          "strap_right_available"
+        ],
+        "post_state": [
+          "right_strap_prepared"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "place load on pallet",
+        "object": "load",
+        "pre_state": [
+          "pallet_checked",
+          "load_prepared"
+        ],
+        "post_state": [
+          "load_on_pallet"
+        ],
+        "duration": 4.0,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "fit left corner protectors",
+        "object": "load left corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "left_corners_fitted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "fit right corner protectors",
+        "object": "load right corners",
+        "pre_state": [
+          "load_on_pallet",
+          "corners_prepared"
+        ],
+        "post_state": [
+          "right_corners_fitted"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load",
+          "corners"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "thread left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_corners_fitted",
+          "left_strap_prepared"
+        ],
+        "post_state": [
+          "left_strap_threaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_left"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "thread right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_corners_fitted",
+          "right_strap_prepared"
+        ],
+        "post_state": [
+          "right_strap_threaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_right"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "tension left strap",
+        "object": "left strap",
+        "pre_state": [
+          "left_strap_threaded"
+        ],
+        "post_state": [
+          "left_strap_tensioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_left",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t12",
+        "action": "tension right strap",
+        "object": "right strap",
+        "pre_state": [
+          "right_strap_threaded"
+        ],
+        "post_state": [
+          "right_strap_tensioned"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "strap_right",
+          "tensioner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t13",
+        "action": "verify pallet restraint",
+        "object": "pallet load",
+        "pre_state": [
+          "left_strap_tensioned",
+          "right_strap_tensioned"
+        ],
+        "post_state": [
+          "pallet_restraint_verified"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "pallet",
+          "load"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t14",
+        "action": "apply pallet identity",
+        "object": "pallet",
+        "pre_state": [
+          "pallet_restraint_verified",
+          "shipping_record_ready"
+        ],
+        "post_state": [
+          "pallet_identified"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "pallet",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "pallet_checked"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "load_on_pallet"
+      },
+      {
+        "source": "t3",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "corners_prepared"
+      },
+      {
+        "source": "t7",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_corners_fitted"
+      },
+      {
+        "source": "t4",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_prepared"
+      },
+      {
+        "source": "t8",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_corners_fitted"
+      },
+      {
+        "source": "t5",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_prepared"
+      },
+      {
+        "source": "t9",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_threaded"
+      },
+      {
+        "source": "t10",
+        "target": "t12",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_threaded"
+      },
+      {
+        "source": "t11",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "left_strap_tensioned"
+      },
+      {
+        "source": "t12",
+        "target": "t13",
+        "type": "state_support",
+        "reason": "",
+        "state": "right_strap_tensioned"
+      },
+      {
+        "source": "t13",
+        "target": "t14",
+        "type": "state_support",
+        "reason": "",
+        "state": "pallet_restraint_verified"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "pallet"
+      },
+      {
+        "source": "t11",
+        "target": "t12",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "tensioner"
+      },
+      {
+        "source": "t2",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "load_prepared"
+      },
+      {
+        "source": "t1",
+        "target": "t6",
+        "type": "synchronization",
+        "reason": "",
+        "state": "pallet_checked"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t2",
+        "t3",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 17.0,
+      "right": 14.0
+    },
+    "utilization_unrounded": 0.6739130434782609
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "corners_available",
+        "load_available",
+        "pallet_available",
+        "shipping_record_ready",
+        "strap_left_available",
+        "strap_right_available"
+      ],
+      "available_states": [
+        "corners_available",
+        "corners_prepared",
+        "left_corners_fitted",
+        "left_strap_prepared",
+        "left_strap_tensioned",
+        "left_strap_threaded",
+        "load_available",
+        "load_on_pallet",
+        "load_prepared",
+        "pallet_available",
+        "pallet_checked",
+        "pallet_identified",
+        "pallet_restraint_verified",
+        "right_corners_fitted",
+        "right_strap_prepared",
+        "right_strap_tensioned",
+        "right_strap_threaded",
+        "shipping_record_ready",
+        "strap_left_available",
+        "strap_right_available"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11",
+        "t12",
+        "t13",
+        "t14"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "pallet_identified"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "pallet_checked"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "pallet_checked"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "inspect pallet",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_available"
+          ],
+          "post_state": [
+            "pallet_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "prepare large load",
+          "object": "load",
+          "pre_state": [
+            "load_available"
+          ],
+          "post_state": [
+            "load_prepared"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "load"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "prepare corner protectors",
+          "object": "corners",
+          "pre_state": [
+            "corners_available"
+          ],
+          "post_state": [
+            "corners_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "corners"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "prepare left strap",
+          "object": "left strap",
+          "pre_state": [
+            "strap_left_available"
+          ],
+          "post_state": [
+            "left_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "prepare right strap",
+          "object": "right strap",
+          "pre_state": [
+            "strap_right_available"
+          ],
+          "post_state": [
+            "right_strap_prepared"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "place load on pallet",
+          "object": "load",
+          "pre_state": [
+            "pallet_checked",
+            "load_prepared"
+          ],
+          "post_state": [
+            "load_on_pallet"
+          ],
+          "duration": 4.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "fit left corner protectors",
+          "object": "load left corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "left_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "fit right corner protectors",
+          "object": "load right corners",
+          "pre_state": [
+            "load_on_pallet",
+            "corners_prepared"
+          ],
+          "post_state": [
+            "right_corners_fitted"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load",
+            "corners"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "thread left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_corners_fitted",
+            "left_strap_prepared"
+          ],
+          "post_state": [
+            "left_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "thread right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_corners_fitted",
+            "right_strap_prepared"
+          ],
+          "post_state": [
+            "right_strap_threaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "tension left strap",
+          "object": "left strap",
+          "pre_state": [
+            "left_strap_threaded"
+          ],
+          "post_state": [
+            "left_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_left",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t12",
+          "action": "tension right strap",
+          "object": "right strap",
+          "pre_state": [
+            "right_strap_threaded"
+          ],
+          "post_state": [
+            "right_strap_tensioned"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "strap_right",
+            "tensioner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t13",
+          "action": "verify pallet restraint",
+          "object": "pallet load",
+          "pre_state": [
+            "left_strap_tensioned",
+            "right_strap_tensioned"
+          ],
+          "post_state": [
+            "pallet_restraint_verified"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "pallet",
+            "load"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t14",
+          "action": "apply pallet identity",
+          "object": "pallet",
+          "pre_state": [
+            "pallet_restraint_verified",
+            "shipping_record_ready"
+          ],
+          "post_state": [
+            "pallet_identified"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "pallet",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_checked"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "load_on_pallet"
+        },
+        {
+          "source": "t3",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "corners_prepared"
+        },
+        {
+          "source": "t7",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_corners_fitted"
+        },
+        {
+          "source": "t4",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_prepared"
+        },
+        {
+          "source": "t8",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_corners_fitted"
+        },
+        {
+          "source": "t5",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_prepared"
+        },
+        {
+          "source": "t9",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_threaded"
+        },
+        {
+          "source": "t10",
+          "target": "t12",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_threaded"
+        },
+        {
+          "source": "t11",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "left_strap_tensioned"
+        },
+        {
+          "source": "t12",
+          "target": "t13",
+          "type": "state_support",
+          "reason": "",
+          "state": "right_strap_tensioned"
+        },
+        {
+          "source": "t13",
+          "target": "t14",
+          "type": "state_support",
+          "reason": "",
+          "state": "pallet_restraint_verified"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "pallet"
+        },
+        {
+          "source": "t11",
+          "target": "t12",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "tensioner"
+        },
+        {
+          "source": "t2",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "load_prepared"
+        },
+        {
+          "source": "t1",
+          "target": "t6",
+          "type": "synchronization",
+          "reason": "",
+          "state": "pallet_checked"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "W03",
+    "domain": "warehouse",
+    "title": "Securing a large item on a pallet",
+    "nodes": 14,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 2,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 15,
+    "raw_E_sync": 2,
+    "raw_E_mutex": 5,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 11,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 27.0,
+    "cooperative_duration": 4.0,
+    "before_makespan": 23.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 23.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 23.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 11,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 4,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 4,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.173913043478261,
+    "relative_duration_reduction_vs_serial": 0.14814814814814814,
+    "executor_utilization": 0.6739130434782609,
+    "left_busy_time": 17.0,
+    "right_busy_time": 14.0,
+    "scheduled_overlap_pairs": 3,
+    "critical_path_duration": 22.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}

@@ -8,11 +8,17 @@
 
 Manuscript author identities, affiliations and contact details are omitted. Third-party citations and license attribution identify upstream sources, not the manuscript authors.
 
-[中文说明](README.zh-CN.md) · [Website HTML source](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
+[Website HTML source](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](docs/assets/downloads/external_discrete_protocol.md)
 
 Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.87 (2026-09-30). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.
 
 `L` and `R` are two abstract base execution units. Cooperative mode `B` occupies **both units simultaneously**. Candidates may originate from a language model, rules, or a user. A fixed deterministic pipeline performs state closure → sync pairing → resource orientation → conservative order compression. Six joint graph checks and actual schedule validation gate accepted outputs. Failed checks return diagnostics; rejection does not establish infeasibility.
+
+## English data and original archives
+
+Start with the [English reading copies](translations/en/README.md) or [English data navigator](https://roboplanner.github.io/atg-repair-planning/translations.html). These labelled translations cover task specifications, complete plans, reports, descriptive dataset fields and simulation labels. They are not new experiments. Original-language frozen files and source manifests remain unchanged in the archive trees; reproduction commands continue to use those originals.
+
+The translation manifest links all 44 copies to their original SHA-256 hashes. Run `python tools/verify_translations.py` to check every dataset field and the English ZIP, and `python tools/check_public_language.py` to check current English text surfaces. The latter deliberately permits source-language text in preserved original archives.
 
 ## Quick start
 
@@ -107,6 +113,7 @@ simulation/                   Historical exploratory study: 30 runs
 simulation_expanded/          Current expanded study: 240 runs, 96 planning settings
 documentation/                Code/evidence map, provenance, release steps
 examples/tea_candidate.json    Illustrative nine-field input
+translations/en/              Labelled English reading copies + source hashes
 tools/                        Preview, integrity, test and plan entry points
 reproduction/                 Frozen v7.70 supplementary package
   implementation_v7_70/       Current implementation and regression tests

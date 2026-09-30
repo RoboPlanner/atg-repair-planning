@@ -1,0 +1,4860 @@
+{
+  "task_id": "P02",
+  "spec": {
+    "task_id": "P02",
+    "domain": "packaging",
+    "title": "Two-compartment spare-parts kit",
+    "instruction": "Assemble the two-compartment box, check the two types of spare parts separately and place them in their respective inserts. Prepare the inventory list and load both inserts into the outer box using both units. Insert the list, seal and weigh the package, and apply a label.",
+    "S0": [
+      "outer_box_flat",
+      "part_a_available",
+      "part_b_available",
+      "tray_a_available",
+      "tray_b_available",
+      "order_ready"
+    ],
+    "Sg": [
+      "spare_kit_ready"
+    ],
+    "resources": [
+      "outer_box",
+      "part_a",
+      "part_b",
+      "tray_a",
+      "tray_b",
+      "scanner",
+      "printer",
+      "scale",
+      "tape_dispenser"
+    ]
+  },
+  "raw_source": "raw_candidates_packaging.json",
+  "raw_candidate": {
+    "task_id": "P02",
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form compartment box",
+        "object": "outer box",
+        "Pre": [
+          "outer_box_flat"
+        ],
+        "Post": [
+          "compartment_box_ready"
+        ],
+        "d": 3,
+        "Res": [
+          "outer_box"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "check spare A",
+        "object": "part A",
+        "Pre": [
+          "part_a_available",
+          "order_ready"
+        ],
+        "Post": [
+          "part_a_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "part_a",
+          "scanner"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "check spare B",
+        "object": "part B",
+        "Pre": [
+          "part_b_available",
+          "order_ready"
+        ],
+        "Post": [
+          "part_b_checked"
+        ],
+        "d": 2,
+        "Res": [
+          "part_b",
+          "scanner"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "load inner tray A",
+        "object": "tray A",
+        "Pre": [
+          "part_a_checked",
+          "tray_a_available"
+        ],
+        "Post": [
+          "tray_a_loaded"
+        ],
+        "d": 2,
+        "Res": [
+          "part_a",
+          "tray_a"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "load inner tray B",
+        "object": "tray B",
+        "Pre": [
+          "part_b_checked",
+          "tray_b_available"
+        ],
+        "Post": [
+          "tray_b_loaded"
+        ],
+        "d": 2,
+        "Res": [
+          "part_b",
+          "tray_b"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print packing list",
+        "object": "packing list",
+        "Pre": [
+          "order_ready"
+        ],
+        "Post": [
+          "packing_list_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "printer"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "insert paired inner trays",
+        "object": "spare kit",
+        "Pre": [
+          "compartment_box_ready",
+          "tray_a_loaded",
+          "tray_b_loaded"
+        ],
+        "Post": [
+          "inner_trays_inserted"
+        ],
+        "d": 3,
+        "Res": [
+          "outer_box",
+          "tray_a",
+          "tray_b"
+        ],
+        "Cand": [
+          "B"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t8",
+        "action": "insert packing list",
+        "object": "packing list",
+        "Pre": [
+          "inner_trays_inserted",
+          "packing_list_ready"
+        ],
+        "Post": [
+          "packing_list_inserted"
+        ],
+        "d": 1,
+        "Res": [
+          "outer_box"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "seal spare kit",
+        "object": "outer box",
+        "Pre": [
+          "packing_list_inserted"
+        ],
+        "Post": [
+          "spare_kit_sealed"
+        ],
+        "d": 2,
+        "Res": [
+          "outer_box",
+          "tape_dispenser"
+        ],
+        "Cand": [
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "weigh kit",
+        "object": "spare kit",
+        "Pre": [
+          "spare_kit_sealed"
+        ],
+        "Post": [
+          "spare_kit_weighed"
+        ],
+        "d": 2,
+        "Res": [
+          "outer_box",
+          "scale"
+        ],
+        "Cand": [
+          "L",
+          "R"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "label kit",
+        "object": "spare kit",
+        "Pre": [
+          "spare_kit_weighed"
+        ],
+        "Post": [
+          "spare_kit_ready"
+        ],
+        "d": 1,
+        "Res": [
+          "outer_box",
+          "printer"
+        ],
+        "Cand": [
+          "L"
+        ],
+        "mode": "single"
+      }
+    ],
+    "relations": {
+      "E_state": [
+        [
+          "t2",
+          "t4",
+          "part_a_checked"
+        ],
+        [
+          "t3",
+          "t5",
+          "part_b_checked"
+        ],
+        [
+          "t1",
+          "t7",
+          "compartment_box_ready"
+        ],
+        [
+          "t4",
+          "t7",
+          "tray_a_loaded"
+        ],
+        [
+          "t5",
+          "t7",
+          "tray_b_loaded"
+        ],
+        [
+          "t7",
+          "t8",
+          "inner_trays_inserted"
+        ],
+        [
+          "t6",
+          "t8",
+          "packing_list_ready"
+        ],
+        [
+          "t8",
+          "t9",
+          "packing_list_inserted"
+        ],
+        [
+          "t9",
+          "t10",
+          "spare_kit_sealed"
+        ],
+        [
+          "t10",
+          "t11",
+          "spare_kit_weighed"
+        ]
+      ],
+      "E_sync": [
+        [
+          "t1",
+          "t7",
+          "compartment_box_ready"
+        ],
+        [
+          "t4",
+          "t7",
+          "tray_a_loaded"
+        ],
+        [
+          "t5",
+          "t7",
+          "tray_b_loaded"
+        ]
+      ],
+      "E_mutex": [
+        [
+          "t2",
+          "t3",
+          "scanner"
+        ]
+      ],
+      "E_order": []
+    }
+  },
+  "raw_protocol_issues": [],
+  "normalized_input": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form compartment box",
+        "object": "outer box",
+        "pre_state": [
+          "outer_box_flat"
+        ],
+        "post_state": [
+          "compartment_box_ready"
+        ],
+        "duration": 3,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t2",
+        "action": "check spare A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_a_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "part_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t3",
+        "action": "check spare B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_b_checked"
+        ],
+        "duration": 2,
+        "resource": [
+          "part_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t4",
+        "action": "load inner tray A",
+        "object": "tray A",
+        "pre_state": [
+          "part_a_checked",
+          "tray_a_available"
+        ],
+        "post_state": [
+          "tray_a_loaded"
+        ],
+        "duration": 2,
+        "resource": [
+          "part_a",
+          "tray_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t5",
+        "action": "load inner tray B",
+        "object": "tray B",
+        "pre_state": [
+          "part_b_checked",
+          "tray_b_available"
+        ],
+        "post_state": [
+          "tray_b_loaded"
+        ],
+        "duration": 2,
+        "resource": [
+          "part_b",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t6",
+        "action": "print packing list",
+        "object": "packing list",
+        "pre_state": [
+          "order_ready"
+        ],
+        "post_state": [
+          "packing_list_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t7",
+        "action": "insert paired inner trays",
+        "object": "spare kit",
+        "pre_state": [
+          "compartment_box_ready",
+          "tray_a_loaded",
+          "tray_b_loaded"
+        ],
+        "post_state": [
+          "inner_trays_inserted"
+        ],
+        "duration": 3,
+        "resource": [
+          "outer_box",
+          "tray_a",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative"
+      },
+      {
+        "id": "t8",
+        "action": "insert packing list",
+        "object": "packing list",
+        "pre_state": [
+          "inner_trays_inserted",
+          "packing_list_ready"
+        ],
+        "post_state": [
+          "packing_list_inserted"
+        ],
+        "duration": 1,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t9",
+        "action": "seal spare kit",
+        "object": "outer box",
+        "pre_state": [
+          "packing_list_inserted"
+        ],
+        "post_state": [
+          "spare_kit_sealed"
+        ],
+        "duration": 2,
+        "resource": [
+          "outer_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t10",
+        "action": "weigh kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_sealed"
+        ],
+        "post_state": [
+          "spare_kit_weighed"
+        ],
+        "duration": 2,
+        "resource": [
+          "outer_box",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single"
+      },
+      {
+        "id": "t11",
+        "action": "label kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_weighed"
+        ],
+        "post_state": [
+          "spare_kit_ready"
+        ],
+        "duration": 1,
+        "resource": [
+          "outer_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "state": "part_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "state": "part_b_checked"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "state": "tray_b_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "state": "inner_trays_inserted"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "state": "packing_list_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "state": "packing_list_inserted"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "state": "spare_kit_sealed"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "state": "spare_kit_weighed"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "synchronization",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "synchronization",
+        "state": "tray_b_loaded"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "resource": "scanner"
+      }
+    ]
+  },
+  "before_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "order_ready",
+        "outer_box_flat",
+        "part_a_available",
+        "part_b_available",
+        "tray_a_available",
+        "tray_b_available"
+      ],
+      "available_states": [
+        "compartment_box_ready",
+        "inner_trays_inserted",
+        "order_ready",
+        "outer_box_flat",
+        "packing_list_inserted",
+        "packing_list_ready",
+        "part_a_available",
+        "part_a_checked",
+        "part_b_available",
+        "part_b_checked",
+        "spare_kit_ready",
+        "spare_kit_sealed",
+        "spare_kit_weighed",
+        "tray_a_available",
+        "tray_a_loaded",
+        "tray_b_available",
+        "tray_b_loaded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "spare_kit_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "before_schedule": {
+    "estimated_makespan": 15.0,
+    "waiting_time": 3.0,
+    "executor_utilization": 0.8,
+    "sync_stability": 1.0,
+    "verification": {
+      "valid": true,
+      "violations": []
+    },
+    "items": [
+      {
+        "node_id": "t1",
+        "action": "form compartment box",
+        "object": "outer box",
+        "start": 0.0,
+        "finish": 3.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "outer_box"
+        ]
+      },
+      {
+        "node_id": "t2",
+        "action": "check spare A",
+        "object": "part A",
+        "start": 0.0,
+        "finish": 2.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_a",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t3",
+        "action": "check spare B",
+        "object": "part B",
+        "start": 2.0,
+        "finish": 4.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_b",
+          "scanner"
+        ]
+      },
+      {
+        "node_id": "t4",
+        "action": "load inner tray A",
+        "object": "tray A",
+        "start": 3.0,
+        "finish": 5.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "part_a",
+          "tray_a"
+        ]
+      },
+      {
+        "node_id": "t5",
+        "action": "load inner tray B",
+        "object": "tray B",
+        "start": 4.0,
+        "finish": 6.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "part_b",
+          "tray_b"
+        ]
+      },
+      {
+        "node_id": "t6",
+        "action": "print packing list",
+        "object": "packing list",
+        "start": 5.0,
+        "finish": 6.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "printer"
+        ]
+      },
+      {
+        "node_id": "t7",
+        "action": "insert paired inner trays",
+        "object": "spare kit",
+        "start": 6.0,
+        "finish": 9.0,
+        "executors": [
+          "left",
+          "right"
+        ],
+        "resources": [
+          "outer_box",
+          "tray_a",
+          "tray_b"
+        ]
+      },
+      {
+        "node_id": "t8",
+        "action": "insert packing list",
+        "object": "packing list",
+        "start": 9.0,
+        "finish": 10.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "outer_box"
+        ]
+      },
+      {
+        "node_id": "t9",
+        "action": "seal spare kit",
+        "object": "outer box",
+        "start": 10.0,
+        "finish": 12.0,
+        "executors": [
+          "right"
+        ],
+        "resources": [
+          "outer_box",
+          "tape_dispenser"
+        ]
+      },
+      {
+        "node_id": "t10",
+        "action": "weigh kit",
+        "object": "spare kit",
+        "start": 12.0,
+        "finish": 14.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "outer_box",
+          "scale"
+        ]
+      },
+      {
+        "node_id": "t11",
+        "action": "label kit",
+        "object": "spare kit",
+        "start": 14.0,
+        "finish": 15.0,
+        "executors": [
+          "left"
+        ],
+        "resources": [
+          "outer_box",
+          "printer"
+        ]
+      }
+    ]
+  },
+  "before_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.8
+  },
+  "full": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tray_b_loaded"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "order_ready",
+          "outer_box_flat",
+          "part_a_available",
+          "part_b_available",
+          "tray_a_available",
+          "tray_b_available"
+        ],
+        "available_states": [
+          "compartment_box_ready",
+          "inner_trays_inserted",
+          "order_ready",
+          "outer_box_flat",
+          "packing_list_inserted",
+          "packing_list_ready",
+          "part_a_available",
+          "part_a_checked",
+          "part_b_available",
+          "part_b_checked",
+          "spare_kit_ready",
+          "spare_kit_sealed",
+          "spare_kit_weighed",
+          "tray_a_available",
+          "tray_a_loaded",
+          "tray_b_available",
+          "tray_b_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "spare_kit_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "order_ready",
+          "outer_box_flat",
+          "part_a_available",
+          "part_b_available",
+          "tray_a_available",
+          "tray_b_available"
+        ],
+        "available_states": [
+          "compartment_box_ready",
+          "inner_trays_inserted",
+          "order_ready",
+          "outer_box_flat",
+          "packing_list_inserted",
+          "packing_list_ready",
+          "part_a_available",
+          "part_a_checked",
+          "part_b_available",
+          "part_b_checked",
+          "spare_kit_ready",
+          "spare_kit_sealed",
+          "spare_kit_weighed",
+          "tray_a_available",
+          "tray_a_loaded",
+          "tray_b_available",
+          "tray_b_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "spare_kit_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "order_ready",
+            "outer_box_flat",
+            "part_a_available",
+            "part_b_available",
+            "tray_a_available",
+            "tray_b_available"
+          ],
+          "available_states": [
+            "compartment_box_ready",
+            "inner_trays_inserted",
+            "order_ready",
+            "outer_box_flat",
+            "packing_list_inserted",
+            "packing_list_ready",
+            "part_a_available",
+            "part_a_checked",
+            "part_b_available",
+            "part_b_checked",
+            "spare_kit_ready",
+            "spare_kit_sealed",
+            "spare_kit_weighed",
+            "tray_a_available",
+            "tray_a_loaded",
+            "tray_b_available",
+            "tray_b_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "spare_kit_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "order_ready",
+            "outer_box_flat",
+            "part_a_available",
+            "part_b_available",
+            "tray_a_available",
+            "tray_b_available"
+          ],
+          "available_states": [
+            "compartment_box_ready",
+            "inner_trays_inserted",
+            "order_ready",
+            "outer_box_flat",
+            "packing_list_inserted",
+            "packing_list_ready",
+            "part_a_available",
+            "part_a_checked",
+            "part_b_available",
+            "part_b_checked",
+            "spare_kit_ready",
+            "spare_kit_sealed",
+            "spare_kit_weighed",
+            "tray_a_available",
+            "tray_a_loaded",
+            "tray_b_available",
+            "tray_b_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "spare_kit_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "compartment_box_ready",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for compartment_box_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_a_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tray_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_b_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tray_b_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "compartment_box_ready",
+          "resource": null,
+          "reason": "cooperative input state compartment_box_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_a_loaded",
+          "resource": null,
+          "reason": "cooperative input state tray_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_b_loaded",
+          "resource": null,
+          "reason": "cooperative input state tray_b_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 15.0,
+      "waiting_time": 3.0,
+      "executor_utilization": 0.8,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "tray_a"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "tray_b"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "outer_box",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box",
+            "scale"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "no_compression": {
+    "accepted": true,
+    "graph": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "cooperative action requires synchronized input states",
+          "state": "tray_b_loaded"
+        }
+      ]
+    },
+    "audit": {
+      "valid": true,
+      "before": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "order_ready",
+          "outer_box_flat",
+          "part_a_available",
+          "part_b_available",
+          "tray_a_available",
+          "tray_b_available"
+        ],
+        "available_states": [
+          "compartment_box_ready",
+          "inner_trays_inserted",
+          "order_ready",
+          "outer_box_flat",
+          "packing_list_inserted",
+          "packing_list_ready",
+          "part_a_available",
+          "part_a_checked",
+          "part_b_available",
+          "part_b_checked",
+          "spare_kit_ready",
+          "spare_kit_sealed",
+          "spare_kit_weighed",
+          "tray_a_available",
+          "tray_a_loaded",
+          "tray_b_available",
+          "tray_b_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "spare_kit_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "after": {
+        "valid": true,
+        "acyclic": true,
+        "closure_rate": 1.0,
+        "initial_states": [
+          "order_ready",
+          "outer_box_flat",
+          "part_a_available",
+          "part_b_available",
+          "tray_a_available",
+          "tray_b_available"
+        ],
+        "available_states": [
+          "compartment_box_ready",
+          "inner_trays_inserted",
+          "order_ready",
+          "outer_box_flat",
+          "packing_list_inserted",
+          "packing_list_ready",
+          "part_a_available",
+          "part_a_checked",
+          "part_b_available",
+          "part_b_checked",
+          "spare_kit_ready",
+          "spare_kit_sealed",
+          "spare_kit_weighed",
+          "tray_a_available",
+          "tray_a_loaded",
+          "tray_b_available",
+          "tray_b_loaded"
+        ],
+        "executable_nodes": [
+          "t1",
+          "t2",
+          "t3",
+          "t4",
+          "t5",
+          "t6",
+          "t7",
+          "t8",
+          "t9",
+          "t10",
+          "t11"
+        ],
+        "issues": [],
+        "reachable_goals": [
+          "spare_kit_ready"
+        ],
+        "unreachable_goals": [],
+        "cycle_error": null
+      },
+      "resource_conflicts_before": [],
+      "resource_conflicts_after": [],
+      "joint_before": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "order_ready",
+            "outer_box_flat",
+            "part_a_available",
+            "part_b_available",
+            "tray_a_available",
+            "tray_b_available"
+          ],
+          "available_states": [
+            "compartment_box_ready",
+            "inner_trays_inserted",
+            "order_ready",
+            "outer_box_flat",
+            "packing_list_inserted",
+            "packing_list_ready",
+            "part_a_available",
+            "part_a_checked",
+            "part_b_available",
+            "part_b_checked",
+            "spare_kit_ready",
+            "spare_kit_sealed",
+            "spare_kit_weighed",
+            "tray_a_available",
+            "tray_a_loaded",
+            "tray_b_available",
+            "tray_b_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "spare_kit_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "joint_after": {
+        "valid": true,
+        "checks": {
+          "schema_valid": true,
+          "closed": true,
+          "goal_reachable": true,
+          "acyclic": true,
+          "synchronization_complete": true,
+          "resource_ordered": true
+        },
+        "schema_issues": [],
+        "synchronization_issues": [],
+        "resource_conflicts": [],
+        "state_audit": {
+          "valid": true,
+          "acyclic": true,
+          "closure_rate": 1.0,
+          "initial_states": [
+            "order_ready",
+            "outer_box_flat",
+            "part_a_available",
+            "part_b_available",
+            "tray_a_available",
+            "tray_b_available"
+          ],
+          "available_states": [
+            "compartment_box_ready",
+            "inner_trays_inserted",
+            "order_ready",
+            "outer_box_flat",
+            "packing_list_inserted",
+            "packing_list_ready",
+            "part_a_available",
+            "part_a_checked",
+            "part_b_available",
+            "part_b_checked",
+            "spare_kit_ready",
+            "spare_kit_sealed",
+            "spare_kit_weighed",
+            "tray_a_available",
+            "tray_a_loaded",
+            "tray_b_available",
+            "tray_b_loaded"
+          ],
+          "executable_nodes": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "issues": [],
+          "reachable_goals": [
+            "spare_kit_ready"
+          ],
+          "unreachable_goals": [],
+          "cycle_error": null
+        },
+        "failure_reasons": []
+      },
+      "events": [
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "compartment_box_ready",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for compartment_box_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_a_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tray_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "remove_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_b_loaded",
+          "resource": null,
+          "reason": "rebuild exact synchronization set for tray_b_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t1",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "compartment_box_ready",
+          "resource": null,
+          "reason": "cooperative input state compartment_box_ready",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t4",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_a_loaded",
+          "resource": null,
+          "reason": "cooperative input state tray_a_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        },
+        {
+          "stage": "synchronization",
+          "action": "add_synchronization",
+          "accepted": true,
+          "source": "t5",
+          "target": "t7",
+          "edge_type": "synchronization",
+          "state": "tray_b_loaded",
+          "resource": null,
+          "reason": "cooperative input state tray_b_loaded",
+          "before_critical_path": null,
+          "after_critical_path": null
+        }
+      ],
+      "failure_reasons": []
+    },
+    "schedule": {
+      "estimated_makespan": 15.0,
+      "waiting_time": 3.0,
+      "executor_utilization": 0.8,
+      "sync_stability": 1.0,
+      "verification": {
+        "valid": true,
+        "violations": []
+      },
+      "items": [
+        {
+          "node_id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "start": 0.0,
+          "finish": 3.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box"
+          ]
+        },
+        {
+          "node_id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "start": 0.0,
+          "finish": 2.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_a",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "start": 2.0,
+          "finish": 4.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "scanner"
+          ]
+        },
+        {
+          "node_id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "start": 3.0,
+          "finish": 5.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "part_a",
+            "tray_a"
+          ]
+        },
+        {
+          "node_id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "start": 4.0,
+          "finish": 6.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "part_b",
+            "tray_b"
+          ]
+        },
+        {
+          "node_id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "start": 5.0,
+          "finish": 6.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "printer"
+          ]
+        },
+        {
+          "node_id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "start": 6.0,
+          "finish": 9.0,
+          "executors": [
+            "left",
+            "right"
+          ],
+          "resources": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ]
+        },
+        {
+          "node_id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "start": 9.0,
+          "finish": 10.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box"
+          ]
+        },
+        {
+          "node_id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "start": 10.0,
+          "finish": 12.0,
+          "executors": [
+            "right"
+          ],
+          "resources": [
+            "outer_box",
+            "tape_dispenser"
+          ]
+        },
+        {
+          "node_id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "start": 12.0,
+          "finish": 14.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box",
+            "scale"
+          ]
+        },
+        {
+          "node_id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "start": 14.0,
+          "finish": 15.0,
+          "executors": [
+            "left"
+          ],
+          "resources": [
+            "outer_box",
+            "printer"
+          ]
+        }
+      ]
+    },
+    "failure_reasons": []
+  },
+  "full_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form compartment box",
+        "object": "outer box",
+        "pre_state": [
+          "outer_box_flat"
+        ],
+        "post_state": [
+          "compartment_box_ready"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "check spare A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_a_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "check spare B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_b_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "load inner tray A",
+        "object": "tray A",
+        "pre_state": [
+          "part_a_checked",
+          "tray_a_available"
+        ],
+        "post_state": [
+          "tray_a_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_a",
+          "tray_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "load inner tray B",
+        "object": "tray B",
+        "pre_state": [
+          "part_b_checked",
+          "tray_b_available"
+        ],
+        "post_state": [
+          "tray_b_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_b",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print packing list",
+        "object": "packing list",
+        "pre_state": [
+          "order_ready"
+        ],
+        "post_state": [
+          "packing_list_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "insert paired inner trays",
+        "object": "spare kit",
+        "pre_state": [
+          "compartment_box_ready",
+          "tray_a_loaded",
+          "tray_b_loaded"
+        ],
+        "post_state": [
+          "inner_trays_inserted"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "outer_box",
+          "tray_a",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "insert packing list",
+        "object": "packing list",
+        "pre_state": [
+          "inner_trays_inserted",
+          "packing_list_ready"
+        ],
+        "post_state": [
+          "packing_list_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "seal spare kit",
+        "object": "outer box",
+        "pre_state": [
+          "packing_list_inserted"
+        ],
+        "post_state": [
+          "spare_kit_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "outer_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "weigh kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_sealed"
+        ],
+        "post_state": [
+          "spare_kit_weighed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "outer_box",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "label kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_weighed"
+        ],
+        "post_state": [
+          "spare_kit_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "outer_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_checked"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tray_b_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "inner_trays_inserted"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "packing_list_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "packing_list_inserted"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "spare_kit_sealed"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "spare_kit_weighed"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tray_b_loaded"
+      }
+    ]
+  },
+  "full_replay_valid": true,
+  "full_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.8
+  },
+  "no_compression_replay_graph": {
+    "nodes": [
+      {
+        "id": "t1",
+        "action": "form compartment box",
+        "object": "outer box",
+        "pre_state": [
+          "outer_box_flat"
+        ],
+        "post_state": [
+          "compartment_box_ready"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t2",
+        "action": "check spare A",
+        "object": "part A",
+        "pre_state": [
+          "part_a_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_a_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_a",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t3",
+        "action": "check spare B",
+        "object": "part B",
+        "pre_state": [
+          "part_b_available",
+          "order_ready"
+        ],
+        "post_state": [
+          "part_b_checked"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_b",
+          "scanner"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t4",
+        "action": "load inner tray A",
+        "object": "tray A",
+        "pre_state": [
+          "part_a_checked",
+          "tray_a_available"
+        ],
+        "post_state": [
+          "tray_a_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_a",
+          "tray_a"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t5",
+        "action": "load inner tray B",
+        "object": "tray B",
+        "pre_state": [
+          "part_b_checked",
+          "tray_b_available"
+        ],
+        "post_state": [
+          "tray_b_loaded"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "part_b",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t6",
+        "action": "print packing list",
+        "object": "packing list",
+        "pre_state": [
+          "order_ready"
+        ],
+        "post_state": [
+          "packing_list_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "printer"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t7",
+        "action": "insert paired inner trays",
+        "object": "spare kit",
+        "pre_state": [
+          "compartment_box_ready",
+          "tray_a_loaded",
+          "tray_b_loaded"
+        ],
+        "post_state": [
+          "inner_trays_inserted"
+        ],
+        "duration": 3.0,
+        "resource": [
+          "outer_box",
+          "tray_a",
+          "tray_b"
+        ],
+        "candidate_arm": [
+          "both"
+        ],
+        "mode": "cooperative",
+        "workspace": "shared"
+      },
+      {
+        "id": "t8",
+        "action": "insert packing list",
+        "object": "packing list",
+        "pre_state": [
+          "inner_trays_inserted",
+          "packing_list_ready"
+        ],
+        "post_state": [
+          "packing_list_inserted"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "outer_box"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t9",
+        "action": "seal spare kit",
+        "object": "outer box",
+        "pre_state": [
+          "packing_list_inserted"
+        ],
+        "post_state": [
+          "spare_kit_sealed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "outer_box",
+          "tape_dispenser"
+        ],
+        "candidate_arm": [
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t10",
+        "action": "weigh kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_sealed"
+        ],
+        "post_state": [
+          "spare_kit_weighed"
+        ],
+        "duration": 2.0,
+        "resource": [
+          "outer_box",
+          "scale"
+        ],
+        "candidate_arm": [
+          "left",
+          "right"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      },
+      {
+        "id": "t11",
+        "action": "label kit",
+        "object": "spare kit",
+        "pre_state": [
+          "spare_kit_weighed"
+        ],
+        "post_state": [
+          "spare_kit_ready"
+        ],
+        "duration": 1.0,
+        "resource": [
+          "outer_box",
+          "printer"
+        ],
+        "candidate_arm": [
+          "left"
+        ],
+        "mode": "single",
+        "workspace": "shared"
+      }
+    ],
+    "edges": [
+      {
+        "source": "t2",
+        "target": "t4",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_a_checked"
+      },
+      {
+        "source": "t3",
+        "target": "t5",
+        "type": "state_support",
+        "reason": "",
+        "state": "part_b_checked"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "state_support",
+        "reason": "",
+        "state": "tray_b_loaded"
+      },
+      {
+        "source": "t7",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "inner_trays_inserted"
+      },
+      {
+        "source": "t6",
+        "target": "t8",
+        "type": "state_support",
+        "reason": "",
+        "state": "packing_list_ready"
+      },
+      {
+        "source": "t8",
+        "target": "t9",
+        "type": "state_support",
+        "reason": "",
+        "state": "packing_list_inserted"
+      },
+      {
+        "source": "t9",
+        "target": "t10",
+        "type": "state_support",
+        "reason": "",
+        "state": "spare_kit_sealed"
+      },
+      {
+        "source": "t10",
+        "target": "t11",
+        "type": "state_support",
+        "reason": "",
+        "state": "spare_kit_weighed"
+      },
+      {
+        "source": "t2",
+        "target": "t3",
+        "type": "resource_mutex",
+        "reason": "",
+        "resource": "scanner"
+      },
+      {
+        "source": "t1",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "compartment_box_ready"
+      },
+      {
+        "source": "t4",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tray_a_loaded"
+      },
+      {
+        "source": "t5",
+        "target": "t7",
+        "type": "synchronization",
+        "reason": "",
+        "state": "tray_b_loaded"
+      }
+    ]
+  },
+  "no_compression_replay_valid": true,
+  "no_compression_export_check": {
+    "valid": true,
+    "issues": [],
+    "overlapping_node_pairs": [
+      [
+        "t1",
+        "t2",
+        2.0
+      ],
+      [
+        "t1",
+        "t3",
+        1.0
+      ],
+      [
+        "t3",
+        "t4",
+        1.0
+      ],
+      [
+        "t4",
+        "t5",
+        1.0
+      ],
+      [
+        "t5",
+        "t6",
+        1.0
+      ]
+    ],
+    "executor_busy_time": {
+      "left": 13.0,
+      "right": 11.0
+    },
+    "utilization_unrounded": 0.8
+  },
+  "after_audit": {
+    "valid": true,
+    "checks": {
+      "schema_valid": true,
+      "closed": true,
+      "goal_reachable": true,
+      "acyclic": true,
+      "synchronization_complete": true,
+      "resource_ordered": true
+    },
+    "schema_issues": [],
+    "synchronization_issues": [],
+    "resource_conflicts": [],
+    "state_audit": {
+      "valid": true,
+      "acyclic": true,
+      "closure_rate": 1.0,
+      "initial_states": [
+        "order_ready",
+        "outer_box_flat",
+        "part_a_available",
+        "part_b_available",
+        "tray_a_available",
+        "tray_b_available"
+      ],
+      "available_states": [
+        "compartment_box_ready",
+        "inner_trays_inserted",
+        "order_ready",
+        "outer_box_flat",
+        "packing_list_inserted",
+        "packing_list_ready",
+        "part_a_available",
+        "part_a_checked",
+        "part_b_available",
+        "part_b_checked",
+        "spare_kit_ready",
+        "spare_kit_sealed",
+        "spare_kit_weighed",
+        "tray_a_available",
+        "tray_a_loaded",
+        "tray_b_available",
+        "tray_b_loaded"
+      ],
+      "executable_nodes": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10",
+        "t11"
+      ],
+      "issues": [],
+      "reachable_goals": [
+        "spare_kit_ready"
+      ],
+      "unreachable_goals": [],
+      "cycle_error": null
+    },
+    "failure_reasons": []
+  },
+  "stage_graphs_from_accepted_events": {
+    "G1": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        }
+      ]
+    },
+    "G2": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_b_loaded"
+        }
+      ]
+    },
+    "G3": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_b_loaded"
+        }
+      ]
+    },
+    "G4": {
+      "nodes": [
+        {
+          "id": "t1",
+          "action": "form compartment box",
+          "object": "outer box",
+          "pre_state": [
+            "outer_box_flat"
+          ],
+          "post_state": [
+            "compartment_box_ready"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t2",
+          "action": "check spare A",
+          "object": "part A",
+          "pre_state": [
+            "part_a_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_a_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t3",
+          "action": "check spare B",
+          "object": "part B",
+          "pre_state": [
+            "part_b_available",
+            "order_ready"
+          ],
+          "post_state": [
+            "part_b_checked"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "scanner"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t4",
+          "action": "load inner tray A",
+          "object": "tray A",
+          "pre_state": [
+            "part_a_checked",
+            "tray_a_available"
+          ],
+          "post_state": [
+            "tray_a_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_a",
+            "tray_a"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t5",
+          "action": "load inner tray B",
+          "object": "tray B",
+          "pre_state": [
+            "part_b_checked",
+            "tray_b_available"
+          ],
+          "post_state": [
+            "tray_b_loaded"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "part_b",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t6",
+          "action": "print packing list",
+          "object": "packing list",
+          "pre_state": [
+            "order_ready"
+          ],
+          "post_state": [
+            "packing_list_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "printer"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t7",
+          "action": "insert paired inner trays",
+          "object": "spare kit",
+          "pre_state": [
+            "compartment_box_ready",
+            "tray_a_loaded",
+            "tray_b_loaded"
+          ],
+          "post_state": [
+            "inner_trays_inserted"
+          ],
+          "duration": 3.0,
+          "resource": [
+            "outer_box",
+            "tray_a",
+            "tray_b"
+          ],
+          "candidate_arm": [
+            "both"
+          ],
+          "mode": "cooperative",
+          "workspace": "shared"
+        },
+        {
+          "id": "t8",
+          "action": "insert packing list",
+          "object": "packing list",
+          "pre_state": [
+            "inner_trays_inserted",
+            "packing_list_ready"
+          ],
+          "post_state": [
+            "packing_list_inserted"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t9",
+          "action": "seal spare kit",
+          "object": "outer box",
+          "pre_state": [
+            "packing_list_inserted"
+          ],
+          "post_state": [
+            "spare_kit_sealed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "tape_dispenser"
+          ],
+          "candidate_arm": [
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t10",
+          "action": "weigh kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_sealed"
+          ],
+          "post_state": [
+            "spare_kit_weighed"
+          ],
+          "duration": 2.0,
+          "resource": [
+            "outer_box",
+            "scale"
+          ],
+          "candidate_arm": [
+            "left",
+            "right"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        },
+        {
+          "id": "t11",
+          "action": "label kit",
+          "object": "spare kit",
+          "pre_state": [
+            "spare_kit_weighed"
+          ],
+          "post_state": [
+            "spare_kit_ready"
+          ],
+          "duration": 1.0,
+          "resource": [
+            "outer_box",
+            "printer"
+          ],
+          "candidate_arm": [
+            "left"
+          ],
+          "mode": "single",
+          "workspace": "shared"
+        }
+      ],
+      "edges": [
+        {
+          "source": "t2",
+          "target": "t4",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_a_checked"
+        },
+        {
+          "source": "t3",
+          "target": "t5",
+          "type": "state_support",
+          "reason": "",
+          "state": "part_b_checked"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "state_support",
+          "reason": "",
+          "state": "tray_b_loaded"
+        },
+        {
+          "source": "t7",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "inner_trays_inserted"
+        },
+        {
+          "source": "t6",
+          "target": "t8",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_ready"
+        },
+        {
+          "source": "t8",
+          "target": "t9",
+          "type": "state_support",
+          "reason": "",
+          "state": "packing_list_inserted"
+        },
+        {
+          "source": "t9",
+          "target": "t10",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_sealed"
+        },
+        {
+          "source": "t10",
+          "target": "t11",
+          "type": "state_support",
+          "reason": "",
+          "state": "spare_kit_weighed"
+        },
+        {
+          "source": "t2",
+          "target": "t3",
+          "type": "resource_mutex",
+          "reason": "",
+          "resource": "scanner"
+        },
+        {
+          "source": "t1",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "compartment_box_ready"
+        },
+        {
+          "source": "t4",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_a_loaded"
+        },
+        {
+          "source": "t5",
+          "target": "t7",
+          "type": "synchronization",
+          "reason": "",
+          "state": "tray_b_loaded"
+        }
+      ]
+    }
+  },
+  "metrics": {
+    "task_id": "P02",
+    "domain": "packaging",
+    "title": "Two-compartment spare-parts kit",
+    "nodes": 11,
+    "cooperative_nodes": 1,
+    "flexible_single_nodes": 3,
+    "raw_protocol_valid": true,
+    "parsed": true,
+    "before_joint_valid": true,
+    "before_strict_accepted": true,
+    "full_accepted": true,
+    "no_compression_accepted": true,
+    "raw_E_state": 10,
+    "raw_E_sync": 3,
+    "raw_E_mutex": 1,
+    "raw_E_order": 0,
+    "before_closure_rate": 1.0,
+    "before_parallel_pairs": 10,
+    "before_resource_conflict_pairs": 0,
+    "serial_duration": 21.0,
+    "cooperative_duration": 3.0,
+    "before_makespan": 15.0,
+    "full_replay_valid": true,
+    "full_export_valid": true,
+    "full_makespan": 15.0,
+    "no_compression_replay_valid": true,
+    "no_compression_export_valid": true,
+    "no_compression_makespan": 15.0,
+    "after_joint_valid": true,
+    "after_closure_rate": 1.0,
+    "after_resource_conflict_pairs": 0,
+    "after_parallel_pairs": 10,
+    "before_schema_valid": true,
+    "after_schema_valid": true,
+    "before_closed": true,
+    "after_closed": true,
+    "before_goal_reachable": true,
+    "after_goal_reachable": true,
+    "before_acyclic": true,
+    "after_acyclic": true,
+    "before_synchronization_complete": true,
+    "after_synchronization_complete": true,
+    "before_resource_ordered": true,
+    "after_resource_ordered": true,
+    "accepted_events": 6,
+    "rejected_events": 0,
+    "state_closure_accepted_events": 0,
+    "state_closure_rejected_events": 0,
+    "synchronization_accepted_events": 6,
+    "synchronization_rejected_events": 0,
+    "resource_mutex_accepted_events": 0,
+    "resource_mutex_rejected_events": 0,
+    "compression_accepted_events": 0,
+    "compression_rejected_events": 0,
+    "speedup_vs_same_nodes_serial": 1.4,
+    "relative_duration_reduction_vs_serial": 0.2857142857142857,
+    "executor_utilization": 0.8,
+    "left_busy_time": 13.0,
+    "right_busy_time": 11.0,
+    "scheduled_overlap_pairs": 5,
+    "critical_path_duration": 15.0,
+    "makespan_reduction_vs_raw_strict": 0.0,
+    "compression_makespan_reduction": 0.0,
+    "compression_graph_same": true
+  }
+}
