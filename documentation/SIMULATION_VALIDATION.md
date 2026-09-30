@@ -1,4 +1,6 @@
-# New dual-Panda physics execution study
+# Historical 30-run simulation validation
+
+This document records the 2026-09-22 exploratory study. For the current 240-run study, use the [current guide](https://roboplanner.github.io/atg-repair-planning/guide.html#simulation) and [evidence index](https://roboplanner.github.io/atg-repair-planning/evidence.html). Historical manuscript numbers below are not current figure/table numbers.
 
 Validated locally on 2026-09-22. The Chinese manuscript v7.74 adds Section 4.10, Table 17 and Appendix A.6. No historical video is used as evidence for this study.
 

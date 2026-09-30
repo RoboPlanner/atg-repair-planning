@@ -14,3 +14,7 @@ Before publishing code or data changes, run `python tools/check.py`. Keep frozen
 Keep manuscript author names, affiliations, personal email addresses and identity-bearing paper links out of this repository during anonymous review. Use repository-local anonymous Git author and committer settings for every subsequent commit. Code availability does not imply journal acceptance. When updating the manuscript's temporary local link, save a new version and check the current Word/EndNote fields before and after editing.
 
 Local preview remains available through `python tools/serve.py` at `http://127.0.0.1:8780/`.
+
+## Website checks
+
+Run `python tools/check_site.py` from the repository root before publishing. Public demo links use the HTTPS project URL; loopback URLs appear only in local preview instructions. Paper and supplement reading links are temporarily hidden from public navigation at the author’s request. Keep this setting when updating the page. Existing PDF files and Git history remain preserved.

@@ -1,6 +1,6 @@
 # ATG Repair — Verifiable Dual-Unit Planning
 
-[Main manuscript PDF](docs/assets/papers/ATG_Repair_Manuscript_v7_87.pdf) · [Supplement PDF](docs/assets/papers/ATG_Repair_Supplement_v7_87.pdf) · [Current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Complete evidence index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
+[Current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Complete evidence index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
 
 [GitHub repository](https://github.com/RoboPlanner/atg-repair-planning) · [Project page](https://roboplanner.github.io/atg-repair-planning/)
 
@@ -8,7 +8,7 @@
 
 Manuscript author identities, affiliations and contact details are omitted. Third-party citations and license attribution identify upstream sources, not the manuscript authors.
 
-[中文说明](README.zh-CN.md) · [Project-page HTML](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
+[中文说明](README.zh-CN.md) · [Website HTML source](docs/index.html) · [Code & experiment map](documentation/CODE_AND_EVIDENCE.md) · [Reproduction protocol](reproduction/external_discrete_protocol.md)
 
 Research materials for *Verifiable Atomic Task Graph Relation Repair and Planning-Level Parallel Planning for Dual-Unit Collaborative Tasks*. The current manuscript is v7.87 (2026-09-30). The original planning archive retains its v7.70 version, and the expanded MuJoCo study retains its v2 archive identity; manuscript formatting changes do not create new experimental results. This repository provides research code and data; no journal acceptance or DOI is asserted.
 
@@ -16,7 +16,14 @@ Research materials for *Verifiable Atomic Task Graph Relation Repair and Plannin
 
 ## Quick start
 
-Use **Python 3.11+**. The planning implementation and its three frozen evaluation suites use the standard library only. The optional new physics simulation has separate dependencies listed below. No API key, model endpoint, GPU, or robot connection is needed. Commands below run from the repository root unless a `cd` is shown.
+Clone the repository once, then run the commands from its root:
+
+```sh
+git clone https://github.com/RoboPlanner/atg-repair-planning.git
+cd atg-repair-planning
+```
+
+Use **Python 3.11+**. The planning implementation and its three frozen evaluation suites use the standard library only. The expanded physics simulation has separate dependencies listed below. No API key, model endpoint, GPU, or robot connection is needed. Commands below run from the repository root unless a `cd` is shown.
 
 ```sh
 python tools/verify_archive.py
@@ -62,7 +69,7 @@ The static page also opens directly as `docs/index.html`. It works without exter
 
 ### Earlier 30-run simulation study
 
-The separate [exploratory ZIP](docs/assets/downloads/ATG_MuJoCo_simulation_v1.zip) retains six dual-Panda recordings; [the current simulation player](https://roboplanner.github.io/atg-repair-planning/#simulation) instead shows the eight-template, 240-run study. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
+The separate [exploratory ZIP](https://roboplanner.github.io/atg-repair-planning/assets/downloads/ATG_MuJoCo_simulation_v1.zip) retains six dual-Panda recordings; [the current simulation player](https://roboplanner.github.io/atg-repair-planning/#simulation) instead shows the eight-template, 240-run study. Three constructed task templates (parallel sorting, shared station, cooperative tray transfer), five initial-position seeds and two scheduling methods give **30 executions / 15 paired conditions**. All 30 completed the declared task checks and independent trajectory/event rechecks. Serial → full task windows are 24 → 12, 40 → 28 and 22 → 17 simulated seconds. These windows use fixed skills; they are not hardware measurements or a comparison between repair heuristics.
 
 ```sh
 python -m pip install -r simulation/requirements.txt
@@ -70,11 +77,11 @@ python simulation/run_experiments.py --output local_runs/mujoco_new
 python simulation/verify_results.py local_runs/mujoco_new
 ```
 
-Use Python 3.11 and FFmpeg on PATH; add `--record-seed -999` to omit video. The supplied models, frictional contacts, state/event logs, independent checker and documented development failures are in [simulation/README.md](simulation/README.md). The downloadable [simulation supplement](docs/assets/downloads/ATG_MuJoCo_simulation_v1.zip) includes the formal planning code it needs. This is a separate addition; the symbolic replays below retain their original meaning.
+Use Python 3.11 and FFmpeg on PATH; add `--record-seed -999` to omit video. The supplied models, frictional contacts, state/event logs, independent checker and documented development failures are in [simulation/README.md](simulation/README.md). The downloadable [simulation supplement](https://roboplanner.github.io/atg-repair-planning/assets/downloads/ATG_MuJoCo_simulation_v1.zip) includes the formal planning code it needs. This is a separate addition; the symbolic replays below retain their original meaning.
 
 ### Experimental animations
 
-Open **http://127.0.0.1:8780/#experiments** for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
+Open the [public planning replays](https://roboplanner.github.io/atg-repair-planning/#experiments) for three interactive replays of frozen accepted schedules: controlled drink preparation, public parallel assembly, and the ft06 resource-ordering comparison. Use pause, restart, playback speed, or the time slider to inspect task progress and L/R occupancy. Cooperative B tasks span both lanes. Each case also has a downloadable animated SVG; no video service or external script is required.
 
 These are symbolic planning-layer replays, not robot footage or new experimental samples. The six-node controlled case is distinct from the five-node tea illustration. The ft06 comparison uses a common time axis and reports its instance-specific result; aggregate and negative results remain in the evidence section.
 
@@ -96,7 +103,8 @@ docs/                         Static GitHub Pages-ready website
   assets/data/evidence.json    Source-linked result summaries
   assets/data/replays.json     Frozen schedule data and source hashes
   assets/animations/           Standalone animated SVG replays
-simulation/                   New MuJoCo execution study, models and 30 run logs
+simulation/                   Historical exploratory study: 30 runs
+simulation_expanded/          Current expanded study: 240 runs, 96 planning settings
 documentation/                Code/evidence map, provenance, release steps
 examples/tea_candidate.json    Illustrative nine-field input
 tools/                        Preview, integrity, test and plan entry points
@@ -129,7 +137,7 @@ Guarantees cover represented discrete states, capacity-one resources and unit oc
 
 ## Integrity, licensing, and publication
 
-The fixed archive is [ATG_reproduction_v7_70.zip](docs/assets/downloads/ATG_reproduction_v7_70.zip). SHA-256:
+The fixed archive is [ATG_reproduction_v7_70.zip](https://roboplanner.github.io/atg-repair-planning/assets/downloads/ATG_reproduction_v7_70.zip) (4.6 MiB). SHA-256:
 
 ```text
 922881a57e08e3cc1a0f28e283e2837dabfb486d1c612fc282feb4575a8f0f4a
@@ -139,7 +147,7 @@ The fixed archive is [ATG_reproduction_v7_70.zip](docs/assets/downloads/ATG_repr
 
 Original code/documentation: [MIT](LICENSE). Website text/layout/manuscript figures: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Third-party materials retain their notices; see [LICENSES.md](LICENSES.md). The author’s EndNote library, Word drafts, account email, credentials, and local machine configuration are outside this repository.
 
-Deployment instructions are in [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). Local verification and reproduction commands do not upload data. Manuscript reading PDFs are available below; author details and formal publication metadata remain unassigned. The repository can be used independently of the unpublished manuscript.
+Deployment instructions are in [GITHUB_PAGES.md](documentation/GITHUB_PAGES.md). Local verification and reproduction commands do not upload data. The project guide and evidence index are linked at the top. Paper reading links are temporarily hidden; author details and formal publication metadata remain unassigned. The repository can be used independently of the unpublished manuscript.
 
 ## Expanded physical simulation study
 

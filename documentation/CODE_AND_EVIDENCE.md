@@ -1,6 +1,6 @@
 # Code and evidence map · manuscript v7.87
 
-[Public reading PDFs and guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Complete figure and table index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
+[Current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Complete figure and table index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
 
 This index follows the current manuscript and supplement. The immutable planning tree remains v7.70 and the expanded simulation archive remains v2. Historical CSV filenames retain their original numbers; the mapping below supplies current paper numbers.
 

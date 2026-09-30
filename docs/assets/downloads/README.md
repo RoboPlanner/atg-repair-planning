@@ -1,9 +1,9 @@
 # Project guide · manuscript v7.87
 
-[Read the current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Manuscript PDF](https://roboplanner.github.io/atg-repair-planning/assets/papers/ATG_Repair_Manuscript_v7_87.pdf) · [Supplement PDF](https://roboplanner.github.io/atg-repair-planning/assets/papers/ATG_Repair_Supplement_v7_87.pdf) · [Figure/table/data index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
+[Read the current project guide](https://roboplanner.github.io/atg-repair-planning/guide.html) · [Figure/table/data index](https://roboplanner.github.io/atg-repair-planning/evidence.html)
 
 The repository and project page are public. Current simulation evidence comprises eight templates, 240 runs and 20 preselected videos. The 30-run exploratory study is a separate historical archive.
 
-[Repository setup instructions](https://github.com/RoboPlanner/atg-repair-planning#readme) · [Code and evidence map](https://github.com/RoboPlanner/atg-repair-planning/blob/main/documentation/CODE_AND_EVIDENCE.md) · [Public-specification protocol](https://roboplanner.github.io/atg-repair-planning/assets/downloads/external_discrete_protocol.md)
+[Repository setup instructions](https://github.com/RoboPlanner/atg-repair-planning#readme) · [Code and evidence map](https://github.com/RoboPlanner/atg-repair-planning/blob/main/documentation/CODE_AND_EVIDENCE.md) · [Public-specification protocol](https://github.com/RoboPlanner/atg-repair-planning/blob/main/reproduction/external_discrete_protocol.md)
 
 The frozen planning ZIP remains v7.70; the expanded simulation code/data ZIP remains v2. These names preserve experimental provenance. For local preview only, run `python tools/serve.py` from the cloned repository and open port 8780. The manuscript uses the public URL.

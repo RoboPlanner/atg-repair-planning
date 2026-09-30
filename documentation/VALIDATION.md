@@ -1,4 +1,6 @@
-# Local preparation validation
+# Historical preparation validation
+
+The dated checks below describe earlier preparation stages. The repository and [project page](https://roboplanner.github.io/atg-repair-planning/) are now public. For current navigation checks, run `python tools/check_site.py`; archived experimental checks retain their dates and scope.
 
 Checked on 2026-09-21 against the unchanged v7.70 supplementary snapshot.
 

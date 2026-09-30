@@ -1,6 +1,6 @@
 # ATG Repair 代码与项目主页
 
-[英文主稿PDF](docs/assets/papers/ATG_Repair_Manuscript_v7_87.pdf) · [补充材料PDF](docs/assets/papers/ATG_Repair_Supplement_v7_87.pdf) · [当前使用指南](https://roboplanner.github.io/atg-repair-planning/guide.html) · [全部图表和数据索引](https://roboplanner.github.io/atg-repair-planning/evidence.html)
+[当前使用指南](https://roboplanner.github.io/atg-repair-planning/guide.html) · [全部图表和数据索引](https://roboplanner.github.io/atg-repair-planning/evidence.html)
 
 [GitHub 仓库](https://github.com/RoboPlanner/atg-repair-planning) · [项目主页](https://roboplanner.github.io/atg-repair-planning/)
 
@@ -9,6 +9,13 @@
 本仓库用于匿名评审，不展示论文作者姓名、单位或联系方式。第三方文献与许可证署名属于来源标注，不是本文作者名单。
 
 ## 快速使用
+
+首次使用先克隆仓库并进入目录：
+
+```sh
+git clone https://github.com/RoboPlanner/atg-repair-planning.git
+cd atg-repair-planning
+```
 
 需要 Python 3.11 或更新版本。当前实现和三组最新评价仅使用标准库，不需要模型 API、GPU 或机器人设备。在仓库根目录运行：
 
@@ -25,13 +32,13 @@ python tools/serve.py
 
 ## 早期30次物理仿真研究
 
-早期六段录像保留于[探索仿真ZIP](docs/assets/downloads/ATG_MuJoCo_simulation_v1.zip)；[当前仿真播放器](https://roboplanner.github.io/atg-repair-planning/#simulation)展示八模板、240次运行的扩展实验。三类构造任务、五组初始位置、两种调度，共30次执行、15组配对条件；30次均通过预设完成判据及独立轨迹/事件复核。串行→本文执行窗口为24→12、40→28、22→17仿真秒。窗口由固定技能时长决定，不是实机测量，也不比较修复启发式优劣。
+早期六段录像保留于[探索仿真ZIP](https://roboplanner.github.io/atg-repair-planning/assets/downloads/ATG_MuJoCo_simulation_v1.zip)；[当前仿真播放器](https://roboplanner.github.io/atg-repair-planning/#simulation)展示八模板、240次运行的扩展实验。三类构造任务、五组初始位置、两种调度，共30次执行、15组配对条件；30次均通过预设完成判据及独立轨迹/事件复核。串行→本文执行窗口为24→12、40→28、22→17仿真秒。窗口由固定技能时长决定，不是实机测量，也不比较修复启发式优劣。
 
 历史稿v7.74曾报告本组探索实验；当前论文的主要物理实验是下文的240次扩展批次。模型、物理接触、轨迹、代码和开发失败记录见[仿真复现说明](simulation/README.md)。此实验另需MuJoCo、NumPy、Pillow及FFmpeg，安装和运行命令见该说明；原v7.70规划归档不变。
 
 ## 实验动图
 
-打开 **http://127.0.0.1:8780/#experiments**，可切换三组冻结实验记录的调度动画：受控饮品准备、公开并行装配，以及 ft06 资源定向对照。支持暂停、重新播放、倍速和拖动时间；B任务跨越L/R两条时间线，并在两个执行单元的实时状态中同步显示。各案例提供可独立打开的SVG动图下载。
+打开[公开规划动图](https://roboplanner.github.io/atg-repair-planning/#experiments)，可切换三组冻结实验记录的调度动画：受控饮品准备、公开并行装配，以及 ft06 资源定向对照。支持暂停、重新播放、倍速和拖动时间；B任务跨越L/R两条时间线，并在两个执行单元的实时状态中同步显示。各案例提供可独立打开的SVG动图下载。
 
 动画按原始调度记录中的起止时间播放，时间轴为符号时间，不是机器人实拍，也不计为新增实验。受控饮品案例有6个节点，与论文的5节点茶任务示例不同。ft06两种方法使用共同时间轴；页面保留总体证据和负结果，不将单个实例的差异推为普遍优势。
 
@@ -75,13 +82,13 @@ L、R是两个抽象基础执行单元，B同时占用L+R。四阶段顺序为�
 
 保证范围限于已表示的离散状态、容量1资源和执行单元占用，不包括漏标事实、连续碰撞、轨迹或硬件。
 
-## 主页与后续发布
+## 项目主页与发布
 
 主页源文件位于 `docs/`，使用相对链接、无CDN字体、无分析追踪脚本。方法图取自当前Word内嵌图片，图1—4仅作EMF至PNG格式转换；没有重绘或替换论文原图。页面提供方法图切换、高清图查看、实验说明和完整复现包下载。
 
 页面结构参考 Nerfies 与 Academic Project Page Template，来源见[说明](documentation/TEMPLATE_SOURCES.md)。作者代码采用 MIT；网页正文、布局和论文图采用 CC BY-SA 4.0；第三方数据和源文件保留原许可，详见[许可清单](LICENSES.md)。
 
-部署步骤见[GitHub Pages说明](documentation/GITHUB_PAGES.md)。本地检查与复算命令不会上传数据。主库、Word内部稿和账户邮箱不进入此仓库；当前匿名主稿与补充材料PDF已提供阅读入口，作者、机构及正式发表后的引用信息将在核定后补充，复现代码可独立于未发表的稿件使用。
+部署步骤见[GitHub Pages说明](documentation/GITHUB_PAGES.md)。本地检查与复算命令不会上传数据。主库、Word内部稿和账户邮箱不进入此仓库；当前暂时隐藏论文及补充材料阅读入口，作者、机构及正式发表后的引用信息将在核定后补充，复现代码可独立于未发表的稿件使用。
 
 ## 新增八类任务与物理压力实验
 
